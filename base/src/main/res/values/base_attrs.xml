@@ -1,0 +1,15 @@
+<resources>
+    <!--AutoLinkStyleTextView-->
+    <declare-styleable name="AutoLinkStyleTextView">
+        <attr name="AutoLinkStyleTextView_text_value" format="string|reference"/>
+        <attr name="AutoLinkStyleTextView_default_color" format="color|reference"/>
+        <attr name="AutoLinkStyleTextView_has_under_line" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference"/>
+        <attr name="metaButtonBarButtonStyle" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="AutoTabLayout">
+        <attr name="auto_textSize_base_width" format="boolean"/>
+    </declare-styleable>
+</resources>
