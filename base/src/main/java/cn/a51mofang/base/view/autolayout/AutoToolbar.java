@@ -15,6 +15,7 @@ import com.zhy.autolayout.utils.AutoLayoutHelper;
  */
 @Keep
 public class AutoToolbar extends Toolbar {
+
     private AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 
     public AutoToolbar(Context context) {
