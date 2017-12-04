@@ -2,6 +2,7 @@ package cn.a51mofang.base.http.xutils;
 
 
 
+import android.app.Application;
 import android.text.TextUtils;
 
 import org.xutils.common.Callback.Cancelable;
@@ -13,6 +14,12 @@ import java.util.Map;
 
 
 public class XUtil {
+
+    public static void init(Application application,boolean isDebug){
+        x.Ext.init(application);
+        x.Ext.setDebug(isDebug);
+    }
+
     /**
      * 发送get请求 
      * @param <T> 

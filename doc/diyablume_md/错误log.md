@@ -15,3 +15,24 @@
 
 >与此同时，我们预计在 11 月底发布对 Android 8.0 的全面适配。
 
+3. ListView、RecyclerView、ScorllView、Viewpager 等等，取消顶部半圆形的拉力纹
+
+>android:overScrollMode="never"
+
+4. EditText 显示两行的高度
+```
+    android:inputType="textMultiLine" //可以显示多行
+    android:gravity="left|top" //输入时光标左上角
+    android:minLines="6" //最小显示6行
+ ```
+ 5. 跳转activity，清空之前activity栈
+
+ 问题描述：
+ 开发中，遇到退出登录时，需要将界面跳转到登录界面，并将栈中所有Activity清空。
+
+ 解决办法
+
+ Intent intent = new Intent(A.this,B.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+ startActivity(intent);
+ startActivity 的时候传递 FLAG_ACTIVITY_CLEAR_TASK 这个标志,那么这个标志将会清除之前所有已经打开的 activity .然后将会变成另外一个空栈的 root ,然后其他的 Activitys 就都被关闭了.这个方法必须跟着 {@link #FLAG_ACTIVITY_NEW_TASK} 一起使用.
+

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,7 +18,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-         </activity>
+        </activity>
+        <activity
+            android:name=".createAlbum.CreateActivity"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".main.view.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shetj.diyalbume.main.view.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
