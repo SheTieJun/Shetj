@@ -16,10 +16,10 @@ import com.shetj.diyalbume.main.view.MainActivity
  */
 class MainPresenter(mainActivity: MainActivity) :BasePresenter() {
 
-    var mMainActivity = mainActivity
+    private var mMainActivity = mainActivity
 
     fun startCreateAlbum() {
-        val intent = Intent(mMainActivity, CreateActivity::class.java)
+        val intent = Intent(mMainActivity, CreateActivity.javaClass )
         mMainActivity.startActivity (intent)
     }
 
