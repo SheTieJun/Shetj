@@ -43,34 +43,15 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IView 
     }
 
 
+    protected abstract void initView();
+
+    protected abstract void initData();
+
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
         View view = convertAutoView(name, context, attrs);
         return view == null ? super.onCreateView(name, context, attrs) : view;
-    }
-
-    /**
-     * 全屏
-     */
-    public void fullScreencall() {
-        if (Build.VERSION.SDK_INT < 19) { // lower api
-            View v = this.getWindow().getDecorView();
-            v.setSystemUiVisibility(View.GONE);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-            if (Build.VERSION.SDK_INT >= 21) {
-                getWindow().setStatusBarColor(Color.TRANSPARENT);
-                getWindow().setNavigationBarColor(Color.TRANSPARENT);
-            }
-        }
     }
 
     /**

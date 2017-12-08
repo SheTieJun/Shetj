@@ -28,3 +28,41 @@ val 不可变
 var 可变的
 用val或var声明变量，指明它们是不可变的或可变的
 ```
+
+5. 创建类
+
+```
+class Ablum(var describe : String ,
+            var preview : String ,
+            var ablumJson :String) {
+}
+
+```
+
+6. 创建方法
+
+```
+   open fun toJson(): String? {
+            return GsonKit.objectToJson(this)
+        }
+```
+
+7. 字符拼接 $
+
+```
+ return "Album(describe='$describe', preview='$preview', albumInfoJson='$albumInfoJson')"
+```
+
+8. 实现接口
+
+```
+class Link(var type: Int,
+           var content:String) :MultiItemEntity {
+    val VIDEO = 1
+    val URL = 2
+    val SOUND = 3
+
+    override fun getItemType(): Int {
+    }
+}
+```

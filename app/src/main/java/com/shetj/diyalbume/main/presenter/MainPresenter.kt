@@ -2,7 +2,7 @@ package com.shetj.diyalbume.main.presenter
 
 import android.content.Intent
 import cn.a51mofang.base.base.BasePresenter
-import com.shetj.diyalbume.createAlbum.CreateActivity
+import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.main.view.MainActivity
 
 /**
@@ -19,7 +19,7 @@ class MainPresenter(mainActivity: MainActivity) :BasePresenter() {
     private var mMainActivity = mainActivity
 
     fun startCreateAlbum() {
-        val intent = Intent(mMainActivity, CreateActivity.javaClass )
+        val intent = Intent(mMainActivity, CreateActivity::class.java )
         mMainActivity.startActivity (intent)
     }
 

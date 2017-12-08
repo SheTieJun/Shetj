@@ -14,19 +14,24 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseActivity() {
 
+
     private lateinit var mPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
+        initData()
         mPresenter =  MainPresenter(this)
         fab.setOnClickListener { view ->
             SnackbarUtil.ShortSnackbar(view,"show",SnackbarUtil.Warning).show()
         }
     }
+    override fun initData() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    private fun initView() {
+    override fun initView() {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = "主页"
         UiUtils.configRecycleView(iRecyclerView, LinearLayoutManager(this))

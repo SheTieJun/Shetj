@@ -2,6 +2,7 @@ package cn.a51mofang.base.base;
 
 
 import org.simple.eventbus.EventBus;
+import org.xutils.common.util.LogUtil;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -18,6 +19,7 @@ public  class BasePresenter implements IPresenter{
     private CompositeDisposable mCompositeDisposable;
 
     public BasePresenter() {
+        LogUtil.i("onStart");
         onStart();
     }
 
@@ -29,6 +31,8 @@ public  class BasePresenter implements IPresenter{
         if (useEventBus())//如果要使用 Eventbus 请将此方法返回 true
             EventBus.getDefault().register(this);//注册 Eventbus
     }
+
+
 
     /**
      *  Activity#onDestroy() 调用{@link IPresenter#onDestroy()}

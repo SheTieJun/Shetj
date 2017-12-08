@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".createAlbum.CreateActivity"
+            android:name=".createAlbum.view.CreateActivity"
             android:screenOrientation="landscape"
             android:parentActivityName=".main.view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

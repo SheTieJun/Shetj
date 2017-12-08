@@ -36,6 +36,9 @@ public class HttpOssManager {
 
 
     public  void getOSS_STS(final Context context, final MCallBack<String> callBack){
+
+
+
       if (TokenManager.getInstance().isLogin()) {
         EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
                 .baseUrl(ShetjApi.HTTP_USER)
