@@ -263,7 +263,7 @@ public class ArmsUtils {
      *
      * @return
      */
-    public static int getScreenHeidth(Context context) {
+    public static int getScreenHeight(Context context) {
         return getResources(context).getDisplayMetrics().heightPixels;
     }
 

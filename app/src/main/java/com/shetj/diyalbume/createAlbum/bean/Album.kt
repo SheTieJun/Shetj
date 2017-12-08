@@ -23,4 +23,6 @@ class Album(  var describe : String,
         return "Album(describe='$describe', preview='$preview', albumInfoJson='$albumInfoJson')"
     }
 
+
+
 }

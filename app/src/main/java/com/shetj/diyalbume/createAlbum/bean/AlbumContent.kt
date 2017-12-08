@@ -11,7 +11,7 @@ package com.shetj.diyalbume.createAlbum.bean
  */
 class AlbumContent {
 
-    var photos : List<Photo> = ArrayList()
+    private var photos : List<Photo> = ArrayList()
     constructor(photos: List<Photo>){
         this.photos =photos
     }

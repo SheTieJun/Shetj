@@ -1,7 +1,6 @@
 package com.shetj.diyalbume.createAlbum.bean
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import org.xutils.x
 
 /**
  *

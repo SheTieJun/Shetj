@@ -3,10 +3,13 @@ package com.shetj.diyalbume.createAlbum.view
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.Gravity
 import android.view.View.VISIBLE
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import cn.a51mofang.base.base.BaseActivity
+import cn.a51mofang.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
 
@@ -22,6 +25,7 @@ class CreateActivity : BaseActivity() {
         setContentView(R.layout.activity_create)
         initView()
         initData()
+
 
     }
 
@@ -39,16 +43,30 @@ class CreateActivity : BaseActivity() {
         back.visibility = VISIBLE
         back.setOnClickListener { finish() }
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
         }
-        iv_preview.post( {
 
+        iv_preview.post( {
+            var screenHeight = iv_preview.height
+            var screenWidth  = iv_preview.width
+            val x = screenWidth / screenHeight
+            val f = 16f / 9f
+            if (x > f) {
+                screenWidth = (f * screenHeight).toInt()
+            } else {
+                screenHeight = (9f / 16f * screenWidth).toInt()
+            }
+            val params = LinearLayout.LayoutParams(screenWidth, screenHeight)
+            params.gravity = Gravity.CENTER
+            val margin = ArmsUtils.dip2px(this, 10f)
+            params.setMargins(margin,margin,margin,margin)
+            iv_preview.layoutParams = params
         })
     }
 
     fun addView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

@@ -204,27 +204,6 @@ public final class DownloadManager {
     }
     return false;
   }
-  
-  /**
-   * 方法名：  iscache	<br>
-   * 修改备注： 如果缓存了 并且完成了 就播放缓存 否则播放网络数据<br>
-   * 创建时间： 2016-4-26上午10:03:01<br>
-   * @param videoID
-   * @return
-   */
-  public String iscache(int videoID){
-    for (DownloadInfo downloadInfo : downloadInfoList) {
-      if(downloadInfo.getVideoId()==videoID)
-      {
-        if (downloadInfo.getState()==DownloadState.FINISHED) {
-          return downloadInfo.getFileSavePath();
-        }else{
-          return null;
-        }
-      }
-    }
-    return null;
-  }
 
 
   /**

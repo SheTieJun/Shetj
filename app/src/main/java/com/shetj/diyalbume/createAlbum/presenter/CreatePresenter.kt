@@ -16,8 +16,8 @@ import com.shetj.diyalbume.createAlbum.view.CreateActivity
 class CreatePresenter(createActivity: CreateActivity) :BasePresenter(){
 
 
-    var createActivity = createActivity
-    lateinit var albumContent :AlbumContent
+    private var createActivity = createActivity
+    private lateinit var albumContent :AlbumContent
 
     fun addPhoto(){
          createActivity.addView()
@@ -25,7 +25,6 @@ class CreatePresenter(createActivity: CreateActivity) :BasePresenter(){
 
     fun createAlbum() {
         albumContent = AlbumContent(ArrayList())
-
     }
 
 }
