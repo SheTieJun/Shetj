@@ -1,5 +1,6 @@
 package com.shetj.diyalbume.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -9,6 +10,7 @@ import cn.a51mofang.base.tools.app.SnackbarUtil
 import cn.a51mofang.base.tools.app.UiUtils
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.main.presenter.MainPresenter
+import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -38,6 +40,10 @@ class MainActivity : BaseActivity() {
 
         bt_create.setOnClickListener({
             mPresenter.startCreateAlbum()
+        })
+
+        btn_paly.setOnClickListener({
+            startActivity(Intent(this,PlayVideoActivity::class.java))
         })
 
 

@@ -15,6 +15,6 @@ import cn.a51mofang.base.http.xutils.XUtil
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        XUtil.init(this,BuildConfig.LOG_DEBUG)
+        XUtil.init(this,true)
     }
 }

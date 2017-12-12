@@ -9,7 +9,7 @@ public class LogUtil {
     /**
      * The constant isShow.
      */
-    public static boolean isShow = false;
+    public static boolean isShow = true;
 
     /**
      * Show.
@@ -22,5 +22,14 @@ public class LogUtil {
             Log.i(tag, msg);
         }
     }
-
+    /**
+     * Show.
+     *
+     * @param msg the msg
+     */
+    public static void show(String msg){
+        if (isShow) {
+            Log.i("diy", msg);
+        }
+    }
 }

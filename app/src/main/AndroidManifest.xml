@@ -21,12 +21,17 @@
         </activity>
         <activity
             android:name=".createAlbum.view.CreateActivity"
-            android:screenOrientation="landscape"
             android:parentActivityName=".main.view.MainActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.shetj.diyalbume.main.view.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".playVideo.PlayVideoActivity"
+            android:label="@string/title_activity_paly_video"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -151,6 +151,10 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile 'com.shuyu:gsyVideoPlayer-java:2.1.1'
+    compile 'com.shuyu:gsyVideoPlayer-armv7a:2.1.1'
+
     compile project(':base')
     implementation project(':resources')
 }
