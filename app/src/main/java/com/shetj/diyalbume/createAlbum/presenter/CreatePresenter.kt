@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.createAlbum.presenter
 
 import cn.a51mofang.base.base.BasePresenter
+import cn.a51mofang.base.tools.app.LogUtil
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 
@@ -16,6 +17,7 @@ import com.shetj.diyalbume.createAlbum.view.CreateActivity
 class CreatePresenter(createActivity: CreateActivity) :BasePresenter(){
 
 
+
     private var createActivity = createActivity
     private lateinit var albumContent :AlbumContent
 
@@ -25,6 +27,7 @@ class CreatePresenter(createActivity: CreateActivity) :BasePresenter(){
 
     fun createAlbum() {
         albumContent = AlbumContent(ArrayList())
+        LogUtil.show(albumContent.photos.size.toString())
     }
 
 }

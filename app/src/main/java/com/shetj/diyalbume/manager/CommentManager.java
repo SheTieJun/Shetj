@@ -23,6 +23,7 @@ class CommentManager {
 	}
 
 	private CommentManager() {
+
 	}
 
 	Map<String, Integer>  map = new HashMap<>();

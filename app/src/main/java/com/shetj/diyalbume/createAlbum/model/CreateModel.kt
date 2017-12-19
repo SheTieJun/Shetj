@@ -1,6 +1,8 @@
 package com.shetj.diyalbume.createAlbum.model
 
 import com.shetj.diyalbume.createAlbum.bean.Album
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 /**
  * **@packageName：** com.shetj.diyalbume.createAlbum<br></br>
@@ -14,6 +16,17 @@ import com.shetj.diyalbume.createAlbum.bean.Album
 class CreateModel{
     fun saveAlbum(){
         val album = Album("1","1","1")
+
+    }
+
+    fun test(){
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder().url("http://baidu.com").build()
+
+        var cal = okHttpClient.newCall(request)
+
+        val execute = cal.execute()
+        execute.body()
 
     }
 }

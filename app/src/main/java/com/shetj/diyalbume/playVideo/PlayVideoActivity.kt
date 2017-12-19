@@ -39,8 +39,8 @@ class PlayVideoActivity : AppCompatActivity() {
         UiUtils.configRecycleView(iRecyclerView,linearLayoutManager)
 
         //限定范围为屏幕一半的上下偏移100
-        val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 300f)
-        val playBottom = CommonUtil.getScreenHeight(this) / 2 + CommonUtil.dip2px(this, 300f)
+        val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 200f)
+        val playBottom = CommonUtil.getScreenHeight(this) / 2 + CommonUtil.dip2px(this, 200f)
         //自定播放帮助类
         var scrollCalculatorHelper = ScrollCalculatorHelper(R.id.tv_string,CommonUtil.getScreenHeight(this) / 2, playTop, playBottom,adapter)
 
@@ -53,7 +53,7 @@ class PlayVideoActivity : AppCompatActivity() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                scrollCalculatorHelper.onScrollStateChanged(recyclerView, newState)
+                scrollCalculatorHelper.onScrollStateChanged(recyclerView, newState,linearLayoutManager)
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

@@ -1,11 +1,9 @@
 package com.shetj.diyalbume.playVideo;
 
 import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
-
-import cn.a51mofang.base.tools.app.LogUtil;
-import cn.a51mofang.base.tools.app.TimeUtil;
 
 /**
  * 计算滑动，自动播放的帮助类
@@ -33,14 +31,27 @@ public class ScrollCalculatorHelper {
         this.center = center;
     }
 
-    public void onScrollStateChanged(RecyclerView view, int scrollState) {
+    public void onScrollStateChanged(RecyclerView view, int scrollState, LinearLayoutManager linearLayoutManager) {
         switch (scrollState) {
             case RecyclerView.SCROLL_STATE_IDLE:
                 playVideo(view);
                 break;
+            case RecyclerView.SCROLL_STATE_DRAGGING:
+                isStop(view,linearLayoutManager);
+                break;
+            case RecyclerView.SCROLL_STATE_SETTLING:
+                isStop(view,linearLayoutManager);
+                break;
         }
     }
 
+    private void isStop(RecyclerView view, LinearLayoutManager linearLayoutManager) {
+        int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+        int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+        autoAdapter.isStop(firstVisibleItemPosition,lastVisibleItemPosition);
+
+
+    }
 
 
     public void onScroll(RecyclerView view, int firstVisibleItem, int lastVisibleItem, int visibleItemCount) {
@@ -61,7 +72,7 @@ public class ScrollCalculatorHelper {
 
         RecyclerView.LayoutManager layoutManager = view.getLayoutManager();
 
-        TextView Basetextview = null;
+        TextView BaseTextView = null;
         boolean needPlay = false;
         for (int i = 0; i < visibleCount; i++) {
 
@@ -72,14 +83,14 @@ public class ScrollCalculatorHelper {
                 int halfHeight = textView.getHeight() / 2;
                 int rangePosition = screenPosition[1] + halfHeight;
                 //中心点在播放区域内
-                if (screenPosition[1]> 0 && rangePosition >= rangeTop && rangePosition <= rangeBottom ) {
+                if ( rangePosition >= rangeTop && rangePosition <= rangeBottom ) {
                     if (runnable !=null &&  runnable.textView == textView){
+                        textView.setText("同一个"+firstVisible+i);
                         return;
                     }
-                    Basetextview = textView;
-                    Basetextview.setTag(firstVisible+i);
+                    BaseTextView = textView;
+                    BaseTextView.setTag(firstVisible+i);
                     needPlay = true;
-
                     break;
                 }
 
@@ -87,18 +98,18 @@ public class ScrollCalculatorHelper {
         }
 
 
-        if ( Basetextview!=null && needPlay) {
+        if ( BaseTextView!=null && needPlay) {
             if (runnable != null) {
                 TextView tmpPlayer = runnable.textView;
                 playHandler.removeCallbacks(runnable);
                 runnable = null;
-                if (tmpPlayer == Basetextview) {
+                if (tmpPlayer == BaseTextView) {
                     return;
                 }
             }
-            runnable = new PlayRunnable(Basetextview);
+            runnable = new PlayRunnable(BaseTextView);
             //降低频率
-            playHandler.postDelayed(runnable, 0);
+            playHandler.postDelayed(runnable, 100);
         }
 
 
@@ -114,7 +125,7 @@ public class ScrollCalculatorHelper {
 
         @Override
         public void run() {
-          autoAdapter.setPlay((Integer) textView.getTag());
+            autoAdapter.setPlay((Integer) textView.getTag());
         }
     }
 

@@ -8,7 +8,13 @@ import com.shetj.diyalbume.R;
 
 import java.util.List;
 
+import cn.a51mofang.base.tools.app.LogUtil;
 import cn.a51mofang.base.tools.app.TimeUtil;
+import cn.a51mofang.base.tools.app.ToastUtils;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.playVideo<br>
@@ -21,17 +27,18 @@ import cn.a51mofang.base.tools.app.TimeUtil;
 
 public class AutoRecycleView extends BaseQuickAdapter<String ,BaseViewHolder> {
 
-	public int playPostin = 0;
+	public int playPostin = -1;
 
 	public  int oldPosition = -1;
 
+	public int i = 0;
 	public AutoRecycleView(@Nullable List<String> data) {
 		super(R.layout.item_recycle_string,data);
 	}
 
 	@Override
 	protected void convert(BaseViewHolder helper, String item) {
-		if(helper.getLayoutPosition() == playPostin){
+		if(helper.getLayoutPosition() == playPostin ){
 			helper.setText(R.id.tv_string,"播放"+ TimeUtil.getYMDHMSTime());
 		}else {
 			helper.setText(R.id.tv_string,item + TimeUtil.getYMDHMSTime());
@@ -46,6 +53,19 @@ public class AutoRecycleView extends BaseQuickAdapter<String ,BaseViewHolder> {
 			}
 			oldPosition = playPostin;
 			notifyItemChanged(playPostin);
+		}
+	}
+
+	public void isStop(int firstVisibleItemPosition,int lastVisibleItemPosition) {
+		LogUtil.show(firstVisibleItemPosition+"////"+lastVisibleItemPosition);
+		if (firstVisibleItemPosition > playPostin
+						||lastVisibleItemPosition < playPostin){
+			LogUtil.show((i++)+"停止播放"+playPostin);
+			if (oldPosition != -1) {
+				notifyItemChanged(oldPosition);
+			}
+			oldPosition = -1;
+			setPlay(-1);
 		}
 	}
 }
