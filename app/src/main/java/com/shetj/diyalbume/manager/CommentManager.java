@@ -3,16 +3,18 @@ package com.shetj.diyalbume.manager;
 import android.view.View;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <b>@packageName：</b> com.shetj.diyalbume.manager<br>
- * <b>@author：</b> shetj<br>
- * <b>@createTime：</b> 2017/12/13<br>
- * <b>@company：</b><br>
- * <b>@email：</b> 375105540@qq.com<br>
- * <b>@describe</b><br>
+ * <b>@packageName：</b> com.shetj.diyalbume.manager <br>
+ * <b>@author：</b> shetj <br>
+ * <b>@createTime：</b> 2017/12/13 <br>
+ * <b>@company：</b> <br>
+ * <b>@email：</b> 375105540@qq.com <br>
+ * <b>@describe</b> <br>
  */
 
 class CommentManager {
@@ -58,6 +60,7 @@ class CommentManager {
 	}
 
 	private void clearRead(String key) {
+
 
 	}
 

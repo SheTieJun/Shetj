@@ -1,7 +1,7 @@
 package com.shetj.diyalbume
 
 import android.app.Application
-import cn.a51mofang.base.http.xutils.XUtil
+import cn.shetj.base.http.xutils.XUtil
 
 /**
  *

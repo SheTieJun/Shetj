@@ -20,19 +20,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bt_create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:text="创建"
-    />
+        <Button
+            android:id="@+id/bt_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建"
+            />
 
-    <Button
-        android:id="@+id/btn_paly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="play"/>
+        <Button
+            android:id="@+id/btn_paly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="play"/>
 
+        <Button
+            android:id="@+id/btn_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义"/>
+        <Button
+            android:id="@+id/btn_miui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义UI"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -7,14 +7,16 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.shetj.diyalbume.R;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import cn.a51mofang.base.tools.app.LogUtil;
-import cn.a51mofang.base.tools.app.TimeUtil;
-import cn.a51mofang.base.tools.app.ToastUtils;
+import cn.shetj.base.tools.app.LogUtil;
+import cn.shetj.base.tools.app.TimeUtil;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.playVideo<br>
@@ -54,6 +56,8 @@ public class AutoRecycleView extends BaseQuickAdapter<String ,BaseViewHolder> {
 			oldPosition = playPostin;
 			notifyItemChanged(playPostin);
 		}
+
+
 	}
 
 	public void isStop(int firstVisibleItemPosition,int lastVisibleItemPosition) {

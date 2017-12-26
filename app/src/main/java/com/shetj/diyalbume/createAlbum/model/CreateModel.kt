@@ -16,7 +16,6 @@ import okhttp3.Request
 class CreateModel{
     fun saveAlbum(){
         val album = Album("1","1","1")
-
     }
 
     fun test(){

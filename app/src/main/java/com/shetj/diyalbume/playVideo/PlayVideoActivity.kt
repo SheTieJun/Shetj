@@ -5,7 +5,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import cn.a51mofang.base.tools.app.UiUtils
+import cn.shetj.base.tools.app.UiUtils
 import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 
@@ -29,9 +29,7 @@ class PlayVideoActivity : AppCompatActivity() {
 
     private fun showRecycleView() {
         var list = ArrayList<String>()
-        for (i in 1..100 step 1){
-            list.add(i.toString()+"itme")
-        }
+        (1..100 step 1).mapTo(list) { it.toString()+"itme" }
 
         var adapter = AutoRecycleView(list)
 

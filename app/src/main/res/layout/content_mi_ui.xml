@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.shetj.diyalbume.miui.MiUIActivity"
+    tools:showIn="@layout/activity_mi_ui">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <cn.jiguang.imui.messages.ptr.PullToRefreshLayout
+            android:id="@+id/pull_to_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:PtrCloseDuration="300"
+            app:PtrCloseHeaderDuration="2000"
+            app:PtrKeepHeaderWhenRefresh="true"
+            app:PtrPullToRefresh="true"
+            app:PtrRatioHeightToRefresh="1.2"
+            app:PtrResistance="1.2"
+          >
+            <cn.jiguang.imui.messages.MessageList
+                android:id="@+id/msg_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:avatarHeight="48dp"
+                app:avatarWidth="48dp"
+                app:showReceiverDisplayName="SHOW"
+                app:showSenderDisplayName="HIDE"
+                app:avatarRadius="5dp"
+                app:bubbleMaxWidth="0.70"
+                app:dateTextSize="14sp"
+                app:receiveBubblePaddingLeft="16dp"
+                app:receiveBubblePaddingRight="8dp"
+                app:receiveTextColor="#ffffff"
+                app:receiveTextSize="14sp"
+                app:sendBubblePaddingLeft="8dp"
+                app:sendBubblePaddingRight="16dp"
+                app:sendTextColor="#7587A8"
+                app:sendTextSize="14sp" />
+
+        </cn.jiguang.imui.messages.ptr.PullToRefreshLayout>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

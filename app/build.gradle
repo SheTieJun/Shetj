@@ -121,6 +121,11 @@ android {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
 
     def listSubFile = {
         def resFolder = 'src/main/res/layouts'
@@ -155,6 +160,11 @@ dependencies {
     compile 'com.shuyu:gsyVideoPlayer-java:2.1.1'
     compile 'com.shuyu:gsyVideoPlayer-armv7a:2.1.1'
 
+
+    compile 'cn.jiguang.imui:messagelist:0.5.7'
+    compile 'cn.jiguang.imui:chatinput:0.5.7'
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
     compile project(':base')
     implementation project(':resources')
 }

@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 /**
  * 计算滑动，自动播放的帮助类
- * Created by guoshuyu on 2017/11/2.
  */
 
 public class ScrollCalculatorHelper {
@@ -18,7 +17,7 @@ public class ScrollCalculatorHelper {
     private int playId;
     private int rangeTop;
     private int rangeBottom;
-    private int center;
+    private int center ;
     private PlayRunnable runnable;
     private AutoRecycleView autoAdapter;
     private Handler playHandler = new Handler();
@@ -49,8 +48,6 @@ public class ScrollCalculatorHelper {
         int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
         int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
         autoAdapter.isStop(firstVisibleItemPosition,lastVisibleItemPosition);
-
-
     }
 
 

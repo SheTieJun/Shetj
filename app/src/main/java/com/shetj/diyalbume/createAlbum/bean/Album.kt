@@ -1,6 +1,6 @@
 package com.shetj.diyalbume.createAlbum.bean
 
-import cn.a51mofang.base.tools.json.GsonKit
+import cn.shetj.base.tools.json.GsonKit
 
 /**
  *

@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.createAlbum.presenter
 
-import cn.a51mofang.base.base.BasePresenter
-import cn.a51mofang.base.tools.app.LogUtil
+import cn.shetj.base.base.BasePresenter
+import cn.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 

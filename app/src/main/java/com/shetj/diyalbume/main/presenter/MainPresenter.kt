@@ -1,9 +1,13 @@
 package com.shetj.diyalbume.main.presenter
 
 import android.content.Intent
-import cn.a51mofang.base.base.BasePresenter
+import cn.shetj.base.base.BasePresenter
+import cn.shetj.base.http.callback.EasyProgressCallBack
+import cn.shetj.base.http.rxEasyHttp.EasyHttpUtils
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.main.view.MainActivity
+import com.zhouyou.http.exception.ApiException
+import io.reactivex.disposables.Disposable
 
 /**
  *
@@ -22,6 +26,7 @@ class MainPresenter(mainActivity: MainActivity) :BasePresenter() {
         val intent = Intent(mMainActivity, CreateActivity::class.java )
         mMainActivity.startActivity (intent)
     }
+
 
 
 }

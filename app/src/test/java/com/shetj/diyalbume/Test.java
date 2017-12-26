@@ -39,16 +39,6 @@ public class Test {
 //		return getNext(l1,l2,0);
 	}
 
-	private ListNode getNext(ListNode l1, ListNode l2, int j) {
-		l1.val = l1.val + l2.val + j;
-		int j1 = l1.val / 10;
-		l1.val = l1.val % 10;
-
-
-		l1.next = getNext(l1.next, l2.next, j1);
-		return l1;
-	}
-
 	public int lengthOfLongestSubstring(String s) {
 
 		return 0;
