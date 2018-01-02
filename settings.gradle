@@ -1,1 +1,1 @@
-include ':app', ':base', ':resources', ':player'
+include ':app', ':base', ':resources', ':player', ':components'
