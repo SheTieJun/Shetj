@@ -27,16 +27,16 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('E:/MfangSDKTest/app/my.jks')
-            storePassword '906029'
-            keyAlias 'key0'
-            keyPassword '906029'
+//            storeFile file('E:/MfangSDKTest/app/my.jks')
+//            storePassword '906029'
+//            keyAlias 'key0'
+//            keyPassword '906029'
         }
         debug {
-            storeFile file('E:/MfangSDKTest/app/my.jks')
-            storePassword '906029'
-            keyAlias 'key0'
-            keyPassword '906029'
+//            storeFile file('E:/MfangSDKTest/app/my.jks')
+//            storePassword '906029'
+//            keyAlias 'key0'
+//            keyPassword '906029'
         }
     }
     lintOptions {
@@ -56,7 +56,7 @@ android {
             // 移除无用的resource文件
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -70,7 +70,7 @@ android {
             multiDexEnabled true
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             ndk {
                 abiFilters 'x86'                 // for debug in AVD.
             }

@@ -1,6 +1,7 @@
 package com.shetj.diyalbume
 
 import android.app.Application
+import cn.shetj.base.http.rxEasyHttp.EasyHttpUtils
 import cn.shetj.base.http.xutils.XUtil
 
 /**
@@ -16,5 +17,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         XUtil.init(this,true)
+        EasyHttpUtils.init(this,true)
     }
 }

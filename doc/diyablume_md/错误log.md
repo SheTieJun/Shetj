@@ -36,3 +36,9 @@
  startActivity(intent);
  startActivity 的时候传递 FLAG_ACTIVITY_CLEAR_TASK 这个标志,那么这个标志将会清除之前所有已经打开的 activity .然后将会变成另外一个空栈的 root ,然后其他的 Activitys 就都被关闭了.这个方法必须跟着 {@link #FLAG_ACTIVITY_NEW_TASK} 一起使用.
 
+记一次使用xutils3的数据库模块的教训org.xutils.ex.DbException: <init> []
+
+在使用xutil3的数据库模块的时候出现报错org.xutils.ex.DbException: <init> []
+问题原因：创建数据库的bean在生成有参数的构造方法时覆盖了没参数的构造方法
+
+解决：生成不带参数的构造方法
