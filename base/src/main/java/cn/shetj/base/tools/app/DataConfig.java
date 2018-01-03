@@ -5,7 +5,7 @@ import cn.shetj.base.BuildConfig;
 /**
  * Created by weedys on 2017/2/23.
  */
-public class MFangDataConfig {
+public class DataConfig {
     /**
      * The constant DEBUG.
      */

@@ -6,7 +6,7 @@ import cn.shetj.base.tools.file.SPUtils;
 import cn.shetj.base.tools.json.EmptyUtils;
 import io.reactivex.Observable;
 
-import static cn.shetj.base.tools.app.MFangDataConfig.PRE_CUSTOM_TOKEN;
+import static cn.shetj.base.tools.app.DataConfig.PRE_CUSTOM_TOKEN;
 
 /**
  * Created by admin on 2017/10/16.

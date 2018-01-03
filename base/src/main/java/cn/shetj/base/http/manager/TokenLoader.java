@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import cn.shetj.base.http.api.ShetjApi;
-import cn.shetj.base.tools.app.MFangDataConfig;
+import cn.shetj.base.tools.app.DataConfig;
 import cn.shetj.base.tools.app.TimeUtil;
 import cn.shetj.base.tools.file.SPUtils;
 import cn.shetj.base.tools.json.EmptyUtils;
@@ -21,7 +21,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-import static cn.shetj.base.tools.app.MFangDataConfig.PRE_CUSTOM_TOKEN;
+import static cn.shetj.base.tools.app.DataConfig.PRE_CUSTOM_TOKEN;
 
 public class TokenLoader {
 
@@ -85,7 +85,7 @@ public class TokenLoader {
      * @return the string
      */
     private static String getExpire(Context c){
-        return (String) SPUtils.get(c, MFangDataConfig.PRE_CUSTOM_TOKEN_FAILURE_TIME, TimeUtil.getYMDHMSTime());
+        return (String) SPUtils.get(c, DataConfig.PRE_CUSTOM_TOKEN_FAILURE_TIME, TimeUtil.getYMDHMSTime());
     }
 
     public Observable<String> getNetTokenLocked() {

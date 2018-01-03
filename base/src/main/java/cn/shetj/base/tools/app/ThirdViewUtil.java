@@ -11,9 +11,9 @@ import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
-import static cn.shetj.base.tools.app.MFangDataConfig.LAYOUT_FRAMELAYOUT;
-import static cn.shetj.base.tools.app.MFangDataConfig.LAYOUT_LINEARLAYOUT;
-import static cn.shetj.base.tools.app.MFangDataConfig.LAYOUT_RELATIVELAYOUT;
+import static cn.shetj.base.tools.app.DataConfig.LAYOUT_FRAMELAYOUT;
+import static cn.shetj.base.tools.app.DataConfig.LAYOUT_LINEARLAYOUT;
+import static cn.shetj.base.tools.app.DataConfig.LAYOUT_RELATIVELAYOUT;
 
 public class ThirdViewUtil {
     private static int USE_AUTOLAYOUT = -1;//0 说明 AndroidManifest 里面没有使用 AutoLayout 的Meta,即不使用 AutoLayout,1 为有 Meta ,即需要使用
