@@ -21,11 +21,12 @@ import javax.inject.Singleton;
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-@Singleton
+
 public class UserRepository {
 
 	private UserDao userDao;
 
+	@Singleton
 	public UserRepository(UserDao userDao) {
 		this.userDao = userDao;
 	}
