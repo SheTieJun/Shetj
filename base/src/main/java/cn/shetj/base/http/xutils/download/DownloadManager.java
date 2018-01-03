@@ -88,7 +88,7 @@ public final class DownloadManager {
     return downloadInfoList;
   }
   
-  public synchronized void startDownload(String url, String label, String savePath,int videoId,String labelUrl,
+  public synchronized void startDownload(String url, String label, String savePath,String labelUrl,
       boolean autoResume, boolean autoRename,
       DownloadViewHolder viewHolder) throws DbException {
     String fileSavePath = new File(savePath).getAbsolutePath();
@@ -113,7 +113,6 @@ public final class DownloadManager {
     if (downloadInfo == null) {
       downloadInfo = new DownloadInfo();
       downloadInfo.setUrl(url);
-      downloadInfo.setVideoId(videoId);
       downloadInfo.setAutoRename(autoRename);
       downloadInfo.setAutoResume(autoResume);
       downloadInfo.setLabel(label);
@@ -183,27 +182,7 @@ public final class DownloadManager {
     downloadInfoList.remove(downloadInfo);
   }
 
-  public void removeDownloadbyVideoId(int videoID)throws DbException{
-    for (DownloadInfo downloadInfo : downloadInfoList) {
-      if(downloadInfo.getVideoId()==videoID)
-      {
-        db.delete(downloadInfo);
-        stopDownload(downloadInfo);
-        downloadInfoList.remove(downloadInfo);
-        return ;
-      }
-    }
-  }
-  
-  public boolean isExist(int videoID){
-    for (DownloadInfo downloadInfo : downloadInfoList) {
-      if(downloadInfo.getVideoId()==videoID)
-      {
-        return true;
-      }
-    }
-    return false;
-  }
+
 
 
   /**
@@ -234,7 +213,6 @@ public final class DownloadManager {
                       downloadInfo.getUrl(),
                       downloadInfo.getLabel(),
                       downloadInfo.getFileSavePath(),
-                      downloadInfo.getVideoId(),
                       downloadInfo.getLabelUrl(),
                       downloadInfo.isAutoResume(),
                       downloadInfo.isAutoRename(),

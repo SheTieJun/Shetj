@@ -17,8 +17,6 @@ public class DownloadInfo {
     @Column(name = "id", isId = true)
     private long id;
     
-    @Column(name = "videoId")
-    private int videoId;
 
     @Column(name = "state")
     private DownloadState state = DownloadState.STOPPED;
@@ -55,13 +53,6 @@ public class DownloadInfo {
       this.labelUrl = labelUrl;
     }
 
-    public int getVideoId() {
-      return videoId;
-    }
-
-    public void setVideoId(int videoId) {
-      this.videoId = videoId;
-    }
 
     public long getId() {
         return id;
@@ -142,7 +133,7 @@ public class DownloadInfo {
 
         DownloadInfo that = (DownloadInfo) o;
 
-        if (id != that.id||videoId!=that.videoId) return false;
+        if (id != that.id) return false;
 
         return true;
     }
@@ -154,7 +145,7 @@ public class DownloadInfo {
 
     @Override
     public String toString() {
-      return "DownloadInfo [id=" + id + ", videoId=" + videoId + ", state=" + state + ", url=" + url + ", label="
+      return "DownloadInfo [id=" + id +  ", state=" + state + ", url=" + url + ", label="
           + label + ", fileSavePath=" + fileSavePath + ", progress=" + progress + ", fileLength=" + fileLength
           + ", autoResume=" + autoResume + ", autoRename=" + autoRename + ", labelUrl=" + labelUrl + "]";
     }

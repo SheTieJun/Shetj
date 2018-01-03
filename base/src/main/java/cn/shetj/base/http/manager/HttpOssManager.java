@@ -1,16 +1,14 @@
 package cn.shetj.base.http.manager;
 
-import android.content.Context;
-
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.model.CacheMode;
-import com.zhouyou.http.callback.CallBack;
-import com.zhouyou.http.exception.ApiException;
 
 import org.xutils.common.util.MD5;
 
 import cn.shetj.base.http.api.ShetjApi;
-import cn.shetj.base.http.callback.MCallBack;
+import cn.shetj.base.http.callback.EasyCallBack;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 
 /**
  * Created by shetj
@@ -34,46 +32,22 @@ public class HttpOssManager {
     return instance;
   }
 
-
-    public  void getOSS_STS(final Context context, final MCallBack<String> callBack){
-
-
-
-      if (TokenManager.getInstance().isLogin()) {
-        EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
-                .baseUrl(ShetjApi.HTTP_USER)
-                .headers("Authorization", "Bearer " + TokenManager.getInstance().getToken())
-                .cacheKey(MD5.md5(ShetjApi.User.URL_GET_OSS_STS))
-                .cacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
-                .cacheTime(24*60*60*1000)
-                .execute(new CallBack<String>() {
-                  @Override
-                  public void onStart() {
-
-                  }
-
-                  @Override
-                  public void onCompleted() {
-                    if (callBack != null) {
-                      callBack.onFinished();
-                    }
-                  }
-
-                  @Override
-                  public void onError(ApiException e) {
-
-                  }
-
-                  @Override
-                  public void onSuccess(String content) {
-                  }
-                });
-      }
+  public  void getOSSFromSever(final EasyCallBack<String> callBack){
+    if (TokenManager.getInstance().isLogin()){
+      TokenManager.getInstance().getToken()
+              .map(new Function<String, Disposable>() {
+                @Override
+                public Disposable apply(String token) throws Exception {
+                  return  EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
+                          .baseUrl(ShetjApi.HTTP_USER)
+                          .headers("Authorization", "Bearer " + token)
+                          .cacheKey(MD5.md5(ShetjApi.User.URL_GET_OSS_STS))
+                          .cacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
+                          .cacheTime(24 * 60 * 60 * 1000 - 60*60*1000)
+                          .execute(callBack);
+                }
+              });
     }
-
-    public void  saveOSSSTS(){
-
-    }
-
+  }
 
 }

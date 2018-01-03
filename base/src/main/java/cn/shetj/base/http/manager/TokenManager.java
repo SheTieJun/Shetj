@@ -51,6 +51,6 @@ public class TokenManager {
 
 
 	public void setToken(String token) {
-
+		 SPUtils.put(x.app().getApplicationContext(), PRE_CUSTOM_TOKEN,token);
 	}
 }

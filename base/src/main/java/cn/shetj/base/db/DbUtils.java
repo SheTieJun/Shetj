@@ -20,7 +20,7 @@ public class DbUtils {
 //		File file=new File(SDCardUtils.getPath(ConfigsSavePath.dbPath));
 		if(daoConfig==null){
 			daoConfig=new DbManager.DaoConfig()
-							.setDbName("MoFang.db")
+							.setDbName("DIY.db")
 //							.setDbDir(file)
 							.setDbVersion(1)
 							.setAllowTransaction(true)

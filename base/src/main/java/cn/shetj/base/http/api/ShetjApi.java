@@ -12,10 +12,10 @@ public interface ShetjApi {
     String MOFANG_HOME = "http://mf.51mofang.cn";//魔方主页
 
 
-    String HTTP_SMS   = isTest? "http://172.35.2.147:5005/" : "http://mf-1-message.51mofang.cn/" ;
-    String HTTP_USER  = isTest? "http://172.35.2.147:5000/" : "http://mf-1-user.51mofang.cn/" ;
-    String HTTP_ORDER = isTest? "http://172.35.2.147:5004/" : "http://mf-1-finance.51mofang.cn/" ;
-    String HTTP_TOKEN = isTest? "http://172.35.2.147:5006/" : "http://mf-1-login.51mofang.cn/" ;
+    String HTTP_SMS   = isTest? "http://172.35.2.147:5005/" : "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/" ;
+    String HTTP_USER  = isTest? "http://172.35.2.147:5000/" : "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/" ;
+    String HTTP_ORDER = isTest? "http://172.35.2.147:5004/" : "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/" ;
+    String HTTP_TOKEN = isTest? "http://172.35.2.147:5006/" : "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/" ;
 
     String HTTP_MOCK = " http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/";
 
