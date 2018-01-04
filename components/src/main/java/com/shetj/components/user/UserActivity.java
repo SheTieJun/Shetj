@@ -16,7 +16,15 @@ import com.shetj.components.component.DaggerUserComponent;
 import com.shetj.components.db.User;
 import com.shetj.components.module.UserModule;
 
+import java.util.List;
+
 import javax.inject.Inject;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 
 public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 
@@ -29,6 +37,9 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	UserRepository userRepository;
 
 	private FloatingActionButton mFab;
+
+	 PublishSubject<List<User>>  publishSubject;
+
 	private int i;
 
 	@Override
@@ -49,7 +60,17 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 
 
 	private void initData() {
+		publishSubject = PublishSubject.create();
 
+		publishSubject.observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread())
+						.subscribe(new Consumer<List<User>>() {
+			@Override
+			public void accept(List<User> users) throws Exception {
+				Toast.makeText(UserActivity.this,"xxxxx"+users.size()+"user",Toast.LENGTH_LONG).show();
+			}
+		});
+
+		publishSubject.onNext(userRepository.getUsers());
 
 		mUserModel.getUser().observe(this, new Observer<User>() {
 			@Override

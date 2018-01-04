@@ -38,4 +38,13 @@ public class UserRepository {
 		users.setValue(all);
 		return users;
 	}
+
+
+	public List<User>  getUsers(){
+
+		List<User> all = new ArrayList<>();
+		all.add(new User());
+
+		return all;
+	}
 }
