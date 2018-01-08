@@ -7,16 +7,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.shetj.diyalbume.R;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import cn.shetj.base.tools.app.LogUtil;
-import cn.shetj.base.tools.app.TimeUtil;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
+import me.shetj.base.tools.app.LogUtil;
+import me.shetj.base.tools.app.TimeUtil;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.playVideo<br>

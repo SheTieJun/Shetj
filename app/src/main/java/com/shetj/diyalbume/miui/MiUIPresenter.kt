@@ -1,6 +1,6 @@
 package com.shetj.diyalbume.miui
 
-import cn.shetj.base.base.BasePresenter
+import me.shetj.base.base.BasePresenter
 
 /**
  *

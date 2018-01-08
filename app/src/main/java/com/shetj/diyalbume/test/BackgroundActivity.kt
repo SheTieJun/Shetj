@@ -3,9 +3,9 @@ package com.shetj.diyalbume.test
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
-import cn.shetj.base.base.BaseActivity
-import cn.shetj.base.tools.app.ArmsUtils
-import cn.shetj.base.tools.app.LogUtil
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.R
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe

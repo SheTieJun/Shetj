@@ -1,13 +1,9 @@
 package com.shetj.diyalbume.main.presenter
 
 import android.content.Intent
-import cn.shetj.base.base.BasePresenter
-import cn.shetj.base.http.callback.EasyProgressCallBack
-import cn.shetj.base.http.rxEasyHttp.EasyHttpUtils
+import me.shetj.base.base.BasePresenter
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.main.view.MainActivity
-import com.zhouyou.http.exception.ApiException
-import io.reactivex.disposables.Disposable
 
 /**
  *
@@ -18,7 +14,7 @@ import io.reactivex.disposables.Disposable
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class MainPresenter(mainActivity: MainActivity) :BasePresenter() {
+class MainPresenter(mainActivity: MainActivity) : BasePresenter() {
 
     private var mMainActivity = mainActivity
 

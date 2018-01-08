@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.createAlbum.presenter
 
-import cn.shetj.base.base.BasePresenter
-import cn.shetj.base.tools.app.LogUtil
+import me.shetj.base.base.BasePresenter
+import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 
@@ -14,7 +14,7 @@ import com.shetj.diyalbume.createAlbum.view.CreateActivity
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class CreatePresenter(createActivity: CreateActivity) :BasePresenter(){
+class CreatePresenter(createActivity: CreateActivity) : BasePresenter(){
 
 
 

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
-import cn.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.view.AlbumImageView
 

@@ -1,12 +1,8 @@
 package com.shetj.diyalbume.miui
 
-import cn.shetj.base.http.xutils.XCallBack
 import cn.jiguang.imui.commons.models.IMessage
 import java.text.SimpleDateFormat
 import java.util.*
-import android.R.array
-import cn.shetj.base.tools.app.ArmsUtils.getStringArray
-import cn.shetj.base.tools.app.ArmsUtils.getResources
 import com.shetj.diyalbume.R
 import org.xutils.x
 

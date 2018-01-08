@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
-import cn.shetj.base.base.BaseActivity
-import cn.shetj.base.tools.app.ArmsUtils
-import cn.shetj.base.tools.app.SnackbarUtil
-import cn.shetj.base.tools.app.UiUtils
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.SnackbarUtil
+import me.shetj.base.tools.app.UiUtils
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.miui.MiUIActivity
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
         initData()
         mPresenter =  MainPresenter(this)
         fab.setOnClickListener { view ->
-            SnackbarUtil.ShortSnackbar(view,"show",SnackbarUtil.Warning).show()
+            SnackbarUtil.ShortSnackbar(view,"show", SnackbarUtil.Warning).show()
         }
     }
     override fun initData() {

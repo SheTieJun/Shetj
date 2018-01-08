@@ -1,8 +1,8 @@
 package com.shetj.diyalbume
 
 import android.app.Application
-import cn.shetj.base.http.rxEasyHttp.EasyHttpUtils
-import cn.shetj.base.http.xutils.XUtil
+import me.shetj.base.http.rxEasyHttp.EasyHttpUtils
+import me.shetj.base.http.xutils.XUtil
 
 /**
  *

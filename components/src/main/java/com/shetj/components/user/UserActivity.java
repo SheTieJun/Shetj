@@ -62,7 +62,9 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	private void initData() {
 		publishSubject = PublishSubject.create();
 
-		publishSubject.observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread())
+		publishSubject
+						.observeOn(Schedulers.io())
+						.subscribeOn(AndroidSchedulers.mainThread())
 						.subscribe(new Consumer<List<User>>() {
 			@Override
 			public void accept(List<User> users) throws Exception {

@@ -1,16 +1,14 @@
 package com.shetj.diyalbume.miui
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.util.Log
 import cn.jiguang.imui.commons.models.IMessage
 import cn.jiguang.imui.messages.MsgListAdapter
 import cn.jiguang.imui.messages.ptr.PtrDefaultHeader
 import cn.jiguang.imui.messages.ptr.PtrHandler
 import cn.jiguang.imui.utils.DisplayUtil
-import cn.shetj.base.base.BaseActivity
+import me.shetj.base.base.BaseActivity
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.pull_to_refresh_layout
 import kotlinx.android.synthetic.main.activity_mi_ui.*
 import kotlinx.android.synthetic.main.content_mi_ui.*
 import java.util.ArrayList

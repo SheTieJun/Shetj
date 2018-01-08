@@ -8,8 +8,8 @@ import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import cn.shetj.base.base.BaseActivity
-import cn.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
 
