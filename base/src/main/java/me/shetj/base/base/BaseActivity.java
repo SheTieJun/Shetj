@@ -19,7 +19,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.simple.eventbus.EventBus;
 
-import me.shetj.base.R;
+import cn.shetj.base.R;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.app.HideUtil;
 import me.shetj.base.view.LoadingDialog;

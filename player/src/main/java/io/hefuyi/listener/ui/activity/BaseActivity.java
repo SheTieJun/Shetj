@@ -147,7 +147,7 @@ public class BaseActivity extends ATEActivity implements ServiceConnection {
 
 
         public PlaybackStatus(final BaseActivity activity) {
-            mReference = new WeakReference<BaseActivity>(activity);
+            mReference = new WeakReference<>(activity);
         }
 
         @Override

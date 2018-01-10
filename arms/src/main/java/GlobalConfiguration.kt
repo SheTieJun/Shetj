@@ -35,9 +35,6 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 import butterknife.ButterKnife
-import cn.a51mofang.mvp.model.api.Api
-import me.jessyan.progressmanager.ProgressManager
-import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -138,18 +135,19 @@ class GlobalConfiguration : ConfigModule {
                     // retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//比如使用fastjson替代gson
                 }
                 .okhttpConfiguration {//这里可以自己自定义配置Okhttp的参数
-                    context1, okhttpBuilder ->
+                    _, okhttpBuilder ->
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS)
                     //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听. 详细使用请方法查看 https://github.com/JessYanCoding/ProgressManager
                     //                    ProgressManager.getInstance().with(okhttpBuilder);
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
                     //                    RetrofitUrlManager.getInstance().with(okhttpBuilder);
 
-                }.rxCacheConfiguration {//这里可以自己自定义配置RxCache的参数
-                    context1, rxCacheBuilder ->
-
-                    rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true)
                 }
+//                .rxCacheConfiguration {//这里可以自己自定义配置RxCache的参数
+//                    _, rxCacheBuilder ->
+//
+//                    rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true)
+//                }
     }
 
     override fun injectAppLifecycle(context: Context, lifecycles: MutableList<AppLifecycles>) {

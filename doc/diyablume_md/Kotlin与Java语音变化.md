@@ -66,3 +66,7 @@ class Link(var type: Int,
     }
 }
 ```
+9. 反射
+```
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+```

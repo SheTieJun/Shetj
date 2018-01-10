@@ -88,7 +88,7 @@ android {
             }
             if (requested.group == 'com.google.code.gson') {
                 if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '2.8.1'
+                    details.useVersion '2.8.2'
                 }
             }
             if (requested.group == 'com.google.code.findbugs') {

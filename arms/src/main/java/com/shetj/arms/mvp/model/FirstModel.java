@@ -23,6 +23,7 @@ public class FirstModel extends BaseModel implements FirstContract.Model {
 		super(repositoryManager);
 		this.mGson = gson;
 		this.mApplication = application;
+
 	}
 
 	@Override

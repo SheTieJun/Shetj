@@ -2,17 +2,15 @@ package com.shetj.diyalbume.ppttest
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import cn.a51mofang.base.base.BaseActivity
-import cn.a51mofang.base.http.callback.EasyCallBack
-import cn.a51mofang.base.http.rxEasyHttp.EasyHttpUtils
-import cn.a51mofang.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
 import com.zhouyou.http.EasyHttp
 import com.zhouyou.http.cache.model.CacheMode
 
 import kotlinx.android.synthetic.main.activity_ppt_test.*
 import kotlinx.android.synthetic.main.content_ppt_test.*
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.http.callback.EasyCallBack
+import me.shetj.base.tools.app.ArmsUtils
 
 class PPtTestActivity : BaseActivity() {
 

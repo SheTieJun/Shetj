@@ -1,6 +1,7 @@
 package com.shetj.diyalbume
 
 import android.app.Application
+import me.shetj.base.download.RxDownloadUtils
 import me.shetj.base.http.rxEasyHttp.EasyHttpUtils
 import me.shetj.base.http.xutils.XUtil
 
@@ -18,5 +19,6 @@ class App : Application() {
         super.onCreate()
         XUtil.init(this,true)
         EasyHttpUtils.init(this,true)
+        RxDownloadUtils.init(this)
     }
 }
