@@ -12,7 +12,6 @@ import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
 import com.zhouyou.http.subsciber.IProgressDialog;
 
-import me.shetj.base.http.api.ShetjApi;
 import me.shetj.base.view.LoadingDialog;
 
 /**
@@ -39,7 +38,7 @@ public class EasyHttpUtils {
 		EasyHttp.getInstance()
 
 						//可以全局统一设置全局URL
-						.setBaseUrl(ShetjApi.HTTP_MOCK)//设置全局URL
+						.setBaseUrl("http://me.shetj.cn")//设置全局URL
 						// 打开该调试开关并设置TAG,不需要就不要加入该行
 						// 最后的true表示是否打印okgo的内部异常，一般打开方便调试错误
 						.debug("EasyHttp", isDebug)

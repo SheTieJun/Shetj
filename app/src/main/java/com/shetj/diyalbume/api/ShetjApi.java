@@ -1,4 +1,4 @@
-package me.shetj.base.http.api;
+package com.shetj.diyalbume.api;
 
 
 /**

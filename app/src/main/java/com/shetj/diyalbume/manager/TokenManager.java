@@ -1,4 +1,4 @@
-package me.shetj.base.http.manager;
+package com.shetj.diyalbume.manager;
 
 import org.xutils.x;
 

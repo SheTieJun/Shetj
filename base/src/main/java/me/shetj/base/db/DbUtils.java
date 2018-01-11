@@ -11,42 +11,27 @@ import org.xutils.x;
 
 @Keep
 public class DbUtils {
-	static DbManager.DaoConfig daoConfig;
-	/**
-	 * 获取DaoConfig
-	 * @return
-	 */
-	private static DbManager.DaoConfig getDaoConfig(){
-		if(daoConfig==null){
-			daoConfig=new DbManager.DaoConfig()
-							.setDbName("DIY.db")
-//							.setDbDir(file)
-							.setDbVersion(1)
-							.setAllowTransaction(true)
-							.setDbOpenListener(new DbManager.DbOpenListener() {
-								@Override
-								public void onDbOpened(DbManager db) {
-									// 开启WAL, 对写入加速提升巨大
-									db.getDatabase().enableWriteAheadLogging();
-								}
-							})
-							.setDbUpgradeListener(new DbManager.DbUpgradeListener() {
-								@Override
-								public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
-								}
-							});
-		}
-		return daoConfig;
+	private static DbManager.DaoConfig getDaoConfig(String  dbName){
+		return new DbManager.DaoConfig()
+						.setDbName(dbName+".db")
+						.setDbVersion(1)
+						.setAllowTransaction(true)
+						.setDbOpenListener(new DbManager.DbOpenListener() {
+							@Override
+							public void onDbOpened(DbManager db) {
+								// 开启WAL, 对写入加速提升巨大
+								db.getDatabase().enableWriteAheadLogging();
+							}
+						})
+						.setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+							@Override
+							public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+							}
+						});
 	}
-	/**
-	 * dbManager
-	 */
-	public static DbManager getDbManager()
+
+	public static DbManager getDbManager(String dbName)
 	{
-		if (daoConfig!=null) {
-			return x.getDb(daoConfig);
-		}else{
-			return x.getDb(getDaoConfig());
-		}
+			return x.getDb(getDaoConfig(dbName));
 	}
 }

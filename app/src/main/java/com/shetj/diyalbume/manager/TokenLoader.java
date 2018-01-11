@@ -1,4 +1,4 @@
-package me.shetj.base.http.manager;
+package com.shetj.diyalbume.manager;
 
 import android.content.Context;
 
@@ -10,7 +10,7 @@ import org.xutils.x;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import me.shetj.base.http.api.ShetjApi;
+import com.shetj.diyalbume.api.ShetjApi;
 import me.shetj.base.tools.app.DataConfig;
 import me.shetj.base.tools.app.TimeUtil;
 import me.shetj.base.tools.file.SPUtils;

@@ -4,7 +4,6 @@ import com.zhouyou.http.interceptor.BaseDynamicInterceptor;
 
 import java.util.TreeMap;
 
-import me.shetj.base.http.manager.TokenManager;
 
 /**
  */
@@ -26,7 +25,7 @@ public class CustomSignInterceptor extends BaseDynamicInterceptor<CustomSignInte
 		if (isTimeStamp()) {//是否添加时间戳，因为你的字段key可能不是timestamp,这种动态的自己处理
 			dynamicMap.put("timestamp", String.valueOf(System.currentTimeMillis()));
 		}
-		if (isAccessToken() && TokenManager.getInstance().isLogin()) {//是否添加token
+		if (isAccessToken()) {//是否添加token
 //			dynamicMap.put("Authorization", "Bearer " + MFangCommonUtil.getToken());
 		}
 		if (isSign()) {//是否签名,因为你的字段key可能不是sign，这种动态的自己处理
