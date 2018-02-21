@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    String HTTP_SMS   = isTest? "https://smsvalidatalocal.51mofang.cn/" : "http://mf-1-message.51mofang.cn/" ;
+    String HTTP_USER  = isTest? "https://userlocal.51mofang.cn/" : "http://mf-1-user.51mofang.cn/" ;
+    String HTTP_ORDER = isTest? "https://financelocal.51mofang.cn/" : "http://mf-1-finance.51mofang.cn/" ;
+    String HTTP_TOKEN = isTest? "https://jwtlocal.51mofang.cn/" : "http://mf-1-login.51mofang.cn/" ;
+
+    String HTTP_MOCK = "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/";-->
+    <!--//    String HTTP_UPDATE = isTest?  "https://productlocal.51mofang.cn/" : "http://mf-2-product.51mofang.cn/" ;-->
+
+    <string-array name="sms_urls">
+        <item>https://smsvalidatalocal.51mofang.cn/</item>
+        <item>http://mf-1-message.51mofang.cn/</item>
+        <item>http://mf-cs-smsvalidate.51mofang.cn/</item>
+    </string-array>
+
+    <string-array name="user_urls">
+        <item>https://userlocal.51mofang.cn/</item>
+        <item>http://mf-1-user.51mofang.cn/</item>
+        <item>http://mf-cs-user.51mofang.cn</item>
+    </string-array>
+
+    <string-array name="order_urls">
+        <item>https://financelocal.51mofang.cn/</item>
+        <item>http://mf-1-finance.51mofang.cn/</item>
+        <item>http://mf-cs-finance.51mofang.cn</item>
+    </string-array>
+
+    <string-array name="token_urls">
+        <item>https://jwtlocal.51mofang.cn/</item>
+        <item>http://mf-1-login.51mofang.cn/</item>
+        <item>http://mf-cs-jwt.51mofang.cn</item>
+    </string-array>
+
+    <string-array name="update_urls">
+        <item>https://productlocal.51mofang.cn/</item>
+        <item>http://mf-2-product.51mofang.cn/</item>
+        <item>http://mf-cs-product.51mofang.cn</item>
+    </string-array>
+
+    <string-array name="mock_urls">
+        <item>http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/</item>
+        <item>http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/</item>
+        <item>http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/</item>
+    </string-array>
+
+</resources>

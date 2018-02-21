@@ -1,0 +1,170 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.shetj.diyalbume"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        versionName "1.0.2.0"
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+    }
+    signingConfigs {
+        release {
+//            storeFile file('E:/MfangSDKTest/app/my.jks')
+//            storePassword '906029'
+//            keyAlias 'key0'
+//            keyPassword '906029'
+        }
+        debug {
+//            storeFile file('E:/MfangSDKTest/app/my.jks')
+//            storePassword '906029'
+//            keyAlias 'key0'
+//            keyPassword '906029'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "USE_CANARY", "false"
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            // dex突破65535的限制
+            multiDexEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "USE_CANARY", "false"
+            debuggable true
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            // dex突破65535的限制
+            multiDexEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+            ndk {
+                abiFilters 'x86'                 // for debug in AVD.
+            }
+        }
+    }
+
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '26.0.2'
+                }
+            }
+            if (requested.group == 'com.google.code.gson') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '2.8.2'
+                }
+            }
+            if (requested.group == 'com.google.code.findbugs') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '3.0.0'
+                }
+            }
+        }
+    }
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(".apk", "-${releaseTime()}-${defaultConfig.versionName}.apk")
+                outputFileName = fileName
+            }
+        }
+    }
+
+    //导入aar
+    repositories {
+        flatDir {
+//            dirs '../aliyun/libs', 'libs'
+            dirs 'libs'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+
+    def listSubFile = {
+        def resFolder = 'src/main/res/layouts'
+        def files = file(resFolder).listFiles()
+        def folders = []
+        files.each {
+            item -> folders.add(item.absolutePath)
+        }
+        folders.add(file(resFolder).parentFile.absolutePath)
+        return folders
+    }
+    sourceSets {
+        main {
+            res.srcDirs = listSubFile()
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile 'com.shuyu:gsyVideoPlayer-java:2.1.1'
+    compile 'com.shuyu:gsyVideoPlayer-armv7a:2.1.1'
+    compile 'com.devyok.ipc:ipc-libcore:0.0.2'
+
+    compile 'cn.jiguang.imui:messagelist:0.5.7'
+    compile 'cn.jiguang.imui:chatinput:0.5.7'
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    compile project(':base')
+    implementation project(':resources')
+}

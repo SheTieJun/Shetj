@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.shetj.diyalbume.encrypt.EncryptActivity">
+
+    <EditText
+        android:id="@+id/edit_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="shetiejun"
+        />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/btn_jiami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加密"/>
+    <Button
+        android:id="@+id/btn_jiemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解密"/>
+</LinearLayout>

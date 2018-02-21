@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi-v7a','x86'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JSHARE_PKGNAME : "cn.a51mofang.app",
+                JPUSH_PKGNAME  : "cn.a51mofang.app",
+                JPUSH_APPKEY   : "c73e7cedf0dc3368d38931f6", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL  : "developer-default", //暂时填写默认值即可.
+                TENCENT_APPID  : "1106277277"
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    testCompile 'junit:junit:4.12'
+
+    compile 'cn.jiguang.sdk:jpush:3.0.8'
+    compile 'cn.jiguang.sdk:jcore:1.1.6'
+    compile 'cn.jiguang.sdk:jshare:1.2.1'
+    // 此处以JShare 1.1.1 版本为例，具体版本请参考压缩包libs的jar包版本。
+    compile 'cn.jiguang.sdk:jshare-qqmodel:1.2.1'
+    // 此处以jshare-qqmodel 1.1.1 版本为例，具体版本请参考压缩包libs的jar包版本。
+    compile 'cn.jiguang.sdk:jshare-wechatmodel:1.2.1'
+    // 此处以jshare-wechatmodel 1.1.1 版本为例，具体版本请参考压缩包libs的jar包版本。
+    compile 'cn.jiguang.sdk:jshare-sinamodel:1.2.1'
+}
