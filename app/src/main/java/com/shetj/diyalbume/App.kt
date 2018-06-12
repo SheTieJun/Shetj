@@ -18,8 +18,8 @@ import me.shetj.base.http.xutils.XUtil
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        XUtil.init(this,true)
-        EasyHttpUtils.init(this,true,"http://baidu.com/")
+        XUtil.init(this,BuildConfig.DEBUG)
+        EasyHttpUtils.init(this,BuildConfig.DEBUG,"http://baidu.com/")
         ServiceManager.init(this)
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()

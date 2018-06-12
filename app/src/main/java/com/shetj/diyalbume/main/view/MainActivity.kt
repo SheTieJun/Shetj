@@ -4,18 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
-import me.shetj.base.base.BaseActivity
-import me.shetj.base.tools.app.ArmsUtils
-import me.shetj.base.tools.app.SnackbarUtil
-import me.shetj.base.tools.app.UiUtils
+import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.*
+import com.shetj.diyalbume.gltest.GlTestActivity
+import com.shetj.diyalbume.gltest.OpenGL3DActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.SnackbarUtil
 
 class MainActivity : BaseActivity<MainPresenter>(){
 
@@ -50,6 +51,11 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         btn_miui.setOnClickListener { ArmsUtils.startActivity(this,MiUIActivity::class.java) }
 
+        btn_openGL.setOnClickListener{ArmsUtils.startActivity(this,GlTestActivity::class.java)}
+
+        RxView.clicks(btn_openGL3D).subscribe {
+            ArmsUtils.startActivity( this,OpenGL3DActivity::class.java)
+        }
     }
 
 

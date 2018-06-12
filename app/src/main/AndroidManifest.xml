@@ -60,6 +60,8 @@
         </activity>
         <activity android:name=".gltest.GlTestActivity">
         </activity>
+        <activity android:name=".gltest.OpenGL3DActivity">
+        </activity>
     </application>
 
 </manifest>

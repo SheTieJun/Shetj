@@ -74,9 +74,6 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
             e.onComplete()
         })
 
-        Observable.create(ObservableOnSubscribe<Int> {
-
-        })
 
 
         Observable.create<Int> {e ->

@@ -49,5 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="GLTest"/>
+        <Button
+            android:id="@+id/btn_openGL3D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GL3D"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

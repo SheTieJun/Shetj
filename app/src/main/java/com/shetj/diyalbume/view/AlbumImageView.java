@@ -104,17 +104,16 @@ public class AlbumImageView extends AppCompatImageView{
 				isDrag = true;
 				float dx=x-lastX;
 				float dy=y-lastY;
-
 				float x1 = getX() + dx;
 				float y1 = getY() + dy;
-
 				setX(x1);
 				setY(y1);
-
 				lastX=x;
 				lastY=y;
 				break;
 			case MotionEvent.ACTION_UP:
+				break;
+			default:
 				break;
 		}
 		return  !isNotDrag() || super.onTouchEvent(event);
