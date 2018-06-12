@@ -58,6 +58,8 @@
         </activity>
         <activity android:name=".ppttest.StartChallengeActivity">
         </activity>
+        <activity android:name=".gltest.GlTestActivity">
+        </activity>
     </application>
 
 </manifest>
