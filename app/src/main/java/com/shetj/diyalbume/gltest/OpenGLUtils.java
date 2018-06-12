@@ -8,7 +8,7 @@ import java.nio.FloatBuffer;
  * Package com.hc.opengl
  * Created by HuaChao on 2016/7/28.
  */
-public class Util {
+public class OpenGLUtils {
 
     public static FloatBuffer floatToBuffer(float[] a) {
         //先初始化buffer，数组的长度*4，因为一个float占4个字节
@@ -36,7 +36,6 @@ public class Util {
     }
 
     public static float byte4ToFloat(byte[] bytes, int offset) {
-
         return Float.intBitsToFloat(byte4ToInt(bytes, offset));
     }
 

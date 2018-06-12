@@ -31,6 +31,8 @@ import android.widget.Toast;
 
 import org.xutils.x;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 
 import retrofit2.HttpException;
@@ -386,7 +388,7 @@ public class  ArmsUtils {
         if (isBlack && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().
                     setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    |View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                            |View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 
@@ -478,5 +480,9 @@ public class  ArmsUtils {
                 }
             }
         });
+    }
+
+    public static InputStream getAssetsFile(String fileName) throws IOException  {
+        return  x.app().getApplicationContext().getAssets().open(fileName);
     }
 }

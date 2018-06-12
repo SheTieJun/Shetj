@@ -28,8 +28,8 @@ class GlTestActivity : BaseActivity<BasePresenter<*>> (){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mTriangleBuffer =  Util.floatToBuffer(mTriangleArray)
-        mColorBuffer = Util.floatToBuffer(mColor)
+        mTriangleBuffer =  OpenGLUtils.floatToBuffer(mTriangleArray)
+        mColorBuffer = OpenGLUtils.floatToBuffer(mColor)
 
         if (checkSupported()) {
             glSurfaceView = GLSurfaceView(this)
