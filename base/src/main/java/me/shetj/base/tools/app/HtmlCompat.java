@@ -5,16 +5,17 @@
 package me.shetj.base.tools.app;
 
 import android.os.Build;
+import android.support.annotation.Keep;
 import android.text.Html;
 import android.text.Spanned;
 
 /**
- * Helper for accessing features in {@link android.text.Html}
+ * Helper for accessing features in {@link Html}
  * introduced after API level 24 in a backwards compatible fashion.
- *
- * Created by Daniel on 17/4/18.
+ * @author shetj
+ * @date 17/4/18
  */
-
+@Keep
 public class HtmlCompat {
 
     //--- Constructors -----------------------------------------------------------------------------
@@ -36,10 +37,9 @@ public class HtmlCompat {
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String source) {
         Spanned text;
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             text = Html.fromHtml(source, 0x00000000, null, null);
         } else {
-            //noinspection deprecation
             text = Html.fromHtml(source);
         }
         return text;

@@ -11,13 +11,13 @@ import me.shetj.base.base.BaseActivity
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_mi_ui.*
 import kotlinx.android.synthetic.main.content_mi_ui.*
+import me.shetj.base.base.BasePresenter
 import java.util.ArrayList
 
 
-class MiUIActivity : BaseActivity() {
+class MiUIActivity : BaseActivity<MiUIPresenter>() {
 
 
-   lateinit var mPresenter : MiUIPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

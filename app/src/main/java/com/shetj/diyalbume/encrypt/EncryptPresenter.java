@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.encrypt;
 
 import me.shetj.base.base.BasePresenter;
+import me.shetj.base.base.IView;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.encrypt<br>
@@ -13,4 +14,7 @@ import me.shetj.base.base.BasePresenter;
 
 public class EncryptPresenter extends BasePresenter {
 
+	public EncryptPresenter(IView view) {
+		super(view);
+	}
 }

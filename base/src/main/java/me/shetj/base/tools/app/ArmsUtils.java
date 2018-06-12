@@ -1,12 +1,18 @@
 package me.shetj.base.tools.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.Keep;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -16,13 +22,17 @@ import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import org.xutils.x;
+
 import java.security.MessageDigest;
 
-import me.shetj.base.tools.json.EmptyUtils;
 import retrofit2.HttpException;
 
 
@@ -30,12 +40,16 @@ import retrofit2.HttpException;
  * ================================================
  * 一些框架常用的工具
  * <p>
- * Created by JessYan on 2015/11/23.
+ *
+ * @author JessYan
+ * @date 2015/11/23
+ * @update update by shetj 2018年4月11日10:15:40
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class ArmsUtils {
+@Keep
+public class  ArmsUtils {
     static public Toast mToast;
 
 
@@ -59,20 +73,10 @@ public class ArmsUtils {
         ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // 设置hint  
-        v.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+        v.setHint(new SpannedString(ss));
     }
 
 
-    /**
-     * dip转pix
-     *
-     * @param dpValue
-     * @return
-     */
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = getResources(context).getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
 
     /**
      * 获得资源
@@ -86,14 +90,6 @@ public class ArmsUtils {
      */
     public static String[] getStringArray(Context context, int id) {
         return getResources(context).getStringArray(id);
-    }
-
-    /**
-     * pix转dip
-     */
-    public static int pix2dip(Context context, int pix) {
-        final float densityDpi = getResources(context).getDisplayMetrics().density;
-        return (int) (pix / densityDpi + 0.5f);
     }
 
 
@@ -193,9 +189,9 @@ public class ArmsUtils {
      *
      * @param string
      */
-    public static void makeText(Context context, String string) {
+    public static void makeText(String string) {
         if (mToast == null) {
-            mToast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(x.app().getApplicationContext(), string, Toast.LENGTH_SHORT);
         }
         mToast.setText(string);
         mToast.show();
@@ -207,7 +203,7 @@ public class ArmsUtils {
      */
     public static void shortSnackbar(Activity activity,String message) {
         View view = activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        SnackbarUtil.ShortSnackbar(view,message,SnackbarUtil.Info).show();
+        SnackbarUtil.ShortSnackbar(view,message, SnackbarUtil.Info).show();
     }
 
     /**
@@ -215,7 +211,7 @@ public class ArmsUtils {
      */
     public static void longSnackbar(Activity activity,String message) {
         View view = activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        SnackbarUtil.LongSnackbar(view,message,SnackbarUtil.Warning).show();
+        SnackbarUtil.LongSnackbar(view,message, SnackbarUtil.Warning).show();
     }
 
 
@@ -226,7 +222,6 @@ public class ArmsUtils {
      * @return
      */
     public static Drawable getDrawablebyResource(Context context, int rID) {
-//        return getResources(context).getDrawable(rID);
         return ContextCompat.getDrawable(context,rID);
     }
 
@@ -273,7 +268,6 @@ public class ArmsUtils {
      * 获得颜色
      */
     public static int getColor(Context context, int rid) {
-//        return getResources(context).getColor(rid);
         return ContextCompat.getColor(context,rid);
     }
 
@@ -281,7 +275,7 @@ public class ArmsUtils {
      * 获得颜色
      */
     public static int getColor(Context context, String colorName) {
-        return getColor(context, getResources(context).getIdentifier(colorName, "color", context.getPackageName()));
+        return getColor(context, ResourceUtils.getIdByName(context,colorName,"color"));
     }
 
     /**
@@ -295,10 +289,6 @@ public class ArmsUtils {
             ViewGroup group = (ViewGroup) parent;
             group.removeView(view);
         }
-    }
-
-    public static boolean isEmpty(Object obj) {
-        return EmptyUtils.isEmpty(obj);
     }
 
 
@@ -327,20 +317,102 @@ public class ArmsUtils {
         return hex.toString();
     }
 
+    /**
+     * 设置透明状态栏与导航栏
+     *
+     * @param navi true不设置导航栏|false设置导航栏
+     */
+    public static void setStatusBar(Activity activity,boolean navi) {
+        //api>21,全透明状态栏和导航栏;api>19,半透明状态栏和导航栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            if (navi) {
+                //状态栏不会被隐藏但activity布局会扩展到状态栏所在位置
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//导航栏不会被隐藏但activity布局会扩展到导航栏所在位置
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_FULLSCREEN
+                );
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            } else {
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (navi) {
+                //半透明导航栏
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+            //半透明状态栏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
 
     /**
      * 全屏,并且沉侵式状态栏
      *
      * @param activity
      */
-    public static void statuInScreen(Activity activity) {
-        WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
-        attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        activity.getWindow().setAttributes(attrs);
-        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    public static void statuInScreen(Activity activity,boolean isBlack) {
+        boolean navi = false;
+        //api>21,全透明状态栏和导航栏;api>19,半透明状态栏和导航栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            if (navi) {
+                //状态栏不会被隐藏但activity布局会扩展到状态栏所在位置
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//导航栏不会被隐藏但activity布局会扩展到导航栏所在位置
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_FULLSCREEN
+                );
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            } else {
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (navi) {
+                //半透明导航栏
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+            //半透明状态栏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
+        if (isBlack && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            activity.getWindow().getDecorView().
+                    setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 
+
+    /**
+     * 全屏
+     */
+    public static void fullScreencall(Activity activity) {
+        if (Build.VERSION.SDK_INT < 19) {
+            View v = activity.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            if (Build.VERSION.SDK_INT >= 21) {
+                activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+                activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            }
+        }
+    }
 
     /**
      * 配置 recycleview
@@ -373,4 +445,38 @@ public class ArmsUtils {
         return msg;
     }
 
+    public static void setSwipeRefresh(final SwipeRefreshLayout mSwipeRefreshLayout,
+                                       int them2Color, SwipeRefreshLayout.OnRefreshListener listener) {
+        mSwipeRefreshLayout.setColorSchemeResources(them2Color);
+        mSwipeRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    /**
+     * @param root 最外层布局，需要调整的布局
+     * @param scrollToView 被键盘遮挡的scrollToView，滚动root,使scrollToView在root可视区域的底部
+     */
+    public static void controlKeyboardLayout(final View root, final View scrollToView) {
+        root.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect rect = new Rect();
+                //获取root在窗体的可视区域
+                root.getWindowVisibleDisplayFrame(rect);
+                //获取root在窗体的不可视区域高度(被其他View遮挡的区域高度)
+                int rootInvisibleHeight = root.getRootView().getHeight() - rect.bottom;
+                //若不可视区域高度大于100，则键盘显示
+                if (rootInvisibleHeight > 100) {
+                    int[] location = new int[2];
+                    //获取scrollToView在窗体的坐标
+                    scrollToView.getLocationInWindow(location);
+                    //计算root滚动高度，使scrollToView在可见区域的底部
+                    int scrollHeight = location[1] + scrollToView.getHeight() - rect.bottom;
+                    root.scrollTo(0, scrollHeight);
+                } else {
+                    //键盘隐藏
+                    root.scrollTo(0, 0);
+                }
+            }
+        });
+    }
 }

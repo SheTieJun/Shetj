@@ -1,5 +1,7 @@
 package com.shetj.diyalbume.gltest;
 
+import me.shetj.base.base.BaseMessage;
+import me.shetj.base.base.BaseModel;
 import me.shetj.base.base.IModel;
 
 /**
@@ -10,7 +12,8 @@ import me.shetj.base.base.IModel;
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-public class GlTestModel implements IModel {
+public class GlTestModel extends BaseModel {
+
 	@Override
 	public void onDestroy() {
 

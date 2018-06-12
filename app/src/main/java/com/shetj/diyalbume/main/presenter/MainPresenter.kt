@@ -4,6 +4,8 @@ import android.content.Intent
 import me.shetj.base.base.BasePresenter
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.main.view.MainActivity
+import me.shetj.base.base.BaseModel
+import me.shetj.base.base.IView
 
 /**
  *
@@ -14,13 +16,12 @@ import com.shetj.diyalbume.main.view.MainActivity
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class MainPresenter(mainActivity: MainActivity) : BasePresenter() {
+class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
 
-    private var mMainActivity = mainActivity
 
     fun startCreateAlbum() {
-        val intent = Intent(mMainActivity, CreateActivity::class.java )
-        mMainActivity.startActivity (intent)
+        val intent = Intent(view.rxContext, CreateActivity::class.java )
+         startActivity (intent)
     }
 
 

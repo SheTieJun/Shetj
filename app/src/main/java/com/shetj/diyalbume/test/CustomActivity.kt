@@ -29,7 +29,7 @@ class CustomActivity : AppCompatActivity() {
     private fun addImage() {
         val image = AlbumImageView(this)
         image.layoutParams = ViewGroup.LayoutParams(200,200)
-        image.setImageResource(R.mipmap.download)
+        image.setImageResource(R.mipmap.ic_error)
         iFrameRoot.addView(image)
 
         image.setOnClickListener {

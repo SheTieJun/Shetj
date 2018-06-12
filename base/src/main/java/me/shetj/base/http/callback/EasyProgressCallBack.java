@@ -1,9 +1,11 @@
 package me.shetj.base.http.callback;
 
+import android.support.annotation.Keep;
+
 import com.zhouyou.http.callback.ProgressDialogCallBack;
 import com.zhouyou.http.subsciber.IProgressDialog;
 
-
+@Keep
 public class EasyProgressCallBack<T> extends ProgressDialogCallBack<T> {
 
 	public EasyProgressCallBack(IProgressDialog progressDialog) {

@@ -9,10 +9,11 @@ import com.zhouyou.http.cache.model.CacheMode
 import kotlinx.android.synthetic.main.activity_ppt_test.*
 import kotlinx.android.synthetic.main.content_ppt_test.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.base.BasePresenter
 import me.shetj.base.http.callback.EasyCallBack
 import me.shetj.base.tools.app.ArmsUtils
 
-class PPtTestActivity : BaseActivity() {
+class PPtTestActivity : BaseActivity<BasePresenter<*>>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

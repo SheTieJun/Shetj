@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="StartAppTheme" parent="AppTheme.NoActionBar">
         <!-- 隐藏状态栏 -->
         <item name="android:windowFullscreen">true</item>
@@ -39,7 +40,7 @@
 
     <!--普通dialog-->
     <style name="CustomProgressDialog" parent="@style/CustomDialog">
-        <item name="android:windowBackground">@color/halfTransparent</item>
+        <item name="android:windowBackground">@color/Transparent2a</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 
@@ -49,5 +50,28 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="Translucent" parent="AppTheme.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <!--自适应-->
+    <style name="adaImage">
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="clickStyle">
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="titleBackground">
+        <item name="android:background">?android:attr/windowBackground</item>
     </style>
 </resources>

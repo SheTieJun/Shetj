@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.ppttest;
 
 import me.shetj.base.base.BasePresenter;
+import me.shetj.base.base.IView;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.ppttest<br>
@@ -13,8 +14,7 @@ import me.shetj.base.base.BasePresenter;
 
 public class ChallengePresenter extends BasePresenter {
 
-	public ChallengePresenter() {
-		super();
-
+	public ChallengePresenter(IView view) {
+		super(view);
 	}
 }

@@ -1,5 +1,6 @@
 package me.shetj.base.http.xutils.download;
 
+import android.support.annotation.Keep;
 import android.view.View;
 
 import org.xutils.common.Callback;
@@ -7,6 +8,7 @@ import org.xutils.x;
 
 import java.io.File;
 
+@Keep
 public abstract class DownloadViewHolder {
 
     protected DownloadInfo downloadInfo;

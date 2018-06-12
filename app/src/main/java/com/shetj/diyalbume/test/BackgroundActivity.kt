@@ -7,6 +7,7 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.*
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.ObservableSource
@@ -18,13 +19,14 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_background.*
 import kotlinx.android.synthetic.main.content_background.*
+import me.shetj.base.base.BasePresenter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class BackgroundActivity : BaseActivity() {
+class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
 
     private lateinit var  mPublishSubject: PublishSubject<Double>
     private lateinit var  mPublishSubjectS: PublishSubject<String>
@@ -222,7 +224,7 @@ class BackgroundActivity : BaseActivity() {
                 e.onComplete()
             }
         }.retryWhen(Function { t -> return@Function t.flatMap { t1 ->
-            ArmsUtils.makeText(this,t1.message)
+            ArmsUtils.makeText(t1.message)
             if (number < 5){
                 number++
                 return@flatMap  Observable.timer(1000, TimeUnit.MILLISECONDS)

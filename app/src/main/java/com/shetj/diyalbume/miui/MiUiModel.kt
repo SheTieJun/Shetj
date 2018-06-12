@@ -37,7 +37,7 @@ class MiUiModel {
             message.timeString = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
             list.add(message)
         }
-        Collections.reverse(list)
+        list.reverse()
         return list
 
 

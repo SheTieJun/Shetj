@@ -3,6 +3,7 @@ package me.shetj.base.base;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 
 import org.simple.eventbus.EventBus;
@@ -13,7 +14,9 @@ import io.reactivex.disposables.Disposable;
 /**
  * ================================================
  * 基类 {@link Service}
+ * @author shetj
  */
+@Keep
 public abstract class BaseService extends Service {
     protected final String TAG = this.getClass().getSimpleName();
     protected CompositeDisposable mCompositeDisposable;
@@ -43,12 +46,14 @@ public abstract class BaseService extends Service {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
-        mCompositeDisposable.add(disposable);//将所有subscription放入,集中处理
+        //将所有subscription放入,集中处理
+        mCompositeDisposable.add(disposable);
     }
 
     protected void unDispose() {
+        //保证activity结束时取消所有正在执行的订阅
         if (mCompositeDisposable != null) {
-            mCompositeDisposable.clear();//保证activity结束时取消所有正在执行的订阅
+            mCompositeDisposable.clear();
         }
     }
 

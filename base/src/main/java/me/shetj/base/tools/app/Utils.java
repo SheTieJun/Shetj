@@ -76,7 +76,9 @@ public final class Utils {
      * @return Application
      */
     public static Application getApp() {
-        if (sApplication != null) return sApplication;
+        if (sApplication != null) {
+	        return sApplication;
+        }
         throw new NullPointerException("u should init first");
     }
 

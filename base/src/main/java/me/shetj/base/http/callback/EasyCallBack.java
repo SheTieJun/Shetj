@@ -1,8 +1,11 @@
 package me.shetj.base.http.callback;
 
+import android.support.annotation.Keep;
+
 import com.zhouyou.http.callback.CallBack;
 import com.zhouyou.http.exception.ApiException;
 
+@Keep
 public class EasyCallBack<Object> extends CallBack<Object> {
 	@Override
 	public void onStart() {

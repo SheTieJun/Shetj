@@ -11,14 +11,17 @@ import android.widget.TextView
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.fab
+import com.shetj.diyalbume.R.id.iv_preview
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
 
 import kotlinx.android.synthetic.main.activity_create.*
 import kotlinx.android.synthetic.main.content_create.*
+import me.shetj.base.base.BasePresenter
+import org.xutils.common.util.DensityUtil
 
-class CreateActivity : BaseActivity() {
+class CreateActivity : BaseActivity<CreatePresenter>() {
 
-    private lateinit var mPresenter : CreatePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,7 @@ class CreateActivity : BaseActivity() {
             }
             val params = LinearLayout.LayoutParams(screenWidth, screenHeight)
             params.gravity = Gravity.CENTER
-            val margin = ArmsUtils.dip2px(this, 10f)
+            val margin = DensityUtil.dip2px(10f)
             params.setMargins(margin,margin,margin,margin)
             iv_preview.layoutParams = params
         })

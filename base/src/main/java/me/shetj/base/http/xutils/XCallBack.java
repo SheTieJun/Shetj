@@ -1,11 +1,14 @@
 package me.shetj.base.http.xutils;
 
+import android.support.annotation.Keep;
+
 import org.xutils.common.Callback;
 
 /**
  * 请求回调
  * @param <ResultType>
  */
+@Keep
 public class XCallBack<ResultType> implements Callback.CommonCallback<ResultType>{
 
 

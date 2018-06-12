@@ -1,5 +1,6 @@
 package me.shetj.base.http.xutils.download;
 
+import android.support.annotation.Keep;
 import android.view.View;
 
 import org.xutils.common.Callback;
@@ -11,6 +12,7 @@ import java.io.File;
  * 类名称：DefaultDownloadViewHolder.java <br>
  * @author shetj<br>
  */
+@Keep
 public class DefaultDownloadViewHolder extends DownloadViewHolder {
 
     public DefaultDownloadViewHolder(View view, DownloadInfo downloadInfo) {

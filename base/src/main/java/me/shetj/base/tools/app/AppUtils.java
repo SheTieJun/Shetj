@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Keep;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,18 +19,18 @@ import java.util.List;
 
 import me.shetj.base.tools.file.FileUtils;
 
-
+@Keep
 public class AppUtils {
     private AppUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
-    public static List<AppInfos> scanLocalInstallAppList(PackageManager packageManager,String name) {
+    public static List<AppInfos> scanLocalInstallAppList(PackageManager packageManager, String name) {
         List<AppInfos> myAppInfos = new ArrayList<>();
         List<PackageInfo> packages = packageManager.getInstalledPackages(0);
         for (PackageInfo packageInfo : packages) {
             // 判断系统/非系统应用
             if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) // 非系统应用
-            {
+                {
                 if (packageInfo.packageName.contains(name)) {
                     AppInfos myAppInfo = new AppInfos();
                     myAppInfo.setBundleID(packageInfo.packageName);
@@ -90,7 +91,9 @@ public class AppUtils {
      *                  <br>参看https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      */
     public static void installApp(final File file, final String authority) {
-        if (!FileUtils.isFileExists(file)) return;
+        if (!FileUtils.isFileExists(file)) {
+	        return;
+        }
         Utils.getApp().startActivity(IntentUtils.getInstallAppIntent(file, authority));
     }
 
@@ -119,7 +122,9 @@ public class AppUtils {
      * @param requestCode 请求值
      */
     public static void installApp(final Activity activity, final File file, final String authority, final int requestCode) {
-        if (!FileUtils.isFileExists(file)) return;
+        if (!FileUtils.isFileExists(file)) {
+	        return;
+        }
         activity.startActivityForResult(IntentUtils.getInstallAppIntent(file, authority), requestCode);
     }
 
@@ -130,7 +135,9 @@ public class AppUtils {
      * @param packageName 包名
      */
     public static void uninstallApp(final String packageName) {
-        if (isSpace(packageName)) return;
+        if (isSpace(packageName)) {
+	        return;
+        }
         Utils.getApp().startActivity(IntentUtils.getUninstallAppIntent(packageName));
     }
 
@@ -142,7 +149,9 @@ public class AppUtils {
      * @param requestCode 请求值
      */
     public static void uninstallApp(final Activity activity, final String packageName, final int requestCode) {
-        if (isSpace(packageName)) return;
+        if (isSpace(packageName)) {
+	        return;
+        }
         activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
     }
 
@@ -154,7 +163,9 @@ public class AppUtils {
      * @param packageName 包名
      */
     public static void launchApp(final String packageName) {
-        if (isSpace(packageName)) return;
+        if (isSpace(packageName)) {
+	        return;
+        }
         Utils.getApp().startActivity(IntentUtils.getLaunchAppIntent(packageName));
     }
 
@@ -166,7 +177,9 @@ public class AppUtils {
      * @param requestCode 请求值
      */
     public static void launchApp(final Activity activity, final String packageName, final int requestCode) {
-        if (isSpace(packageName)) return;
+        if (isSpace(packageName)) {
+	        return;
+        }
         activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
     }
 
@@ -204,7 +217,9 @@ public class AppUtils {
      * @param packageName 包名
      */
     public static void getAppDetailsSettings(final String packageName) {
-        if (isSpace(packageName)) return;
+        if (isSpace(packageName)) {
+	        return;
+        }
         Utils.getApp().startActivity(IntentUtils.getAppDetailsSettingsIntent(packageName));
     }
 
@@ -224,7 +239,9 @@ public class AppUtils {
      * @return App名称
      */
     public static String getAppName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (isSpace(packageName)) {
+	        return null;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
@@ -251,7 +268,9 @@ public class AppUtils {
      * @return App图标
      */
     public static Drawable getAppIcon(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (isSpace(packageName)) {
+	        return null;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
@@ -278,7 +297,9 @@ public class AppUtils {
      * @return App路径
      */
     public static String getAppPath(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (isSpace(packageName)) {
+	        return null;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
@@ -305,7 +326,9 @@ public class AppUtils {
      * @return App版本号
      */
     public static String getAppVersionName(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (isSpace(packageName)) {
+	        return null;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
@@ -332,7 +355,9 @@ public class AppUtils {
      * @return App版本码
      */
     public static int getAppVersionCode(final String packageName) {
-        if (isSpace(packageName)) return -1;
+        if (isSpace(packageName)) {
+	        return -1;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
@@ -359,7 +384,9 @@ public class AppUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isSystemApp(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (isSpace(packageName)) {
+	        return false;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
@@ -386,7 +413,9 @@ public class AppUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isAppDebug(final String packageName) {
-        if (isSpace(packageName)) return false;
+        if (isSpace(packageName)) {
+	        return false;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
@@ -413,7 +442,9 @@ public class AppUtils {
      * @return App签名
      */
     public static Signature[] getAppSignature(final String packageName) {
-        if (isSpace(packageName)) return null;
+        if (isSpace(packageName)) {
+	        return null;
+        }
         try {
             PackageManager pm = Utils.getApp().getPackageManager();
             @SuppressLint("PackageManagerGetSignatures")
@@ -435,7 +466,9 @@ public class AppUtils {
     public static boolean isAppForeground() {
         ActivityManager manager = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = manager.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return false;
+        if (info == null || info.size() == 0) {
+	        return false;
+        }
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
             if (aInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                 return aInfo.processName.equals(Utils.getApp().getPackageName());
@@ -592,7 +625,9 @@ public class AppUtils {
      * @return AppInfo类
      */
     private static AppInfo getBean(final PackageManager pm, final PackageInfo pi) {
-        if (pm == null || pi == null) return null;
+        if (pm == null || pi == null) {
+	        return null;
+        }
         ApplicationInfo ai = pi.applicationInfo;
         String packageName = pi.packageName;
         String name = ai.loadLabel(pm).toString();
@@ -618,7 +653,9 @@ public class AppUtils {
         List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
         for (PackageInfo pi : installedPackages) {
             AppInfo ai = getBean(pm, pi);
-            if (ai == null) continue;
+            if (ai == null) {
+	            continue;
+            }
             list.add(ai);
         }
         return list;
@@ -658,7 +695,9 @@ public class AppUtils {
     }
 
     private static boolean isSpace(final String s) {
-        if (s == null) return true;
+        if (s == null) {
+	        return true;
+        }
         for (int i = 0, len = s.length(); i < len; ++i) {
             if (!Character.isWhitespace(s.charAt(i))) {
                 return false;

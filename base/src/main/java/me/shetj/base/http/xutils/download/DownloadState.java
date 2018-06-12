@@ -1,8 +1,11 @@
 package me.shetj.base.http.xutils.download;
 
+import android.support.annotation.Keep;
+
 /**
  * Created by wyouflf on 15/11/10.
  */
+@Keep
 public enum DownloadState {
   WAITING(0), STARTED(1), FINISHED(2), STOPPED(3), ERROR(4),LOADING(5);
 

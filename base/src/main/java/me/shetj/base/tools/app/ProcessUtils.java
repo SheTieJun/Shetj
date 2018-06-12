@@ -10,6 +10,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -19,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Keep
 public final class ProcessUtils {
 
     private ProcessUtils() {
@@ -47,7 +49,8 @@ public final class ProcessUtils {
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
             System.out.println(list);
-            if (list.size() > 0) {// 有"有权查看使用权限的应用"选项
+            if (list.size() > 0) {
+                // 有"有权查看使用权限的应用"选项
                 try {
                     ApplicationInfo info = packageManager.getApplicationInfo(Utils.getApp().getPackageName(), 0);
                     AppOpsManager aom = (AppOpsManager) Utils.getApp().getSystemService(Context.APP_OPS_SERVICE);
@@ -62,7 +65,9 @@ public final class ProcessUtils {
                     long endTime = System.currentTimeMillis();
                     long beginTime = endTime - 86400000 * 7;
                     List<UsageStats> usageStatses = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, beginTime, endTime);
-                    if (usageStatses == null || usageStatses.isEmpty()) return null;
+                    if (usageStatses == null || usageStatses.isEmpty()) {
+	                    return null;
+                    }
                     UsageStats recentStats = null;
                     for (UsageStats usageStats : usageStatses) {
                         if (recentStats == null || usageStats.getLastTimeUsed() > recentStats.getLastTimeUsed()) {
@@ -131,14 +136,18 @@ public final class ProcessUtils {
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
         ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
+        if (info == null || info.size() == 0) {
+	        return true;
+        }
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
             if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
                 am.killBackgroundProcesses(packageName);
             }
         }
         info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
+        if (info == null || info.size() == 0) {
+	        return true;
+        }
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
             if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
                 return false;

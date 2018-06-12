@@ -1,5 +1,7 @@
 package me.shetj.base.http.xutils;
 
+import android.support.annotation.Keep;
+
 import org.xutils.common.Callback;
 
 /**
@@ -9,7 +11,7 @@ import org.xutils.common.Callback;
  * 私有方法
  */
 
-
+@Keep
 public class XCacheCallback<ResultType>  implements  Callback.CacheCallback<ResultType> {
 	@Override
 	public boolean onCache(ResultType result) {

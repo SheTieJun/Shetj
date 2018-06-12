@@ -1,5 +1,6 @@
 package me.shetj.base.http.xutils.download;
 
+import android.support.annotation.Keep;
 import android.text.TextUtils;
 
 import org.xutils.DbManager;
@@ -18,12 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 
 
-
 /**
  * Author: wyouflf
  * Date: 13-11-10
  * Time: 下午8:10
  */
+@Keep
 public final class DownloadManager {
 
   static {
@@ -32,8 +33,8 @@ public final class DownloadManager {
   }
 
   private static DownloadManager instance;
-
-  private final static int MAX_DOWNLOAD_THREAD = 2; // 有效的值范围[1, 3], 设置为3时, 可能阻塞图片加载.
+  // 有效的值范围[1, 3], 设置为3时, 可能阻塞图片加载.
+  private final static int MAX_DOWNLOAD_THREAD = 2;
 
   private final DbManager db;
   private final Executor executor = new PriorityExecutor(MAX_DOWNLOAD_THREAD, true);
@@ -129,7 +130,6 @@ public final class DownloadManager {
     }
     DownloadCallback callback = new DownloadCallback(viewHolder);
     callback.setDownloadManager(this);
-//    callback.switchViewHolder(viewHolder);
     RequestParams params = new RequestParams(url);
     params.setAutoResume(downloadInfo.isAutoResume());
     params.setAutoRename(downloadInfo.isAutoRename());

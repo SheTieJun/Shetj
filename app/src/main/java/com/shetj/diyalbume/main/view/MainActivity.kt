@@ -9,6 +9,7 @@ import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.SnackbarUtil
 import me.shetj.base.tools.app.UiUtils
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.*
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
@@ -16,11 +17,7 @@ import com.shetj.diyalbume.test.CustomActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseActivity() {
-
-
-    private lateinit var mPresenter: MainPresenter
-
+class MainActivity : BaseActivity<MainPresenter>(){
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +37,7 @@ class MainActivity : BaseActivity() {
     override fun initView() {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = "主页"
-        UiUtils.configRecycleView(iRecyclerView, LinearLayoutManager(this))
+        ArmsUtils.configRecycleView(iRecyclerView, LinearLayoutManager(this))
         bt_create.setOnClickListener({
             mPresenter.startCreateAlbum()
         })
@@ -52,8 +49,6 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this,CustomActivity::class.java))
         }
         btn_miui.setOnClickListener { ArmsUtils.startActivity(this,MiUIActivity::class.java) }
-
-
 
     }
 

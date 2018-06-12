@@ -5,12 +5,16 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Keep;
 import android.view.View;
 
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
+/**
+ * @author shetj
+ */
 @Keep
 public abstract class BaseSwipeBackActivity extends BaseActivity implements SwipeBackActivityBase{
 
@@ -32,12 +36,11 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements Swip
     @Override
     public <T extends View> T findViewById(@IdRes int id) {
         T v = super.findViewById(id);
-        if (v == null && mHelper != null)
+        if (v == null && mHelper != null) {
             return (T) mHelper.findViewById(id);
+        }
         return v;
     }
-
-
 
     @Override
     public SwipeBackLayout getSwipeBackLayout() {

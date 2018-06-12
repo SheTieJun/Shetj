@@ -2,6 +2,7 @@ package me.shetj.base.view;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.support.annotation.Keep;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,13 +10,17 @@ import android.widget.TextView;
 
 import me.shetj.base.R;
 
+@Keep
 public class LoadingDialog {
 
     private static Dialog mLoadingDialog;
 
     public static Dialog showLoading(Activity context, String msg, boolean cancelable){
+        if (null != mLoadingDialog){
+            mLoadingDialog.cancel();
+        }
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
-        TextView loadingText = (TextView) view.findViewById(R.id.id_tv_loading_dialog_text);
+        TextView loadingText = view.findViewById(R.id.id_tv_loading_dialog_text);
         loadingText.setText(msg);
 
         mLoadingDialog = new Dialog(context, R.style.CustomProgressDialog);
@@ -27,8 +32,11 @@ public class LoadingDialog {
     }
 
     public static Dialog showLoading(Activity context) {
+        if (null != mLoadingDialog){
+            mLoadingDialog.cancel();
+        }
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
-        TextView loadingText = (TextView)view.findViewById(R.id.id_tv_loading_dialog_text);
+        TextView loadingText = view.findViewById(R.id.id_tv_loading_dialog_text);
         loadingText.setText(R.string.loading);
 
         mLoadingDialog = new Dialog(context, R.style.CustomProgressDialog);

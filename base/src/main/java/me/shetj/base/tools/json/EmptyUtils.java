@@ -1,17 +1,18 @@
 package me.shetj.base.tools.json;
 
-import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Keep;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.util.SparseLongArray;
-import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
+
+import me.shetj.base.tools.app.ArmsUtils;
 
 /**
  * <pre>
@@ -21,6 +22,7 @@ import java.util.Map;
  *     desc  : 判空相关工具类
  * </pre>
  */
+@Keep
 public class EmptyUtils {
 
     private EmptyUtils() {
@@ -59,9 +61,7 @@ public class EmptyUtils {
             return true;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            if (obj instanceof SparseLongArray && ((SparseLongArray) obj).size() == 0) {
-                return true;
-            }
+	        return obj instanceof SparseLongArray && ((SparseLongArray) obj).size() == 0;
         }
         return false;
     }
@@ -77,9 +77,9 @@ public class EmptyUtils {
     }
 
 
-    private boolean checkStrEmpty(Context context,String str, String display) {
+    private boolean checkStrEmpty(String str, String display) {
         if (TextUtils.isEmpty(str)) {
-            Toast.makeText(context, display, Toast.LENGTH_SHORT).show();
+            ArmsUtils.makeText(display);
             return true;
         }
         return false;

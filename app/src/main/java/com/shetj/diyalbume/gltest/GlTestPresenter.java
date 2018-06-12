@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.gltest;
 
 import me.shetj.base.base.BasePresenter;
+import me.shetj.base.base.IView;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.gltest<br>
@@ -11,4 +12,7 @@ import me.shetj.base.base.BasePresenter;
  * <b>@describe</b><br>
  */
 public class GlTestPresenter extends BasePresenter {
+	public GlTestPresenter(IView view) {
+		super(view);
+	}
 }

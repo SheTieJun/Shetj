@@ -1,36 +1,47 @@
 package me.shetj.base.base;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Keep;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
 
 import java.lang.reflect.Field;
 
+import me.shetj.base.tools.app.ArmsUtils;
+import me.shetj.base.view.LoadingDialog;
+
 /**
  * fragment基类
+ * @author shetj
  */
-public abstract class BaseFragment extends RxFragment {
+@Keep
+public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements IView {
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
 
     /**
      * The M activity.
      */
     protected Context mActivity;
-    //是否可见状态
+    /**是否可见状态*/
     protected boolean isVisible;
-    //View已经初始化完成
+    /**View已经初始化完成*/
     private boolean isPrepared;
-    //是否第一次加载完
+    /**是否第一次加载完*/
     private boolean isFirstLoad = true;
+
+    protected T mPresenter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,29 +49,38 @@ public abstract class BaseFragment extends RxFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         isFirstLoad = true;
         //绑定View
         isPrepared = true;
-        //初始化事件和获取数据, 在此方法中获取数据不是懒加载模式
-        initEventAndData();
-        //在此方法中获取数据为懒加载模式,如不需要懒加载,请在initEventAndData获取数据
-        lazyLoad();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initEventAndData();
+        lazyLoad();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
-        if (useEventBus())//如果要使用eventbus请将此方法返回true
-            EventBus.getDefault().register(this);//注册到事件主线
+        //如果要使用eventbus请将此方法返回true
+        if (useEventBus())
+        {
+	        EventBus.getDefault().register(this);
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (useEventBus())//如果要使用eventbus请将此方法返回true
-            EventBus.getDefault().unregister(this);
+        if (useEventBus())
+        {
+	        EventBus.getDefault().unregister(this);
+        }
         this.mActivity = null;
     }
 
@@ -75,7 +95,7 @@ public abstract class BaseFragment extends RxFragment {
 
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());
     }
 
@@ -84,7 +104,6 @@ public abstract class BaseFragment extends RxFragment {
         this.mActivity = context;
         super.onAttach(context);
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -122,26 +141,6 @@ public abstract class BaseFragment extends RxFragment {
             onInvisible();
         }
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    /**
-     * 发布事件
-     *
-     * @param object the object
-     */
-    public void EventPost(Object object){
-        EventBus.getDefault().post(object);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
     /**
      * On visible.
      */
@@ -158,7 +157,9 @@ public abstract class BaseFragment extends RxFragment {
      * Lazy load.
      */
     protected void lazyLoad(){
-        if(!isPrepared || !isVisible || !isFirstLoad) return;
+        if(!isPrepared || !isVisible || !isFirstLoad) {
+	        return;
+        }
         isFirstLoad = false;
         lazyLoadData();
     }
@@ -172,4 +173,42 @@ public abstract class BaseFragment extends RxFragment {
      * Lazy load data.
      */
     public abstract void lazyLoadData();
+
+
+    @Override
+    public void showLoading(String msg) {
+
+        LoadingDialog.showLoading(getRxContext(), msg, true);
+    }
+    @Override
+    public void hideLoading() {
+       LoadingDialog.hideLoading();
+    }
+
+    @Override
+    public void showMessage(@NonNull String message) {
+        ArmsUtils.makeText(message);
+    }
+
+    /**
+     * 返回当前的activity
+     * @return
+     */
+    @Override
+    public RxAppCompatActivity getRxContext(){
+        return (RxAppCompatActivity) mActivity;
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mPresenter != null) {
+            mPresenter.onDestroy();
+        }
+        super.onDestroyView();
+    }
+    @SuppressLint("unchecked")
+    @Override
+    public void updateView(BaseMessage message) {
+
+    }
 }

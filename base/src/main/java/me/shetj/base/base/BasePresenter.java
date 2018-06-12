@@ -1,6 +1,9 @@
 package me.shetj.base.base;
 
 
+import android.content.Intent;
+import android.support.annotation.Keep;
+
 import org.simple.eventbus.EventBus;
 import org.xutils.common.util.LogUtil;
 
@@ -9,40 +12,53 @@ import io.reactivex.disposables.Disposable;
 
 /**
  *
- * 在HttpManager中获取数据，在view（Activity）中展示数据
- *
- *
+ * 在model中获取数据，在view（Activity）中展示数据
+ * @author shetj
  */
-public  class BasePresenter implements IPresenter{
+@Keep
+public  class BasePresenter< T extends BaseModel> implements IPresenter {
 
-    protected final String TAG = this.getClass().getSimpleName();
     private CompositeDisposable mCompositeDisposable;
+    protected IView view;
+    protected T model;
 
-    public BasePresenter() {
+    public BasePresenter(IView view) {
         LogUtil.i("onStart");
         onStart();
+        this.view = view;
     }
 
-
-
+    public boolean checkMessage(Object o){
+        return true;
+    }
 
     @Override
     public void onStart() {
-        if (useEventBus())//如果要使用 Eventbus 请将此方法返回 true
-            EventBus.getDefault().register(this);//注册 Eventbus
+        if (useEventBus())
+        {
+	        EventBus.getDefault().register(this);
+        }
     }
 
 
 
     /**
+     * //解除订阅
      *  Activity#onDestroy() 调用{@link IPresenter#onDestroy()}
      */
     @Override
     public void onDestroy() {
-        if (useEventBus())//如果要使用 Eventbus 请将此方法返回 true
-            EventBus.getDefault().unregister(this);//解除注册 Eventbus
-        unDispose();//解除订阅
+        LogUtil.i("onDestroy");
+        if (useEventBus())
+        {
+	        EventBus.getDefault().unregister(this);
+        }
+        unDispose();
         this.mCompositeDisposable = null;
+        if (model !=null){
+            model.onDestroy();
+            model = null;
+        }
     }
 
     /**
@@ -65,7 +81,7 @@ public  class BasePresenter implements IPresenter{
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
-        mCompositeDisposable.add(disposable);//将所有 Disposable 放入集中处理
+        mCompositeDisposable.add(disposable);
     }
 
     /**
@@ -73,10 +89,22 @@ public  class BasePresenter implements IPresenter{
      */
     public void unDispose() {
         if (mCompositeDisposable != null) {
-            mCompositeDisposable.clear();//保证 Activity 结束时取消所有正在执行的订阅
+            mCompositeDisposable.clear();
         }
     }
 
+    public void startActivity(Intent intent){
+        if (null != view){
+            view.getRxContext().startActivity(intent);
+        }
+    }
+
+    public BaseMessage getMessage(int code,Object msg){
+        BaseMessage message = new BaseMessage();
+        message.obj = msg;
+        message.type = code;
+        return message;
+    }
 
 
 }

@@ -1,6 +1,8 @@
 package com.shetj.diyalbume.miui
 
+import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
+import me.shetj.base.base.IView
 
 /**
  *
@@ -11,11 +13,8 @@ import me.shetj.base.base.BasePresenter
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class MiUIPresenter(miUIActivity: MiUIActivity) : BasePresenter() {
-    private var mModel = MiUiModel()
-    private var activity = miUIActivity
+class MiUIPresenter(view: IView) : BasePresenter<BaseModel>(view) {
     fun loadNextPage() {
-                activity.showMsgList(mModel.getInfo(1))
 
     }
 

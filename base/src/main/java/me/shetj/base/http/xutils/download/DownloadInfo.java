@@ -1,5 +1,7 @@
 package me.shetj.base.http.xutils.download;
 
+import android.support.annotation.Keep;
+
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
@@ -7,7 +9,9 @@ import org.xutils.db.annotation.Table;
  * Author: wyouflf
  * Date: 13-11-10
  * Time: 下午8:11
+ * @author admin
  */
+@Keep
 @Table(name = "download", onCreated = "CREATE UNIQUE INDEX index_name ON download(label,fileSavePath)")
 public class DownloadInfo {
 
@@ -128,14 +132,16 @@ public class DownloadInfo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DownloadInfo)) return false;
+        if (this == o) {
+	        return true;
+        }
+        if (!(o instanceof DownloadInfo)) {
+	        return false;
+        }
 
         DownloadInfo that = (DownloadInfo) o;
 
-        if (id != that.id) return false;
-
-        return true;
+	    return id == that.id;
     }
 
     @Override

@@ -4,6 +4,8 @@ import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
+import me.shetj.base.base.BaseModel
+import me.shetj.base.base.IView
 
 /**
  *
@@ -14,16 +16,12 @@ import com.shetj.diyalbume.createAlbum.view.CreateActivity
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class CreatePresenter(createActivity: CreateActivity) : BasePresenter(){
+class CreatePresenter(view: IView) : BasePresenter<BaseModel>(view){
 
 
 
-    private var createActivity = createActivity
     private lateinit var albumContent :AlbumContent
 
-    fun addPhoto(){
-         createActivity.addView()
-     }
 
     fun createAlbum() {
         albumContent = AlbumContent(ArrayList())

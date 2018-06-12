@@ -1,5 +1,7 @@
 package me.shetj.base.http.xutils;
 
+import android.support.annotation.Keep;
+
 import org.xutils.common.Callback;
 
 /**
@@ -7,8 +9,7 @@ import org.xutils.common.Callback;
  *
  * @author shetj<br>
  */
-
-
+@Keep
 public class XProgressCallBack<ResultType> implements Callback.ProgressCallback<ResultType> {
 	@Override
 	public void onWaiting() {

@@ -8,10 +8,11 @@ import android.opengl.GLSurfaceView
 import android.os.Build
 import android.os.Bundle
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.base.BasePresenter
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-class GlTestActivity : BaseActivity () {
+class GlTestActivity : BaseActivity<BasePresenter<*>> (){
 
 
     private lateinit var glSurfaceView: GLSurfaceView

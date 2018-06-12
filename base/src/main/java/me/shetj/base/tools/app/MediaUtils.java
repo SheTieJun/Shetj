@@ -4,7 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
+import android.support.annotation.Keep;
 
+@Keep
 public class MediaUtils {
 
     private MediaUtils() {

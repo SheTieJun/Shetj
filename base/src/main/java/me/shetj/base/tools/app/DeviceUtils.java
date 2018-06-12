@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.support.annotation.Keep;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -42,6 +43,7 @@ import java.util.List;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
+@Keep
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class DeviceUtils {
     // 手机网络类型
@@ -68,27 +70,6 @@ public class DeviceUtils {
         throw new IllegalStateException("you can't instantiate me!");
     }
 
-    /**
-     * dp转px
-     *
-     * @param context
-     * @param dp
-     * @return
-     */
-    public static float dpToPixel(Context context, float dp) {
-        return dp * (getDisplayMetrics(context).densityDpi / 160F);
-    }
-
-    /**
-     * px转dp
-     *
-     * @param context
-     * @param f
-     * @return
-     */
-    public static float pixelsToDp(Context context, float f) {
-        return f / (getDisplayMetrics(context).densityDpi / 160F);
-    }
 
     public static int getDefaultLoadFactor(Context context) {
         if (_loadFactor == null) {
@@ -101,8 +82,9 @@ public class DeviceUtils {
     }
 
     public static float getDensity(Context context) {
-        if (displayDensity == 0.0)
-            displayDensity = getDisplayMetrics(context).density;
+        if (displayDensity == 0.0) {
+	        displayDensity = getDisplayMetrics(context).density;
+        }
         return displayDensity;
     }
 
@@ -114,25 +96,6 @@ public class DeviceUtils {
         return displaymetrics;
     }
 
-    /**
-     * 屏幕高度
-     *
-     * @param context
-     * @return
-     */
-    public static float getScreenHeight(Context context) {
-        return getDisplayMetrics(context).heightPixels;
-    }
-
-    /**
-     * 屏幕宽度
-     *
-     * @param context
-     * @return
-     */
-    public static float getScreenWidth(Context context) {
-        return getDisplayMetrics(context).widthPixels;
-    }
 
     /**
      * 获取activity尺寸
@@ -151,24 +114,26 @@ public class DeviceUtils {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
         // includes window decorations (statusbar bar/menu bar)
-        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
-            try {
-                screenWidth = (Integer) Display.class.getMethod("getRawWidth")
-                        .invoke(d);
-                screenHeight = (Integer) Display.class
-                        .getMethod("getRawHeight").invoke(d);
-            } catch (Exception ignored) {
-            }
+        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17) {
+	        try {
+		        screenWidth = (Integer) Display.class.getMethod("getRawWidth")
+						        .invoke(d);
+		        screenHeight = (Integer) Display.class
+						        .getMethod("getRawHeight").invoke(d);
+	        } catch (Exception ignored) {
+	        }
+        }
         // includes window decorations (statusbar bar/menu bar)
-        if (Build.VERSION.SDK_INT >= 17)
-            try {
-                Point realSize = new Point();
-                Display.class.getMethod("getRealSize", Point.class).invoke(d,
-                        realSize);
-                screenWidth = realSize.x;
-                screenHeight = realSize.y;
-            } catch (Exception ignored) {
-            }
+        if (Build.VERSION.SDK_INT >= 17) {
+	        try {
+		        Point realSize = new Point();
+		        Display.class.getMethod("getRealSize", Point.class).invoke(d,
+						        realSize);
+		        screenWidth = realSize.x;
+		        screenHeight = realSize.y;
+	        } catch (Exception ignored) {
+	        }
+        }
         size[0] = screenWidth;
         size[1] = screenHeight;
         return size;
@@ -181,9 +146,7 @@ public class DeviceUtils {
      * @return
      */
     public static int getStatusBarHeight(Context context) {
-        Resources resources = context.getResources();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        return resources.getDimensionPixelSize(resourceId);
+        return BarUtils.getStatusBarHeight(context);
     }
 
 
@@ -192,15 +155,17 @@ public class DeviceUtils {
         if (_hasBigScreen == null) {
             boolean flag1;
             if ((0xf & context.getResources()
-                    .getConfiguration().screenLayout) >= 3)
-                flag1 = flag;
-            else
-                flag1 = false;
+                    .getConfiguration().screenLayout) >= 3) {
+	            flag1 = flag;
+            } else {
+	            flag1 = false;
+            }
             Boolean boolean1 = Boolean.valueOf(flag1);
             _hasBigScreen = boolean1;
             if (!boolean1.booleanValue()) {
-                if (getDensity(context) <= 1.5F)
-                    flag = false;
+                if (getDensity(context) <= 1.5F) {
+	                flag = false;
+                }
                 _hasBigScreen = Boolean.valueOf(flag);
             }
         }
@@ -221,10 +186,7 @@ public class DeviceUtils {
                     .hasSystemFeature("android.hardware.camera.front");
             boolean flag1 = pckMgr.hasSystemFeature("android.hardware.camera");
             boolean flag2;
-            if (flag || flag1)
-                flag2 = true;
-            else
-                flag2 = false;
+	        flag2 = flag || flag1;
             _hasCamera = Boolean.valueOf(flag2);
         }
         return _hasCamera.booleanValue();
@@ -238,12 +200,13 @@ public class DeviceUtils {
      */
     public static boolean hasHardwareMenuKey(Context context) {
         boolean flag = false;
-        if (PRE_HC)
-            flag = true;
-        else if (GTE_ICS) {
+        if (PRE_HC) {
+	        flag = true;
+        } else if (GTE_ICS) {
             flag = ViewConfiguration.get(context).hasPermanentMenuKey();
-        } else
-            flag = false;
+        } else {
+	        flag = false;
+        }
         return flag;
     }
 
@@ -256,10 +219,7 @@ public class DeviceUtils {
     public static boolean hasInternet(Context context) {
         boolean flag;
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (manager != null && manager.getActiveNetworkInfo() != null)
-            flag = true;
-        else
-            flag = false;
+	    flag = manager != null && manager.getActiveNetworkInfo() != null;
         return flag;
     }
 
@@ -274,8 +234,9 @@ public class DeviceUtils {
         try {
             PackageInfo pckInfo = context.getPackageManager()
                     .getPackageInfo(pckName, 0);
-            if (pckInfo != null)
-                return true;
+            if (pckInfo != null) {
+	            return true;
+            }
         } catch (PackageManager.NameNotFoundException e) {
             Log.e("TDvice", e.getMessage());
         }
@@ -283,8 +244,9 @@ public class DeviceUtils {
     }
 
     public static void hideAnimatedView(View view) {
-        if (PRE_HC && view != null)
-            view.setPadding(view.getWidth(), 0, 0, 0);
+        if (PRE_HC && view != null) {
+	        view.setPadding(view.getWidth(), 0, 0, 0);
+        }
     }
 
     /**
@@ -294,13 +256,15 @@ public class DeviceUtils {
      * @param view
      */
     public static void hideSoftKeyboard(Context context, View view) {
-        if (view == null)
-            return;
+        if (view == null) {
+	        return;
+        }
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isActive())
-            inputMethodManager.hideSoftInputFromWindow(
-                    view.getWindowToken(), 0);
+        if (inputMethodManager.isActive()) {
+	        inputMethodManager.hideSoftInputFromWindow(
+					        view.getWindowToken(), 0);
+        }
     }
 
     /**
@@ -311,10 +275,7 @@ public class DeviceUtils {
      */
     public static boolean isLandscape(Context context) {
         boolean flag;
-        if (context.getResources().getConfiguration().orientation == 2)
-            flag = true;
-        else
-            flag = false;
+	    flag = context.getResources().getConfiguration().orientation == 2;
         return flag;
     }
 
@@ -326,19 +287,17 @@ public class DeviceUtils {
      */
     public static boolean isPortrait(Context context) {
         boolean flag = true;
-        if (context.getResources().getConfiguration().orientation != 1)
-            flag = false;
+        if (context.getResources().getConfiguration().orientation != 1) {
+	        flag = false;
+        }
         return flag;
     }
 
     public static boolean isTablet(Context context) {
         if (_isTablet == null) {
             boolean flag;
-            if ((0xf & context.getResources()
-                    .getConfiguration().screenLayout) >= 3)
-                flag = true;
-            else
-                flag = false;
+	        flag = (0xf & context.getResources()
+					        .getConfiguration().screenLayout) >= 3;
             _isTablet = Boolean.valueOf(flag);
         }
         return _isTablet.booleanValue();
@@ -346,8 +305,9 @@ public class DeviceUtils {
 
 
     public static void showAnimatedView(View view) {
-        if (PRE_HC && view != null)
-            view.setPadding(0, 0, 0, 0);
+        if (PRE_HC && view != null) {
+	        view.setPadding(0, 0, 0, 0);
+        }
     }
 
     public static void showSoftKeyboard(Dialog dialog) {
@@ -382,10 +342,7 @@ public class DeviceUtils {
     public static boolean isZhCN(Context context) {
         String lang = context.getResources()
                 .getConfiguration().locale.getCountry();
-        if (lang.equalsIgnoreCase("CN")) {
-            return true;
-        }
-        return false;
+	    return lang.equalsIgnoreCase("CN");
     }
 
     public static String percent(double p1, double p2) {
@@ -510,13 +467,10 @@ public class DeviceUtils {
      * @param file
      */
     public static void installAPK(Context context, File file) {
-        if (file == null || !file.exists())
-            return;
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file),
-                "application/vnd.android.package-archive");
+        if (file == null || !file.exists()) {
+	        return;
+        }
+        Intent intent = getInstallApkIntent(file);
         context.startActivity(intent);
     }
 
@@ -563,7 +517,8 @@ public class DeviceUtils {
 
     @SuppressLint("WrongConstant")
     public static void openCamera(Context context) {
-        Intent intent = new Intent(); // 调用照相机
+        // 调用照相机
+        Intent intent = new Intent();
         intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
         intent.setFlags(0x34c40000);
         context.startActivity(intent);
@@ -639,8 +594,9 @@ public class DeviceUtils {
 
     @SuppressWarnings("deprecation")
     public static void copyTextToBoard(Context context, String string) {
-        if (TextUtils.isEmpty(string))
-            return;
+        if (TextUtils.isEmpty(string)) {
+	        return;
+        }
         ClipboardManager clip = (ClipboardManager) context
                 .getSystemService(Context.CLIPBOARD_SERVICE);
         clip.setText(string);
@@ -660,7 +616,7 @@ public class DeviceUtils {
             Intent intent = new Intent(Intent.ACTION_SEND);
             // 模拟器
             // intent.setType("text/plain");
-            intent.setType("message/rfc822"); // 真机
+            intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_EMAIL, emails);
             intent.putExtra(Intent.EXTRA_SUBJECT, subject);
             intent.putExtra(Intent.EXTRA_TEXT, content);
@@ -679,11 +635,7 @@ public class DeviceUtils {
 
     public static boolean hasStatusBar(Activity activity) {
         WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
-        if ((attrs.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
-            return false;
-        } else {
-            return true;
-        }
+	    return (attrs.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != WindowManager.LayoutParams.FLAG_FULLSCREEN;
     }
 
     /**
@@ -736,11 +688,7 @@ public class DeviceUtils {
         NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         //WIFI连接状态
         NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
-            //当前无可用的网络
-            return false;
-        }
-        return true;
+	    return mobNetInfo.isConnected() || wifiNetInfo.isConnected();
     }
 
     /**
@@ -749,11 +697,8 @@ public class DeviceUtils {
      * @return
      */
     public static boolean isExitsSdcard() {
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED))
-            return true;
-        else
-            return false;
+	    return Environment.getExternalStorageState().equals(
+					    Environment.MEDIA_MOUNTED);
     }
 
 

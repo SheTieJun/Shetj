@@ -2,10 +2,12 @@ package me.shetj.base.view;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.support.annotation.Keep;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+@Keep
 public class ScrollableViewPager extends ViewPager {
 
 	private boolean scrollable = true;
@@ -16,12 +18,15 @@ public class ScrollableViewPager extends ViewPager {
 	public ScrollableViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
+
 	public ScrollableViewPager(Context context) {
 		super(context);
 	}
+
 	public boolean isScrollable() {
 		return scrollable;
 	}
+
 	public void setScrollable(boolean scrollable) {
 		this.scrollable = scrollable;
 	}
@@ -48,7 +53,7 @@ public class ScrollableViewPager extends ViewPager {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent arg0) {
-		if (scrollable ==true) {
+		if (scrollable) {
 			if(getChildCount()<=1)
 			{
 				return super.onTouchEvent(arg0);
@@ -78,7 +83,8 @@ public class ScrollableViewPager extends ViewPager {
 					return true;
 				}
 			}
-			super.onTouchEvent(arg0); //注意这句不能 return super.onTouchEvent(arg0); 否则触发parent滑动
+			super.onTouchEvent(arg0);
+			//注意这句不能 return super.onTouchEvent(arg0); 否则触发parent滑动
 			return true;
 		}else {
 			return false;

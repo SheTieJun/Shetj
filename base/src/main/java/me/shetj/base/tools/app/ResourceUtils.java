@@ -1,13 +1,17 @@
 package me.shetj.base.tools.app;
 
 import android.content.Context;
+import android.support.annotation.Keep;
 
+/**
+ * @author shetj
+ */
+@Keep
 public class ResourceUtils {
 
     public static int getIdByName(Context context, String className, String resName) {
         context = context.getApplicationContext();
         String packageName = context.getPackageName();
-        int indentify = context.getResources().getIdentifier(resName, className, packageName);
-        return indentify;
+        return context.getResources().getIdentifier(resName, className, packageName);
     }
 }

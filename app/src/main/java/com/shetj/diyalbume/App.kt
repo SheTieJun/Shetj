@@ -19,7 +19,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         XUtil.init(this,true)
-        EasyHttpUtils.init(this,true)
+        EasyHttpUtils.init(this,true,"http://baidu.com/")
         ServiceManager.init(this)
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()

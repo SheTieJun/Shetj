@@ -11,6 +11,7 @@ import com.shuyu.gsyvideoplayer.utils.CommonUtil
 
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
+import me.shetj.base.tools.app.ArmsUtils
 
 class PlayVideoActivity : AppCompatActivity() {
 
@@ -34,7 +35,7 @@ class PlayVideoActivity : AppCompatActivity() {
         var adapter = AutoRecycleView(list)
 
         var linearLayoutManager = LinearLayoutManager(this)
-        UiUtils.configRecycleView(iRecyclerView,linearLayoutManager)
+        ArmsUtils.configRecycleView(iRecyclerView,linearLayoutManager)
 
         //限定范围为屏幕一半的上下偏移100
         val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 200f)

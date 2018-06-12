@@ -3,6 +3,7 @@ package me.shetj.base.tools.app;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -11,9 +12,17 @@ import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
+/**
+ * @author shetj
+ */
+@Keep
 public class ThirdViewUtil {
-    private static int USE_AUTOLAYOUT = -1;//0 说明 AndroidManifest 里面没有使用 AutoLayout 的Meta,即不使用 AutoLayout,1 为有 Meta ,即需要使用
+    private static int USE_AUTOLAYOUT = -1;
+    //0 说明 AndroidManifest 里面没有使用 AutoLayout 的Meta,即不使用 AutoLayout,1 为有 Meta ,即需要使用
 
+    public static String LAYOUT_LINEARLAYOUT = "LinearLayout";
+    public static String LAYOUT_FRAMELAYOUT = "FrameLayout";
+    public static String LAYOUT_RELATIVELAYOUT = "RelativeLayout";
 
     private ThirdViewUtil() {
         throw new IllegalStateException("you can't instantiate me!");
@@ -46,11 +55,11 @@ public class ThirdViewUtil {
         }
 
         View view = null;
-        if (name.equals(DataConfig.LAYOUT_FRAMELAYOUT)) {
+        if (name.equals(LAYOUT_FRAMELAYOUT)) {
             view = new AutoFrameLayout(context, attrs);
-        } else if (name.equals(DataConfig.LAYOUT_LINEARLAYOUT)) {
+        } else if (name.equals(LAYOUT_LINEARLAYOUT)) {
             view = new AutoLinearLayout(context, attrs);
-        } else if (name.equals(DataConfig.LAYOUT_RELATIVELAYOUT)) {
+        } else if (name.equals(LAYOUT_RELATIVELAYOUT)) {
             view = new AutoRelativeLayout(context, attrs);
         }
         return view;

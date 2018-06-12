@@ -26,7 +26,9 @@ import java.lang.ref.WeakReference;
     }
 
     public boolean switchViewHolder(DownloadViewHolder viewHolder) {
-        if (viewHolder == null) return false;
+        if (viewHolder == null) {
+	        return false;
+        }
 
         synchronized (DownloadCallback.class) {
             if (downloadInfo != null) {
@@ -49,7 +51,9 @@ import java.lang.ref.WeakReference;
     }
 
     private DownloadViewHolder getViewHolder() {
-        if (viewHolderRef == null) return null;
+        if (viewHolderRef == null) {
+	        return null;
+        }
         DownloadViewHolder viewHolder = viewHolderRef.get();
         if (viewHolder != null) {
             DownloadInfo downloadInfo = viewHolder.getDownloadInfo();

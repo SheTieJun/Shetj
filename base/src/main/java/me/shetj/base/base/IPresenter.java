@@ -1,5 +1,11 @@
 package me.shetj.base.base;
 
+import android.support.annotation.Keep;
+
+/**
+ * @author shetj
+ */
+@Keep
 public interface IPresenter {
 
     /**
@@ -11,4 +17,5 @@ public interface IPresenter {
      *  Activity#onDestroy() 调用{@link IPresenter#onDestroy()}
      */
     void onDestroy();
+
 }

@@ -1,12 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -39,8 +38,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     testCompile 'junit:junit:4.12'
 
-    compile 'cn.jiguang.sdk:jpush:3.0.8'
-    compile 'cn.jiguang.sdk:jcore:1.1.6'
+    compile 'cn.jiguang.sdk:jpush:3.1.1'
+    compile 'cn.jiguang.sdk:jcore:1.1.9'
     compile 'cn.jiguang.sdk:jshare:1.2.1'
     // 此处以JShare 1.1.1 版本为例，具体版本请参考压缩包libs的jar包版本。
     compile 'cn.jiguang.sdk:jshare-qqmodel:1.2.1'

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.IBinder;
+import android.support.annotation.Keep;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 /**
  * Created by yinglan
  */
+@Keep
 public class HideUtil {
 
     /**
@@ -55,7 +57,7 @@ public class HideUtil {
      */
     private HideUtil(final Activity activity, ViewGroup content) {
         if (content == null) {
-            content = (ViewGroup) activity.findViewById(android.R.id.content);
+            content = activity.findViewById(android.R.id.content);
         }
         getScrollView(content, activity);
         content.setOnTouchListener(new View.OnTouchListener() {
@@ -91,7 +93,6 @@ public class HideUtil {
                 newDtv.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
-
                         dispatchTouchEvent(activity, motionEvent);
                         return false;
                     }
@@ -146,9 +147,7 @@ public class HideUtil {
         if (v instanceof EditText) {
             Rect rect = new Rect();
             v.getHitRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY())) {
-                return false;
-            }
+	        return !rect.contains((int) event.getX(), (int) event.getY());
         }
         return true;
     }

@@ -1,17 +1,21 @@
 package me.shetj.base.base;
 
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Keep;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
-public class AdapterViewPager extends FragmentStatePagerAdapter {
+/**
+ * @author shetj
+ */
+@Keep
+public class AdapterViewPager extends FragmentPagerAdapter {
     private List<BaseFragment> mList;
-    private CharSequence[] mTitles;
+    private  List<String> mTitles;
 
     public AdapterViewPager(FragmentManager fragmentManager, List<BaseFragment> list) {
         super(fragmentManager);
@@ -19,11 +23,20 @@ public class AdapterViewPager extends FragmentStatePagerAdapter {
     }
 
 
-    public AdapterViewPager(FragmentManager fragmentManager, List<BaseFragment> list, CharSequence[] titles) {
+    public AdapterViewPager(FragmentManager fragmentManager, List<BaseFragment> list, List<String> titles) {
         super(fragmentManager);
         this.mList = list;
         this.mTitles = titles;
     }
+
+    public void setData(List<BaseFragment> list, List<String> titles){
+        this.mList.clear();
+        this.mTitles.clear();
+        this.mList.addAll(list);
+        this.mTitles.addAll(titles);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public BaseFragment getItem(int position) {
@@ -31,36 +44,28 @@ public class AdapterViewPager extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
-        if (mTitles != null) {
-            return mTitles[position];
-        }
-        return super.getPageTitle(position);
-    }
-
-    @Override
     public int getCount() {
         return mList.size();
     }
 
-    @Override
-    public Parcelable saveState() {
-        return null;
-    }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Fragment f = (Fragment) super.instantiateItem(container, position);
+        BaseFragment f = (BaseFragment) super.instantiateItem(container, position);
         View view = f.getView();
-        if (view != null)
+        if (view != null) {
             container.addView(view);
+        }
         return f;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        View view = mList.get(position).getView();
-        if (view != null)
-            container.removeView(view);
+    public CharSequence getPageTitle(int position) {
+        if (mTitles != null) {
+            return mTitles.get(position);
+        }
+        return super.getPageTitle(position);
     }
+
 }
