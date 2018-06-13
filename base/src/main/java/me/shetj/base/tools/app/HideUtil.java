@@ -16,7 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
- * Created by yinglan
+ * @author Administrator
  */
 @Keep
 public class HideUtil {

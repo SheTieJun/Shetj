@@ -84,6 +84,7 @@ public class AlbumImageView extends AppCompatImageView{
 		mPath.lineTo(0,getHeight());
 		mPath.lineTo(0,0);
 		canvas.drawPath(mPath,mPaint);
+
 	}
 
 	private float lastX;

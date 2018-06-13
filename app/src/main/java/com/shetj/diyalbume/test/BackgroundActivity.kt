@@ -5,9 +5,7 @@ import android.support.design.widget.Snackbar
 import android.util.Log
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
-import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.*
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.ObservableSource
@@ -20,6 +18,7 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_background.*
 import kotlinx.android.synthetic.main.content_background.*
 import me.shetj.base.base.BasePresenter
+import org.xutils.common.util.LogUtil
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -114,10 +113,10 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                     Log.d("BufferActivity", "更新平均温度：" + result)
 
                 },{e ->
-                    LogUtil.show(e.message!!)
+                    LogUtil.i(e.message!!)
                 },{
 
-                    LogUtil.show("完成")
+                    LogUtil.i("完成")
                 })
 
         mPublishSubjectS = PublishSubject.create<String>()
@@ -162,12 +161,12 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     list ->
-                    LogUtil.show(list.size.toString())
+                    LogUtil.i(list.size.toString())
 
                 },{e ->
-                    LogUtil.show(e.message)
+                    LogUtil.i(e.message)
                 },{
-                    LogUtil.show("ok")
+                    LogUtil.i("ok")
                 })
     }
 
@@ -248,9 +247,14 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
 
     private fun startPolling(){
         Observable.intervalRange(0, 5, 0, 3000, TimeUnit.MILLISECONDS)
-                .take(5).doOnNext { doWork() }
+                .take(5)
+                .doOnNext {
+                    doWork()
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                }
 
         var i = 0
         Observable.just(0L).doOnComplete {

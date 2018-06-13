@@ -6,9 +6,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.shetj.diyalbume.R;
 
+import org.xutils.common.util.LogUtil;
+
 import java.util.List;
 
-import me.shetj.base.tools.app.LogUtil;
 import me.shetj.base.tools.app.TimeUtil;
 
 /**
@@ -54,10 +55,10 @@ public class AutoRecycleView extends BaseQuickAdapter<String ,BaseViewHolder> {
 	}
 
 	public void isStop(int firstVisibleItemPosition,int lastVisibleItemPosition) {
-		LogUtil.show(firstVisibleItemPosition+"////"+lastVisibleItemPosition);
+		LogUtil.i(firstVisibleItemPosition+"////"+lastVisibleItemPosition);
 		if (firstVisibleItemPosition > playPostin
 						||lastVisibleItemPosition < playPostin){
-			LogUtil.show((i++)+"停止播放"+playPostin);
+			LogUtil.i((i++)+"停止播放"+playPostin);
 			if (oldPosition != -1) {
 				notifyItemChanged(oldPosition);
 			}

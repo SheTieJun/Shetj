@@ -1,11 +1,10 @@
 package com.shetj.diyalbume.createAlbum.presenter
 
 import me.shetj.base.base.BasePresenter
-import me.shetj.base.tools.app.LogUtil
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
-import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.IView
+import org.xutils.common.util.LogUtil
 
 /**
  *
@@ -25,7 +24,6 @@ class CreatePresenter(view: IView) : BasePresenter<BaseModel>(view){
 
     fun createAlbum() {
         albumContent = AlbumContent(ArrayList())
-        LogUtil.show(albumContent.photos.size.toString())
     }
 
 }
