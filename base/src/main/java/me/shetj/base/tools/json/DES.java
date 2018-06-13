@@ -17,7 +17,7 @@ import static android.util.Base64.NO_WRAP;
 public class DES {
 
 	/** 加密KEY */
-	private static final byte[] KEY = "6;9Ku7;:84VG*B68".getBytes();
+	private static final byte[] KEY = "6:9Ku7;:84VG*B68".getBytes();
 	/** 算法 */
 	private static final String ALGORITHM = "DES";
 	/** IV */

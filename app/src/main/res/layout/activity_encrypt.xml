@@ -26,6 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="加密"/>
+
+    <EditText
+        android:id="@+id/edit_jiemi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="shetiejun"
+        />
+
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
     <Button
         android:id="@+id/btn_jiemi"
         android:layout_width="wrap_content"

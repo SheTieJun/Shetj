@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.shetj.diyalbume.R;
 
 import me.shetj.base.base.BaseActivity;
+import me.shetj.base.tools.json.DES;
 
 public class EncryptActivity extends BaseActivity implements View.OnClickListener {
 
@@ -26,6 +27,12 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
 	 * 解密
 	 */
 	private Button mBtnJiemi;
+	/**
+	 * shetiejun
+	 */
+	private EditText mEditJiemi;
+	/**  */
+	private TextView mText2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,8 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
 		mBtnJiami.setOnClickListener(this);
 		mBtnJiemi = (Button) findViewById(R.id.btn_jiemi);
 		mBtnJiemi.setOnClickListener(this);
+		mEditJiemi = (EditText) findViewById(R.id.edit_jiemi);
+		mText2 = (TextView) findViewById(R.id.text2);
 	}
 
 	@Override
@@ -50,15 +59,24 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
 
 	}
 
+	/** 加密KEY */
+	private static final byte[] KEY = "6;9Ku7;:84VG*B68".getBytes();
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			default:
 				break;
 			case R.id.btn_jiami:
-
+				String jiamiwen = mEditQuery.getText().toString();
+				String encrypt = new DES().encrypt(jiamiwen);
+				mText.setText(" DES() = "+encrypt+"\n" );
+				mEditJiemi.setText(encrypt);
 				break;
 			case R.id.btn_jiemi:
+				String jiamiwen1 = mEditJiemi.getText().toString();
+				String decrypt = new DES().decrypt(jiamiwen1);
+				mText2.setText(" DES() = "+decrypt+"\n");
 				break;
 		}
 	}
