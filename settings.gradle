@@ -1,1 +1,1 @@
-include ':app', ':base', ':resources', ':components', ':study', ':jguang'
+include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt'
