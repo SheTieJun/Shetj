@@ -9,4 +9,9 @@
     tools:context="com.shetj.components.user.UserActivity"
     tools:showIn="@layout/activity_user">
 
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 </android.support.constraint.ConstraintLayout>

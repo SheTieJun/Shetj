@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shetj.components.R;
@@ -20,11 +21,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+import me.shetj.base.tools.json.GsonKit;
 
 public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 
@@ -38,9 +39,11 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 
 	private FloatingActionButton mFab;
 
-	 PublishSubject<List<User>>  publishSubject;
+	PublishSubject<List<User>> publishSubject;
 
 	private int i;
+
+	private TextView mTvMsg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +60,6 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	}
 
 
-
-
 	private void initData() {
 		publishSubject = PublishSubject.create();
 
@@ -66,38 +67,32 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 						.observeOn(Schedulers.io())
 						.subscribeOn(AndroidSchedulers.mainThread())
 						.subscribe(new Consumer<List<User>>() {
-			@Override
-			public void accept(List<User> users) throws Exception {
-				Toast.makeText(UserActivity.this,"xxxxx"+users.size()+"user",Toast.LENGTH_LONG).show();
-			}
-		});
+							@Override
+							public void accept(List<User> users) {
+								Toast.makeText(UserActivity.this, "xxxxx" + users.size() + "user", Toast.LENGTH_LONG).show();
+							}
+						});
 
-		publishSubject.onNext(userRepository.getUsers());
-
-		mUserModel.getUser().observe(this, new Observer<User>() {
-			@Override
-			public void onChanged(@Nullable User user) {
-				Toast.makeText(UserActivity.this,user.name,Toast.LENGTH_LONG).show();
-			}
-		});
-
-		mUserModel.getUsers().observe(this,users -> {
-			assert users != null;
-			Toast.makeText(UserActivity.this,users.size()+"user",Toast.LENGTH_LONG).show();
-		});
+		mUserModel.getUser().observe(this, user -> {
+							Toast.makeText(UserActivity.this, user.name, Toast.LENGTH_LONG).show();
+							mTvMsg.setText(GsonKit.objectToJson(user));
+						}
+		);
 
 		mFab.setOnClickListener(view -> {
-			mUserModel.getUser().setValue(new User(i++,"shetj2"+i,"http://baidi.com"));
+			mUserModel.getUser().setValue(new User(i++, "shetj2" + i, "http://baidi.com"));
 		});
+		publishSubject.onNext(userRepository.getUsers());
 	}
 
 	private void initView() {
 
 		mLifecycleRegistry = new LifecycleRegistry(this);
 		mLifecycleRegistry.markState(Lifecycle.State.CREATED);
-		this.getLifecycle().addObserver(new UserObserver());
+//		this.getLifecycle().addObserver(new UserObserver());
 
 		mFab = findViewById(R.id.fab);
+		mTvMsg = findViewById(R.id.tv_msg);
 	}
 
 	@NonNull

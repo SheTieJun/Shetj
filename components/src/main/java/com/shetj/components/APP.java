@@ -17,7 +17,6 @@ import org.xutils.x;
  */
 
 public class APP extends Application {
-	private  UserDataBase db;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -26,11 +25,5 @@ public class APP extends Application {
 
 	}
 
-	public UserDataBase getDb() {
-		if (db == null){
-			db = Room.databaseBuilder(this,
-							UserDataBase.class, "database-user").build();
-		}
-		return db;
-	}
+
 }

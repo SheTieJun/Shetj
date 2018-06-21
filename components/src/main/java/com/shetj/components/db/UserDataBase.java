@@ -14,5 +14,8 @@ import android.arch.persistence.room.RoomDatabase;
 
 @Database(entities = User.class,version = 1,exportSchema = true)
 public abstract class  UserDataBase  extends RoomDatabase{
+	/**
+	 * @return
+	 */
 	public abstract UserDao userDao();
 }
