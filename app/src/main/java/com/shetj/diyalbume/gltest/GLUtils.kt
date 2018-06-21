@@ -16,7 +16,6 @@ import android.os.Build
  */
 object GLUtils{
     fun checkSupported(activity: Activity) : Boolean {
-
         val activityManager = activity.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val configurationInfo = activityManager .deviceConfigurationInfo
         val  supportsEs2 =
