@@ -1,13 +1,19 @@
 package com.shetj.diyalbume.gltest
 
+import android.opengl.GLES10.glRotatef
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
+import com.alipay.sdk.app.statistic.c.v
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 import me.shetj.base.base.BaseSwipeBackActivity
+import me.shetj.base.tools.json.GsonKit
 import org.intellij.lang.annotations.Flow
+import org.xutils.common.util.LogUtil
 import java.util.concurrent.TimeUnit
 
 class OpenGL3DActivity : BaseSwipeBackActivity() {
@@ -41,9 +47,81 @@ class OpenGL3DActivity : BaseSwipeBackActivity() {
         return GLUtils.checkSupported(this)
     }
 
+    private lateinit var gestureDetector: GestureDetector
+
     override fun initView() {
+        val ges =object : GestureDetector.SimpleOnGestureListener() {
+            override fun onShowPress(e: MotionEvent?) {
+                LogUtil.i("onShowPress : x = ${e?.x}        y = ${e?.y}")
+            }
+
+            override fun onSingleTapUp(e: MotionEvent?): Boolean {
+                LogUtil.i("onSingleTapUp : x = ${e?.x}        y = ${e?.y}")
+                return super.onSingleTapUp(e)
+            }
+
+            override fun onDown(e: MotionEvent?): Boolean {
+                LogUtil.i("onDown : x = ${e?.x}        y = ${e?.y}")
+                return super.onDown(e)
+            }
+
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                LogUtil.i("onFling : x1 = ${e1?.x}        y1 = ${e1?.y}")
+                LogUtil.i("onFling : x2 = ${e1?.x}        y2 = ${e1?.y}")
+                LogUtil.i("onFling : velocityX =  $velocityX")
+                LogUtil.i("onFling : velocityY = $velocityY")
+                return super.onFling(e1, e2, velocityX, velocityY)
+            }
+
+            override fun onLongPress(e: MotionEvent?) {
+                LogUtil.i("onLongPress : x = ${e?.x}        y = ${e?.y}")
+            }
+
+            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+//                glRenderer.rotate(distanceX)
+                LogUtil.i("onScroll : x1 = ${e1?.x}        y1 = ${e1?.y}")
+                LogUtil.i("onScroll : x2 = ${e1?.x}        y2 = ${e1?.y}")
+                LogUtil.i("onScroll : distanceX = $distanceX")
+                LogUtil.i("onScroll : distanceY = $distanceY")
+                rotateDegreenx = (rotateDegreenx + distanceX).toLong()
+//                glRotatef(rotateDegreenx.toFloat(), 1.0f, 0.0f, 0.0f)//绕x轴旋转
+//                rotateDegreeny = (rotateDegreeny + distanceY).toLong()
+//                    glRotatef(rotateDegreeny.toFloat(), 0.0f, 1.0f, 0.0f)//绕Y轴旋转
+                glRenderer.rotate(rotateDegreenx.toFloat())
+                glSurfaceView.invalidate()
+                return super.onScroll(e1,e2,distanceX, distanceY)
+            }
+
+            override fun onDoubleTap(e: MotionEvent?): Boolean {
+                LogUtil.i("onDoubleTap : x = ${e?.x}        y = ${e?.y}")
+                return super.onDoubleTap(e)
+            }
+
+            override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
+                LogUtil.i("onDoubleTapEvent : x = ${e?.x}        y = ${e?.y}")
+                return super.onDoubleTapEvent(e)
+            }
+
+            override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+                LogUtil.i("onSingleTapConfirmed : x = ${e?.x}        y = ${e?.y}")
+                return super.onSingleTapConfirmed(e)
+            }
+
+            override fun onContextClick(e: MotionEvent?): Boolean {
+                LogUtil.i("onContextClick : x = ${e?.x}        y = ${e?.y}")
+                return super.onContextClick(e)
+            }
+
+        }
+
+        gestureDetector = GestureDetector(this,ges)
 
 
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        gestureDetector.onTouchEvent(ev)
+        return super.dispatchTouchEvent(ev)
     }
 
     override fun initData() {
@@ -62,22 +140,24 @@ class OpenGL3DActivity : BaseSwipeBackActivity() {
         }
     }
 
-    private var rotateDegreen: Long = 0
-
+    private var rotateDegreenx: Long = 0
+    private var rotateDegreeny: Long = 0
     private var disposable: Disposable? = null
+
+
 
 
     override fun onResume() {
         super.onResume()
         if (rendererSet) {
             glSurfaceView.onResume()
-            disposable = Flowable.interval(100, 5, TimeUnit.MILLISECONDS)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        val l = rotateDegreen + it
-                        glRenderer.rotate(l.toFloat())
-                        glSurfaceView.invalidate()
-                    }
+//            disposable = Flowable.interval(100, 5, TimeUnit.MILLISECONDS)
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe {
+//                        val l = rotateDegreen + it
+//                        glRenderer.rotate(l.toFloat())
+//
+//                    }
         }
     }
 
