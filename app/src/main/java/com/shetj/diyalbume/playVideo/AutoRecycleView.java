@@ -10,7 +10,8 @@ import org.xutils.common.util.LogUtil;
 
 import java.util.List;
 
-import me.shetj.base.tools.app.TimeUtil;
+import me.shetj.base.tools.time.TimeUtil;
+
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.playVideo<br>

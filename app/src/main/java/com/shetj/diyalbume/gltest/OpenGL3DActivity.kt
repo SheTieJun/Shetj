@@ -1,22 +1,16 @@
 package com.shetj.diyalbume.gltest
 
-import android.opengl.GLES10.glRotatef
 import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
-import com.alipay.sdk.app.statistic.c.v
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.BaseSwipeBackActivity
-import me.shetj.base.tools.json.GsonKit
-import org.intellij.lang.annotations.Flow
 import org.xutils.common.util.LogUtil
-import java.util.concurrent.TimeUnit
 
-class OpenGL3DActivity : BaseSwipeBackActivity() {
+class OpenGL3DActivity : BaseSwipeBackActivity<BasePresenter<*>>() {
 
     private lateinit var glSurfaceView: GLSurfaceView
 

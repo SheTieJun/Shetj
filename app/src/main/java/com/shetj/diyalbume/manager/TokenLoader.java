@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.shetj.diyalbume.api.ShetjApi;
-import me.shetj.base.tools.app.DataConfig;
-import me.shetj.base.tools.app.TimeUtil;
 import me.shetj.base.tools.file.SPUtils;
 import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.base.tools.json.GsonKit;
@@ -20,6 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+import me.shetj.base.tools.time.TimeUtil;
 
 public class TokenLoader {
 
@@ -62,7 +61,7 @@ public class TokenLoader {
     }
 
     public String getCacheToken() {
-        String token = (String) SPUtils.get(x.app().getApplicationContext(), DataConfig.PRE_CUSTOM_TOKEN, "");
+        String token = (String) SPUtils.get(x.app().getApplicationContext(), "PRE_CUSTOM_TOKEN", "");
         if (EmptyUtils.isNotEmpty(token)) {
             long timeDiff = TimeUtil.getTimeDiff(getExpire(x.app().getApplicationContext()));
             if (timeDiff > 50000) {
@@ -83,7 +82,7 @@ public class TokenLoader {
      * @return the string
      */
     private static String getExpire(Context c){
-        return (String) SPUtils.get(c, DataConfig.PRE_CUSTOM_TOKEN_FAILURE_TIME, TimeUtil.getYMDHMSTime());
+        return (String) SPUtils.get(c, "PRE_CUSTOM_TOKEN_FAILURE_TIME",  TimeUtil.getYMDHMSTime());
     }
 
     public Observable<String> getNetTokenLocked() {

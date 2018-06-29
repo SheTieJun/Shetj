@@ -3,7 +3,7 @@ package com.shetj.diyalbume
 import android.app.Application
 import com.devyok.ipc.ServiceManager
 import com.devyok.ipc.utils.LogControler
-import me.shetj.base.http.rxEasyHttp.EasyHttpUtils
+import me.shetj.base.http.easyhttp.EasyHttpUtils
 import me.shetj.base.http.xutils.XUtil
 
 /**
