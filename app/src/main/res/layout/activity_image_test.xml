@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".image.ImageTestActivity">
+    <EditText
+        android:id="@+id/edit_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试"/>
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生成"/>
+
+    <ImageView
+        android:id="@+id/iv_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:padding="20dp"/>
+</com.zhy.autolayout.AutoLinearLayout>
