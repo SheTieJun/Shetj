@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.gltest
 
 import android.opengl.GLES10.glRotatef
+import android.opengl.GLES10.glTranslatef
 import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.GestureDetector
@@ -70,6 +71,7 @@ class OpenGL3DActivity : BaseSwipeBackActivity() {
                 LogUtil.i("onFling : x2 = ${e1?.x}        y2 = ${e1?.y}")
                 LogUtil.i("onFling : velocityX =  $velocityX")
                 LogUtil.i("onFling : velocityY = $velocityY")
+
                 return super.onFling(e1, e2, velocityX, velocityY)
             }
 
@@ -88,6 +90,7 @@ class OpenGL3DActivity : BaseSwipeBackActivity() {
 //                rotateDegreeny = (rotateDegreeny + distanceY).toLong()
 //                    glRotatef(rotateDegreeny.toFloat(), 0.0f, 1.0f, 0.0f)//绕Y轴旋转
                 glRenderer.rotate(rotateDegreenx.toFloat())
+                glRotatef(rotateDegreeny+distanceY,0f,1f,0f)
                 glSurfaceView.invalidate()
                 return super.onScroll(e1,e2,distanceX, distanceY)
             }
