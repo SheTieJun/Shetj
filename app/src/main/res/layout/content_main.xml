@@ -80,5 +80,13 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="120dp"
             android:text="加密解密"/>
+
+        <Button
+            android:id="@+id/btn_tup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btn_miui"
+            android:layout_alignTop="@+id/btn_openGL"
+            android:text="图片"/>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

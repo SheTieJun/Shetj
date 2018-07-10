@@ -6,9 +6,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.*
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
 import com.shetj.diyalbume.gltest.OpenGL3DActivity
+import com.shetj.diyalbume.image.ImageTestActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
@@ -60,6 +62,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_jiami).subscribe {
             ArmsUtils.startActivity( this,EncryptActivity::class.java)
         }
+        RxView.clicks(btn_tup).subscribe{
+            ArmsUtils.startActivity( this,ImageTestActivity::class.java)
+        }
+
     }
 
 

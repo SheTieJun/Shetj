@@ -2,10 +2,9 @@ package com.shetj.diyalbume.manager;
 
 import org.xutils.x;
 
+import io.reactivex.Observable;
 import me.shetj.base.tools.file.SPUtils;
 import me.shetj.base.tools.json.EmptyUtils;
-import io.reactivex.Observable;
-import me.shetj.base.tools.app.DataConfig;
 
 /**
  * Created by admin on 2017/10/16.
@@ -44,12 +43,12 @@ public class TokenManager {
 	 * @return the boolean
 	 */
 	public  boolean isLogin(){
-		String token= (String) SPUtils.get(x.app().getApplicationContext(), DataConfig.PRE_CUSTOM_TOKEN,"");
+		String token= (String) SPUtils.get(x.app().getApplicationContext(), "PRE_CUSTOM_TOKEN","");
 		return EmptyUtils.isNotEmpty(token);
 	}
 
 
 	public void setToken(String token) {
-		 SPUtils.put(x.app().getApplicationContext(), DataConfig.PRE_CUSTOM_TOKEN,token);
+		 SPUtils.put(x.app().getApplicationContext(), "PRE_CUSTOM_TOKEN",token);
 	}
 }
