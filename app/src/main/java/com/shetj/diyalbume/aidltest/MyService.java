@@ -21,7 +21,7 @@ public class MyService extends Service {
 
 		@Override
 		public String getName() {
-			return "AIDL-test"+getPackageName();
+			return "AIDL-test：getPackageName:"+getPackageName();
 		}
 	}
 

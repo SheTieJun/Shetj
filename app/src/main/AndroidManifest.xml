@@ -89,6 +89,8 @@
         </activity>
         <activity android:name=".image.ImageTestActivity">
         </activity>
+        <activity android:name=".executors.ExecutorsActivity">
+        </activity>
     </application>
 
 </manifest>

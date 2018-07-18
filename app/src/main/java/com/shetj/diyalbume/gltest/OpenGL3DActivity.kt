@@ -1,10 +1,6 @@
 package com.shetj.diyalbume.gltest
 
-<<<<<<< HEAD
 import android.opengl.GLES10.glRotatef
-import android.opengl.GLES10.glTranslatef
-=======
->>>>>>> d8fb7fcaf6fa1a9b06029de7f404d5affc1e08c7
 import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.GestureDetector

@@ -8,6 +8,7 @@ import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.R.id.*
 import com.shetj.diyalbume.encrypt.EncryptActivity
+import com.shetj.diyalbume.executors.ExecutorsActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
 import com.shetj.diyalbume.gltest.OpenGL3DActivity
 import com.shetj.diyalbume.image.ImageTestActivity
@@ -66,6 +67,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
             ArmsUtils.startActivity( this,ImageTestActivity::class.java)
         }
 
+        RxView.clicks(btn_treadPool).subscribe {
+            ArmsUtils.startActivity( this,ExecutorsActivity::class.java)
+        }
     }
 
 
