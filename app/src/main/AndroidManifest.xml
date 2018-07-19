@@ -91,6 +91,8 @@
         </activity>
         <activity android:name=".executors.ExecutorsActivity">
         </activity>
+        <activity android:name=".animator.AnimatorActivity">
+        </activity>
     </application>
 
 </manifest>

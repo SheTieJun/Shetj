@@ -17,7 +17,6 @@ class ExecutorsActivity : AppCompatActivity() {
         RxView.clicks(btn_test).subscribe {
             testExcutors()
         }
-
     }
 
     private fun testExcutors() {
