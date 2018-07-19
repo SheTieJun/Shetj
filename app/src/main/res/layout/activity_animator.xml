@@ -6,5 +6,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".animator.AnimatorActivity">
+    <Button
+        android:id="@+id/btn_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="渐变"/>
+
+    <Button
+        android:id="@+id/btn_tran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平移"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <Button
+        android:id="@+id/btn_rotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="旋转"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <Button
+        android:id="@+id/btn_sca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大小"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <Button
+        android:id="@+id/btn_object"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="属性动画"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="114dp"/>
+
+
+    <Button
+        android:id="@+id/btn_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="属性 - 值动画"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="57dp"/>
 
 </android.support.constraint.ConstraintLayout>

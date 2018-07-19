@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.R.id.*
+import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
@@ -69,6 +70,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_treadPool).subscribe {
             ArmsUtils.startActivity( this,ExecutorsActivity::class.java)
+        }
+        RxView.clicks(btn_animator).subscribe {
+            ArmsUtils.startActivity( this,AnimatorActivity::class.java)
         }
     }
 
