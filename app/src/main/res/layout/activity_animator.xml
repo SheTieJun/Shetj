@@ -5,54 +5,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".animator.AnimatorActivity">
+    tools:context=".animator.AnimatorActivity"
+    tools:layout_editor_absoluteY="81dp">
+
     <Button
         android:id="@+id/btn_alpha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="渐变"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="渐变"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <Button
         android:id="@+id/btn_tran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="平移"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        app:layout_constraintStart_toEndOf="@+id/btn_alpha"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btn_rotation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="旋转"
-        tools:layout_editor_absoluteX="264dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_sca"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btn_sca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="大小"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        app:layout_constraintStart_toEndOf="@+id/btn_tran"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btn_object"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="属性动画"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="114dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_value"/>
 
 
     <Button
         android:id="@+id/btn_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="属性 - 值动画"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="57dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_alpha"/>
 
     <Button
         android:id="@+id/btn_change"

@@ -1,9 +1,9 @@
 package com.shetj.diyalbume.animator
 
 import android.os.Bundle
-import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_animator.*
 import me.shetj.base.base.BaseActivity
 
@@ -13,6 +13,8 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animator)
+        initView()
+        initData()
     }
 
     override fun initView() {
@@ -27,23 +29,33 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
     override fun initData() {
 
         RxView.clicks(btn_alpha)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startAlphaAnim(it as View)
+                    mPresenter.startAlphaAnim(btn_alpha)
                 }
 
         RxView.clicks(btn_tran)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startTran(it as View)
+                    mPresenter.startTran(btn_tran)
                 }
 
         RxView.clicks(btn_rotation)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
-                    mPresenter.startRota(it as View)
+                    mPresenter.startRota(btn_rotation)
                 }
 
         RxView.clicks(btn_sca)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startScale(it as View)
+                    mPresenter.startScale(btn_sca)
+                }
+
+        RxView.clicks(btn_value)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    mPresenter.startValue(btn_value)
                 }
 
     }
