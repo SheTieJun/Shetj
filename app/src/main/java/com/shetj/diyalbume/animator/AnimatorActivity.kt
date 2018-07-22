@@ -58,5 +58,22 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
                     mPresenter.startValue(btn_value)
                 }
 
+        RxView.clicks(btn_object)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    mPresenter.startObject(btn_object)
+                }
+
+        RxView.clicks(btn_set)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    mPresenter.startSet(btn_set)
+                }
+
+        RxView.clicks(btn_view_property)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    mPresenter.startViewProperty(btn_view_property)
+                }
     }
 }

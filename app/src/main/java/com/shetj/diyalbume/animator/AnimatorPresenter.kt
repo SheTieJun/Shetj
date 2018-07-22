@@ -1,5 +1,8 @@
 package com.shetj.diyalbume.animator
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.animation.ValueAnimator.REVERSE
 import android.view.View
@@ -9,11 +12,10 @@ import com.shetj.diyalbume.R
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
-import me.shetj.base.tools.app.ArmsUtils
 
 class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
 
-    private var animType = true
+    private var animType = false
 
     init {
 
@@ -91,5 +93,51 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         }
     }
 
+    fun startObject(it: View) {
+        if (animType){
+            val animator1 = AnimatorInflater.loadAnimator(view.rxContext, R.animator.anim_object)
+            animator1.setTarget(it)
+            animator1.start()
+        }else{
+            val animator2 = ObjectAnimator.ofFloat(it, "alpha", 1f, 0f, 1f)
+            // 动画效果是:常规 - 全透明 - 常规
+            animator2.duration = 5000
+            animator2.start()
+        }
+    }
+
+    /**
+     * AnimatorSet.play(Animator anim)   ：播放当前动画
+     * AnimatorSet.after(long delay)   ：将现有动画延迟x毫秒后执行
+     * AnimatorSet.with(Animator anim)   ：将现有动画和传入的动画同时执行
+     * AnimatorSet.after(Animator anim)   ：将现有动画插入到传入的动画之后执行
+     * AnimatorSet.before(Animator anim) ：  将现有动画插入到传入的动画之前执行
+     */
+    fun startSet(it: View) {
+        if (animType){
+
+            val animator =  AnimatorInflater.loadAnimator(view.rxContext, R.animator.anim_set)
+            animator.setTarget(it)
+            animator.start()
+        }else{
+            val translation = ObjectAnimator.ofFloat(it, "translationX", 0f, 300f,0f)
+            val rotate = ObjectAnimator.ofFloat(it, "rotation", 0f, 360f,0f)
+            val alpha = ObjectAnimator.ofFloat(it, "alpha", 1f, 0f, 1f)
+            val animSet =  AnimatorSet()
+            animSet.play(translation).with(rotate).before(alpha)
+            animSet.duration = 5000
+            animSet.start()
+        }
+    }
+
+    fun startViewProperty(it: View) {
+
+        if (animType){
+            it.animate().alpha(0f).x(500f).y(500f).duration = 3000
+
+        }else {
+            it.animate().alpha(0.5f).x(0f).y(300f).rotation(360f).duration = 3000
+        }
+    }
 
 }
