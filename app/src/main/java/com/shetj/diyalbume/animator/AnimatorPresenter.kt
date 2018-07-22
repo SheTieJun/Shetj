@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.animator
 
 import android.animation.ValueAnimator
+import android.animation.ValueAnimator.REVERSE
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
@@ -69,16 +70,25 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
     }
 
     fun startValue(it: View) {
-        val animation = ValueAnimator.ofInt(0,100)
-        animation.duration = 1000
-        animation.addUpdateListener { animation ->
-            var currentValue = animation?.animatedValue
-            ArmsUtils.makeText("currentValue = $currentValue")
-            val button = it as Button
-            button.text = "currentValue = $currentValue"
+        if (animType) {
+            val animation = ValueAnimator.ofInt(0, 100)
+            animation.duration = 1000
+            animation.addUpdateListener { animation ->
+                val currentValue = animation?.animatedValue
+                val button = it as Button
+                button.text = "currentValue = $currentValue"
+            }
+            animation.start()
+        }else{
+            val animation2 = ValueAnimator.ofInt(100, 500)
+            animation2.duration = 3000
+            animation2.repeatMode = REVERSE
+            animation2.addUpdateListener{ animation ->
+                it.layoutParams.width = animation?.animatedValue as Int
+                it.requestLayout()
+            }
+            animation2.start()
         }
-
-
     }
 
 
