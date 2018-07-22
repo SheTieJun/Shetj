@@ -25,6 +25,9 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         animType = !animType
     }
 
+    /**
+     * 渐变
+     */
     fun startAlphaAnim(it: View) {
         if (animType) {
             val animation = AnimationUtils.loadAnimation(view.rxContext, R.anim.anim_alpha)
@@ -36,6 +39,9 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         }
     }
 
+    /**
+     * 平移
+     */
     fun startTran(it: View) {
         if (animType) {
             val animation = AnimationUtils.loadAnimation(view.rxContext, R.anim.anim_tran)
@@ -48,29 +54,41 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
 
     }
 
+
+    /**
+     * 旋转
+     */
     fun startRota(it: View) {
         if (animType) {
             val animation = AnimationUtils.loadAnimation(view.rxContext, R.anim.anim_rota)
             it.startAnimation(animation)
         }else {
-            val animation2 = RotateAnimation(0f,360f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+            val animation2 = RotateAnimation(0f,360f,Animation.RELATIVE_TO_SELF,
+                    0.5f,Animation.RELATIVE_TO_SELF,0.5f)
             animation2.duration = 3000
             it.startAnimation(animation2)
         }
     }
 
+    /**
+     * 大小
+     */
     fun startScale(it: View) {
         if (animType) {
             val animation = AnimationUtils.loadAnimation(view.rxContext, R.anim.anim_scale)
             it.startAnimation(animation)
         }else {
-            val animation2 =  ScaleAnimation(0f,3f,0f,3f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+            val animation2 =  ScaleAnimation(0f,3f,0f,3f,Animation.RELATIVE_TO_SELF,
+                    0.5f,Animation.RELATIVE_TO_SELF,0.5f)
             animation2.duration = 3000
             it.startAnimation(animation2)
         }
 
     }
 
+    /**
+     * 值动画
+     */
     fun startValue(it: View) {
         if (animType) {
             val animation = ValueAnimator.ofInt(0, 100)
@@ -93,6 +111,9 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         }
     }
 
+    /**
+     * 属性动画 set()/get()
+     */
     fun startObject(it: View) {
         if (animType){
             val animator1 = AnimatorInflater.loadAnimator(view.rxContext, R.animator.anim_object)
@@ -130,6 +151,9 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         }
     }
 
+    /**
+     * view 的属性动画
+     */
     fun startViewProperty(it: View) {
 
         if (animType){

@@ -93,6 +93,8 @@
         </activity>
         <activity android:name=".animator.AnimatorActivity">
         </activity>
+        <activity android:name=".bluetooth.BluetoothActivity">
+        </activity>
     </application>
 
 </manifest>
