@@ -8,6 +8,7 @@ import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.R.id.*
 import com.shetj.diyalbume.animator.AnimatorActivity
+import com.shetj.diyalbume.bluetooth.BluetoothActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
@@ -37,7 +38,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
     }
     override fun initData() {
- //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun initView() {
@@ -73,6 +74,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         RxView.clicks(btn_animator).subscribe {
             ArmsUtils.startActivity( this,AnimatorActivity::class.java)
+        }
+        RxView.clicks(btn_bluetooth).subscribe {
+            ArmsUtils.startActivity(this,BluetoothActivity::class.java)
         }
     }
 

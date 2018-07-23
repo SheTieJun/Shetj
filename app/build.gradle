@@ -166,4 +166,6 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'com.github.SheTieJun:Base:0.0.4'
     implementation project(':resources')
+
+    implementation 'com.clj.fastble:FastBleLib:2.3.2'//蓝牙
 }

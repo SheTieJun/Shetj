@@ -30,10 +30,10 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="创建"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iRecyclerView"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btn_paly"
@@ -42,7 +42,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="play"
+        android:text="自动play原理"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_custom"/>
 
@@ -75,10 +75,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="GLTest"
-        app:layout_constraintBaseline_toBaselineOf="@+id/bt_create"
-        app:layout_constraintStart_toStartOf="@+id/btn_animator"
-        />
+        app:layout_constraintStart_toEndOf="@+id/bt_create"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btn_openGL3D"
@@ -113,7 +115,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:text="图片"
+        android:text="图文生成"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_treadPool"/>
 
@@ -125,7 +127,6 @@
         android:layout_alignTop="@+id/btn_openGL"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="线程池"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_create"/>
@@ -136,9 +137,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="动画"
         app:layout_constraintStart_toEndOf="@+id/btn_treadPool"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL"/>
 
+    <Button
+        android:id="@+id/btn_bluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="蓝牙"
+        app:layout_constraintStart_toEndOf="@+id/btn_tup"
+        app:layout_constraintTop_toBottomOf="@+id/btn_animator"/>
 </android.support.constraint.ConstraintLayout>
