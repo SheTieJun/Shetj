@@ -11,6 +11,7 @@ import me.shetj.base.base.BaseActivity
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_mi_ui.*
 import kotlinx.android.synthetic.main.content_mi_ui.*
+import me.shetj.base.base.BaseMessage
 import me.shetj.base.base.BasePresenter
 import java.util.ArrayList
 
@@ -69,5 +70,12 @@ class MiUIActivity : BaseActivity<MiUIPresenter>() {
         val eventMsg = MyMessage("haha", IMessage.MessageType.EVENT.ordinal)
         mAdapter.addToStart(eventMsg, true)
         mAdapter.addToEnd(info as List<IMessage>?)
+    }
+
+    override fun updateView(message: BaseMessage<*>?) {
+        super.updateView(message)
+        when(message?.type){
+            1 -> showMsgList(message.obj as ArrayList<MyMessage>)
+        }
     }
 }

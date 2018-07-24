@@ -1,20 +1,19 @@
 package com.shetj.diyalbume.bluetooth
 
 import android.bluetooth.BluetoothAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Button
+import android.widget.TextView
 import com.clj.fastble.BleManager
+import com.clj.fastble.data.BleDevice
+import com.clj.fastble.scan.BleScanRuleConfig
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.tools.app.ArmsUtils
-import android.content.Intent
-import android.widget.TextView
-import com.clj.fastble.data.BleDevice
-import com.clj.fastble.scan.BleScanRuleConfig
 import me.shetj.base.base.BaseMessage
+import me.shetj.base.tools.app.ArmsUtils
 
 
 /**
@@ -35,14 +34,9 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         BleManager.getInstance().init(application)
 
         if (!BleManager.getInstance().isBlueEnable){
-            ArmsUtils.makeText("不支持蓝牙")
-            return
-        }else{
-            //打开蓝牙
-            //  BleManager.getInstance().enableBluetooth()
             val intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(intent, 0x01)
-
+        }else{
             val scanRuleConfig =  BleScanRuleConfig.Builder()
 //                    .setServiceUuids(serviceUuids)      // 只扫描指定的服务的设备，可选
 //                    .setDeviceName(true, names)         // 只扫描指定广播名的设备，可选
@@ -101,7 +95,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
                 }
         adapter.addHeaderView(textView)
 
-        adapter.setOnItemClickListener { adapter, view, position ->
+        adapter.setOnItemClickListener { _, _, position ->
             mPresenter.connect(this.adapter.getItem(position))
         }
 

@@ -4,6 +4,7 @@ import cn.jiguang.imui.commons.models.IMessage
 import java.text.SimpleDateFormat
 import java.util.*
 import com.shetj.diyalbume.R
+import me.shetj.base.base.BaseModel
 import org.xutils.x
 
 
@@ -16,7 +17,10 @@ import org.xutils.x
  * **@describe**<br></br>
  */
 
-class MiUiModel {
+class MiUiModel :BaseModel() {
+    override fun onDestroy() {
+    }
+
     fun getInfo(page: Int): ArrayList<MyMessage> {
         val list = ArrayList<MyMessage>()
         val res = x.app().applicationContext.resources

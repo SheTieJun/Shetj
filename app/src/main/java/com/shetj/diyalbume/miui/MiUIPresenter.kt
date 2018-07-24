@@ -13,9 +13,14 @@ import me.shetj.base.base.IView
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class MiUIPresenter(view: IView) : BasePresenter<BaseModel>(view) {
-    fun loadNextPage() {
+class MiUIPresenter(view: IView) : BasePresenter<MiUiModel>(view) {
 
+    init{
+        model = MiUiModel()
+    }
+
+    fun loadNextPage() {
+       view.updateView(getMessage(1,model.getInfo(1)))
     }
 
 

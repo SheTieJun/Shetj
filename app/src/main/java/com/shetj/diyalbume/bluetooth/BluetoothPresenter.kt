@@ -16,6 +16,7 @@ import com.clj.fastble.callback.BleMtuChangedCallback
 import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.functions.Consumer
+import me.shetj.base.view.LoadingDialog
 
 
 class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {
@@ -40,11 +41,10 @@ class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {
             }
 
             override fun onScanStarted(success: Boolean) {
-                textView.text = "onScanStarted = $success"
+                ArmsUtils.makeText("开始搜索")
             }
 
             override fun onScanning(bleDevice: BleDevice?) {
-                textView.text = "onScanStarted = $bleDevice"
             }
 
         })
