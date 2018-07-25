@@ -49,6 +49,7 @@ class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {
 
         })
 
+
     }
 
     fun connect(item: BleDevice?) {
@@ -97,6 +98,12 @@ class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {
             }
 
         })
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stop()
     }
 
     fun stop()  {

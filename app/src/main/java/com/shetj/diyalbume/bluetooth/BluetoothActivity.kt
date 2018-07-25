@@ -2,8 +2,11 @@ package com.shetj.diyalbume.bluetooth
 
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
+import android.graphics.Canvas
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.widget.TextView
 import com.clj.fastble.BleManager
 import com.clj.fastble.data.BleDevice
@@ -13,7 +16,9 @@ import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage
+import me.shetj.base.decoration.Decoration
 import me.shetj.base.tools.app.ArmsUtils
+import org.xutils.common.util.DensityUtil
 
 
 /**
@@ -45,7 +50,6 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
                     .setScanTimeOut(10000)              // 扫描超时时间，可选，默认10秒
                     .build();
             BleManager.getInstance().initScanRule(scanRuleConfig);
-
             /**
              * 配置日志
             默认打开库中的运行日志，如果不喜欢可以关闭
@@ -86,8 +90,13 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         adapter = BluetoothListAdapter(ArrayList())
         ArmsUtils.configRecycleView(iRecyclerView,LinearLayoutManager(rxContext))
 
+        iRecyclerView.addItemDecoration(Decoration.builder().color(R.color.line_color).headerCount(1).build())
         val textView = TextView(rxContext)
         textView.text = "搜索"
+        textView.gravity = Gravity.CENTER
+        val dp10 = DensityUtil.dip2px(10f)
+        textView.setPadding(dp10, dp10,
+                dp10, dp10)
 
         RxView.clicks(textView)
                 .subscribe {
@@ -111,4 +120,6 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
             }
         }
     }
+
+
 }
