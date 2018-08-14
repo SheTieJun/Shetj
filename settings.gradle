@@ -1,1 +1,1 @@
-include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt', ':mlkittest','umeng'
+include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt', ':mlkittest', ':testmybase','umeng'
