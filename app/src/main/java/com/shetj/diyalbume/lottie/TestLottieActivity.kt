@@ -34,7 +34,7 @@ class TestLottieActivity : AppCompatActivity() {
         animation_view.setOnClickListener{
             val animator = ValueAnimator.ofFloat(0f, 1f)
             animator.addUpdateListener { animation -> animation_view.progress = animation.animatedValue as Float }
-            animator.setDuration(5000)
+            animator.duration = 5000
             animator.start()
         }
     }
