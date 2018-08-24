@@ -1,1 +1,2 @@
 include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt', ':mlkittest', ':testmybase','umeng'
+include ':rxFingerPrinter'
