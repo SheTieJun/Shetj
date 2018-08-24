@@ -168,4 +168,5 @@ dependencies {
     implementation project(':resources')
     implementation 'com.airbnb.android:lottie:2.5.6'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'//蓝牙
+    compile project(path: ':rxFingerPrinter')
 }

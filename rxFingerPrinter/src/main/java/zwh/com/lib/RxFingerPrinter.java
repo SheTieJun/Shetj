@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -13,13 +14,12 @@ import android.os.Build;
 import android.os.CancellationSignal;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
+
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
-import zwh.com.lib.lifecycle.LifecycleListener;
-import zwh.com.lib.lifecycle.SupportFingerPrinterManagerFragment;
 
 import static zwh.com.lib.CodeException.FINGERPRINTERS_FAILED_ERROR;
 import static zwh.com.lib.CodeException.HARDWARE_MISSIING_ERROR;
@@ -32,49 +32,26 @@ import static zwh.com.lib.CodeException.SYSTEM_API_ERROR;
  * Created by Administrator on 2016/12/31.
  */
 
-public class RxFingerPrinter implements LifecycleListener {
+public class RxFingerPrinter   {
     static final String TAG = "RxFingerPrinter";
     private FingerprintManager manager;
     private KeyguardManager mKeyManager;
-    private Activity context;
+    private RxAppCompatActivity context;
     PublishSubject<Boolean> publishSubject;
-    SupportFingerPrinterManagerFragment supportFingerPrinterManagerFragment;
     @SuppressLint("NewApi")
     CancellationSignal mCancellationSignal;
     @SuppressLint("NewApi")
     FingerprintManager.AuthenticationCallback authenticationCallback;
-    private boolean mLogging;
     private boolean mSelfCompleted;
     private CompositeDisposable mDisposables = new CompositeDisposable();
 
-    public RxFingerPrinter(@NonNull Activity activity) {
+    public RxFingerPrinter(@NonNull RxAppCompatActivity activity) {
         this.context = activity;
-        supportFingerPrinterManagerFragment = getRxPermissionsFragment(activity);
-    }
-
-    private SupportFingerPrinterManagerFragment getRxPermissionsFragment(Activity activity) {
-        SupportFingerPrinterManagerFragment fragment = findRxPermissionsFragment(activity);
-        boolean isNewInstance = fragment == null;
-        if (isNewInstance) {
-            fragment = new SupportFingerPrinterManagerFragment();
-            FragmentManager fragmentManager = activity.getFragmentManager();
-            fragmentManager
-                    .beginTransaction()
-                    .add(fragment, TAG)
-                    .commitAllowingStateLoss();
-            fragmentManager.executePendingTransactions();
-            fragment.getLifecycle().addListener(this);
-        }
-        return fragment;
-    }
-
-    private SupportFingerPrinterManagerFragment findRxPermissionsFragment(Activity activity) {
-        return (SupportFingerPrinterManagerFragment) activity.getFragmentManager().findFragmentByTag(TAG);
+        publishSubject = PublishSubject.create();
     }
 
     public PublishSubject<Boolean> begin() {
         dispose();
-        publishSubject = PublishSubject.create();
         if (Build.VERSION.SDK_INT < 23) {
             publishSubject.onError(new FPerException(SYSTEM_API_ERROR));
         } else {
@@ -123,6 +100,7 @@ public class RxFingerPrinter implements LifecycleListener {
             public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
                 publishSubject.onNext(true);
                 mSelfCompleted = true;
+                publishSubject.onComplete();
             }
 
             @Override
@@ -168,52 +146,11 @@ public class RxFingerPrinter implements LifecycleListener {
     }
 
 
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void stopListening() {
         if (mCancellationSignal != null) {
             mCancellationSignal.cancel();
             mCancellationSignal = null;
-        }
-    }
-
-    @Override
-    public void onStart() {
-        log("LifeCycle--------onStart");
-    }
-
-    @Override
-    public void onStop() {
-        log("LifeCycle--------onStop");
-    }
-
-    @Override
-    public void onResume() {
-        if (!mSelfCompleted){
-            startListening(null);
-        }
-        log("LifeCycle--------onResume");
-    }
-
-    @Override
-    public void onPause() {
-        stopListening();
-        log("LifeCycle--------onPause");
-    }
-
-    @Override
-    public void onDestroy() {
-        dispose();
-        log("LifeCycle--------onDestroy");
-    }
-
-    public void setLogging(boolean logging) {
-        mLogging = logging;
-    }
-
-    void log(String message) {
-        if (mLogging) {
-            Log.d(TAG, message);
         }
     }
 

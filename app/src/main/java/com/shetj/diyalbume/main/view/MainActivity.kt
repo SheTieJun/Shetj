@@ -11,6 +11,7 @@ import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
+import com.shetj.diyalbume.fingerprint.FingerPrintActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
 import com.shetj.diyalbume.gltest.OpenGL3DActivity
 import com.shetj.diyalbume.image.ImageTestActivity
@@ -82,6 +83,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_lottie).subscribe{
             ArmsUtils.startActivity(this,TestLottieActivity::class.java)
+        }
+        RxView.clicks(btn_finger).subscribe{
+            ArmsUtils.startActivity(this,FingerPrintActivity::class.java)
         }
     }
 
