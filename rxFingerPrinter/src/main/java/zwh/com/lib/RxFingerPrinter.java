@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.KeyguardManager;
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
@@ -16,9 +17,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
 
 import static zwh.com.lib.CodeException.FINGERPRINTERS_FAILED_ERROR;
@@ -32,8 +33,7 @@ import static zwh.com.lib.CodeException.SYSTEM_API_ERROR;
  * Created by Administrator on 2016/12/31.
  */
 
-public class RxFingerPrinter   {
-    static final String TAG = "RxFingerPrinter";
+public class RxFingerPrinter  {
     private FingerprintManager manager;
     private KeyguardManager mKeyManager;
     private RxAppCompatActivity context;
@@ -153,5 +153,4 @@ public class RxFingerPrinter   {
             mCancellationSignal = null;
         }
     }
-
 }

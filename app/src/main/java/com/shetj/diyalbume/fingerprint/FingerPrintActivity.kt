@@ -1,5 +1,6 @@
 package com.shetj.diyalbume.fingerprint
 
+import android.arch.lifecycle.LifecycleObserver
 import android.os.Bundle
 import android.widget.Toast
 import com.shetj.diyalbume.R
@@ -58,6 +59,7 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             }
 
             override fun onComplete() {
+                ArmsUtils.makeText("验证通过")
                 onBackPressed()
             }
 
@@ -69,6 +71,7 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
                 }
             }
         }
+
 
 
 
@@ -87,4 +90,7 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             rxFingerPrinter.stopListening()
         }
     }
+
+
+
 }

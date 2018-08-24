@@ -14,8 +14,6 @@ import static zwh.com.lib.CodeException.SYSTEM_API_ERROR;
 public class FPerException extends RuntimeException {
     /*错误码*/
     private int code;
-    /*显示的信息*/
-    private String displayMessage;
 
     public FPerException() {
         super();
@@ -52,10 +50,6 @@ public class FPerException extends RuntimeException {
             default:
                 return "";
         }
-    }
-
-    public void setDisplayMessage(String displayMessage) {
-        this.displayMessage = displayMessage;
     }
 
 }
