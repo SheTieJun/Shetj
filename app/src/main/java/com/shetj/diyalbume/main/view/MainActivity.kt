@@ -85,6 +85,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_finger).subscribe{
             ArmsUtils.startActivity(this,FingerPrintActivity::class.java)
         }
+
+        RxView.clicks(btn_CustomTabs).subscribe {
+            CustomTabsHelper.openUrl(rxContext,"https://github.com/SheTieJun")
+        }
     }
 
 

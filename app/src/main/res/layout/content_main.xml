@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.shetj.diyalbume.main.view.MainActivity"
     tools:layout_editor_absoluteY="69dp"
-    tools:showIn="@layout/activity_main3">
+    tools:showIn="@layout/activity_main">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/iRecyclerView"
@@ -78,6 +78,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textAllCaps="false"
         android:text="GLTest"
         app:layout_constraintStart_toEndOf="@+id/bt_create"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -89,6 +90,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:textAllCaps="false"
         android:text="GL3D"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_openGL"
         app:layout_constraintStart_toEndOf="@+id/btn_openGL"
@@ -149,7 +151,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:text="蓝牙"
+        android:textAllCaps="false"
+        android:text="蓝牙Ble"
         app:layout_constraintBottom_toTopOf="@+id/btn_finger"
         app:layout_constraintStart_toEndOf="@+id/btn_tup"
         app:layout_constraintTop_toBottomOf="@+id/btn_animator"/>
@@ -160,6 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:textAllCaps="false"
         android:text="动画lottie"
         app:layout_constraintStart_toEndOf="@+id/btn_animator"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL3D"/>
@@ -175,4 +179,15 @@
         app:layout_constraintStart_toEndOf="@+id/btn_jiami"
         app:layout_constraintTop_toBottomOf="@+id/btn_bluetooth"
         />
+
+    <Button
+        android:id="@+id/btn_CustomTabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CustomTabsUrl"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@+id/btn_miui"
+        app:layout_constraintTop_toBottomOf="@+id/btn_finger"/>
 </android.support.constraint.ConstraintLayout>
