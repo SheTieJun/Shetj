@@ -1,2 +1,3 @@
-include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt', ':mlkittest', ':testmybase','umeng'
+include ':app', ':base', ':resources', ':components', ':study', ':jguang',':encrypt', ':mlkittest', ':transition',
+        ':testmybase', ':umeng'
 include ':rxFingerPrinter'

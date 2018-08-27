@@ -1,6 +1,5 @@
 package com.shetj.diyalbume.fingerprint
 
-import android.arch.lifecycle.LifecycleObserver
 import android.os.Bundle
 import android.widget.Toast
 import com.shetj.diyalbume.R

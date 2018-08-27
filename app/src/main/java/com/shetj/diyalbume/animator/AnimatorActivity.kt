@@ -1,6 +1,11 @@
 package com.shetj.diyalbume.animator
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.transition.Scene
+import android.transition.TransitionManager
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,9 +25,15 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
     override fun initView() {
         mPresenter  = AnimatorPresenter(this)
 
+
         RxView.clicks(btn_change)
                 .subscribe {
                     mPresenter.setType()
+                }
+        RxView.clicks(btn_transitionManager)
+                .subscribe {
+                    val intent = Intent(rxContext, TranstionActivity::class.java)
+                    ActivityCompat.startActivity(rxContext, intent, ActivityOptionsCompat.makeSceneTransitionAnimation(rxContext).toBundle())
                 }
     }
 

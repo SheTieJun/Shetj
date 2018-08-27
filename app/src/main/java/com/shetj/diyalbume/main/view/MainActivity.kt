@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.*
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
@@ -40,7 +39,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
     }
     override fun initData() {
-        //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun initView() {

@@ -108,6 +108,8 @@
         </activity>
         <activity android:name=".lottie.TestLottieActivity">
         </activity>
+        <activity android:name=".animator.TranstionActivity">
+        </activity>
     </application>
 
 </manifest>
