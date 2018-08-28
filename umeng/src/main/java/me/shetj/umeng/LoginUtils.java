@@ -2,6 +2,7 @@ package me.shetj.umeng;
 
 import android.app.Activity;
 
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -25,5 +26,9 @@ public class LoginUtils {
 	public static void loginByQQ(Activity activity,UMAuthListener listener) {
 		UMShareAPI umShareAPI = UMShareAPI.get(activity);
 		umShareAPI.getPlatformInfo(activity, SHARE_MEDIA.QQ, listener);
+	}
+
+	public static void loginIn(String userId){
+		MobclickAgent.onProfileSignIn(userId);
 	}
 }

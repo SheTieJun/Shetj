@@ -21,10 +21,23 @@ public class UMengUtils {
 		UMConfigure.init(application, "5af1472ba40fa315790000a1", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
 
 		PlatformConfig.setWeixin("wxb87578a66e09f3f7", "3661890958ea16991c8bcef780e58f70");
-//		PlatformConfig.setQQZone("1106914964", "3mFw8xDkQFkjURJQ");
 		UMShareAPI.init(application, " 5af1472ba40fa315790000a1");
 		UMShareConfig config = new UMShareConfig();
 		config.isNeedAuthOnGetUserInfo(true);
 		UMShareAPI.get(application).setShareConfig(config);
+	}
+
+	public static void init(Application application,
+	                        boolean isDebug,
+	                        String tag,
+	                        String appkey,
+	                        String[] wx,
+	                        String[] qq){
+		UMConfigure.setLogEnabled(isDebug);
+		UMConfigure.init(application, appkey, tag, UMConfigure.DEVICE_TYPE_PHONE, null);
+		UMShareAPI.init(application, appkey);
+		PlatformConfig.setWeixin(wx[0], wx[1]);
+		PlatformConfig.setQQZone(qq[0], qq[1]);
+		UMConfigure.setEncryptEnabled(true);
 	}
 }
