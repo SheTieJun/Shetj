@@ -1,4 +1,4 @@
-package zwh.com.lib;
+package me.shetj.fingerprinter;
 
 import org.junit.Test;
 

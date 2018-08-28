@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.widget.Toast
 import com.shetj.diyalbume.R
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_finger_print.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
-import zwh.com.lib.FPerException
-import zwh.com.lib.RxFingerPrinter
+import me.shetj.fingerprinter.FPerException
+import me.shetj.fingerprinter.RxFingerPrinter
+import org.xutils.common.util.LogUtil
 
 
 /**
@@ -21,8 +23,8 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
 
     override fun initData() {
     }
-
     private lateinit var rxFingerPrinter: RxFingerPrinter
+    private var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
         fpv.setOnStateChangedListener(FingerPrinterView.OnStateChangedListener { state ->
             if (state == FingerPrinterView.STATE_CORRECT_PWD) {
                 ArmsUtils.makeText("指纹识别成功")
+                onBackPressed()
                 return@OnStateChangedListener
             }
             if (state == FingerPrinterView.STATE_WRONG_PWD) {
@@ -58,8 +61,6 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             }
 
             override fun onComplete() {
-                ArmsUtils.makeText("验证通过")
-                onBackPressed()
             }
 
             override fun onNext(aBoolean: Boolean) {
@@ -73,8 +74,6 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
 
 
 
-
-
         bt_open.setOnClickListener {
             rxFingerPrinter.begin()
                     .compose(bindToLifecycle())
@@ -82,9 +81,6 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             rxFingerPrinter.addDispose(observer)
         }
 
-        tv_cansle.setOnClickListener{
-            rxFingerPrinter.stopListening()
-        }
         btn_sys.setOnClickListener{
             rxFingerPrinter.stopListening()
         }

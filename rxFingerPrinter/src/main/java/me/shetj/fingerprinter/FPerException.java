@@ -1,11 +1,11 @@
-package zwh.com.lib;
+package me.shetj.fingerprinter;
 
-import static zwh.com.lib.CodeException.FINGERPRINTERS_FAILED_ERROR;
-import static zwh.com.lib.CodeException.HARDWARE_MISSIING_ERROR;
-import static zwh.com.lib.CodeException.KEYGUARDSECURE_MISSIING_ERROR;
-import static zwh.com.lib.CodeException.NO_FINGERPRINTERS_ENROOLED_ERROR;
-import static zwh.com.lib.CodeException.PERMISSION_DENIED_ERROE;
-import static zwh.com.lib.CodeException.SYSTEM_API_ERROR;
+import static me.shetj.fingerprinter.CodeException.FINGERPRINTERS_FAILED_ERROR;
+import static me.shetj.fingerprinter.CodeException.HARDWARE_MISSIING_ERROR;
+import static me.shetj.fingerprinter.CodeException.KEYGUARDSECURE_MISSIING_ERROR;
+import static me.shetj.fingerprinter.CodeException.NO_FINGERPRINTERS_ENROOLED_ERROR;
+import static me.shetj.fingerprinter.CodeException.PERMISSION_DENIED_ERROE;
+import static me.shetj.fingerprinter.CodeException.SYSTEM_API_ERROR;
 
 /**
  * Created by Administrator on 2016/12/31.
