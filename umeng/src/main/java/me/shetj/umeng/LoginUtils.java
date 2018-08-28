@@ -18,17 +18,21 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
  */
 public class LoginUtils {
 
-	public static void loginByWx(Activity activity,UMAuthListener listener) {
+	public  void loginByWx(Activity activity,UMAuthListener listener) {
 		UMShareAPI umShareAPI = UMShareAPI.get(activity);
 		umShareAPI.getPlatformInfo(activity, SHARE_MEDIA.WEIXIN, listener);
 	}
 
-	public static void loginByQQ(Activity activity,UMAuthListener listener) {
+	public  void loginByQQ(Activity activity,UMAuthListener listener) {
 		UMShareAPI umShareAPI = UMShareAPI.get(activity);
 		umShareAPI.getPlatformInfo(activity, SHARE_MEDIA.QQ, listener);
 	}
 
-	public static void loginIn(String userId){
+	/**
+	 * 把用户注册
+	 * @param userId
+	 */
+	public  void loginIn(String userId){
 		MobclickAgent.onProfileSignIn(userId);
 	}
 }

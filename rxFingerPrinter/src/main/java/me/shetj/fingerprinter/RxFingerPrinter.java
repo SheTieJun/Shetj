@@ -17,6 +17,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 import static me.shetj.fingerprinter.CodeException.FINGERPRINTERS_FAILED_ERROR;
 import static me.shetj.fingerprinter.CodeException.HARDWARE_MISSIING_ERROR;
@@ -33,21 +34,16 @@ public class RxFingerPrinter  {
     private FingerprintManager manager;
     private KeyguardManager mKeyManager;
     private Activity context;
-    PublishSubject<Boolean> publishSubject;
-    @SuppressLint("NewApi")
-    CancellationSignal mCancellationSignal;
-    @SuppressLint("NewApi")
-    FingerprintManager.AuthenticationCallback authenticationCallback;
+    private PublishSubject<Boolean> publishSubject;
+    private CancellationSignal mCancellationSignal;
+    private FingerprintManager.AuthenticationCallback authenticationCallback;
     private boolean mSelfCompleted;
-    private CompositeDisposable mDisposables = new CompositeDisposable();
-
     public RxFingerPrinter(@NonNull Activity activity) {
         this.context = activity;
         publishSubject = PublishSubject.create();
     }
 
     public PublishSubject<Boolean> begin() {
-        dispose();
         if (Build.VERSION.SDK_INT < 23) {
             publishSubject.onError(new FPerException(SYSTEM_API_ERROR));
         } else {
@@ -56,7 +52,6 @@ public class RxFingerPrinter  {
             startListening(null);
         }
         return publishSubject;
-
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -110,7 +105,7 @@ public class RxFingerPrinter  {
     @TargetApi(23)
     public void confirmFinger() {
 
-        //android studio 上，没有这个会报错
+        //android studio 上，没有这个会报错 权限判断
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT)
                 != PackageManager.PERMISSION_GRANTED) {
             publishSubject.onError(new FPerException(PERMISSION_DENIED_ERROE));
@@ -129,17 +124,6 @@ public class RxFingerPrinter  {
             publishSubject.onError(new FPerException(NO_FINGERPRINTERS_ENROOLED_ERROR));
         }
 
-    }
-
-    public void addDispose(Disposable disposable) {
-        mDisposables.clear();
-        mDisposables.add(disposable);
-    }
-
-    public void dispose() {
-        if(mDisposables.isDisposed()){
-            mDisposables.dispose();
-        }
     }
 
 

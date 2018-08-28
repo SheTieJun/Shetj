@@ -78,11 +78,9 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             rxFingerPrinter.begin()
                     .compose(bindToLifecycle())
                     .subscribe(observer)
-            rxFingerPrinter.addDispose(observer)
         }
 
         btn_sys.setOnClickListener{
-            rxFingerPrinter.stopListening()
         }
     }
 

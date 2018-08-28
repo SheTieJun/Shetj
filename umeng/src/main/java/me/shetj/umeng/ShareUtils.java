@@ -21,7 +21,16 @@ import java.util.function.Consumer;
  * <b>@describe</b><br>
  */
 public class ShareUtils {
-	public static void showLink(Activity context, String title, String imgUrl, String url, String des,UMShareListener listener){
+	/**
+	 * 分享链接
+	 * @param context
+	 * @param title
+	 * @param imgUrl
+	 * @param url
+	 * @param des
+	 * @param listener
+	 */
+	public  void showLink(Activity context, String title, String imgUrl, String url, String des,UMShareListener listener){
 		UMWeb web = new UMWeb(url);
 		UMImage image = new UMImage(context, imgUrl);
 		web.setTitle(title);
@@ -38,7 +47,13 @@ public class ShareUtils {
 						.open();
 	}
 
-	public static void showUrl(Activity context,String imgUrl,UMShareListener listener){
+	/**
+	 * 分享图片
+	 * @param context
+	 * @param imgUrl
+	 * @param listener
+	 */
+	public  void showUrl(Activity context,String imgUrl,UMShareListener listener){
 		UMImage image = new UMImage(context,imgUrl);
 		//微信需要预览图
 		image.setThumb(image);
