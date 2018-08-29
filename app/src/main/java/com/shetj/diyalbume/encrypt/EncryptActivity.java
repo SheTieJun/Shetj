@@ -45,14 +45,14 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
 	@Override
 	protected void initView() {
 
-		mEditQuery = (EditText) findViewById(R.id.edit_query);
-		mText = (TextView) findViewById(R.id.text);
-		mBtnJiami = (Button) findViewById(R.id.btn_jiami);
+		mEditQuery = findViewById(R.id.edit_query);
+		mText = findViewById(R.id.text);
+		mBtnJiami = findViewById(R.id.btn_jiami);
 		mBtnJiami.setOnClickListener(this);
-		mBtnJiemi = (Button) findViewById(R.id.btn_jiemi);
+		mBtnJiemi = findViewById(R.id.btn_jiemi);
 		mBtnJiemi.setOnClickListener(this);
-		mEditJiemi = (EditText) findViewById(R.id.edit_jiemi);
-		mText2 = (TextView) findViewById(R.id.text2);
+		mEditJiemi = findViewById(R.id.edit_jiemi);
+		mText2 = findViewById(R.id.text2);
 	}
 
 	@Override

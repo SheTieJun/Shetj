@@ -63,7 +63,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile 'com.google.dagger:dagger:2.11'
+    api 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     // ViewModel and LiveData
     implementation 'android.arch.lifecycle:extensions:1.1.1'
@@ -76,7 +76,7 @@ dependencies {
     // RxJava support for Room
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'
     // Paging
-    implementation 'android.arch.paging:runtime:1.0.0'
+    implementation 'android.arch.paging:runtime:1.0.1'
     // Test helpers for LiveData
     testImplementation 'android.arch.core:core-testing:1.1.1'
     // Test helpers for Room
