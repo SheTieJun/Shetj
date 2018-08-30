@@ -110,6 +110,8 @@
         </activity>
         <activity android:name=".animator.TranstionActivity">
         </activity>
+        <activity android:name=".aspect.AspectActivity">
+        </activity>
     </application>
 
 </manifest>

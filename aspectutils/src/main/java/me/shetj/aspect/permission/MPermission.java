@@ -1,11 +1,12 @@
-package me.shetj.aspectutils;
+package me.shetj.aspect.permission;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.CLASS)
-@Target({ElementType.CONSTRUCTOR, ElementType.METHOD})
-public @interface DebugTrace {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MPermission {
+    String[] value();
 }

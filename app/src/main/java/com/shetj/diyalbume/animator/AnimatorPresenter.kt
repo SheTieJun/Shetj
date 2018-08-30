@@ -5,6 +5,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.animation.ValueAnimator.REVERSE
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
@@ -86,7 +87,8 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
 
     }
 
-    /**
+    @SuppressLint("SetTextI18n")
+            /**
      * 值动画
      */
     fun startValue(it: View) {

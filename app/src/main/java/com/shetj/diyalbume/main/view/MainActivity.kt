@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.animator.AnimatorActivity
+import com.shetj.diyalbume.aspect.AspectActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
@@ -88,6 +89,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_CustomTabs).subscribe {
             CustomTabsHelper.openUrl(rxContext,"https://github.com/SheTieJun")
+        }
+        RxView.clicks(btn_Aspect).subscribe {
+            ArmsUtils.startActivity(this,AspectActivity::class.java)
         }
     }
 
