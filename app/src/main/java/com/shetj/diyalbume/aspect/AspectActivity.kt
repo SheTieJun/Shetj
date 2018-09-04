@@ -4,6 +4,8 @@ import android.Manifest
 import android.os.Bundle
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.btn_get_info
+import com.shetj.diyalbume.R.id.btn_get_log
 import kotlinx.android.synthetic.main.activity_aspect.*
 import me.shetj.aspect.permission.MPermission
 import me.shetj.base.base.BaseActivity
@@ -23,6 +25,7 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
     override fun initData() {
         mPresenter = AspectPresenter(this);
     }
+
 
     override fun initView() {
 

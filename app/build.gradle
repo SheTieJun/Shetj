@@ -27,16 +27,8 @@ android {
     }
     signingConfigs {
         release {
-//            storeFile file('E:/MfangSDKTest/app/my.jks')
-//            storePassword '906029'
-//            keyAlias 'key0'
-//            keyPassword '906029'
         }
         debug {
-//            storeFile file('E:/MfangSDKTest/app/my.jks')
-//            storePassword '906029'
-//            keyAlias 'key0'
-//            keyPassword '906029'
         }
     }
     lintOptions {
