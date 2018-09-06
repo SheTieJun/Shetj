@@ -37,7 +37,7 @@ public class FingerPrinterView extends View{
 
   public int mCurrentState = STATE_NO_SCANING;
 
-  public static int DEFAULT_DURATION = 200;
+  public static int DEFAULT_DURATION = 100;
   private float mFraction = 0f,mFraction2 = 1f;
   private int scaningCount = 0;
   float scale =1.0f;
