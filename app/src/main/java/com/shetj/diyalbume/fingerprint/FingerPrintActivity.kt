@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.widget.Toast
 import com.shetj.diyalbume.R
 import io.reactivex.observers.DisposableObserver
-import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_finger_print.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.fingerprinter.FPerException
 import me.shetj.fingerprinter.RxFingerPrinter
-import org.xutils.common.util.LogUtil
 
 
 /**

@@ -4,7 +4,7 @@ import android.app.Application
 import com.devyok.ipc.ServiceManager
 import com.devyok.ipc.utils.LogControler
 import me.shetj.base.http.easyhttp.EasyHttpUtils
-import me.shetj.base.http.xutils.XUtil
+import me.shetj.base.s
 
 /**
  *
@@ -18,8 +18,7 @@ import me.shetj.base.http.xutils.XUtil
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        XUtil.init(this,BuildConfig.DEBUG)
-        EasyHttpUtils.init(this,BuildConfig.DEBUG,"http://baidu.com/")
+        s.init(this,BuildConfig.DEBUG,"http://baidu.com/")
         ServiceManager.init(this)
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()

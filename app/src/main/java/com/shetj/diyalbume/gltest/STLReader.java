@@ -2,14 +2,13 @@ package com.shetj.diyalbume.gltest;
 
 import android.content.Context;
 
-import org.xutils.x;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import me.shetj.base.tools.app.ArmsUtils;
+import me.shetj.base.s;
 
 public class STLReader {
     private StlLoadListener stlLoadListener;
@@ -25,7 +24,7 @@ public class STLReader {
     public Model parserBinStlInAssets(Context context, String fileName) 
                             throws IOException {
 
-        return parserBinStl(x.app().getApplicationContext().getAssets().open(fileName));
+        return parserBinStl(s.getApp().getApplicationContext().getAssets().open(fileName));
     }
     //解析二进制的Stl文件
     public Model parserBinStl(InputStream in) throws IOException {

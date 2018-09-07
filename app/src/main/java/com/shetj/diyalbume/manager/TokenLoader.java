@@ -4,13 +4,13 @@ import android.content.Context;
 
 import com.zhouyou.http.EasyHttp;
 
-import org.xutils.common.util.LogUtil;
-import org.xutils.x;
 
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.shetj.diyalbume.api.ShetjApi;
+
+import me.shetj.base.s;
 import me.shetj.base.tools.file.SPUtils;
 import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.base.tools.json.GsonKit;
@@ -19,6 +19,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import me.shetj.base.tools.time.TimeUtil;
+import timber.log.Timber;
 
 public class TokenLoader {
 
@@ -40,7 +41,7 @@ public class TokenLoader {
                 .doOnNext(new Consumer<String>() {
                     @Override
                     public void accept(String token) throws Exception {
-                        LogUtil.i( "存储Token=" + token);
+                        Timber.i( "存储Token=" + token);
                         TokenManager.getInstance().setToken(token);
                         mRefreshing.set(false);
                     }
@@ -61,9 +62,9 @@ public class TokenLoader {
     }
 
     public String getCacheToken() {
-        String token = (String) SPUtils.get(x.app().getApplicationContext(), "PRE_CUSTOM_TOKEN", "");
+        String token = (String) SPUtils.get(s.getApp().getApplicationContext(), "PRE_CUSTOM_TOKEN", "");
         if (EmptyUtils.isNotEmpty(token)) {
-            long timeDiff = TimeUtil.getTimeDiff(getExpire(x.app().getApplicationContext()));
+            long timeDiff = TimeUtil.getTimeDiff(getExpire(s.getApp().getApplicationContext()));
             if (timeDiff > 50000) {
                 return token;
             }else {
@@ -87,10 +88,10 @@ public class TokenLoader {
 
     public Observable<String> getNetTokenLocked() {
         if (mRefreshing.compareAndSet(false, true)) {
-            LogUtil.i("没有请求，发起一次新的Token请求");
+            Timber.i("没有请求，发起一次新的Token请求");
             startTokenRequest();
         } else {
-            LogUtil.i( "已经有请求，直接返回等待");
+            Timber.i( "已经有请求，直接返回等待");
         }
         return mPublishSubject;
     }

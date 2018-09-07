@@ -13,12 +13,12 @@ import com.clj.fastble.data.BleDevice
 import com.clj.fastble.scan.BleScanRuleConfig
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.iRecyclerView
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage
 import me.shetj.base.decoration.Decoration
 import me.shetj.base.tools.app.ArmsUtils
-import org.xutils.common.util.DensityUtil
 
 
 /**
@@ -94,7 +94,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         val textView = TextView(rxContext)
         textView.text = "搜索"
         textView.gravity = Gravity.CENTER
-        val dp10 = DensityUtil.dip2px(10f)
+        val dp10 = ArmsUtils.dip2px(10f)
         textView.setPadding(dp10, dp10,
                 dp10, dp10)
 

@@ -18,10 +18,10 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_background.*
 import kotlinx.android.synthetic.main.content_background.*
 import me.shetj.base.base.BasePresenter
-import org.xutils.common.util.LogUtil
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 
@@ -113,10 +113,10 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                     Log.d("BufferActivity", "更新平均温度：" + result)
 
                 },{e ->
-                    LogUtil.i(e.message!!)
+                    Timber.i(e.message!!)
                 },{
 
-                    LogUtil.i("完成")
+                    Timber.i("完成")
                 })
 
         mPublishSubjectS = PublishSubject.create<String>()
@@ -161,12 +161,12 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     list ->
-                    LogUtil.i(list.size.toString())
+                    Timber.i(list.size.toString())
 
                 },{e ->
-                    LogUtil.i(e.message)
+                    Timber.i(e.message)
                 },{
-                    LogUtil.i("ok")
+                    Timber.i("ok")
                 })
     }
 
@@ -192,13 +192,13 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
     private fun getOld(simulateTime : Long): Observable<ArrayList<String>>  {
         return Observable.create {ob ->
             try {
-                Log.d(TAG, "开始加载网络数据")
+                Timber.d( "开始加载网络数据")
                 Thread.sleep(simulateTime)
                 var results = ArrayList<String>()
                 (1..10).mapTo(results) { "网络old"+"序号=" + it }
                 ob.onNext(results)
                 ob.onComplete()
-                Log.d(TAG, "结束加载网络数据")
+                Timber.d( "结束加载网络数据")
             } catch ( e:InterruptedException) {
                 if (!ob.isDisposed) {
                     ob.onError(e)

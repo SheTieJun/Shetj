@@ -3,13 +3,12 @@ package com.shetj.diyalbume.miui;
 import android.widget.ImageView;
 
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.shetj.diyalbume.R;
 
-import org.xutils.x;
 
 import cn.jiguang.imui.commons.ImageLoader;
+import me.shetj.base.s;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.miui<br>
@@ -26,8 +25,8 @@ public class MyImageLoader implements ImageLoader {
 	public void loadAvatarImage(ImageView avatarImageView, String string) {
 		// You can use other image load libraries.
 		if (string.contains("R.drawable")) {
-			Integer resId = x.app().getApplicationContext().getResources().getIdentifier(string.replace("R.drawable.", ""),
-							"drawable", x.app().getApplicationContext().getPackageName());
+			Integer resId = s.getApp().getApplicationContext().getResources().getIdentifier(string.replace("R.drawable.", ""),
+							"drawable", s.getApp().getApplicationContext().getPackageName());
 			avatarImageView.setImageResource(resId);
 		} else {
 			GlideApp.with(avatarImageView.getContext())

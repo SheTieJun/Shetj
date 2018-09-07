@@ -1,17 +1,12 @@
 package me.shetj.aspect.debug;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.xutils.common.util.LogUtil;
-
 
 import me.shetj.base.tools.time.TimeUtil;
+import timber.log.Timber;
 
 /**
  * <b>@packageName：</b> me.shetj.aspectutils<br>
@@ -32,7 +27,7 @@ public class DebugAspect {
 	@Around("DebugTraceMethod()")
 	public void beforeDebugTraceMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 		String methodName = joinPoint.getSignature().getName();
-		LogUtil.i( methodName+" start time = " + TimeUtil.getTime());
+		Timber.i( methodName+" start time = " + TimeUtil.getTime());
 //		// 目标类全路径名
 //		String targetName = joinPoint.getTarget().getClass().getName();
 //		Class clazz = Class.forName(targetName); // 反射得到目标类
@@ -57,7 +52,7 @@ public class DebugAspect {
 //            }
 //        }
 		joinPoint.proceed();
-		LogUtil.i( methodName+ " end time = " + TimeUtil.getTime());
+		Timber.i( methodName+ " end time = " + TimeUtil.getTime());
 	}
 
 }

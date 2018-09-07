@@ -8,17 +8,12 @@ import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import me.shetj.base.base.BaseActivity
-import me.shetj.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.fab
-import com.shetj.diyalbume.R.id.iv_preview
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
-
 import kotlinx.android.synthetic.main.activity_create.*
 import kotlinx.android.synthetic.main.content_create.*
-import me.shetj.base.base.BasePresenter
-import org.xutils.common.util.DensityUtil
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
 
 class CreateActivity : BaseActivity<CreatePresenter>() {
 
@@ -62,7 +57,7 @@ class CreateActivity : BaseActivity<CreatePresenter>() {
             }
             val params = LinearLayout.LayoutParams(screenWidth, screenHeight)
             params.gravity = Gravity.CENTER
-            val margin = DensityUtil.dip2px(10f)
+            val margin = ArmsUtils.dip2px(10f)
             params.setMargins(margin,margin,margin,margin)
             iv_preview.layoutParams = params
         })

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.shetj.diyalbume.R
 import me.shetj.base.base.BaseModel
-import org.xutils.x
+import me.shetj.base.s
 
 
 /**
@@ -23,7 +23,7 @@ class MiUiModel :BaseModel() {
 
     fun getInfo(page: Int): ArrayList<MyMessage> {
         val list = ArrayList<MyMessage>()
-        val res = x.app().applicationContext.resources
+        val res = s.getApp().applicationContext.resources
         val messages = res.getStringArray(R.array.messages_array)
         for (i in messages.indices) {
             val message: MyMessage

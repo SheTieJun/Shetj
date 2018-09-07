@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.shetj.diyalbume.R;
 
-import org.xutils.http.annotation.HttpRequest;
 
 public class Main2Activity extends AppCompatActivity {
 

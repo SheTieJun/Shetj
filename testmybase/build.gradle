@@ -54,7 +54,9 @@ android {
                 }
             }
         }
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
+
 }
 
 dependencies {
@@ -66,5 +68,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.SheTieJun:Base:kt_0.0.6'
+    implementation 'com.github.SheTieJun:Base:1999f34b3a'
 }

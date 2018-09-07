@@ -3,12 +3,12 @@ package com.shetj.diyalbume.manager;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.model.CacheMode;
 
-import org.xutils.common.util.MD5;
 
 import com.shetj.diyalbume.api.ShetjApi;
 import me.shetj.base.http.callback.EasyCallBack;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import me.shetj.base.tools.app.ArmsUtils;
 
 /**
  * Created by shetj
@@ -41,7 +41,7 @@ public class HttpOssManager {
                   return  EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
                           .baseUrl(ShetjApi.HTTP_USER)
                           .headers("Authorization", "Bearer " + token)
-                          .cacheKey(MD5.md5(ShetjApi.User.URL_GET_OSS_STS))
+                          .cacheKey(ArmsUtils.encodeToMD5(ShetjApi.User.URL_GET_OSS_STS))
                           .cacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
                           .cacheTime(24 * 60 * 60 * 1000 - 60*60*1000)
                           .execute(callBack);

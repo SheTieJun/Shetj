@@ -153,7 +153,7 @@ dependencies {
     implementation 'cn.jiguang.imui:chatinput:0.5.7'
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
-    implementation 'com.github.SheTieJun:Base:0.0.4'
+    implementation 'com.github.SheTieJun:Base:1999f34b3a'
     implementation project(':resources')
     implementation 'com.airbnb.android:lottie:2.5.6'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
