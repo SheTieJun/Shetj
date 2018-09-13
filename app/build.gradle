@@ -133,6 +133,38 @@ android {
         }
     }
 
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '27.1.1'
+                }
+            }
+            if (requested.group == 'com.google.code.gson') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '2.8.2'
+                }
+            }
+            if (requested.group == 'com.google.code.findbugs') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '3.0.0'
+                }
+            }
+            if (requested.group == 'com.github.bumptech.glide') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '4.5.0'
+                }
+            }
+            if (requested.group == 'com.tencent.mm.opensdk') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '5.1.4'
+                }
+            }
+        }
+    }
+
+
 }
 
 dependencies {
@@ -153,13 +185,14 @@ dependencies {
     implementation 'cn.jiguang.imui:chatinput:0.5.7'
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
-    implementation 'com.github.SheTieJun:Base:1999f34b3a'
+    implementation 'com.github.SheTieJun:Base:079f28e9a4'
+
     implementation project(':resources')
     implementation 'com.airbnb.android:lottie:2.5.6'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
-    //蓝牙
     implementation project(path: ':rxFingerPrinter')
     implementation project(':transition')
     implementation 'com.android.support:customtabs:27.1.1'
     implementation project(':aspectutils')
+    implementation project(':alihotfix')
 }
