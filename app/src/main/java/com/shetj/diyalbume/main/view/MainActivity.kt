@@ -93,6 +93,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_Aspect).subscribe {
             ArmsUtils.startActivity(this,AspectActivity::class.java)
         }
+        RxView.clicks(btn_hotfix).subscribe {
+            ArmsUtils.makeText("通过热修复添加的3！")
+        }
     }
 
 

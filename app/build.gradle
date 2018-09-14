@@ -3,7 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-apply from: 'E://myGitProject/shetj/aspectjx.gradle'
+apply plugin: 'android-aspectjx'//面向切面
+
+aspectjx {
+    exclude 'android.support'
+}
 
 static def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
@@ -16,7 +20,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.2.0"
+        versionName "1.0.2.3"
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
@@ -27,8 +31,16 @@ android {
     }
     signingConfigs {
         release {
+            keyAlias 'qcshengdeng'
+            keyPassword 'qcshengdeng'
+            storeFile file('E:/myGitProject/careers/app/qcshengdeng.jks')
+            storePassword 'qcshengdeng'
         }
         debug {
+            keyAlias 'qcshengdeng'
+            keyPassword 'qcshengdeng'
+            storeFile file('E:/myGitProject/careers/app/qcshengdeng.jks')
+            storePassword 'qcshengdeng'
         }
     }
     lintOptions {
@@ -48,7 +60,7 @@ android {
             // 移除无用的resource文件
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -62,6 +74,7 @@ android {
             multiDexEnabled true
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
             ndk {
                 abiFilters 'x86'                 // for debug in AVD.
             }
@@ -186,7 +199,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'com.github.SheTieJun:Base:079f28e9a4'
-
     implementation project(':resources')
     implementation 'com.airbnb.android:lottie:2.5.6'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'

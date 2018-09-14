@@ -201,4 +201,15 @@
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_custom"
         app:layout_constraintTop_toBottomOf="@+id/btn_CustomTabs"/>
+
+    <Button
+        android:id="@+id/btn_hotfix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="通过热修复添加按钮"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@+id/btn_bluetooth"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lottie"/>
 </android.support.constraint.ConstraintLayout>
