@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.SnackbarUtil
+import me.shetj.tencentx5.WebPageActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
 
@@ -49,9 +50,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         bt_create.setOnClickListener({
             mPresenter.startCreateAlbum()
         })
-        btn_paly.setOnClickListener({
+        btn_paly.setOnClickListener {
             startActivity(Intent(this,PlayVideoActivity::class.java))
-        })
+        }
 
         btn_custom.setOnClickListener {
             startActivity(Intent(this,CustomActivity::class.java))
@@ -94,8 +95,13 @@ class MainActivity : BaseActivity<MainPresenter>(){
             ArmsUtils.startActivity(this,AspectActivity::class.java)
         }
         RxView.clicks(btn_hotfix).subscribe {
-            ArmsUtils.makeText("通过热修复添加的3！")
+            ArmsUtils.makeText("只是接入 未测试 阿里-hotfix！")
         }
+
+        RxView.clicks(btn_x5)
+                .subscribe {
+                    ArmsUtils.startActivity(this,WebPageActivity::class.java)
+                }
     }
 
 

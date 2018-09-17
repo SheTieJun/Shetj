@@ -2,6 +2,7 @@ package com.shetj.diyalbume
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.support.multidex.MultiDex
 import com.devyok.ipc.ServiceManager
 import com.devyok.ipc.utils.LogControler
@@ -9,6 +10,7 @@ import com.taobao.sophix.PatchStatus
 import com.taobao.sophix.SophixManager
 import me.shetj.alihotfix.HotFix
 import me.shetj.base.s
+import me.shetj.tencentx5.X5CorePreLoadService
 import timber.log.Timber
 
 /**
@@ -28,6 +30,7 @@ class App : Application() {
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()
         }
+        startService(Intent(this,X5CorePreLoadService::class.java))
         SophixManager.getInstance().queryAndLoadNewPatch()
     }
 

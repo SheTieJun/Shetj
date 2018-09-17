@@ -35,7 +35,7 @@ public class WebPageActivity extends BaseX5WebActivity {
 
 	@Override
 	protected void initData() {
-		mWebView.loadUrl("http://www.baidu.com");
+		mWebView.loadUrl("https://gitee.com/shetj");
 	}
 
 	@Override
