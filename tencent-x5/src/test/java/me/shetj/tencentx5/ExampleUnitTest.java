@@ -1,4 +1,4 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import org.junit.Test;
 

@@ -1,29 +1,23 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.tencent.smtt.sdk.ValueCallback;
 
+import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BasePresenter;
-import me.shetj.base.qmui.BaseQMUIActivity;
 
 /**
  * @author Administrator
  */
-public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseQMUIActivity<T> {
+public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseActivity<T> {
 
     protected ValueCallback<Uri> uploadFile;
     protected ValueCallback<Uri[]> uploadFiles;
     protected X5WebView mWebView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     protected abstract X5WebView getX5WebView();
     @Override

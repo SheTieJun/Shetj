@@ -1,4 +1,4 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -36,7 +36,6 @@ public class X5CorePreLoadService extends IntentService {
         if (!QbSdk.isTbsCoreInited()) {
             QbSdk.preInit(getApplicationContext(), null);
         }
-
         QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 

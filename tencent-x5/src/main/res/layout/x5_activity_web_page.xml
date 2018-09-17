@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".WebPageActivity">
-    <me.shetj.tencent_x5.X5WebView
+    <include layout="@layout/base_include_title"/>
+    <me.shetj.tencentx5.X5WebView
         android:id="@+id/x5webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </me.shetj.tencent_x5.X5WebView>
+    </me.shetj.tencentx5.X5WebView>
 </LinearLayout>

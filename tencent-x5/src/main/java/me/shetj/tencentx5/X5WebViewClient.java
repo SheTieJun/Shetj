@@ -1,4 +1,4 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;

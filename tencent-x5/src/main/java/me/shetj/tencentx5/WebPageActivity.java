@@ -1,6 +1,8 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import android.os.Bundle;
+
+import me.shetj.base.tools.app.ArmsUtils;
 
 /**
  * 网页
@@ -9,14 +11,16 @@ import android.os.Bundle;
  */
 public class WebPageActivity extends BaseX5WebActivity {
 
-	@Override
-	protected int getContextViewId() {
-		return R.layout.x5_activity_web_page;
-	}
+
+	private X5WebView mWebView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.x5_activity_web_page);
+		ArmsUtils.statuInScreen(this,true);
+		initView();
+		initData();
 	}
 
 	@Override
@@ -26,6 +30,7 @@ public class WebPageActivity extends BaseX5WebActivity {
 		mWebView.setX5JSI(new X5JS(mWebView),"shetj_X5");
 		mWebView.setX5DownLoadListener(new X5DownLoadListener());
 		mWebView.setX5ViewClient(new X5WebViewClient());
+
 	}
 
 	@Override
@@ -37,4 +42,5 @@ public class WebPageActivity extends BaseX5WebActivity {
 	protected X5WebView getX5WebView() {
 		return findViewById(R.id.x5webView);
 	}
+
 }

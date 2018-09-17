@@ -1,4 +1,4 @@
-package me.shetj.tencent_x5;
+package me.shetj.tencentx5;
 
 import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.utils.TbsLog;
