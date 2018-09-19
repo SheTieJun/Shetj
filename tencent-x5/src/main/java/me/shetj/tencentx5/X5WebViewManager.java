@@ -67,8 +67,8 @@ public class X5WebViewManager {
      * 禁用自适应功能
      */
     public X5WebViewManager disableAdaptive(){
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(false);
+        webSettings.setLoadWithOverviewMode(false);
         return this;
     }
 
@@ -86,8 +86,6 @@ public class X5WebViewManager {
      * 禁用缩放功能
      */
     public X5WebViewManager disableZoom(){
-        webSettings.setSupportZoom(false);
-        webSettings.setUseWideViewPort(false);
         webSettings.setBuiltInZoomControls(false);
         return this;
     }

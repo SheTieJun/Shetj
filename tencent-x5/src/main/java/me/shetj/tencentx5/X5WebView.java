@@ -13,15 +13,19 @@ import com.tencent.smtt.sdk.WebView;
 public class X5WebView extends WebView {
 
 
+	private  X5WebViewManager x5WebViewManager;
+
 	public X5WebView(Context context) {
 		super(context);
-		new X5WebViewManager(this).setX5Settings();
+		x5WebViewManager = new X5WebViewManager(this);
+		x5WebViewManager.setX5Settings();
 		this.getView().setClickable(true);
 	}
 
 	public X5WebView(Context arg0, AttributeSet arg1) {
 		super(arg0, arg1);
-		new X5WebViewManager(this).setX5Settings();
+		x5WebViewManager = 	new X5WebViewManager(this);
+		x5WebViewManager.setX5Settings();
 		this.getView().setClickable(true);
 	}
 	public void loadUrlByCookie(Context context, String url, String cookie) {
@@ -49,4 +53,9 @@ public class X5WebView extends WebView {
 	public void setX5JSI(X5JS var1, String jsName) {
 		this.addJavascriptInterface(var1, jsName);
 	}
+
+	public boolean isCanBack(){
+		return x5WebViewManager.goBack();
+	}
+
 }

@@ -43,4 +43,10 @@ public class WebPageActivity extends BaseX5WebActivity {
 		return findViewById(R.id.x5webView);
 	}
 
+	@Override
+	public void onBackPressed() {
+		if (!mWebView.isCanBack()){
+			super.onBackPressed();
+		}
+	}
 }
