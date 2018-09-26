@@ -1,12 +1,8 @@
 package me.shetj.alihotfix;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.annotation.Keep;
-import android.util.Log;
 
 import com.taobao.sophix.PatchStatus;
-import com.taobao.sophix.SophixEntry;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.a.e;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
