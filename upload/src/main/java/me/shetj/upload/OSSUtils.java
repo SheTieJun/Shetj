@@ -33,6 +33,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import me.shetj.base.s;
 import me.shetj.base.tools.json.EmptyUtils;
+import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
 
 /**
@@ -71,6 +72,13 @@ public class OSSUtils {
 	}
 
 
+	private  String getUploadKey(String key, String data) {
+		String[] split = new File(data).getName().split("\\.");
+		if (split.length > 1){
+			return "Android" + "/" + key + TimeUtil.getTime()+ "."+split[1];
+		}
+		return   "Android" + "/"  +key + TimeUtil.getTime()+ "."+split[0];
+	}
 	/**
 	 * 当失效时更新，或者重新获取到SecurityToken 更新
 	 * @param AccessKeyId
@@ -118,8 +126,7 @@ public class OSSUtils {
 	                        final UploadFileCallBack<String> callBack){
 		if (!filePath.startsWith("http")) {
 			if (new File(filePath).exists()) {
-				String uploadFilePath = packageName + "/" + new File(filePath).getName();
-				uploadFilePath = dealPath(uploadFilePath);
+				String uploadFilePath = getUploadKey(packageName,filePath);
 				asyncUpload(filePath, packageName, getCompletedCallback(uploadFilePath, callBack));
 			}
 		}
@@ -145,8 +152,7 @@ public class OSSUtils {
 	                        @NonNull OSSCompletedCallback completedCallback ){
 		if (!filePath.startsWith("http")) {
 			if (new File(filePath).exists()) {
-				String uploadFilePath = urlPath + "/" + new File(filePath).getName();
-				uploadFilePath = dealPath(uploadFilePath);
+				String uploadFilePath =  getUploadKey(urlPath,filePath);
 
 				OSSAsyncTask task = asyncUploadFile(mBucketName, uploadFilePath, filePath,
 								ossProgressCallback, completedCallback);
@@ -310,16 +316,11 @@ public class OSSUtils {
 	 */
 	private Map<String, OSSAsyncTask> getUploadTask() {
 		if (uploadTask == null){
-			uploadTask = new HashMap<>();
+			uploadTask = new HashMap<>(16);
 		}
 		return uploadTask;
 	}
 
-	private String dealPath(@NonNull String uploadFilePath) {
-		return 	uploadFilePath.replace(" ","")
-						.replace("/","")
-						.replace("\\","");
-	}
 
 	private OSSCompletedCallback getCompletedCallback(@NonNull final String uploadFilePath,
 	                                                  @NonNull final UploadFileCallBack<String> callBack) {

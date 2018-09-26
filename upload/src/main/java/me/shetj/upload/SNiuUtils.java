@@ -23,7 +23,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import me.shetj.base.base.SimBaseCallBack;
-import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
@@ -41,7 +40,7 @@ public class SNiuUtils {
 
 	public static UploadManager uploadManager;
 
-	public static String urlHead = "";
+	public static String urlHead = "-";
 
 
 
@@ -78,7 +77,8 @@ public class SNiuUtils {
 		if (uploadManager == null){
 			init();
 		}
-		String key = keyPath + "/"  + TimeUtil.getTime() +new File(data).getName();
+		String key = 	getUploadKey(keyPath,data);
+
 		uploadManager.put(data, key, token,
 						new UpCompletionHandler() {
 							@Override
@@ -117,7 +117,7 @@ public class SNiuUtils {
 			public void subscribe(final FlowableEmitter<String> emitter) {
 				for (int i = 0; i < data.size(); i++) {
 					final String file = data.get(i);
-					String key = keyPath + "/" + TimeUtil.getTime() + new File(file).getName();
+					String key = getUploadKey(keyPath,file);
 					image.add(urlHead + key);
 					uploadManager.put(file, key, token,
 									new UpCompletionHandler() {
@@ -157,5 +157,14 @@ public class SNiuUtils {
 						});
 
 	}
+
+	private static String getUploadKey(String key, String data) {
+		String[] split = new File(data).getName().split("\\.");
+		if (split.length > 1){
+			return "Android" + "/" + key + TimeUtil.getTime()+ "."+split[1];
+		}
+		return   "Android" + "/"  +key + TimeUtil.getTime()+ "."+split[0];
+	}
+
 }
 
