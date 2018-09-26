@@ -60,7 +60,13 @@ public interface ImageLoader {
      */
     SimpleDraweeView getSimpleView(Context context,String url);
 
+    /**
+     * 清理内存
+     */
     void clearMemCache();
 
+    /**
+     * 清理缓存
+     */
     void clearCacheFiles();
 }

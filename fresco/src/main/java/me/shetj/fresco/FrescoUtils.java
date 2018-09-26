@@ -6,13 +6,11 @@ import com.facebook.common.logging.FLog;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.facebook.imagepipeline.core.ImagePipelineExperiments;
 import com.facebook.imagepipeline.listener.RequestListener;
 import com.facebook.imagepipeline.listener.RequestLoggingListener;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
@@ -27,7 +25,6 @@ import okhttp3.OkHttpClient;
 public class FrescoUtils {
 
 	private   static  ImageLoader  imageLoader = null;
-	public static int PlaceholderImage = 0;
 
 	/**
 	 * 	初始化Fresco
@@ -48,8 +45,6 @@ public class FrescoUtils {
 			Fresco.initialize(application);
 		}
 	}
-
-
 
 	/**
 	 * 获取图片加载
