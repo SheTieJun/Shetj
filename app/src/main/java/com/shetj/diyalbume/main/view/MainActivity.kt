@@ -102,6 +102,11 @@ class MainActivity : BaseActivity<MainPresenter>(){
                 .subscribe {
                     ArmsUtils.startActivity(this,WebPageActivity::class.java)
                 }
+
+        RxView.clicks(btn_notification)
+                .subscribe {
+                    mPresenter.showNotification()
+                }
     }
 
 

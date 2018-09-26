@@ -1,15 +1,13 @@
 package com.shetj.diyalbume.image
 
 import android.graphics.*
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.btn_commit
-import com.shetj.diyalbume.R.id.iv_preview
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_image_test.*
 

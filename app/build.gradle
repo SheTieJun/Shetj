@@ -208,4 +208,6 @@ dependencies {
     implementation project(':aspectutils')
     implementation project(':alihotfix')
     implementation project(':tencent-x5')
+    implementation project(':update')
+    implementation project(':fresco')
 }

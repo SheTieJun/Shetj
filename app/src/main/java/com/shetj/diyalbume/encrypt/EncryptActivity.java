@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.shetj.diyalbume.R;
 
 import me.shetj.base.base.BaseActivity;
-import me.shetj.base.tools.encrypt.DESUtils;
 import me.shetj.base.tools.json.DES;
 
 public class EncryptActivity extends BaseActivity implements View.OnClickListener {

@@ -2,8 +2,8 @@ package com.shetj.diyalbume.lottie
 
 import android.animation.Animator
 import android.animation.ValueAnimator
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_test_lottie.*

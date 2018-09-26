@@ -1,13 +1,12 @@
 package com.shetj.diyalbume.manager;
 
+import com.shetj.diyalbume.api.ShetjApi;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.model.CacheMode;
 
-
-import com.shetj.diyalbume.api.ShetjApi;
-import me.shetj.base.http.callback.EasyCallBack;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import me.shetj.base.http.callback.EasyCallBack;
 import me.shetj.base.tools.app.ArmsUtils;
 
 /**

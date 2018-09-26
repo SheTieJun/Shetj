@@ -5,18 +5,15 @@ import android.bluetooth.BluetoothGatt
 import android.widget.TextView
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleGattCallback
+import com.clj.fastble.callback.BleMtuChangedCallback
 import com.clj.fastble.callback.BleScanCallback
 import com.clj.fastble.data.BleDevice
 import com.clj.fastble.exception.BleException
+import com.tbruyelle.rxpermissions2.RxPermissions
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils
-import com.clj.fastble.callback.BleMtuChangedCallback
-import com.tbruyelle.rxpermissions2.Permission
-import com.tbruyelle.rxpermissions2.RxPermissions
-import io.reactivex.functions.Consumer
-import me.shetj.base.view.LoadingDialog
 
 
 class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {

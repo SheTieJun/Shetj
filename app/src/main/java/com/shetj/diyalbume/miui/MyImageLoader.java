@@ -2,10 +2,8 @@ package com.shetj.diyalbume.miui;
 
 import android.widget.ImageView;
 
-
 import com.bumptech.glide.request.target.Target;
 import com.shetj.diyalbume.R;
-
 
 import cn.jiguang.imui.commons.ImageLoader;
 import me.shetj.base.s;

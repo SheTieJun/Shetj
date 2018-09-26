@@ -5,10 +5,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import me.shetj.base.tools.app.UiUtils
 import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
-
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
 import me.shetj.base.tools.app.ArmsUtils

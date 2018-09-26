@@ -4,11 +4,9 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import io.reactivex.Observable
 import io.reactivex.functions.Function
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 import java.util.concurrent.TimeUnit
 
 /**

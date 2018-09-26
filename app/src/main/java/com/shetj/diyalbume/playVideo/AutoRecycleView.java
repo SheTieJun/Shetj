@@ -6,7 +6,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.shetj.diyalbume.R;
 
-
 import java.util.List;
 
 import me.shetj.base.tools.time.TimeUtil;

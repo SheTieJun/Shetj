@@ -7,13 +7,12 @@ import cn.jiguang.imui.messages.MsgListAdapter
 import cn.jiguang.imui.messages.ptr.PtrDefaultHeader
 import cn.jiguang.imui.messages.ptr.PtrHandler
 import cn.jiguang.imui.utils.DisplayUtil
-import me.shetj.base.base.BaseActivity
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_mi_ui.*
 import kotlinx.android.synthetic.main.content_mi_ui.*
+import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage
-import me.shetj.base.base.BasePresenter
-import java.util.ArrayList
+import java.util.*
 
 
 class MiUIActivity : BaseActivity<MiUIPresenter>() {

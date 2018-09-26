@@ -2,10 +2,8 @@ package com.shetj.diyalbume.bluetooth
 
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
-import android.graphics.Canvas
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.widget.TextView
 import com.clj.fastble.BleManager
@@ -13,7 +11,6 @@ import com.clj.fastble.data.BleDevice
 import com.clj.fastble.scan.BleScanRuleConfig
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.R.id.iRecyclerView
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage

@@ -1,8 +1,6 @@
 package com.shetj.diyalbume.gltest;
 
-import me.shetj.base.base.BaseMessage;
 import me.shetj.base.base.BaseModel;
-import me.shetj.base.base.IModel;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.gltest<br>

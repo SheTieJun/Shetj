@@ -3,8 +3,6 @@ package com.shetj.diyalbume.test
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
-import me.shetj.base.base.BaseActivity
-import me.shetj.base.tools.app.ArmsUtils
 import com.shetj.diyalbume.R
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -17,7 +15,9 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_background.*
 import kotlinx.android.synthetic.main.content_background.*
+import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
+import me.shetj.base.tools.app.ArmsUtils
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

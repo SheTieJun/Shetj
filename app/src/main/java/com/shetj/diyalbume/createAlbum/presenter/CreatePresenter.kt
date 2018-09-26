@@ -1,8 +1,8 @@
 package com.shetj.diyalbume.createAlbum.presenter
 
-import me.shetj.base.base.BasePresenter
 import com.shetj.diyalbume.createAlbum.bean.AlbumContent
 import me.shetj.base.base.BaseModel
+import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 
 /**

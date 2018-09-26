@@ -6,7 +6,6 @@ import android.support.annotation.Keep;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.shetj.diyalbume.R;
 

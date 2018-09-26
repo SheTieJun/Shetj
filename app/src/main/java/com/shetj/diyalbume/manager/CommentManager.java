@@ -3,8 +3,6 @@ package com.shetj.diyalbume.manager;
 import android.view.View;
 import android.widget.TextView;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -2,22 +2,20 @@ package com.shetj.diyalbume.manager;
 
 import android.content.Context;
 
+import com.shetj.diyalbume.api.ShetjApi;
 import com.zhouyou.http.EasyHttp;
-
 
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.shetj.diyalbume.api.ShetjApi;
-
-import me.shetj.base.s;
-import me.shetj.base.tools.file.SPUtils;
-import me.shetj.base.tools.json.EmptyUtils;
-import me.shetj.base.tools.json.GsonKit;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+import me.shetj.base.s;
+import me.shetj.base.tools.file.SPUtils;
+import me.shetj.base.tools.json.EmptyUtils;
+import me.shetj.base.tools.json.GsonKit;
 import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
 

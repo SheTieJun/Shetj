@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
-import android.transition.Scene
-import android.transition.TransitionManager
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers

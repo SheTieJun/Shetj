@@ -1,11 +1,13 @@
 package com.shetj.diyalbume.main.presenter
 
 import android.content.Intent
-import me.shetj.base.base.BasePresenter
+import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
-import com.shetj.diyalbume.main.view.MainActivity
 import me.shetj.base.base.BaseModel
+import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
+import me.shetj.update.DownloadNotification
+import me.shetj.update.MessageNotification
 
 /**
  *
@@ -24,6 +26,13 @@ class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
          startActivity (intent)
     }
 
+    fun showNotification() {
+
+        DownloadNotification.notify(view.rxContext, R.drawable.example_picture,"DownloadNotification",
+                "DownloadNotification",1)
+        MessageNotification.notify(view.rxContext,"MessageNotificationXXX",2)
+
+    }
 
 
 }
