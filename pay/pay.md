@@ -15,11 +15,6 @@ app :中创建 WXPayEntryActivity
 如下
 ```
        <!-- 微信支付 -->
-        <activity
-            android:name="me.shetj.pay.weixin.WXPayEntryActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <activity-alias
             android:name=".wxapi.WXPayEntryActivity"

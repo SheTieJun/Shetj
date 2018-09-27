@@ -17,7 +17,7 @@ public class WebPageActivity extends BaseX5WebActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.x5_activity_web_page);
+		setContentView(R.layout.x_activity_web_page);
 		ArmsUtils.statuInScreen(this,true);
 		initView();
 		initData();

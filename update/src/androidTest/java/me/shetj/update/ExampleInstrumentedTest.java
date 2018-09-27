@@ -23,4 +23,9 @@ public class ExampleInstrumentedTest {
 
 		assertEquals("me.shetj.update.test", appContext.getPackageName());
 	}
+
+	@Test
+	public void showNotifi(){
+
+	}
 }

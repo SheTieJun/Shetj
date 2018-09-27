@@ -1,2 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.shetj.update"/>
+          package="me.shetj.update">
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application>
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"/>
+
+        <!--
+         Main music service, provides media browsing and media playback services to
+         consumers through MediaBrowserService and MediaSession. Consumers connect to it through
+         MediaBrowser (for browsing) and MediaController (for playback control)
+        -->
+        <service
+            android:name=".MyMusicService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyIntentService"
+            android:exported="false">
+        </service>
+        <service android:name=".NewMessagingService">
+        </service>
+
+        <receiver android:name=".MessageReadReceiver">
+            <intent-filter>
+                <action android:name="me.shetj.update.ACTION_MESSAGE_READ"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MessageReplyReceiver">
+            <intent-filter>
+                <action android:name="me.shetj.update.ACTION_MESSAGE_REPLY"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

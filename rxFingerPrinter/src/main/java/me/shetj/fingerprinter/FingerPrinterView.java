@@ -20,11 +20,6 @@ import android.view.animation.OvershootInterpolator;
 
 import me.shetj.base.tools.app.ArmsUtils;
 
-/**
- * Created by Zhangwh on 2016/12/29 0029.
- * email:616505546@qq.com
- */
-
 public class FingerPrinterView extends View{
 
   public final static int STATE_NO_SCANING = 0;

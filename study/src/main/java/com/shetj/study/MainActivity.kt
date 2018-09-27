@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (conn != null) {
-            unbindService(conn);
-        }
+        unbindService(conn)
     }
 }
