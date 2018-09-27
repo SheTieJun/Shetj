@@ -47,7 +47,8 @@ public class FrescoUtils {
 	}
 
 	/**
-	 * 获取图片加载
+	 * 获取图片加载对象
+	 * 你也可以自己创建不用
 	 * @return
 	 */
 	public static ImageLoader getImageLoader(){

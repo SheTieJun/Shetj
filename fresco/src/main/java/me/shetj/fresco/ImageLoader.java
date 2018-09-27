@@ -2,7 +2,6 @@ package me.shetj.fresco;
 
 
 import android.content.Context;
-import android.graphics.drawable.Animatable;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -40,17 +39,17 @@ public interface ImageLoader {
 
     /**
      * 加载GIf
-     * @param simpleView
-     * @param url
+     * @param simpleView view
+     * @param url url地址(uri)
      * @param isAuto
      */
-    Animatable loadGif(SimpleDraweeView simpleView, String url , boolean isAuto );
+    void loadGif(SimpleDraweeView simpleView, String url , boolean isAuto );
 
 
     /**
      * 预加载图片
      * @param url
-     * @param isDiskCacheOrBitmapCache 是否是Disk 或者 内存
+     * @param isDiskCacheOrBitmapCache  true Disk 或者 false 内存
      */
     void prefetchImage(Context context , String url, boolean isDiskCacheOrBitmapCache);
     /**

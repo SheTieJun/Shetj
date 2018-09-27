@@ -1,7 +1,6 @@
 package me.shetj.fresco;
 
 import android.content.Context;
-import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
@@ -90,7 +89,7 @@ public class FrescoImageLoader implements ImageLoader {
 	}
 
 	@Override
-	public Animatable loadGif(@NonNull SimpleDraweeView simpleView,@NonNull String url,@NonNull boolean isAuto) {
+	public void loadGif(@NonNull SimpleDraweeView simpleView, @NonNull String url, @NonNull boolean isAuto) {
 		AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
 						.setUri(Uri.parse(url))
 						.setTapToRetryEnabled(true)
@@ -98,7 +97,7 @@ public class FrescoImageLoader implements ImageLoader {
 						.setOldController(simpleView.getController())
 						.build();
 		simpleView.setController(controller);
-		return controller.getAnimatable();
+//		controller.getAnimatable();
 	}
 
 	@Override
@@ -123,6 +122,7 @@ public class FrescoImageLoader implements ImageLoader {
 		PipelineDraweeController controller =
 						(PipelineDraweeController) Fresco.newDraweeControllerBuilder()
 										.setOldController(simpleDraweeView.getController())
+										.setTapToRetryEnabled(true)
 										.setImageRequest(request)
 										.build();
 		// 加载图片
