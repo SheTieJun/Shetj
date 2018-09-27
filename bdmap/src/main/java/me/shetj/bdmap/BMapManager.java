@@ -16,6 +16,7 @@ import com.baidu.mapapi.SDKInitializer;
 public class BMapManager {
 	public static  void init(Context context){
 		SDKInitializer.initialize(context.getApplicationContext());
+		BDMapLocation.getInstance(context.getApplicationContext()).setLocationListener(new BDLocationListener());
 	}
 
 

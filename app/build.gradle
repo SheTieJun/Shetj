@@ -33,13 +33,7 @@ android {
         release {
             keyAlias 'qcshengdeng'
             keyPassword 'qcshengdeng'
-            storeFile file('E:/myGitProject/careers/app/qcshengdeng.jks')
-            storePassword 'qcshengdeng'
-        }
-        debug {
-            keyAlias 'qcshengdeng'
-            keyPassword 'qcshengdeng'
-            storeFile file('E:/myGitProject/careers/app/qcshengdeng.jks')
+            storeFile file('./qc.jks')
             storePassword 'qcshengdeng'
         }
     }
@@ -210,4 +204,5 @@ dependencies {
     implementation project(':tencent-x5')
     implementation project(':update')
     implementation project(':fresco')
+    implementation project(':bdmap')
 }

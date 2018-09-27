@@ -1,3 +1,3 @@
-include ':app', ':base', ':resources', ':components', ':study', ':jguang', ':encrypt', ':mlkittest', ':transition', ':aspectutils', ':room', ':tencent-x5', ':alihotfix', ':update',
+include ':app', ':base', ':resources', ':components', ':AIDLtest', ':jguang', ':encrypt', ':mlkittest', ':transition', ':aspectutils', ':room', ':tencent-x5', ':alihotfix', ':update', ':upload', ':simxutils', ':download', ':fresco', ':pay', ':bdmap',
         ':testmybase', ':umeng', ':compiler', ':lib'
 include ':rxFingerPrinter' ,':qmuidemo'

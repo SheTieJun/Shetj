@@ -8,6 +8,7 @@ import com.devyok.ipc.ServiceManager
 import com.devyok.ipc.utils.LogControler
 import com.taobao.sophix.SophixManager
 import me.shetj.base.s
+import me.shetj.bdmap.BMapManager
 import me.shetj.tencentx5.X5CorePreLoadService
 
 /**
@@ -27,6 +28,7 @@ class App : Application() {
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()
         }
+        BMapManager.init(this)
         startService(Intent(this,X5CorePreLoadService::class.java))
         SophixManager.getInstance().queryAndLoadNewPatch()
     }

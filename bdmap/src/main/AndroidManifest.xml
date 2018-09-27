@@ -32,11 +32,11 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="ca9HCABGP69UXRpE984rfCvbFY9GU1xr">
+            android:value="wtF8hsrloDByi8pxGHB6xTvkiCD44iGk">
         </meta-data>
         <activity
             android:name=".MapActivity"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>

@@ -89,7 +89,7 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 
 		mLifecycleRegistry = new LifecycleRegistry(this);
 		mLifecycleRegistry.markState(Lifecycle.State.CREATED);
-//		this.getLifecycle().addObserver(new UserObserver());
+		this.getLifecycle().addObserver(new UserObserver());
 
 		mFab = findViewById(R.id.fab);
 		mTvMsg = findViewById(R.id.tv_msg);

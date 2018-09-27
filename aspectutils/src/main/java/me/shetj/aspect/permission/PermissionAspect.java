@@ -31,8 +31,6 @@ public class PermissionAspect {
 									} catch (Throwable throwable) {
 										throwable.printStackTrace();
 									}
-								} else {
-									ArmsUtils.makeText("没有对应权限，无法使用该功能~！");
 								}
 							}
 						});

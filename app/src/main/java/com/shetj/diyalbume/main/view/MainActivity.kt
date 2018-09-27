@@ -17,6 +17,7 @@ import com.shetj.diyalbume.gltest.OpenGL3DActivity
 import com.shetj.diyalbume.image.ImageTestActivity
 import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
+import com.shetj.diyalbume.map.BDMapActivity
 import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
@@ -106,6 +107,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_notification)
                 .subscribe {
                     mPresenter.showNotification()
+                }
+        RxView.clicks(btn_map)
+                .subscribe {
+                    ArmsUtils.startActivity(this,BDMapActivity::class.java)
                 }
     }
 

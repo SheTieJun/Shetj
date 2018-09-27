@@ -114,6 +114,8 @@
         </activity>
         <activity android:name=".aspect.AspectActivity">
         </activity>
+        <activity android:name=".map.BDMapActivity">
+        </activity>
     </application>
 
 </manifest>

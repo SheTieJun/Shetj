@@ -7,6 +7,7 @@ import com.baidu.location.BDLocation;
 
 import org.simple.eventbus.EventBus;
 
+import me.shetj.base.base.BaseMessage;
 import me.shetj.base.tools.app.Utils;
 import timber.log.Timber;
 
@@ -61,9 +62,8 @@ public class BDLocationListener extends BDAbstractLocationListener {
 		BDMapLocation.getInstance(Utils.getApp().getApplicationContext()).saveNowLocation(location);
 		String tag = sendTag == BDMapLocation.SendTag.DEF ? SEND_POSITION :SEND_MAP;
 
-		Message message = new Message();
+		BaseMessage message = new BaseMessage();
 		message.obj = location;
-
 		EventBus.getDefault().post(message, tag);
 	}
 }

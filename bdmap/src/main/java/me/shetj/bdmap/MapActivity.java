@@ -148,7 +148,8 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 			// 开启定位图层
 			mBaiduMap.setMyLocationEnabled(true);
 //		mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;//定位跟随态
-			mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;   //默认为 LocationMode.NORMAL 普通态
+			//默认为 LocationMode.NORMAL 普通态
+			mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
 //		mCurrentMode = MyLocationConfiguration.LocationMode.COMPASS;  //定位罗盘态
 
 
@@ -163,7 +164,6 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 
 	public void showMap() {
 		mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-
 	}
 
 
@@ -176,7 +176,8 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 
 	@Override
 	protected void initData() {
-		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);//获取传感器管理服务
+		//获取传感器管理服务
+		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 	}
 
 	@Override
@@ -194,6 +195,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 	public void updateView(BaseMessage message) {
 		Flowable.just(message)
 						.subscribeOn(AndroidSchedulers.mainThread())
+						.compose(bindToLifecycle())
 						.subscribe(s -> {
 							BDLocation location = (BDLocation) s.obj;
 							if (location == null || mBaiduMap == null) {
