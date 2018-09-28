@@ -26,7 +26,6 @@ class OpenGL3DActivity : BaseQMUIActivity<BasePresenter<*>>() {
         super.onCreate(savedInstanceState)
         if (checkSupported()) {
             glSurfaceView = GLSurfaceView(this)
-//            glSurfaceView.setEGLContextClientVersion(2)
             setContentView(glSurfaceView)
             glRenderer = GLRenderer(this)
             glSurfaceView.setRenderer(glRenderer)

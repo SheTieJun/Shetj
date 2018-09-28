@@ -1,5 +1,5 @@
 #### 使用定位
-Application:
+Application:初始化
 ```
 BMapManager.init(this);
 ```
@@ -15,4 +15,9 @@ BMapManager.init(this);
    //开始定位
    BDMapLocation.getInstance(view.getRxContext()).start(SendTag);
  }
+```
+
+```
+//停止定位
+BDMapLocation.getInstance(view.getRxContext()).stop( );
 ```

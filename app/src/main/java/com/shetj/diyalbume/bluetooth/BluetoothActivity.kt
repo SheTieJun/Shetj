@@ -83,7 +83,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
 
     override fun initView() {
         mPresenter = BluetoothPresenter(this)
-        mPresenter.getPer(rxPermissions)
+        mPresenter.getPer(ArmsUtils.getRxPermissions(this))
         adapter = BluetoothListAdapter(ArrayList())
         ArmsUtils.configRecycleView(iRecyclerView,LinearLayoutManager(rxContext))
 
