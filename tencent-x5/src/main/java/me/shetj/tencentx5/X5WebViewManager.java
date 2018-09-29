@@ -30,9 +30,7 @@ public class X5WebViewManager {
 		webSettings.setSupportZoom(true);
 		webSettings.setBuiltInZoomControls(false);
 		webSettings.setUseWideViewPort(true);
-		webSettings.setSavePassword(false);
 		webSettings.setSupportMultipleWindows(true);
-		// webSettings.setLoadWithOverviewMode(true);
 		webSettings.setAppCacheEnabled(true);
 		// webSettings.setDatabaseEnabled(true);
 		webSettings.setDomStorageEnabled(true);
@@ -48,10 +46,12 @@ public class X5WebViewManager {
 //        // 设置可手动缩放 隐藏缩放工具
 		webSettings.setDisplayZoomControls(false);
 		webSettings.setDefaultTextEncodingName("UTF-8");//设置默认为utf-8
-		webSettings.setSaveFormData(true);
 		// enable navigator.geolocation
 		webSettings.setDatabaseEnabled(true);
 		// enable Web Storage: localStorage, sessionStorage
+		webSettings.setAllowContentAccess(true);
+		webSettings.setSavePassword(false);
+		webSettings.setSaveFormData(false);
 	}
 
     /**
@@ -149,7 +149,7 @@ public class X5WebViewManager {
 						"{"
 						+ "    objs[i].onclick=function()  " +
 						"    {  "
-						+ "        window.shetj_X5.openImage(this.src);  " +
+						+ "        window.sonic.openImage(this.src);  " +
 						"    }  " +
 						"}" +
 						"})()");
