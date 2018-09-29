@@ -84,6 +84,7 @@ public class FrescoImageLoader implements ImageLoader {
 		mSimpleView.setController(Fresco.newDraweeControllerBuilder()
 						.setImageRequest(request)
 						.setTapToRetryEnabled(true)
+						.setAutoPlayAnimations(true)
 						.setOldController(mSimpleView.getController())
 						.build());
 	}

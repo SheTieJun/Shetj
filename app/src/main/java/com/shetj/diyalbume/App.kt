@@ -9,6 +9,7 @@ import com.devyok.ipc.utils.LogControler
 import com.taobao.sophix.SophixManager
 import me.shetj.base.s
 import me.shetj.bdmap.BMapManager
+import me.shetj.fresco.FrescoUtils
 import me.shetj.tencentx5.X5CorePreLoadService
 
 /**
@@ -24,13 +25,14 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         s.init(this,BuildConfig.DEBUG,"http://baidu.com/")
-        ServiceManager.init(this)
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()
         }
         BMapManager.init(this)
+        FrescoUtils.init(this,BuildConfig.DEBUG)
         startService(Intent(this,X5CorePreLoadService::class.java))
         SophixManager.getInstance().queryAndLoadNewPatch()
+        ServiceManager.init(this)
     }
 
     override fun attachBaseContext(base: Context?) {

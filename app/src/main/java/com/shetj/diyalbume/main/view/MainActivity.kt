@@ -14,6 +14,7 @@ import com.shetj.diyalbume.executors.ExecutorsActivity
 import com.shetj.diyalbume.fingerprint.FingerPrintActivity
 import com.shetj.diyalbume.gltest.GlTestActivity
 import com.shetj.diyalbume.gltest.OpenGL3DActivity
+import com.shetj.diyalbume.image.FrescoActivity
 import com.shetj.diyalbume.image.ImageTestActivity
 import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
@@ -48,9 +49,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = "主页"
         ArmsUtils.configRecycleView(iRecyclerView, LinearLayoutManager(this))
-        bt_create.setOnClickListener({
+        bt_create.setOnClickListener {
             mPresenter.startCreateAlbum()
-        })
+        }
         btn_paly.setOnClickListener {
             startActivity(Intent(this,PlayVideoActivity::class.java))
         }
@@ -101,7 +102,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_x5)
                 .subscribe {
-                    ArmsUtils.startActivity(this,WebPageActivity::class.java)
+                    WebPageActivity.startBrowserActivity(this,"",1)
                 }
 
         RxView.clicks(btn_notification)
@@ -111,6 +112,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_map)
                 .subscribe {
                     ArmsUtils.startActivity(this,BDMapActivity::class.java)
+                }
+        RxView.clicks(btn_fresco)
+                .subscribe {
+                    ArmsUtils.startActivity(this,FrescoActivity::class.java)
                 }
     }
 
