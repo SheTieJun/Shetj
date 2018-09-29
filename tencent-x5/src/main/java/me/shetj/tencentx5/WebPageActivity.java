@@ -101,7 +101,8 @@ public class WebPageActivity extends BaseX5WebActivity {
 			if (null != sonicSession) {
 				sonicSession.bindClient(sonicSessionClient = new SonicSessionClientImpl());
 			} else {
-				Timber.i( "this only happen when a same sonic session is already running,create sonic session fail!" );
+				Timber.i( "this only happen when a same sonic session is already running," +
+								"create sonic session fail!" );
 			}
 		}
 		mWebView  = getX5WebView();
@@ -140,7 +141,6 @@ public class WebPageActivity extends BaseX5WebActivity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		if (null != sonicSessionClient  ) {
 			sonicSessionClient.destroy();
 		} else { // default mode
@@ -149,5 +149,10 @@ public class WebPageActivity extends BaseX5WebActivity {
 				mWebView = null;
 			}
 		}
+		if (null != sonicSession) {
+			sonicSession.destroy();
+			sonicSession = null;
+		}
+		super.onDestroy();
 	}
 }
