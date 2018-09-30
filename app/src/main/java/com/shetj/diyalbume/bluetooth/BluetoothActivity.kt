@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.clj.fastble.BleManager
 import com.clj.fastble.data.BleDevice
 import com.clj.fastble.scan.BleScanRuleConfig
@@ -21,6 +22,7 @@ import me.shetj.base.tools.app.ArmsUtils
 /**
  * 学习蓝牙相关
  */
+@Route(path = "/shetj/BluetoothActivity")
 class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

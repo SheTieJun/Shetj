@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.transitionseverywhere.ChangeBounds
@@ -23,7 +24,7 @@ import com.transitionseverywhere.TransitionManager
 import kotlinx.android.synthetic.main.activity_transtion.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.transition.transitionexample.Main3Activity
-
+@Route(path = "/shetj/TranstionActivity")
 class TranstionActivity : BaseActivity<AnimatorPresenter>() {
 
     private var isScene1 = false

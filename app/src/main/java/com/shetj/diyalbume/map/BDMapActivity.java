@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.shetj.diyalbume.R;
 
 import org.simple.eventbus.Subscriber;
@@ -29,6 +30,7 @@ import static me.shetj.bdmap.BDMapLocation.SEND_POSITION;
  *
  * @author shetj
  */
+@Route(path = "/shetj/BDMapActivity")
 public class BDMapActivity extends BaseActivity implements View.OnClickListener {
 
 	private TextView mTvPosition;

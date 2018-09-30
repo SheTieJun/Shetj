@@ -2,13 +2,14 @@ package com.shetj.diyalbume.gltest
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import java.nio.FloatBuffer
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-
+@Route(path = "/shetj/GlTestActivity")
 class GlTestActivity : BaseActivity<BasePresenter<*>> (){
     private val mTriangleArray =
             //x,y,z  y =1

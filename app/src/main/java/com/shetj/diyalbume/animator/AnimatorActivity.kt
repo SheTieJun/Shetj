@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_animator.*
 import me.shetj.base.base.BaseActivity
 
+@Route(path = "/shetj/AnimatorActivity")
 class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
 
 

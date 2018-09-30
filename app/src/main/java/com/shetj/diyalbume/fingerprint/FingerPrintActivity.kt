@@ -2,6 +2,7 @@ package com.shetj.diyalbume.fingerprint
 
 import android.os.Bundle
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_finger_print.*
@@ -15,6 +16,7 @@ import me.shetj.fingerprinter.RxFingerPrinter
 /**
  * 指纹
  */
+@Route(path = "/shetj/FingerPrintActivity")
 class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
     override fun initView() {
     }

@@ -6,11 +6,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.shetj.diyalbume.R;
 
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.tools.json.DES;
 
+@Route(path = "/shetj/EncryptActivity")
 public class EncryptActivity extends BaseActivity implements View.OnClickListener {
 
 	/**

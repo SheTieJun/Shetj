@@ -5,7 +5,7 @@
     android:layout_height="500dp">
 
     <ImageView
-        android:id="@+id/tv_string"
+        android:id="@+id/iv_image"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

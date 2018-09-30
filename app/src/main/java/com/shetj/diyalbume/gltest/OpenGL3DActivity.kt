@@ -5,12 +5,13 @@ import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
+import com.alibaba.android.arouter.facade.annotation.Route
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.qmui.BaseQMUIActivity
 import timber.log.Timber
-
+@Route(path = "/shetj/OpenGL3DActivity")
 class OpenGL3DActivity : BaseQMUIActivity<BasePresenter<*>>() {
     override fun getContextViewId(): Int {
         return 0

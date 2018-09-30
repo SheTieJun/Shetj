@@ -5,6 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.view.Main3Activity">
+    tools:context=".gesture.GestureActivity">
 
 </android.support.constraint.ConstraintLayout>

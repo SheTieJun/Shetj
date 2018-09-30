@@ -11,7 +11,7 @@ import com.shetj.diyalbume.R;
 
 
 @Keep
-public class LoadingDialog2 {
+public class LottieDialog {
 
     private static Dialog mLoadingDialog;
 
@@ -19,7 +19,7 @@ public class LoadingDialog2 {
         if (null != mLoadingDialog){
             mLoadingDialog.cancel();
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading_lottie, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading_lottie_json, null);
         mLoadingDialog = new Dialog(context, R.style.CustomProgressDialog);
         mLoadingDialog.setCancelable(cancelable);
         mLoadingDialog.setCanceledOnTouchOutside(false);

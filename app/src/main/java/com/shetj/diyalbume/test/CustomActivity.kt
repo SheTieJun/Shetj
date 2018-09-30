@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.view.AlbumImageView
 import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.content_custom.*
 import me.shetj.base.tools.app.ArmsUtils
-
+@Route(path = "/shetj/CustomActivity")
 class CustomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

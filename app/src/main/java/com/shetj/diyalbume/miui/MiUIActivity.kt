@@ -7,6 +7,7 @@ import cn.jiguang.imui.messages.MsgListAdapter
 import cn.jiguang.imui.messages.ptr.PtrDefaultHeader
 import cn.jiguang.imui.messages.ptr.PtrHandler
 import cn.jiguang.imui.utils.DisplayUtil
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_mi_ui.*
 import kotlinx.android.synthetic.main.content_mi_ui.*
@@ -14,7 +15,7 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage
 import java.util.*
 
-
+@Route(path = "/shetj/MiUIActivity")
 class MiUIActivity : BaseActivity<MiUIPresenter>() {
 
 
@@ -45,12 +46,12 @@ class MiUIActivity : BaseActivity<MiUIPresenter>() {
         pull_to_refresh_layout.headerView = header
         pull_to_refresh_layout.addPtrUIHandler(header)
         // 如果设置为 true，下拉刷新时，内容固定，只有 Header 变化
-        pull_to_refresh_layout.isPinContent = true
-        pull_to_refresh_layout.setPtrHandler(PtrHandler {
-            Log.i("MessageListActivity", "Loading next page")
-            // 加载完历史消息后调用
-            pull_to_refresh_layout.refreshComplete()
-        })
+//        pull_to_refresh_layout.isPinContent = true
+//        pull_to_refresh_layout.setPtrHandler(PtrHandler {
+//            Log.i("MessageListActivity", "Loading next page")
+//            // 加载完历史消息后调用
+//            pull_to_refresh_layout.refreshComplete()
+//        })
 
         //showReceiverDisplayName 及 showSenderDisplayName 为 1 或者 0. 1 表示展示昵称，0 为不展示。也可以在代码中设置：
         msg_list.setShowSenderDisplayName(1)

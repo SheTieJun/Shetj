@@ -2,13 +2,14 @@ package com.shetj.diyalbume.executors
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_executors.*
 
-
+@Route(path = "/shetj/ExecutorsActivity")
 class ExecutorsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

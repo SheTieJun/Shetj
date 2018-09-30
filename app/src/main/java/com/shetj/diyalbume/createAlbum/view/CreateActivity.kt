@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
 import kotlinx.android.synthetic.main.activity_create.*
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.content_create.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 
+@Route(path = "/shetj/CreateActivity")
 class CreateActivity : BaseActivity<CreatePresenter>() {
 
 

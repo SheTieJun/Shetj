@@ -3,6 +3,7 @@ package com.shetj.diyalbume.test
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -24,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-
+@Route(path = "/shetj/BackgroundActivity")
 class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
 
     private lateinit var  mPublishSubject: PublishSubject<Double>

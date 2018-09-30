@@ -120,6 +120,8 @@
         </activity>
         <activity android:name=".image.FrescoActivity">
         </activity>
+        <activity android:name=".gesture.GestureActivity">
+        </activity>
     </application>
 
 </manifest>

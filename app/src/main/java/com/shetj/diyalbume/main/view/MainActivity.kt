@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
-import me.shetj.base.tools.app.SnackbarUtil
 import me.shetj.tencentx5.WebPageActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
@@ -39,7 +38,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
         initData()
         mPresenter =  MainPresenter(this)
         fab.setOnClickListener { view ->
-            SnackbarUtil.ShortSnackbar(view,"show", SnackbarUtil.Warning).show()
+            startActivity(Intent(this,Main3Activity::class.java))
+
         }
     }
     override fun initData() {

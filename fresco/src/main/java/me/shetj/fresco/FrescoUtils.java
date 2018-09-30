@@ -42,7 +42,12 @@ public class FrescoUtils {
 			Fresco.initialize(application, config);
 			FLog.setMinimumLoggingLevel(FLog.VERBOSE);
 		}else {
-			Fresco.initialize(application);
+			OkHttpClient mOkHttpClient = new OkHttpClient();
+			ImagePipelineConfig config = OkHttpImagePipelineConfigFactory
+							.newBuilder(application, mOkHttpClient)
+							.setDownsampleEnabled(true)
+							.build();
+			Fresco.initialize(application, config);
 		}
 	}
 

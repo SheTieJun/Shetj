@@ -2,6 +2,7 @@ package com.shetj.diyalbume.ppttest
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.zhouyou.http.EasyHttp
 import com.zhouyou.http.cache.model.CacheMode
@@ -12,7 +13,7 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.http.callback.EasyCallBack
 import me.shetj.base.tools.app.ArmsUtils
-
+@Route(path = "/shetj/PPtTestActivity")
 class PPtTestActivity : BaseActivity<BasePresenter<*>>() {
 
 

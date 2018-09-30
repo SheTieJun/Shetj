@@ -5,15 +5,16 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_test_lottie.*
-
+@Route(path = "/shetj/TestLottieActivity")
 class TestLottieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_lottie)
-        LoadingDialog2.showLoading(this,true)
+        LottieDialog.showLoading(this,true)
         animation_view.addAnimatorListener(object :Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {
 

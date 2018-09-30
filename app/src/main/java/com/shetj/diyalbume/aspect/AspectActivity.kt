@@ -2,6 +2,7 @@ package com.shetj.diyalbume.aspect
 
 import android.Manifest
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_aspect.*
@@ -10,6 +11,7 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BaseMessage
 import me.shetj.base.tools.app.ArmsUtils
 
+@Route(path = "/shetj/AspectActivity")
 class AspectActivity : BaseActivity<AspectPresenter>() {
 
 

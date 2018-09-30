@@ -6,11 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_image_test.*
-
+@Route(path = "/shetj/ImageTestActivity")
 class ImageTestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

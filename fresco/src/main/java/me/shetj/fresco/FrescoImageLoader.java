@@ -26,7 +26,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
  * <b>@company：</b><br>
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b> FrescoImageLoader 图片加载<br>
- *   <b> C远程图片	<b>	http://, https://	HttpURLConnection 或者参考 使用其他网络加载方案<br>
+ *   <b>  远程图片	<b>	http://, https://	HttpURLConnection 或者参考 使用其他网络加载方案<br>
  * 本地文件	 <b>file://	FileInputStream<br>
  * Content 	<b>provider	content://	ContentResolver<br>
  * asset目录下的资源		<b>asset://	AssetManager<br>
@@ -37,12 +37,7 @@ public class FrescoImageLoader implements ImageLoader {
 
 	@Override
 	public void load(@NonNull SimpleDraweeView mSimpleView, @NonNull String url) {
-		if (url.endsWith(".gif")|| url.endsWith(".GIF")||url.endsWith(".Gif"))
-		{
-			loadGif(mSimpleView,url,true);
-		}else {
-			load(mSimpleView, url, false);
-		}
+		load(mSimpleView, url, false);
 	}
 
 	@Override
@@ -53,8 +48,7 @@ public class FrescoImageLoader implements ImageLoader {
 			GenericDraweeHierarchy hierarchy = builder.setProgressBarImage(new ProgressBarDrawable()).build();
 			mSimpleView.setHierarchy(hierarchy);
 		}
-		// 加载图片
-		mSimpleView.setImageURI(Uri.parse(url));
+		loadGif(mSimpleView,url,true);
 	}
 
 	@Override
@@ -98,7 +92,6 @@ public class FrescoImageLoader implements ImageLoader {
 						.setOldController(simpleView.getController())
 						.build();
 		simpleView.setController(controller);
-//		controller.getAnimatable();
 	}
 
 	@Override
@@ -124,6 +117,7 @@ public class FrescoImageLoader implements ImageLoader {
 						(PipelineDraweeController) Fresco.newDraweeControllerBuilder()
 										.setOldController(simpleDraweeView.getController())
 										.setTapToRetryEnabled(true)
+										.setAutoPlayAnimations(true)
 										.setImageRequest(request)
 										.build();
 		// 加载图片

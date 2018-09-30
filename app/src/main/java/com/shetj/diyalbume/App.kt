@@ -10,6 +10,7 @@ import com.taobao.sophix.SophixManager
 import me.shetj.base.s
 import me.shetj.bdmap.BMapManager
 import me.shetj.fresco.FrescoUtils
+import me.shetj.router.RouterUtils
 import me.shetj.tencentx5.X5CorePreLoadService
 
 /**
@@ -33,6 +34,7 @@ class App : Application() {
         startService(Intent(this,X5CorePreLoadService::class.java))
         SophixManager.getInstance().queryAndLoadNewPatch()
         ServiceManager.init(this)
+        RouterUtils.initRouter(this,BuildConfig.DEBUG)
     }
 
     override fun attachBaseContext(base: Context?) {

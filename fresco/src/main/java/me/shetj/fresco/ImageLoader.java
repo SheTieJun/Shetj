@@ -23,7 +23,7 @@ public interface ImageLoader {
      */
     void load(SimpleDraweeView simpleView, String url);
     /**
-     * 加载图片
+     * 加载图片 是否展示进度
      * @param simpleView 容器
      * @param url url地址
      * @param hasProgress 是否展示进度
