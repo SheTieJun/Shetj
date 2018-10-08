@@ -30,12 +30,12 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
     }
+
     kapt {
         arguments {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
-
     signingConfigs {
         release {
             keyAlias 'qcshengdeng'

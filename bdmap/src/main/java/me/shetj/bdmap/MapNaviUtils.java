@@ -10,6 +10,7 @@ import com.baidu.mapapi.model.LatLng;
 
 import java.io.File;
 
+import me.shetj.base.tools.app.AppUtils;
 import me.shetj.base.tools.app.ArmsUtils;
 import razerdp.util.UIHelper;
 
@@ -17,10 +18,14 @@ import razerdp.util.UIHelper;
  * Created by ChenboCui on 2018/6/5.
  */
 public class MapNaviUtils {
-    public static final String PN_GAODE_MAP = "com.autonavi.minimap"; // 高德地图包名
-    public static final String PN_BAIDU_MAP = "com.baidu.BaiduMap"; // 百度地图包名
-    public static final String DOWNLOAD_GAODE_MAP = "http://www.autonavi.com/"; // 高德地图下载地址
-    public static final String DOWNLOAD_BAIDU_MAP = "http://map.baidu.com/zt/client/index/"; // 百度地图下载地址
+	// 高德地图包名
+    public static final String PN_GAODE_MAP = "com.autonavi.minimap";
+	// 百度地图包名
+    public static final String PN_BAIDU_MAP = "com.baidu.BaiduMap";
+	// 高德地图下载地址
+    public static final String DOWNLOAD_GAODE_MAP = "http://www.autonavi.com/";
+	// 百度地图下载地址
+    public static final String DOWNLOAD_BAIDU_MAP = "http://map.baidu.com/zt/client/index/";
  
     /**
      * 检查应用是否安装
@@ -82,7 +87,7 @@ public class MapNaviUtils {
      */
     public static void openGaoDeNavi(Context context, double slat, double slon, String sname, double dlat, double dlon, String dname){
         String uriString = null;
-        StringBuilder builder = new StringBuilder("amapuri://route/plan?sourceApplication=maxuslife");
+        StringBuilder builder = new StringBuilder("androidamap://route/plan?sourceApplication="+ AppUtils.getAppName());
         if (0 == slat){
 //            //如果不传起点（注释下面这段），默认就是现在我的位置（手机当前定位）
 //            AMapLocation location = LocationService.getInstance().getAMapLocation();
@@ -162,7 +167,7 @@ public class MapNaviUtils {
 	 * @param dlat
 	 * @param dlon
 	 */
-	public void showSelectMap(Context mContext,String dname, double dlat, double dlon){
+	public static  void showSelectMap(Context mContext,String dname, double dlat, double dlon){
     	String[] naviArrays = {"高德地图","百度地图"} ;
 		new AlertDialog.Builder(mContext)
 						.setItems(naviArrays, (dialog, which) -> {
