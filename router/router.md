@@ -1,7 +1,22 @@
 ####  路由
 https://github.com/alibaba/ARouter/
 
+
+
 ##### 使用
+```
+  //阿里路由
+   classpath "com.alibaba:arouter-register:1.0.2"
+```
+```
+    apply plugin: 'com.alibaba.arouter'
+```
+
+```
+    api 'com.alibaba:arouter-api:1.4.0'
+    annotationProcessor  'com.alibaba:arouter-compiler:1.2.1'
+```
+
 ```
 // 在支持路由的页面上添加注解(必选)
 // 这里的路径需要注意的是至少需要有两级，/xx/xx
@@ -77,6 +92,10 @@ ARouter.setLogger();
 // 使用自己提供的线程池
 ARouter.setExecutor();
 ```
+```
+ARouter.getInstance().inject(this);
+```
+
 
 #### 生成路由文档
 

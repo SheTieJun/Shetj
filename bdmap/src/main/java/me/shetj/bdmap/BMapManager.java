@@ -14,6 +14,10 @@ import com.baidu.mapapi.SDKInitializer;
  */
 
 public class BMapManager {
+	public BMapManager()
+	{
+		throw new UnsupportedOperationException("cannot be instantiated");
+	}
 	public static  void init(Context context){
 		SDKInitializer.initialize(context.getApplicationContext());
 		BDMapLocation.getInstance(context.getApplicationContext()).setLocationListener(new BDLocationListener());
