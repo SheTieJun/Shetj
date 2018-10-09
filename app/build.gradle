@@ -82,15 +82,25 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def fileName = outputFile.name.replace(".apk", "-${releaseTime()}-${defaultConfig.versionName}.apk")
-                outputFileName = fileName
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                def fileName = outputFile.name.replace(".apk", "-${releaseTime()}-${defaultConfig.versionName}.apk")
+//                outputFileName = fileName
+//            }
+//        }
+//    }
+
+//    //打包重命名
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output -> output.outputFileName ="shetj-${variant.name}-${releaseTime()}-${defaultConfig.versionName}.apk"
             }
-        }
     }
+
+
 
     //导入aar
     repositories {
@@ -196,4 +206,13 @@ dependencies {
     implementation project(':fresco')
     implementation project(':bdmap')
     implementation project(':router')
+
+
+//    debugImplementation
+//    releaseImplementation
+
+//    if (!isBuildModule.toBoolean()) {
+        //在宿主 App 中使用 implementation 依赖业务组件, 业务组件的代码就会完全暴露给宿主 App, 不利于代码的隔离
+        //使用 runtimeOnly 依赖业务组件, 可实现业务组件的代码在编译时对宿主 App 不可见, 仅在运行时对宿主 App 可见
+//    }
 }
