@@ -84,6 +84,7 @@ public class BDMapActivity extends BaseActivity implements View.OnClickListener 
 				startActivity(new Intent(this, MapActivity.class));
 				break;
 			case R.id.btn_local:
+				BDMapLocation.getInstance(getApplicationContext()).stop();
 				getLocalPosition();
 				break;
 			case R.id.btn_open_map:
