@@ -3,5 +3,5 @@ include ':app', ':base', ':resources', ':components', ':router', ':packinter',
         ':transition', ':aspectutils', ':room', ':tencent-x5',
         ':alihotfix', ':update', ':upload', ':simxutils',
         ':download', ':fresco', ':pay', ':bdmap',
-        ':testmybase', ':umeng', ':compiler', ':lib'
+        ':testmybase', ':umeng', ':compiler', ':lib', ':share'
 include ':rxFingerPrinter' ,':qmuidemo'

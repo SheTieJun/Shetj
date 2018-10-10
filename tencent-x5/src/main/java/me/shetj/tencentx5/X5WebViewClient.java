@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
@@ -12,6 +13,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.sonic.sdk.SonicSession;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
@@ -23,14 +25,31 @@ public class X5WebViewClient extends WebViewClient {
         this.sonicSession  = sonicSession ;
     }
 
-	@Override
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-      if (!url.startsWith("http:") && !url.startsWith("https:")) {
-          Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-          view.getContext().startActivity(intent);
-          return true;
-      }
-      return false;
+        if (!url.startsWith("http:") && !url.startsWith("https:")) {
+            Intent intent = null;
+            if (parseScheme(url)) {
+                try {
+                    intent = Intent.parseUri(url,
+                            Intent.URI_INTENT_SCHEME);
+                    intent.addCategory("android.intent.category.BROWSABLE");
+                    intent.setComponent(null);
+                    view.getContext().startActivity(intent);
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            view.getContext().startActivity(intent);
+            return true;
+        }else if (url.contains("shetj")){
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            view.getContext().startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -60,4 +79,13 @@ public class X5WebViewClient extends WebViewClient {
         }
         Timber.i("onPageFinished = %s", TimeUtil.getTime()-time);
     }
+
+    private  boolean parseScheme(String url) {
+        if (url.contains("platformapi/startApp")) {
+            return true;
+        }
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+                && (url.contains("platformapi") && url.contains("startapp"));
+    }
+
 }

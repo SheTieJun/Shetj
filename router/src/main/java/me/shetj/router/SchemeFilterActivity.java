@@ -8,6 +8,10 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+/**
+ * 外部跳转
+ * @author shetj
+ */
 public class SchemeFilterActivity extends Activity {
 
     @Override

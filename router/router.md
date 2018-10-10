@@ -1,7 +1,7 @@
 ####  路由
 https://github.com/alibaba/ARouter/
 
-
+https://github.com/alibaba/ARouter/blob/master/README_CN.md
 
 ##### 使用
 ```
@@ -93,8 +93,10 @@ ARouter.setLogger();
 ARouter.setExecutor();
 ```
 ```
+在使用路由的base中使用
 ARouter.getInstance().inject(this);
 ```
+
 
 
 #### 生成路由文档
@@ -115,4 +117,29 @@ android {
 #####
 ```
 shetj://me.shetj.router
+```
+
+
+```
+          TestSerializable testSerializable = new TestSerializable("Titanic", 555);
+                TestParcelable testParcelable = new TestParcelable("jack", 666);
+                TestObj testObj = new TestObj("Rose", 777);
+                List<TestObj> objList = new ArrayList<>();
+                objList.add(testObj);
+
+                Map<String, List<TestObj>> map = new HashMap<>();
+                map.put("testMap", objList);
+
+                ARouter.getInstance().build("/test/activity1")
+                        .withString("name", "老王")
+                        .withInt("age", 18)
+                        .withBoolean("boy", true)
+                        .withLong("high", 180)
+                        .withString("url", "https://a.b.c")
+                        .withSerializable("ser", testSerializable)
+                        .withParcelable("pac", testParcelable)
+                        .withObject("obj", testObj)
+                        .withObject("objList", objList)
+                        .withObject("map", map)
+                        .navigation();
 ```
