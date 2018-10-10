@@ -2,6 +2,7 @@ package com.shetj.diyalbume.main.view
 
 import android.content.Intent
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.animator.AnimatorActivity
@@ -26,6 +27,7 @@ import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.router.RouterUtils
 import me.shetj.tencentx5.WebPageActivity
 
+@Route(path = "/shetj/Main3Activity")
 class Main3Activity : BaseActivity<BasePresenter<*>>() {
 
 

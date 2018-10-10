@@ -63,8 +63,6 @@ public class WebPageActivity extends BaseX5WebActivity {
 		int mode = intent.getIntExtra(PARAM_MODE, -1);
 		if (EmptyUtils.isEmpty(url)){
 			url = "https://gitee.com/shetj";
-		}else {
-			mWebView.loadUrl(url);
 		}
 		if (TextUtils.isEmpty(url) || -1 == mode) {
 			finish();
@@ -72,12 +70,10 @@ public class WebPageActivity extends BaseX5WebActivity {
 		}
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 	 sonicSessionClient = null;
-		// init sonic engine if necessary, or maybe u can do this when application created
 		if (!SonicEngine.isGetInstanceAllowed()) {
 			SonicEngine.createInstance(new SonicRuntimeImpl(getApplication()), new SonicConfig.Builder().build());
 		}
 
-		// if it's sonic mode , startup sonic session at first time
 		if ( MODE_DEFAULT != mode) { // sonic mode
 			SonicSessionConfig.Builder sessionConfigBuilder = new SonicSessionConfig.Builder();
 			sessionConfigBuilder.setSupportLocalServer(true);
@@ -91,7 +87,6 @@ public class WebPageActivity extends BaseX5WebActivity {
 		}
 		mWebView  = getX5WebView();
 		mWebView.setX5ChromeClient(new X5WebChromeClient(getRxContext()));
-//		mWebView.setX5JSI(new X5JS(mWebView),"shetj_X5");
 		mWebView.setX5DownLoadListener(new X5DownLoadListener());
 		mWebView.setX5ViewClient(new X5WebViewClient(sonicSession));
 		mWebView.removeJavascriptInterface("searchBoxJavaBridge_");

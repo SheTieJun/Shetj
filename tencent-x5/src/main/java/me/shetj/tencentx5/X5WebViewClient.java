@@ -1,13 +1,17 @@
 package me.shetj.tencentx5;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.sonic.sdk.SonicSession;
+
+import java.util.HashMap;
 
 import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
@@ -21,7 +25,12 @@ public class X5WebViewClient extends WebViewClient {
 
 	@Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        return false;
+      if (!url.startsWith("http:") && !url.startsWith("https:")) {
+          Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+          view.getContext().startActivity(intent);
+          return true;
+      }
+      return false;
     }
 
     @Override

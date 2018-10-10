@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <script>
+   function callJS(){
+      alert("Android调用了JS的callJS方法");
+   }
+
+   window.CEShi = "1111"
+
+   window.MofangPayCallback = function (x) {
+    <!--window.CEShi.x = x-->
+    alert(window.CEShi);
+   }
+
+
+</script>
+</head>
+<body style="center">
+<img  src="http://oss.ppt66.com/1478/2幻灯片1(3).JPG"/>
+
+<a href="mofang://51mofang.cn/?">mofang://51mofang.cn/?打开魔方</a><br/>
+<a href="shetj://me.shetj.router/shetj/Main3Activity?">shetj://me.shetj.router/shetj/Main3Activity?打开自己的页面</a><br/>
+<a href="pipiti://ppt66.com?type=1&id=1299">打开屁屁体 课程id: 1299</a><br/>
+<a href="pipiti://ppt66.com?type=2&id=1100">打开屁屁体 帖子id: 1100</a><br/>
+</body>
+</html>

@@ -105,6 +105,15 @@ class MainActivity : BaseActivity<MainPresenter>(){
                     WebPageActivity.startBrowserActivity(this,"",1)
                 }
 
+        RxView.clicks(btn_scheme)
+                .subscribe {
+                    //wView.loadUrl(" file:///android_asset/index.html ");
+                    ////打开本地sd卡内的index.html文件
+                    //wView.loadUrl("content://com.android.htmlfileprovider/sdcard/index.html");
+                    ////打开指定URL的html文件
+                    //wView.loadUrl(" http://m.oschina.net");
+                    WebPageActivity.startBrowserActivity(this, "file:///android_asset/test.html",1)
+                }
         RxView.clicks(btn_notification)
                 .subscribe {
                     mPresenter.showNotification()
