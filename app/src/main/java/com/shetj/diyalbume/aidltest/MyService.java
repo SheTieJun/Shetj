@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.shetj.diyalbume.IMyAidlInterface;
+import com.shetj.diyalbume.main.view.Main3Activity;
 
 public class MyService extends Service {
 	public MyService() {
@@ -20,6 +21,7 @@ public class MyService extends Service {
 
 		@Override
 		public String getName() {
+			startActivity(new Intent(getBaseContext(),Main3Activity.class));
 			return "AIDL-test：getPackageName:"+getPackageName();
 		}
 	}
