@@ -126,7 +126,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
                 .subscribe {
                     ArmsUtils.startActivity(this,FrescoActivity::class.java)
                 }
+        RxView.clicks(btn_test_auto).subscribe {
+                ArmsUtils.startActivity(this,ASAutoCodeActivity::class.java)
+        }
     }
-
 
 }

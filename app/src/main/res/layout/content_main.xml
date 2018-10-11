@@ -45,7 +45,16 @@
         android:text="自动play原理"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_custom"/>
-
+    <Button
+        android:id="@+id/btn_test_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="AS自动生成的代码效果"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_paly"/>
     <Button
         android:id="@+id/btn_custom"
         android:layout_width="wrap_content"
