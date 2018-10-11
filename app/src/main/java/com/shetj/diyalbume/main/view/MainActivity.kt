@@ -2,7 +2,6 @@ package com.shetj.diyalbume.main.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
@@ -48,7 +47,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
     override fun initView() {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = "主页"
-        ArmsUtils.configRecycleView(iRecyclerView, LinearLayoutManager(this))
         bt_create.setOnClickListener {
             mPresenter.startCreateAlbum()
         }
@@ -128,6 +126,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
                 }
         RxView.clicks(btn_test_auto).subscribe {
                 ArmsUtils.startActivity(this,ASAutoCodeActivity::class.java)
+        }
+        RxView.clicks(btn_view).subscribe {
+            ArmsUtils.startActivity(this,ViewActivity::class.java)
         }
     }
 

@@ -94,6 +94,22 @@
             android:label="@string/title_activity_tab"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <!--<provider-->
+            <!--android:name=".MySliceProvider"-->
+            <!--android:authorities="me.shetj.update"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW"/>-->
+
+                <!--<category android:name="android.app.slice.category.SLICE"/>-->
+
+                <!--<data-->
+                    <!--android:host="shetj.me"-->
+                    <!--android:pathPrefix="/hello"-->
+                    <!--android:scheme="http"/>-->
+            <!--</intent-filter>-->
+        <!--</provider>-->
     </application>
 
 </manifest>

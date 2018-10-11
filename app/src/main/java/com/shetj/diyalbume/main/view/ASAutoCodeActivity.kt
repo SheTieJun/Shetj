@@ -42,6 +42,9 @@ class ASAutoCodeActivity : BaseSwipeBackActivity<MainPresenter>() {
         RxView.clicks(tabActivity).subscribe {
             ArmsUtils.startActivity(this,  TabActivity::class.java)
         }
+        RxView.clicks(settingsActivity).subscribe {
+            ArmsUtils.startActivity(this,  SettingsActivity::class.java)
+        }
     }
 
     override fun initView() {
