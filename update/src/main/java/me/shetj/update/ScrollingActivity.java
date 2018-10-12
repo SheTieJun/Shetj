@@ -7,13 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import me.shetj.base.tools.app.ArmsUtils;
+
 public class ScrollingActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scrolling);
+		ArmsUtils.statuInScreen(this,false);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 		setSupportActionBar(toolbar);
 
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
