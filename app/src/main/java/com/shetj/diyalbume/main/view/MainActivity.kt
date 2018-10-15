@@ -19,6 +19,7 @@ import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.map.BDMapActivity
 import com.shetj.diyalbume.miui.MiUIActivity
+import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,6 +51,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         bt_create.setOnClickListener {
             mPresenter.startCreateAlbum()
         }
+
         btn_paly.setOnClickListener {
             startActivity(Intent(this,PlayVideoActivity::class.java))
         }
@@ -129,6 +131,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         RxView.clicks(btn_view).subscribe {
             ArmsUtils.startActivity(this,ViewActivity::class.java)
+        }
+        RxView.clicks(btn_local_music).subscribe {
+            ArmsUtils.startActivity(this,LocalMusicActivity::class.java)
         }
     }
 

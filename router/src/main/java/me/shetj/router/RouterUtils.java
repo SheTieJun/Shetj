@@ -2,6 +2,7 @@ package me.shetj.router;
 
 import android.app.Application;
 import android.net.Uri;
+import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -45,5 +46,8 @@ public class RouterUtils {
 	 */
 	public static void startOpen(String path ){
 		ARouter.getInstance().build(path).navigation();
+	}
+	public static void startOpen(String path , Bundle bundle){
+		ARouter.getInstance().build(path).withBundle("bundle",bundle).navigation();
 	}
 }

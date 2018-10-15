@@ -117,7 +117,6 @@ public class WebPageActivity extends BaseX5WebActivity {
 	@Override
 	protected void onDestroy() {
 		if (null != sonicSessionClient  ) {
-			sonicSessionClient.clearHistory();
 			sonicSessionClient.destroy();
 			sonicSessionClient=null;
 		}
