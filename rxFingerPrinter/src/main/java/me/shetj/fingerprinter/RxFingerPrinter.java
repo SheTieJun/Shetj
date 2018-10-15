@@ -13,11 +13,7 @@ import android.os.CancellationSignal;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
 
 import static me.shetj.fingerprinter.CodeException.FINGERPRINTERS_FAILED_ERROR;
 import static me.shetj.fingerprinter.CodeException.HARDWARE_MISSIING_ERROR;

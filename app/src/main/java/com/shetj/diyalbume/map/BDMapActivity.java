@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.baidu.location.BDLocation;
 import com.shetj.diyalbume.R;
 
 import org.simple.eventbus.Subscriber;

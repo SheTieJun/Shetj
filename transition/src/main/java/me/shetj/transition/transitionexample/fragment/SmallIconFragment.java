@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
 import me.shetj.transition.R;
 
 /**

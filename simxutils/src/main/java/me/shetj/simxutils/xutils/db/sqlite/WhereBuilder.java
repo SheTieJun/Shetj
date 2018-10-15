@@ -17,7 +17,6 @@ package me.shetj.simxutils.xutils.db.sqlite;
 
 import android.text.TextUtils;
 
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;

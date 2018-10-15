@@ -1,7 +1,6 @@
 package me.shetj.router;
 
 import android.content.Context;
-import android.content.DialogInterface;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Interceptor;

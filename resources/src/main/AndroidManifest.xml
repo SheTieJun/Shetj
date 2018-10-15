@@ -1,2 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.shetj.resources"/>
+<manifest
+    package="com.shetj.resources"/>

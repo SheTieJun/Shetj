@@ -2,7 +2,6 @@ package com.shetj.components.module;
 
 import android.arch.persistence.room.Room;
 
-import com.shetj.components.APP;
 import com.shetj.components.db.UserDataBase;
 import com.shetj.components.scope.ActivityScope;
 import com.shetj.components.user.UserActivity;
@@ -10,9 +9,6 @@ import com.shetj.components.user.UserModel;
 import com.shetj.components.user.UserRepository;
 
 import org.xutils.x;
-
-import javax.inject.Scope;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

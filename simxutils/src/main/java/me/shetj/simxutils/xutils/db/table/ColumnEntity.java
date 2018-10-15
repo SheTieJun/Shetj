@@ -17,7 +17,6 @@ package me.shetj.simxutils.xutils.db.table;
 
 import android.database.Cursor;
 
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 

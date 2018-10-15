@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;

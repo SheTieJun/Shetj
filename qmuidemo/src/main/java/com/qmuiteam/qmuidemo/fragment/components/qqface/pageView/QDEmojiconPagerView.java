@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
-import com.qmuiteam.qmuidemo.fragment.components.qqface.emojicon.EmojiconTextView;
 import com.qmuiteam.qmuidemo.R;
+import com.qmuiteam.qmuidemo.fragment.components.qqface.emojicon.EmojiconTextView;
 
 /**
  * @author cginechen

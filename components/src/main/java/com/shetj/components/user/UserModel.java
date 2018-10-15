@@ -5,7 +5,6 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.shetj.components.db.User;
-import com.shetj.components.db.UserDao;
 
 import java.util.List;
 

@@ -1,11 +1,9 @@
 package com.shetj.diyalbume.miui
 
 import android.os.Bundle
-import android.util.Log
 import cn.jiguang.imui.commons.models.IMessage
 import cn.jiguang.imui.messages.MsgListAdapter
 import cn.jiguang.imui.messages.ptr.PtrDefaultHeader
-import cn.jiguang.imui.messages.ptr.PtrHandler
 import cn.jiguang.imui.utils.DisplayUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R

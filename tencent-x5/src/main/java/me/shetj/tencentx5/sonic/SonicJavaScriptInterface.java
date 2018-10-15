@@ -1,12 +1,10 @@
 package me.shetj.tencentx5.sonic;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.webkit.JavascriptInterface;
 
-import com.tencent.smtt.sdk.WebView;
 import com.tencent.sonic.sdk.SonicDiffDataCallback;
 
 import org.json.JSONObject;

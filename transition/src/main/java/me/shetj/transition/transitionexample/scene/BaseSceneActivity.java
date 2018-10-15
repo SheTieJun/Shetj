@@ -1,6 +1,5 @@
 package me.shetj.transition.transitionexample.scene;
 
-import android.database.Observable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -13,8 +12,6 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import me.shetj.transition.R;
 
 

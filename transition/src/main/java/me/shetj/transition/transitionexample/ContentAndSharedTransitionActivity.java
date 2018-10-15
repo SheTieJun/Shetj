@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import me.shetj.transition.R;
 import me.shetj.transition.transitionexample.fragment.FragmentTransitionActivity;
 

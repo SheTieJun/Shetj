@@ -1,12 +1,14 @@
 package me.shetj.update;
 
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +18,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.content.Context;
-import android.support.v7.widget.ThemedSpinnerAdapter;
-import android.content.res.Resources.Theme;
-
 import android.widget.TextView;
 
 public class TabActivity extends AppCompatActivity {

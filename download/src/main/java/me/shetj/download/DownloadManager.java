@@ -2,16 +2,10 @@ package me.shetj.download;
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executor;
 
 import me.shetj.simxutils.xutils.DbManager;
 import me.shetj.simxutils.xutils.DbUtils;
-import me.shetj.simxutils.xutils.db.converter.ColumnConverterFactory;
 import me.shetj.simxutils.xutils.ex.DbException;
-import timber.log.Timber;
 
 /**
  */

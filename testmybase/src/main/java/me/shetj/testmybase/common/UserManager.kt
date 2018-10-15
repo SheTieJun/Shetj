@@ -8,7 +8,6 @@ import me.shetj.base.tools.file.SPUtils
 import me.shetj.base.tools.json.EmptyUtils
 import me.shetj.base.tools.json.GsonKit
 import me.shetj.testmybase.R
-import org.xutils.x
 import shetj.me.base.configs.tag.SPKey
 
 /**

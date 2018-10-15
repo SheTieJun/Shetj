@@ -3,9 +3,9 @@ package com.shetj.study
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.shetj.diyalbume.IMyAidlInterface
 import kotlinx.android.synthetic.main.activity_main.*

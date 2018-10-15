@@ -12,9 +12,6 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.sonic.sdk.SonicSession;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
 
@@ -44,7 +41,7 @@ public class X5WebViewClient extends WebViewClient {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             view.getContext().startActivity(intent);
             return true;
-        }else if (url.contains("shetj")){
+        }else if (url.contains("me.shetj.com")){
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             view.getContext().startActivity(intent);
             return true;

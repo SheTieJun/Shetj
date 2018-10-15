@@ -6,7 +6,7 @@ import me.shetj.base.base.BaseMessage
 
 class MainActivity : BaseActivity<CommonPresenter>() {
 
-    override fun getContentViewId(): Int {
+    fun getContentViewId(): Int {
         return R.layout.activity_main
     }
 

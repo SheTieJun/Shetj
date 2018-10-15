@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qmuiteam.qmui.util.QMUIViewHelper;
-import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 import com.qmuiteam.qmui.widget.QMUITopBar;
-import com.qmuiteam.qmuidemo.manager.QDDataManager;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 import com.qmuiteam.qmuidemo.R;
 import com.qmuiteam.qmuidemo.base.BaseFragment;
 import com.qmuiteam.qmuidemo.lib.Group;
 import com.qmuiteam.qmuidemo.lib.annotation.Widget;
+import com.qmuiteam.qmuidemo.manager.QDDataManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

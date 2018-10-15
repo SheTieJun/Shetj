@@ -1,7 +1,5 @@
 package me.shetj.bdmap;
 
-import android.os.Message;
-
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 

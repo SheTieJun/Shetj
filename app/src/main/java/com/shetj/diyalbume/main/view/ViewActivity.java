@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.main.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.shetj.diyalbume.R;
 

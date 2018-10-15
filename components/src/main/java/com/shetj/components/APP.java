@@ -1,9 +1,6 @@
 package com.shetj.components;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
-
-import com.shetj.components.db.UserDataBase;
 
 import org.xutils.x;
 

@@ -7,8 +7,6 @@ import io.reactivex.subjects.PublishSubject
 import me.shetj.base.tools.file.SPUtils
 import me.shetj.base.tools.json.EmptyUtils
 import me.shetj.base.tools.json.GsonKit
-import org.xutils.common.util.LogUtil
-import org.xutils.x
 import shetj.me.base.api.API
 import shetj.me.base.configs.tag.SPKey.Companion.SAVE_TOKEN
 import java.util.*

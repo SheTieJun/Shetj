@@ -2,7 +2,6 @@ package me.shetj.simxutils.xutils.db.converter;
 
 import android.database.Cursor;
 
-
 import java.util.Date;
 
 import me.shetj.simxutils.xutils.db.sqlite.ColumnDbType;

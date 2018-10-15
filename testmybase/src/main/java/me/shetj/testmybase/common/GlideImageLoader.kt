@@ -2,7 +2,6 @@ package shetj.me.base.common
 
 import android.content.Context
 import android.widget.ImageView
-import me.shetj.base.tools.image.ImageLoader
 
 /**
  *

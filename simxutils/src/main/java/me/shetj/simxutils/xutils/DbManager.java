@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;

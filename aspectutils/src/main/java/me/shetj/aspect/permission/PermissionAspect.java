@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 import io.reactivex.functions.Consumer;
-import me.shetj.base.tools.app.ArmsUtils;
 
 @Aspect
 public class PermissionAspect {

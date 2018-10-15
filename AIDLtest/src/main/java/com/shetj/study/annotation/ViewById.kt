@@ -1,8 +1,5 @@
 package com.shetj.study.annotation
 
-import java.lang.annotation.ElementType
-import java.lang.annotation.RetentionPolicy
-
 /**
  *
  * <b>@packageName：</b> com.shetj.study.annotation<br>

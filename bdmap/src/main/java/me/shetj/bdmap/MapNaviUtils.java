@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 
 import com.baidu.mapapi.model.LatLng;
 
@@ -12,7 +11,6 @@ import java.io.File;
 
 import me.shetj.base.tools.app.AppUtils;
 import me.shetj.base.tools.app.ArmsUtils;
-import razerdp.util.UIHelper;
 
 /**
  * Created by ChenboCui on 2018/6/5.

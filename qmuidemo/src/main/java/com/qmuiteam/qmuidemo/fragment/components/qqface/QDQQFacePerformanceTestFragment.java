@@ -7,16 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qmuiteam.qmui.widget.QMUITabSegment;
-import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
-import com.qmuiteam.qmuidemo.manager.QDDataManager;
+import com.qmuiteam.qmuidemo.R;
 import com.qmuiteam.qmuidemo.base.BaseFragment;
 import com.qmuiteam.qmuidemo.fragment.components.QDTabSegmentFixModeFragment;
 import com.qmuiteam.qmuidemo.fragment.components.qqface.pageView.QDEmojiconPagerView;
 import com.qmuiteam.qmuidemo.fragment.components.qqface.pageView.QDQQFacePagerView;
-import com.qmuiteam.qmuidemo.R;
 import com.qmuiteam.qmuidemo.lib.Group;
 import com.qmuiteam.qmuidemo.lib.annotation.Widget;
+import com.qmuiteam.qmuidemo.manager.QDDataManager;
 
 import java.util.HashMap;
 import java.util.Map;

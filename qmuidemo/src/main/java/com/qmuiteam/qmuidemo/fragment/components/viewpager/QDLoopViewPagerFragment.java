@@ -15,10 +15,10 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUIViewPager;
-import com.qmuiteam.qmuidemo.manager.QDDataManager;
 import com.qmuiteam.qmuidemo.R;
 import com.qmuiteam.qmuidemo.base.BaseFragment;
 import com.qmuiteam.qmuidemo.lib.annotation.Widget;
+import com.qmuiteam.qmuidemo.manager.QDDataManager;
 
 import java.util.ArrayList;
 import java.util.List;

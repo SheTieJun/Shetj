@@ -1,6 +1,5 @@
 package me.shetj.base.tools.app;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +26,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import org.xutils.x;
 

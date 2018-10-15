@@ -15,7 +15,6 @@ import com.qmuiteam.qmui.widget.QMUIViewPager;
 import com.qmuiteam.qmuidemo.R;
 import com.qmuiteam.qmuidemo.base.BaseFragment;
 import com.qmuiteam.qmuidemo.fragment.QDAboutFragment;
-import com.qmuiteam.qmuidemo.fragment.components.QDButtonFragment;
 import com.qmuiteam.qmuidemo.fragment.components.QDCollapsingTopBarLayoutFragment;
 import com.qmuiteam.qmuidemo.fragment.components.QDTabSegmentFragment;
 import com.qmuiteam.qmuidemo.lib.annotation.Widget;

@@ -100,7 +100,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_x5)
                 .subscribe {
-                    WebPageActivity.startBrowserActivity(this,"",1)
+                    WebPageActivity.startBrowserActivity(this,"https://gitee.com/shetj",1)
                 }
 
         RxView.clicks(btn_scheme)

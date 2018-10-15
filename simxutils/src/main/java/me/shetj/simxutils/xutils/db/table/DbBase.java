@@ -3,7 +3,6 @@ package me.shetj.simxutils.xutils.db.table;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-
 import java.util.HashMap;
 
 import me.shetj.simxutils.xutils.DbManager;

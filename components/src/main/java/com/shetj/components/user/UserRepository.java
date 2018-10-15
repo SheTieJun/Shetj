@@ -6,8 +6,6 @@ import android.arch.lifecycle.MutableLiveData;
 import com.shetj.components.db.User;
 import com.shetj.components.db.UserDao;
 
-import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.List;
 

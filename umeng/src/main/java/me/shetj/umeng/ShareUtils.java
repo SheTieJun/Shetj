@@ -8,10 +8,6 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-
 /**
  * <b>@packageName：</b> me.shetj.umeng<br>
  * <b>@author：</b> shetj<br>

@@ -2,7 +2,6 @@ package shetj.me.base.common
 
 import me.shetj.base.tools.file.SPUtils
 import me.shetj.base.tools.json.EmptyUtils
-import org.xutils.x
 import shetj.me.base.configs.tag.SPKey.Companion.SAVE_TOKEN
 
 

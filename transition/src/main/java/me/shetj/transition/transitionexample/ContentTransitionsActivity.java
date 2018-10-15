@@ -1,16 +1,11 @@
 package me.shetj.transition.transitionexample;
 
-import android.animation.Animator;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.view.Gravity;
-import android.view.ViewAnimationUtils;
-import android.widget.LinearLayout;
 
 import me.shetj.transition.R;
 

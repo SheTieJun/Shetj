@@ -12,7 +12,6 @@ import com.tencent.sonic.sdk.SonicSession;
 import com.tencent.sonic.sdk.SonicSessionConfig;
 
 import me.shetj.base.tools.app.ArmsUtils;
-import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.tencentx5.sonic.SonicJavaScriptInterface;
 import me.shetj.tencentx5.sonic.SonicRuntimeImpl;
 import me.shetj.tencentx5.sonic.SonicSessionClientImpl;
@@ -61,15 +60,12 @@ public class WebPageActivity extends BaseX5WebActivity {
 		Intent intent = getIntent();
 		String url = intent.getStringExtra(PARAM_URL);
 		int mode = intent.getIntExtra(PARAM_MODE, -1);
-		if (EmptyUtils.isEmpty(url)){
-			url = "https://gitee.com/shetj";
-		}
 		if (TextUtils.isEmpty(url) || -1 == mode) {
 			finish();
 			return;
 		}
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-	 sonicSessionClient = null;
+		sonicSessionClient = null;
 		if (!SonicEngine.isGetInstanceAllowed()) {
 			SonicEngine.createInstance(new SonicRuntimeImpl(getApplication()), new SonicConfig.Builder().build());
 		}
@@ -121,12 +117,13 @@ public class WebPageActivity extends BaseX5WebActivity {
 	@Override
 	protected void onDestroy() {
 		if (null != sonicSessionClient  ) {
+			sonicSessionClient.clearHistory();
 			sonicSessionClient.destroy();
-		} else { // default mode
-			if (null != mWebView) {
-				mWebView.destroy();
-				mWebView = null;
-			}
+			sonicSessionClient=null;
+		}
+		if (null != mWebView) {
+			mWebView.destroy();
+			mWebView = null;
 		}
 		if (null != sonicSession) {
 			sonicSession.destroy();

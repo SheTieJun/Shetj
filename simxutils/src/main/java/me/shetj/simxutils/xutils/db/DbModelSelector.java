@@ -18,7 +18,6 @@ package me.shetj.simxutils.xutils.db;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
