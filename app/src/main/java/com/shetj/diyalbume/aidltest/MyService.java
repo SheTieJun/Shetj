@@ -7,6 +7,9 @@ import android.os.IBinder;
 import com.shetj.diyalbume.IMyAidlInterface;
 import com.shetj.diyalbume.main.view.Main3Activity;
 
+import me.shetj.base.tools.file.SPUtils;
+import me.shetj.base.tools.time.TimeUtil;
+
 public class MyService extends Service {
 	public MyService() {
 	}
@@ -21,6 +24,7 @@ public class MyService extends Service {
 
 		@Override
 		public String getName() {
+			//通过AIDL 启动APP
 			startActivity(new Intent(getBaseContext(),Main3Activity.class));
 			return "AIDL-test：getPackageName:"+getPackageName();
 		}

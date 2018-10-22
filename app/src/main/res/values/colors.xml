@@ -6,4 +6,8 @@
     <color name="google_blue">#FF375BF1</color>
     <color name="google_yellow">#FFF7D23E</color>
     <color name="google_green">#FF34A350</color>
+
+    <color name="colorPrimary">#FF375BF1</color>
+    <color name="colorPrimaryDark">#FF375BF1</color>
+    <color name="colorAccent">#FF375BF1</color>
 </resources>
