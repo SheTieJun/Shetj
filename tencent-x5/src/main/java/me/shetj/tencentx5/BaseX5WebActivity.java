@@ -9,11 +9,12 @@ import com.tencent.smtt.sdk.ValueCallback;
 
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BasePresenter;
+import me.shetj.base.base.BaseSwipeBackActivity;
 
 /**
  * @author Administrator
  */
-public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseActivity<T> {
+public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseSwipeBackActivity<T> {
 
     protected ValueCallback<Uri> uploadFile;
     protected ValueCallback<Uri[]> uploadFiles;

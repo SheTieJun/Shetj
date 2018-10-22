@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.JsResult;
@@ -13,10 +15,14 @@ import com.tencent.smtt.sdk.WebView;
 
 public class X5WebChromeClient extends WebChromeClient {
 
-    protected Activity mCtx;
+    private Activity mCtx;
+    private ProgressBar progressView;
+    private TextView titleView;
 
-    public X5WebChromeClient(Activity a) {
+    public X5WebChromeClient(Activity a, ProgressBar progressView, TextView titleView) {
         mCtx = a;
+        this.progressView = progressView;
+        this.titleView = titleView;
     }
 
 
@@ -58,6 +64,15 @@ public class X5WebChromeClient extends WebChromeClient {
         }
     }
 
+
+    @Override
+    public void onReceivedTitle(WebView view, String title) {
+        super.onReceivedTitle(view, title);
+        if (title != null) {
+            titleView.setText(title);
+        }
+    }
+
     @Override
     public boolean onJsAlert(WebView arg0, String arg1, String arg2,
                              JsResult arg3) {
@@ -95,6 +110,21 @@ public class X5WebChromeClient extends WebChromeClient {
         }
         X5Utils.openFileChooseProcess(mCtx);
         return true;
+    }
+
+
+    @Override
+    public void onProgressChanged(WebView webView, int i) {
+        if (progressView != null){
+            if (i == 100) {
+                progressView.setVisibility(View.GONE);
+            } else {
+                //更新进度
+                progressView.setProgress(i);
+            }
+
+        }
+        super.onProgressChanged(webView, i);
     }
 
     public FileChoooseListener fileChoooseListener;

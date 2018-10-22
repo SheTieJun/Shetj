@@ -38,6 +38,7 @@ public class X5WebView extends WebView {
 		super.loadUrl(url);
 	}
 
+
 	public void setX5ChromeClient(X5WebChromeClient a) {
 		this.setWebChromeClient(a);
 	}

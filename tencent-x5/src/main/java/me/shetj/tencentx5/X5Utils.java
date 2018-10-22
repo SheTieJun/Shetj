@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.tencent.smtt.sdk.TbsVideo;
+import com.tencent.smtt.sdk.VideoActivity;
 
 
 public class X5Utils {
@@ -57,6 +59,8 @@ public class X5Utils {
             webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
                     data);
         }
+
+
     }
 
     public static void enablePageVideoFunc(X5WebView webView) {
@@ -80,5 +84,10 @@ public class X5Utils {
         i.addCategory(Intent.CATEGORY_OPENABLE);
         i.setType("*/*");
         context.startActivityForResult(Intent.createChooser(i, "test"), 0);
+    }
+
+
+    public static  void openVideo(Activity activity,String url){
+        TbsVideo.openVideo(activity,url);
     }
 }
