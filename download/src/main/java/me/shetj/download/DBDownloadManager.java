@@ -8,24 +8,25 @@ import me.shetj.simxutils.xutils.DbUtils;
 import me.shetj.simxutils.xutils.ex.DbException;
 
 /**
+ * 数据库控制的下载
  */
-public final class DownloadManager {
+public final class DBDownloadManager {
 
 
-    private static volatile DownloadManager instance;
+    private static volatile DBDownloadManager instance;
 
 
     private final DbManager db;
 
-    private DownloadManager() {
+    private DBDownloadManager() {
         db = DbUtils.getDbManager("download",1);
     }
 
-    public static DownloadManager getInstance() {
+    public static DBDownloadManager getInstance() {
         if (instance == null) {
-            synchronized (DownloadManager.class) {
+            synchronized (DBDownloadManager.class) {
                 if (instance == null) {
-                    instance = new DownloadManager();
+                    instance = new DBDownloadManager();
                 }
             }
         }

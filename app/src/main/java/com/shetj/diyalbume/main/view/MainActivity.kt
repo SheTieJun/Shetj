@@ -26,6 +26,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.Utils
+import me.shetj.download.DownloadService
 import me.shetj.tencentx5.WebPageActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
@@ -51,11 +53,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         bt_create.setOnClickListener {
             mPresenter.startCreateAlbum()
         }
-
-        btn_paly.setOnClickListener {
+        RxView.clicks(btn_play).subscribe {
             startActivity(Intent(this,PlayVideoActivity::class.java))
         }
-
         btn_custom.setOnClickListener {
             startActivity(Intent(this,CustomActivity::class.java))
         }
@@ -134,6 +134,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         RxView.clicks(btn_local_music).subscribe {
             ArmsUtils.startActivity(this,LocalMusicActivity::class.java)
+        }
+        RxView.clicks(btn_Service).subscribe {
+            DownloadService.install(Utils.getApp(),"1.0.0","app-toyo.apk",
+                    "http://oss.qcshendeng.com/app-toyo.apk")
         }
     }
 

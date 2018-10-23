@@ -33,7 +33,6 @@ class App : Application() {
         FrescoUtils.init(this,BuildConfig.DEBUG)
         startService(Intent(this,X5CorePreLoadService::class.java))
         SophixManager.getInstance().queryAndLoadNewPatch()
-        ServiceManager.init(this)
         RouterUtils.initRouter(this,BuildConfig.DEBUG)
     }
 
