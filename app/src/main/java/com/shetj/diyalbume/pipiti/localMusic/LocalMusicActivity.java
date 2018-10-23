@@ -8,12 +8,14 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shetj.diyalbume.R;
+import com.shetj.diyalbume.pipiti.utils.MediaPlayerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BaseMessage;
+import me.shetj.base.base.SimBaseCallBack;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.json.GsonKit;
 
@@ -27,6 +29,7 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 
 	private RecyclerView mIRecyclerView;
 	private MusicSelectAdapter mAdapter;
+	private MediaPlayerUtils mediaUtils;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 
 	@Override
 	protected void initView() {
-
+		mediaUtils = new MediaPlayerUtils();
 		mIRecyclerView = (RecyclerView) findViewById(R.id.IRecyclerView);
 		ArmsUtils.configRecycleView(mIRecyclerView,new LinearLayoutManager(this));
 		mAdapter = new MusicSelectAdapter(new ArrayList<>());
@@ -51,7 +54,13 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 		mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
 			@Override
 			public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-				ArmsUtils.makeText(String.format("试听%s", mAdapter.getItem(position).name));
+				mediaUtils.playOrStop(mAdapter.getItem(position).url,new SimBaseCallBack<Boolean>(){
+					@Override
+					public void onSuccess(Boolean result) {
+						super.onSuccess(result);
+						ArmsUtils.makeText(String.format("试听%s", mAdapter.getItem(position).name));
+					}
+				});
 			}
 		});
 	}
@@ -71,6 +80,30 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 				break;
 			default:
 				break;
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (null != mediaUtils) {
+			mediaUtils.onPause();
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (null != mediaUtils) {
+			mediaUtils.onResume();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (null != mediaUtils) {
+			mediaUtils.onDestroy();
 		}
 	}
 }
