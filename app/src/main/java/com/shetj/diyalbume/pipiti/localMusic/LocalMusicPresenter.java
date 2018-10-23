@@ -79,7 +79,7 @@ class LocalMusicPresenter extends BasePresenter<LocalModel> {
 						String url = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
 						long duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
 						String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
-						if (duration >= 1000 && duration <= 900000) {
+						if (duration >= 1000 && duration <= 2000000) {
 							Music music = new Music();
 							music.setName(title);
 							music.setSize(size);

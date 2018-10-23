@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.shetj.diyalbume.R;
 import com.shetj.diyalbume.pipiti.utils.MediaPlayerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.functions.Consumer;
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BaseMessage;
 import me.shetj.base.base.SimBaseCallBack;
@@ -34,12 +37,16 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_local_music);
+		ArmsUtils.statuInScreen(this,true);
 		initView();
 		initData();
 	}
 
 	@Override
 	protected void initView() {
+		TextView title = findViewById(R.id.toolbar_title);
+		title.setText("本地音乐");
+		RxView.clicks( findViewById(R.id.toolbar_back)).subscribe(o -> onBackPressed());
 		mediaUtils = new MediaPlayerUtils();
 		mIRecyclerView = (RecyclerView) findViewById(R.id.IRecyclerView);
 		ArmsUtils.configRecycleView(mIRecyclerView,new LinearLayoutManager(this));

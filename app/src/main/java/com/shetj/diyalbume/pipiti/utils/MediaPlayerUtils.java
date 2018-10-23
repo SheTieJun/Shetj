@@ -33,7 +33,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * @param url
 	 * @param baseCallback
 	 */
-	public void play(String url,BaseCallback<Boolean> baseCallback){
+	private void play(String url,BaseCallback<Boolean> baseCallback){
 		this.mBaseCallBack = baseCallback;
 		this.currentUrl = url;
 		if (null == mediaPlayer){
@@ -62,7 +62,8 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * @param url 播放的url
 	 * @param simBaseCallBack 回调
 	 */
-	public   void playOrStop(String url,BaseCallback<Boolean> simBaseCallBack) {
+	public  void playOrStop(String url,BaseCallback<Boolean> simBaseCallBack) {
+		//判断是否是当前播放的url
 		if (url.equals(getCurrentUrl())){
 			if (mediaPlayer != null){
 				if (mediaPlayer.isPlaying()){
@@ -74,12 +75,16 @@ public class MediaPlayerUtils implements LifecycleListener,
 				}
 			}
 		}else {
+			//直接播放
 			play(url,simBaseCallBack);
 		}
 	}
 
 
-	public void release(){
+	/**
+	 * 清空播放信息
+	 */
+	private void release(){
 		if (EmptyUtils.isNotEmpty(currentUrl)){
 			currentUrl = "";
 		}
