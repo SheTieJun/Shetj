@@ -33,7 +33,7 @@ include
 
  ':simxutils', xutils 3 的抽离  抽离了db
 
-':download',----（未开始）下载控制
+':download', 下载APP
 
  ':fresco',图片加载fresco （一直使用的是glide 最近有一个外包对图片部分要求很高，测试效果）
 
