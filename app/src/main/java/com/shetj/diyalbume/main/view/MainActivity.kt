@@ -19,6 +19,7 @@ import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.map.BDMapActivity
 import com.shetj.diyalbume.miui.MiUIActivity
+import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
@@ -139,6 +140,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
             val apkName = DownloadService.getApkName("1.0.0", "app-toyo.apk");
             DownloadService.install(Utils.getApp(),"1.0.0",apkName,
                     "http://oss.qcshendeng.com/app-toyo.apk")
+        }
+
+        RxView.clicks(btn_ges).subscribe {
+            ArmsUtils.startActivity(this,GestureActivity::class.java)
         }
     }
 
