@@ -136,7 +136,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
             ArmsUtils.startActivity(this,LocalMusicActivity::class.java)
         }
         RxView.clicks(btn_Service).subscribe {
-            DownloadService.install(Utils.getApp(),"1.0.0","app-toyo.apk",
+            val apkName = DownloadService.getApkName("1.0.0", "app-toyo.apk");
+            DownloadService.install(Utils.getApp(),"1.0.0",apkName,
                     "http://oss.qcshendeng.com/app-toyo.apk")
         }
     }

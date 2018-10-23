@@ -119,7 +119,7 @@
         </activity>
         <activity android:name=".image.FrescoActivity">
         </activity>
-        <activity android:name=".gesture.GestureActivity">
+        <activity android:name="com.shetj.diyalbume.pipiti.gesture.GestureActivity">
         </activity>
         <activity android:name=".main.view.ASAutoCodeActivity">
         </activity>
