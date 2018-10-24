@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.shetj.diyalbume.R;
 import com.shetj.diyalbume.pipiti.utils.MediaPlayerUtils;
+import com.shetj.diyalbume.pipiti.utils.SimPlayerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import me.shetj.base.base.BaseMessage;
 import me.shetj.base.base.SimBaseCallBack;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.json.GsonKit;
+import timber.log.Timber;
 
 /**
  * 本地音乐
@@ -33,6 +35,7 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 	private RecyclerView mIRecyclerView;
 	private MusicSelectAdapter mAdapter;
 	private MediaPlayerUtils mediaUtils;
+	private int currentPosition = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,11 +64,41 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 		mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
 			@Override
 			public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-				mediaUtils.playOrStop(mAdapter.getItem(position).url,new SimBaseCallBack<Boolean>(){
+				currentPosition = position;
+				mediaUtils.playOrStop(mAdapter.getItem(position).url,new SimPlayerListener(){
 					@Override
-					public void onSuccess(Boolean result) {
-						super.onSuccess(result);
+					public void onStart() {
+						super.onStart();
 						ArmsUtils.makeText(String.format("试听%s", mAdapter.getItem(position).name));
+					}
+
+					@Override
+					public void onPause() {
+						super.onPause();
+						ArmsUtils.makeText( "暂停" );
+					}
+
+					@Override
+					public void onProgress(int current, int size) {
+						super.onProgress(current, size);
+						Timber.i(current+"/"+size);
+					}
+
+					@Override
+					public boolean isNext(MediaPlayerUtils mp) {
+						currentPosition++;
+						if (currentPosition < mAdapter.getItemCount()) {
+							mp.playOrStop(mAdapter.getItem(currentPosition).url, this);
+							return true;
+						}else {
+							return false;
+						}
+					}
+
+					@Override
+					public void onCompletion() {
+						super.onCompletion();
+						ArmsUtils.makeText("播放结束"+mAdapter.getItem(currentPosition).url);
 					}
 				});
 			}

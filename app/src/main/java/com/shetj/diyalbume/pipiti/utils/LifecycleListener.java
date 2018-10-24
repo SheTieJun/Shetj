@@ -1,5 +1,8 @@
 package com.shetj.diyalbume.pipiti.utils;
 
+/**
+ * @author shetj
+ */
 public interface LifecycleListener {
 
     /**

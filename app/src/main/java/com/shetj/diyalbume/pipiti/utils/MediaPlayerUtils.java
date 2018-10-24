@@ -3,7 +3,15 @@ package com.shetj.diyalbume.pipiti.utils;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
-import me.shetj.base.base.BaseCallback;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 import me.shetj.base.tools.json.EmptyUtils;
 import timber.log.Timber;
 
@@ -18,11 +26,16 @@ import timber.log.Timber;
 public class MediaPlayerUtils implements LifecycleListener,
 				MediaPlayer.OnPreparedListener,
 				MediaPlayer.OnErrorListener,
-				MediaPlayer.OnCompletionListener
+				MediaPlayer.OnCompletionListener,
+				MediaPlayer.OnSeekCompleteListener
 {
+	private CompositeDisposable mCompositeDisposable;
 	private MediaPlayer mediaPlayer;
-	private BaseCallback<Boolean> mBaseCallBack;
+	private PlayerListener listener;
 	private String currentUrl = "";
+	private PublishSubject<Integer> progressSubject;
+	private Disposable timeDisposable;
+
 
 	public MediaPlayerUtils(){
 		initMedia();
@@ -31,10 +44,12 @@ public class MediaPlayerUtils implements LifecycleListener,
 	/**
 	 * 重新播放url
 	 * @param url
-	 * @param baseCallback
+	 * @param listener
 	 */
-	private void play(String url,BaseCallback<Boolean> baseCallback){
-		this.mBaseCallBack = baseCallback;
+	private void play(String url,PlayerListener listener){
+		if (null != listener) {
+			this.listener = listener;
+		}
 		this.currentUrl = url;
 		if (null == mediaPlayer){
 			initMedia();
@@ -43,7 +58,14 @@ public class MediaPlayerUtils implements LifecycleListener,
 			mediaPlayer.reset();
 			mediaPlayer.setDataSource(url);
 			mediaPlayer.prepareAsync();
+			//监听
 			mediaPlayer.setOnPreparedListener(this);
+			mediaPlayer.setOnErrorListener(this);
+			mediaPlayer.setOnCompletionListener(this);
+			mediaPlayer.setOnSeekCompleteListener(this);
+			//是否循环
+			mediaPlayer.setLooping(listener.isLoop());
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,23 +82,44 @@ public class MediaPlayerUtils implements LifecycleListener,
 	/**
 	 * 通过url 比较 进行播放 还是暂停操作
 	 * @param url 播放的url
-	 * @param simBaseCallBack 回调
+	 * @param listener 监听变化
 	 */
-	public  void playOrStop(String url,BaseCallback<Boolean> simBaseCallBack) {
+	public  void playOrStop(String url,PlayerListener listener) {
+		Timber.i("url = %s", url);
 		//判断是否是当前播放的url
 		if (url.equals(getCurrentUrl())){
+			this.listener = listener;
 			if (mediaPlayer != null){
 				if (mediaPlayer.isPlaying()){
-					mediaPlayer.pause();
-					simBaseCallBack.onSuccess(false);
+					pause();
+					listener.onPause();
 				}else {
-					mediaPlayer.start();
-					simBaseCallBack.onSuccess(true);
+					resume();
+					listener.onResume();
 				}
 			}
 		}else {
 			//直接播放
-			play(url,simBaseCallBack);
+			play(url,listener);
+		}
+	}
+
+	/**
+	 * 修改是否循环
+	 * @param isLoop
+	 */
+	public void changeLoop(boolean isLoop){
+		if (mediaPlayer != null){
+			mediaPlayer.setLooping(isLoop);
+		}
+	}
+
+	/**
+	 * 外部设置进度变化
+	 */
+	public void  progressChange(int changeSize){
+		if (mediaPlayer != null && EmptyUtils.isNotEmpty(getCurrentUrl())) {
+			mediaPlayer.seekTo(changeSize);
 		}
 	}
 
@@ -93,18 +136,51 @@ public class MediaPlayerUtils implements LifecycleListener,
 			mediaPlayer.release();
 			mediaPlayer = null;
 		}
+		unDispose();
+	}
 
+	/**
+	 * 开始计时
+	 */
+	private void startProgress() {
+		if (timeDisposable == null) {
+			timeDisposable = Flowable.interval(0, 500, TimeUnit.MILLISECONDS)
+							.subscribeOn(Schedulers.newThread())
+							.subscribe(new Consumer<Long>() {
+								@Override
+								public void accept(Long aLong) throws Exception {
+									progressSubject.onNext(mediaPlayer.getCurrentPosition());
+								}
+							});
+			addDispose(timeDisposable);
+		}
+	}
+
+	/**
+	 * 停止计时
+	 */
+	private void stopProgress(){
+		if (timeDisposable !=null && !timeDisposable.isDisposed()){
+			timeDisposable.dispose();
+			timeDisposable = null;
+		}
 	}
 
 	public void pause(){
-		if (mediaPlayer !=null && mediaPlayer.isPlaying()) {
+		if (mediaPlayer !=null && mediaPlayer.isPlaying()
+						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
 			mediaPlayer.pause();
+			listener.onPause();
+			stopProgress();
 		}
 	}
 
 	public void resume(){
-		if (mediaPlayer !=null && !mediaPlayer.isPlaying()) {
+		if (mediaPlayer !=null && !mediaPlayer.isPlaying()
+						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
 			mediaPlayer.start();
+			listener.onResume();
+			startProgress();
 		}
 	}
 
@@ -116,6 +192,8 @@ public class MediaPlayerUtils implements LifecycleListener,
 	public  void  stopPlay(){
 		if (null !=mediaPlayer ){
 			mediaPlayer.stop();
+			listener.onStop();
+			startProgress();
 			release();
 		}
 	}
@@ -127,7 +205,19 @@ public class MediaPlayerUtils implements LifecycleListener,
 	private void initMedia() {
 		if (mediaPlayer == null) {
 			mediaPlayer = new MediaPlayer();
+
+			if (null == listener) {
+				listener = new SimPlayerListener();
+			}
+
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			progressSubject = PublishSubject.create();
+			//设置进度控制
+			Disposable disposable = progressSubject
+							.observeOn(AndroidSchedulers.mainThread())
+							.throttleFirst(1,TimeUnit.MILLISECONDS)
+							.subscribe(aLong -> listener.onProgress(aLong, mediaPlayer.getDuration()));
+			addDispose(disposable);
 		}
 	}
 
@@ -152,25 +242,62 @@ public class MediaPlayerUtils implements LifecycleListener,
 
 	@Override
 	public void onDestroy() {
+		Timber.i("MediaPlayerUtils onDestroy");
 		release();
 	}
 
 	@Override
 	public void onPrepared(MediaPlayer mp) {
+		Timber.i("MediaPlayerUtils onPrepared");
 		mp.start();
-		mBaseCallBack.onSuccess(true);
+		startProgress();
+		listener.onStart();
 	}
+
+
 
 	@Override
 	public boolean onError(MediaPlayer mp, int what, int extra) {
 		Timber.i("what = %d extra = %d", what, extra);
-		mp.release();
-		return false;
+		listener.onError(new Throwable(String.format("what = %d extra = %d", what, extra)));
+		release();
+		return true;
 	}
 
 	@Override
 	public void onCompletion(MediaPlayer mp) {
-		mBaseCallBack.onSuccess(false);
-		release();
+		Timber.i("MediaPlayerUtils onCompletion");
+		if (!listener.isNext(this)){
+			listener.onCompletion();
+			stopProgress();
+			release();
+		}
+	}
+
+	/**
+	 * 将 {@link Disposable} 添加到 {@link CompositeDisposable} 中统一管理
+	 * 可在 {onDestroy() 中使用 {@link #unDispose()} 停止正在执行的 RxJava 任务,避免内存泄漏
+	 *
+	 * @param disposable
+	 */
+	private void addDispose(Disposable disposable) {
+		if (mCompositeDisposable == null) {
+			mCompositeDisposable = new CompositeDisposable();
+		}
+		mCompositeDisposable.add(disposable);
+	}
+
+	/**
+	 * 停止集合中正在执行的 RxJava 任务
+	 */
+	private void unDispose() {
+		if (mCompositeDisposable != null) {
+			mCompositeDisposable.clear();
+		}
+	}
+
+	@Override
+	public void onSeekComplete(MediaPlayer mp) {
+		progressSubject.onNext(mediaPlayer.getCurrentPosition());
 	}
 }
