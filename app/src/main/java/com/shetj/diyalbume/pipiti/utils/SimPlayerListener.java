@@ -1,7 +1,5 @@
 package com.shetj.diyalbume.pipiti.utils;
 
-import timber.log.Timber;
-
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.pipiti.utils<br>
  * <b>@author：</b> shetj<br>
@@ -12,7 +10,7 @@ import timber.log.Timber;
  */
 public class SimPlayerListener implements PlayerListener {
 	@Override
-	public void onStart() {
+	public void onStart(String url) {
 
 	}
 

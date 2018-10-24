@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.support.multidex.MultiDex
-import com.devyok.ipc.ServiceManager
 import com.devyok.ipc.utils.LogControler
 import com.taobao.sophix.SophixManager
 import me.shetj.base.s

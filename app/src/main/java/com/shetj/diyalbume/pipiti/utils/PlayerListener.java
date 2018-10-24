@@ -12,8 +12,9 @@ public interface PlayerListener {
 
 	/**
 	 * 开始播放
+	 * @param url 播放路径
 	 */
-	void onStart();
+	void onStart(String url);
 
 	/**
 	 * 暂停

@@ -2,7 +2,6 @@ package com.shetj.diyalbume;
 
 import android.content.Context;
 import android.support.annotation.Keep;
-import android.util.Log;
 
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixApplication;

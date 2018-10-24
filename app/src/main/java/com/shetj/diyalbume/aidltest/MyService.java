@@ -7,9 +7,6 @@ import android.os.IBinder;
 import com.shetj.diyalbume.IMyAidlInterface;
 import com.shetj.diyalbume.main.view.Main3Activity;
 
-import me.shetj.base.tools.file.SPUtils;
-import me.shetj.base.tools.time.TimeUtil;
-
 public class MyService extends Service {
 	public MyService() {
 	}

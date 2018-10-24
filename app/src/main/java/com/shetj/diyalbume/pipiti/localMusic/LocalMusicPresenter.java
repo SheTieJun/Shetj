@@ -4,11 +4,6 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.MediaStore;
-import android.widget.Toast;
-
-import com.shetj.diyalbume.main.view.MainActivity;
-
-import org.reactivestreams.Publisher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +12,9 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import me.shetj.base.base.BasePresenter;
 import me.shetj.base.base.IView;

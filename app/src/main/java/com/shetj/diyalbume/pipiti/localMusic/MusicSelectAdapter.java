@@ -3,7 +3,6 @@ package com.shetj.diyalbume.pipiti.localMusic;
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -11,8 +10,6 @@ import com.shetj.diyalbume.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.shetj.base.tools.time.DateUtils1;
 
 public class MusicSelectAdapter extends BaseQuickAdapter<Music,BaseViewHolder> {
 

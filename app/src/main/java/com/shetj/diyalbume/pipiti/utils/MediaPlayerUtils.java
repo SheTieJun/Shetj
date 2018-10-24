@@ -87,9 +87,8 @@ public class MediaPlayerUtils implements LifecycleListener,
 	public  void playOrStop(String url,PlayerListener listener) {
 		Timber.i("url = %s", url);
 		//判断是否是当前播放的url
-		if (url.equals(getCurrentUrl())){
+		if (url.equals(getCurrentUrl()) && mediaPlayer != null){
 			this.listener = listener;
-			if (mediaPlayer != null){
 				if (mediaPlayer.isPlaying()){
 					pause();
 					listener.onPause();
@@ -97,7 +96,6 @@ public class MediaPlayerUtils implements LifecycleListener,
 					resume();
 					listener.onResume();
 				}
-			}
 		}else {
 			//直接播放
 			play(url,listener);
@@ -251,7 +249,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 		Timber.i("MediaPlayerUtils onPrepared");
 		mp.start();
 		startProgress();
-		listener.onStart();
+		listener.onStart(getCurrentUrl());
 	}
 
 
@@ -298,6 +296,8 @@ public class MediaPlayerUtils implements LifecycleListener,
 
 	@Override
 	public void onSeekComplete(MediaPlayer mp) {
-		progressSubject.onNext(mediaPlayer.getCurrentPosition());
+		if (null != mediaPlayer) {
+			progressSubject.onNext(mediaPlayer.getCurrentPosition());
+		}
 	}
 }

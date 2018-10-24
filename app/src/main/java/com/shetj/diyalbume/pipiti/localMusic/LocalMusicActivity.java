@@ -16,10 +16,8 @@ import com.shetj.diyalbume.pipiti.utils.SimPlayerListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.functions.Consumer;
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BaseMessage;
-import me.shetj.base.base.SimBaseCallBack;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.json.GsonKit;
 import timber.log.Timber;
@@ -67,8 +65,8 @@ public class LocalMusicActivity extends BaseActivity<LocalMusicPresenter> {
 				currentPosition = position;
 				mediaUtils.playOrStop(mAdapter.getItem(position).url,new SimPlayerListener(){
 					@Override
-					public void onStart() {
-						super.onStart();
+					public void onStart(String url) {
+						super.onStart(url);
 						ArmsUtils.makeText(String.format("试听%s", mAdapter.getItem(position).name));
 					}
 
