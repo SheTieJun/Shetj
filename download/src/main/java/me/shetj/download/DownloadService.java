@@ -18,12 +18,10 @@ import me.shetj.base.tools.app.AppUtils;
 import timber.log.Timber;
 
 /**
- * app下载更新
- * install(Context appContext,
- *   String versionName,
- *   String appName,
- *   String downloadUrl)
- * @author shetj
+ * <b> {@link DownloadService } 主要是为了app更新下载，直接执行安装处理 <b/><br>
+ * <b> 获取APPName {@link #getApkName(String, String)} <b/><br>
+ * <b> 开启下载  {@link #install(Context, String, String, String)}<b/><br>
+ * <b> @author shetj<b/><br>
  */
 public class DownloadService extends Service {
 
@@ -33,7 +31,7 @@ public class DownloadService extends Service {
     private static final String EXTRA_DOWNLOAD_APK_NAME = "com.shetj.me.DOWNLOAD_APK_NAME";
     private static final String EXTRA_DOWNLOAD_APK_URL  = "com.shetj.me.DOWNLOAD_APK_URL";
 
-    private static final String APK_SUFFIX = "download-";
+    private static final String APK_SUFFIX = "app-";
 
     private static DownloadManager mDm;
     private BroadcastReceiver mReceiver;
@@ -99,6 +97,13 @@ public class DownloadService extends Service {
 
     //--- Public static methods --------------------------------------------------------------------
 
+    /**
+     * 开启下载
+     * @param appContext 上下文
+     * @param versionName 版本名称
+     * @param appName app的名称
+     * @param downloadUrl 下载的路径
+     */
     public static void install(Context appContext,@NonNull String versionName,
                                @NonNull String appName,
                                @NonNull String downloadUrl) {
@@ -113,18 +118,33 @@ public class DownloadService extends Service {
         }
     }
 
+    /**
+     * 判断是否下载了app
+     * @param apkName {@link #getApkName(String, String)}
+     * @return 判断是否下载了app true 下载了
+     */
     public static boolean hasDownloadedApk(@NonNull String apkName) {
         String apkPath = getDownloadedApkPath(apkName);
         File apkFile = new File(apkPath);
         return apkFile.exists();
     }
 
+    /**
+     * 安装APK
+     * @param context 上下文
+     * @param apkName {@link #getApkName(String, String)}
+     */
     public static void installApk(@NonNull Context context, @NonNull String apkName) {
         String path = getDownloadedApkPath(apkName);
         Timber.i(path+context.getPackageName());
         AppUtils.installApp(new File(path),context.getPackageName()+".FileProvider");
     }
 
+    /**
+     * @param versionName 版本号
+     * @param fileName 文件名称
+     * @return 获取app名称
+     */
     public static String getApkName(@NonNull String versionName, @NonNull String fileName) {
         return (APK_SUFFIX + versionName + '-' + fileName);
     }
