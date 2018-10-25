@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.pipiti.utils;
+package com.shetj.diyalbume.pipiti.media;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -16,12 +16,15 @@ import me.shetj.base.tools.json.EmptyUtils;
 import timber.log.Timber;
 
 /**
- * <b>@packageName：</b> com.shetj.diyalbume.pipiti.utils<br>
  * <b>@author：</b> shetj<br>
  * <b>@createTime：</b> 2018/10/23 0023<br>
- * <b>@company：</b><br>
  * <b>@email：</b> 375105540@qq.com<br>
- * <b>@describe</b><br>
+ * <b>@describe</b> MediaPlayerUtils 音乐播放</b><br>
+ *
+ *   <b> 播放 {@link MediaPlayerUtils#playOrStop(String url,PlayerListener listener)}}</b><br>
+ *   <b> 暂停  {@link MediaPlayerUtils#pause()} <br/>
+ *   <b> 暂停  {@link MediaPlayerUtils#stopPlay()} ()} <br/>
+ * <br>
  */
 public class MediaPlayerUtils implements LifecycleListener,
 				MediaPlayer.OnPreparedListener,
@@ -88,14 +91,16 @@ public class MediaPlayerUtils implements LifecycleListener,
 		Timber.i("url = %s", url);
 		//判断是否是当前播放的url
 		if (url.equals(getCurrentUrl()) && mediaPlayer != null){
-			this.listener = listener;
-				if (mediaPlayer.isPlaying()){
-					pause();
-					listener.onPause();
-				}else {
-					resume();
-					listener.onResume();
-				}
+			if (listener!=null) {
+				this.listener = listener;
+			}
+			if (mediaPlayer.isPlaying()){
+				pause();
+				this.listener.onPause();
+			}else {
+				resume();
+				this.listener.onResume();
+			}
 		}else {
 			//直接播放
 			play(url,listener);
@@ -164,6 +169,9 @@ public class MediaPlayerUtils implements LifecycleListener,
 		}
 	}
 
+	/**
+	 * 暂停，并且停止计时
+	 */
 	public void pause(){
 		if (mediaPlayer !=null && mediaPlayer.isPlaying()
 						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
@@ -172,7 +180,9 @@ public class MediaPlayerUtils implements LifecycleListener,
 			stopProgress();
 		}
 	}
-
+	/**
+	 * 恢复，并且开始计时
+	 */
 	public void resume(){
 		if (mediaPlayer !=null && !mediaPlayer.isPlaying()
 						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
@@ -182,6 +192,10 @@ public class MediaPlayerUtils implements LifecycleListener,
 		}
 	}
 
+	/**
+	 * 是否暂停
+	 * @return
+	 */
 	public  boolean isPause() {
 		return  !(mediaPlayer!=null && mediaPlayer.isPlaying());
 	}

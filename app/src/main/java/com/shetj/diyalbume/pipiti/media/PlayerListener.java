@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.pipiti.utils;
+package com.shetj.diyalbume.pipiti.media;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.pipiti.utils<br>

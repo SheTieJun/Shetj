@@ -10,8 +10,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.shetj.diyalbume.R;
-import com.shetj.diyalbume.pipiti.utils.MediaPlayerUtils;
-import com.shetj.diyalbume.pipiti.utils.SimPlayerListener;
+import com.shetj.diyalbume.pipiti.media.MediaPlayerUtils;
+import com.shetj.diyalbume.pipiti.media.SimPlayerListener;
 
 import java.util.ArrayList;
 import java.util.List;
