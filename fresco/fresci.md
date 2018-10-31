@@ -1,4 +1,4 @@
-#### 使用
+#### 使用 https://www.fresco-cn.org/
 ```
 <com.facebook.drawee.view.SimpleDraweeView
   android:id="@+id/my_image_view"

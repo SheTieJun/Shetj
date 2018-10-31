@@ -101,7 +101,7 @@ public class DownloadService extends Service {
      * 开启下载
      * @param appContext 上下文
      * @param versionName 版本名称
-     * @param appName app的名称
+     * @param appName     使用{@link #getApkName(String, String)}获取
      * @param downloadUrl 下载的路径
      */
     public static void install(Context appContext,@NonNull String versionName,
@@ -120,7 +120,7 @@ public class DownloadService extends Service {
 
     /**
      * 判断是否下载了app
-     * @param apkName {@link #getApkName(String, String)}
+     * @param apkName 使用{@link #getApkName(String, String)}获取
      * @return 判断是否下载了app true 下载了
      */
     public static boolean hasDownloadedApk(@NonNull String apkName) {
@@ -132,7 +132,7 @@ public class DownloadService extends Service {
     /**
      * 安装APK
      * @param context 上下文
-     * @param apkName {@link #getApkName(String, String)}
+     * @param apkName 使用{@link #getApkName(String, String)}获取
      */
     public static void installApk(@NonNull Context context, @NonNull String apkName) {
         String path = getDownloadedApkPath(apkName);

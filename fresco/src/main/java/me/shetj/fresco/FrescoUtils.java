@@ -20,7 +20,9 @@ import okhttp3.OkHttpClient;
  * <b>@createTime：</b> 2018/9/26 0026<br>
  * <b>@company：</b><br>
  * <b>@email：</b> 375105540@qq.com<br>
- * <b>@describe</b>FrescoUtils <br>
+ * <b>@describe:</b>  <br>
+ * <b>  初始化 {@link FrescoUtils#init(Application, boolean)} <br>
+ * <b>  获取ImageLoader {@link FrescoUtils#getImageLoader()} <br>
  */
 public class FrescoUtils {
 
@@ -54,7 +56,7 @@ public class FrescoUtils {
 	/**
 	 * 获取图片加载对象
 	 * 你也可以自己创建不用
-	 * @return
+	 * @return {@link ImageLoader}
 	 */
 	public static ImageLoader getImageLoader(){
 		if (imageLoader == null){
