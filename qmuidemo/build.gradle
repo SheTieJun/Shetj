@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.qmuiteam.qmuidemo"
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.1.6"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
     buildTypes {
         debug {
@@ -31,7 +31,7 @@ configurations.all {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:appcompat-v7:$androidSupportSdkVersion"
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.qmuiteam:qmuilint:1.0.1'
@@ -39,9 +39,9 @@ dependencies {
     implementation 'com.qmuiteam:qmui:1.1.7'
     implementation project(':lib')
     annotationProcessor project(':compiler')
-    implementation "com.android.support:recyclerview-v7:27.1.1"
-    implementation "com.android.support:design:27.1.1"
-    implementation "com.android.support:support-vector-drawable:27.1.1"
+    implementation "com.android.support:recyclerview-v7:$androidSupportSdkVersion"
+    implementation "com.android.support:design:$androidSupportSdkVersion"
+    implementation "com.android.support:support-vector-drawable:$androidSupportSdkVersion"
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'

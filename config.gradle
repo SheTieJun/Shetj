@@ -3,6 +3,7 @@ ext {
             targetSdkVersion        = 28
             versionCode             = 1
             versionName             = "1.0"
-            androidSupportSdkVersion= "27.1.1"
+            androidSupportSdkVersion= "28.0.0"
             baseVersion             = "21bbbba885"
+             minSdkVersion          = 19
 }

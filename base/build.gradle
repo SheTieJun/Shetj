@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -48,7 +48,7 @@ android {
             def requested = details.requested
             if (requested.group == 'com.android.support') {
                 if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '27.1.1'
+                    details.useVersion "$androidSupportSdkVersion"
                 }
             }
             if (requested.group == 'com.google.code.gson') {
@@ -81,11 +81,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:$androidSupportSdkVersion"
+    implementation "com.android.support:support-v4:$androidSupportSdkVersion"
+    implementation "com.android.support:design:$androidSupportSdkVersion"
+    implementation "com.android.support:recyclerview-v7:$androidSupportSdkVersion"
+    implementation "com.android.support:cardview-v7:$androidSupportSdkVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     api 'com.android.support:multidex:1.0.3'
     //view
