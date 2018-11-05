@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.animation_view
+import com.shetj.diyalbume.R.id.seekBar
 import kotlinx.android.synthetic.main.activity_test_lottie.*
 @Route(path = "/shetj/TestLottieActivity")
 class TestLottieActivity : AppCompatActivity() {
