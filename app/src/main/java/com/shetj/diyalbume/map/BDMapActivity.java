@@ -83,7 +83,6 @@ public class BDMapActivity extends BaseActivity implements View.OnClickListener 
 				startActivity(new Intent(this, MapActivity.class));
 				break;
 			case R.id.btn_local:
-				BDMapLocation.getInstance(getApplicationContext()).stop();
 				getLocalPosition();
 				break;
 			case R.id.btn_open_map:
@@ -94,6 +93,7 @@ public class BDMapActivity extends BaseActivity implements View.OnClickListener 
 	}
 
 	private void getLocalPosition() {
+		BDMapLocation.getInstance(getApplicationContext()).stop();
 		LoadingDialog.showLoading(this, "正在获取位置", true);
 		BDMapLocation.getInstance(this).setOption(true);
 		BDMapLocation.getInstance(this).start(BDMapLocation.SendTag.DEF);

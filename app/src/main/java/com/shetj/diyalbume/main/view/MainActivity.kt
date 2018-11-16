@@ -1,7 +1,12 @@
 package com.shetj.diyalbume.main.view
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.TextView
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
@@ -29,10 +34,22 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
 import me.shetj.download.DownloadService
+import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
+    private var iMyAidlInterface: StartAidlInterface? =null
+    private val conn =object : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            Log.i("xx","连接断开.....")
+        }
 
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            //连接成功
+            Log.i("xx","连接.....")
+            iMyAidlInterface = StartAidlInterface.Stub.asInterface(service)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +63,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
     }
     override fun initData() {
+        val intent = Intent("me.shetj.StartService")
+        intent.`package` = "me.shetj.luck"
+        bindService(intent,conn, AppCompatActivity.BIND_AUTO_CREATE)
     }
 
     override fun initView() {
@@ -144,6 +164,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_ges).subscribe {
             ArmsUtils.startActivity(this,GestureActivity::class.java)
+        }
+
+        RxView.clicks(btn_open_luck).subscribe {
+            iMyAidlInterface?.start()
         }
     }
 

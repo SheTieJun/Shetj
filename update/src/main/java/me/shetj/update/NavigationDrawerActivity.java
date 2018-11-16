@@ -40,6 +40,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+
+		View headview=navigationView.inflateHeaderView(R.layout.nav_header_navigation_drawer);
 	}
 
 	@Override

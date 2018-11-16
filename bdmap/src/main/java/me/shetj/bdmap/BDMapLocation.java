@@ -79,6 +79,10 @@ public class BDMapLocation {
 	}
 
 
+	/**
+	 * 设置定位参数
+	 * @param isOnly 是否只定位一次
+	 */
 	public void setOption(boolean isOnly){
 		LocationClientOption option = new LocationClientOption();
 

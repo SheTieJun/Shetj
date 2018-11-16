@@ -3,6 +3,7 @@ package com.shetj.diyalbume.image
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.R.id.*
 import kotlinx.android.synthetic.main.activity_fresco.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter

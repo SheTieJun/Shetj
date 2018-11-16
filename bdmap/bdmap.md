@@ -21,3 +21,13 @@ BMapManager.init(this);
 //停止定位
 BDMapLocation.getInstance(view.getRxContext()).stop( );
 ```
+
+```
+   sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+```
+
