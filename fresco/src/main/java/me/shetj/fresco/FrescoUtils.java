@@ -22,7 +22,7 @@ import okhttp3.OkHttpClient;
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe:</b>  <br>
  * <b>  初始化 {@link FrescoUtils#init(Application, boolean)} <br>
- * <b>  获取ImageLoader {@link FrescoUtils#getImageLoader()} <br>
+ * <b>  获取 {@link ImageLoader} 使用 {@link FrescoUtils#getImageLoader()} <br>
  */
 public class FrescoUtils {
 

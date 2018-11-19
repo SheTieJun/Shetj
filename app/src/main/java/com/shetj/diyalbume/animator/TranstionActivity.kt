@@ -71,7 +71,6 @@ class TranstionActivity : BaseActivity<AnimatorPresenter>() {
         RxView.clicks(btn_changeClipBounds).subscribe {
             isScene1 = !isScene1
             TransitionManager.go(if(isScene1)scene1 else scene2, ChangeClipBounds())
-
         }
 
         RxView.clicks(btn_example)
