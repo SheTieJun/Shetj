@@ -55,3 +55,18 @@ include
 
 > ':qmuidemo' 腾讯的QMUI 还不错
 
+
+```
+合并commit
+
+1. git rebase -i HEAD~2
+
+2. 进入文件进行修改
+pick 的意思是要会执行这个 commit
+squash 的意思是这个 commit 会被合并到前一个commit
+
+3.ESc 退出编辑  ：wq 保存退出  i 进入编辑模式
+
+4. git rebase --abort 撤销修改
+```
+
