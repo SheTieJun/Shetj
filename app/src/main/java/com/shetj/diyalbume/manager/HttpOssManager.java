@@ -3,6 +3,7 @@ package com.shetj.diyalbume.manager;
 import com.shetj.diyalbume.api.ShetjApi;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.model.CacheMode;
+import com.zhouyou.http.exception.ApiException;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
@@ -46,6 +47,8 @@ public class HttpOssManager {
                           .execute(callBack);
                 }
               });
+    }else {
+      callBack.onError(new ApiException(new Throwable("您还没有登录！"),402));
     }
   }
 

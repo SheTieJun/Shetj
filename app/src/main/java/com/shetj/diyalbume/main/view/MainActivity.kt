@@ -28,6 +28,7 @@ import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
+import com.shetj.diyalbume.test.MobileInfoUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
@@ -168,6 +169,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_open_luck).subscribe {
             iMyAidlInterface?.start()
+        }
+        RxView.clicks(btn_auto_open).subscribe {
+            MobileInfoUtils.jumpStartInterface(this)
         }
     }
 
