@@ -73,7 +73,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = "主页"
         bt_create.setOnClickListener {
-            mPresenter.startCreateAlbum()
+           mPresenter.showIntroduce()
         }
         RxView.clicks(btn_play).subscribe {
             startActivity(Intent(this,PlayVideoActivity::class.java))

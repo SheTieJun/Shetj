@@ -31,7 +31,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="创建"
+        android:text="介绍"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -333,7 +333,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Luck_AIDL"
+        android:text="AIDL打开LuckAPP"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_ges"
         app:layout_constraintTop_toBottomOf="@+id/btn_view"/>

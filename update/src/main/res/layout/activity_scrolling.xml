@@ -17,7 +17,13 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:titleEnabled="false"
+            app:statusBarScrim="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@null"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
@@ -36,7 +42,7 @@
                 app:layout_collapseMode="pin"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
-                app:title="测试"
+                android:layout_marginTop="@dimen/statusBarHeightSize"
                 android:fitsSystemWindows="true"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
