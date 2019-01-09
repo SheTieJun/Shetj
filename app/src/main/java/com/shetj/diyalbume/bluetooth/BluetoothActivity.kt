@@ -111,7 +111,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
     }
 
 
-    override fun updateView(message: BaseMessage<*>?) {
+    override fun updateView(message: BaseMessage<*>) {
         super.updateView(message)
         when(message?.type ){
             1 ->{

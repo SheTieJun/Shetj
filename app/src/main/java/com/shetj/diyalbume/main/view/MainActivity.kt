@@ -29,6 +29,7 @@ import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.test.MobileInfoUtils
+import com.shetj.diyalbume.utils.SneakerUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
@@ -168,6 +169,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_auto_open).subscribe {
             MobileInfoUtils.jumpStartInterface(this)
             MobileInfoUtils.toSelfSetting(this)
+        }
+
+        RxView.clicks(btn_sneaker).subscribe {
+            SneakerUtils.sneakError(this,"错误提示","测试~测试")
         }
     }
 

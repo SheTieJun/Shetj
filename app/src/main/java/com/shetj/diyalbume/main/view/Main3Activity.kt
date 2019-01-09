@@ -7,11 +7,12 @@ import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_main_3.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
+import me.shetj.base.base.BaseSwipeBackActivity
 import me.shetj.router.RouterUtils
 import me.shetj.tencentx5.WebPageActivity
 
 @Route(path = "/shetj/Main3Activity")
-class Main3Activity : BaseActivity<BasePresenter<*>>() {
+class Main3Activity : BaseSwipeBackActivity<BasePresenter<*>>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

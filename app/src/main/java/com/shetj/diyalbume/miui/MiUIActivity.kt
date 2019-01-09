@@ -70,7 +70,7 @@ class MiUIActivity : BaseActivity<MiUIPresenter>() {
         mAdapter.addToEnd(info as List<IMessage>?)
     }
 
-    override fun updateView(message: BaseMessage<*>?) {
+    override fun updateView(message: BaseMessage<*>) {
         super.updateView(message)
         when(message?.type){
             1 -> showMsgList(message.obj as ArrayList<MyMessage>)

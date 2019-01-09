@@ -42,7 +42,8 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
         ArmsUtils.makeText("testAspect ok")
     }
 
-    override fun updateView(message: BaseMessage<*>?) {
+
+    override fun updateView(message: BaseMessage<*>) {
         super.updateView(message)
     }
 
