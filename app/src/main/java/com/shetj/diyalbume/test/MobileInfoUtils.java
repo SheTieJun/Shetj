@@ -47,7 +47,6 @@ public class MobileInfoUtils {
 			Intent intent = new Intent();
 			try {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				Log.e("HLQ_Struggle", "******************当前手机型号为：" + getMobileType());
 				ComponentName componentName = null;
 				String brand = android.os.Build.BRAND;
 				switch (brand.toLowerCase()) {

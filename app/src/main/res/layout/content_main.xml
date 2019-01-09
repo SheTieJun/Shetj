@@ -188,7 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="动画"
+        android:text="基础动画"
         app:layout_constraintStart_toEndOf="@+id/btn_treadPool"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL"/>
 
@@ -299,7 +299,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Fresco"
+        android:text="Fresco+图片"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_play"
         app:layout_constraintTop_toBottomOf="@+id/btn_map"/>
