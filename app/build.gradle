@@ -206,6 +206,7 @@ dependencies {
     implementation project(':router')
     implementation project(':download')
 
+    implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
     implementation 'com.github.iielse:ImageWatcher:1.1.5'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.2'

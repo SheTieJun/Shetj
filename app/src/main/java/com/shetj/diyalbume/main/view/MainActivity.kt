@@ -27,6 +27,7 @@ import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
+import com.shetj.diyalbume.ppttest.PPtTestActivity
 import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.test.MobileInfoUtils
 import com.shetj.diyalbume.utils.SneakerUtils
@@ -153,7 +154,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         RxView.clicks(btn_local_music).subscribe {
             ArmsUtils.startActivity(this,LocalMusicActivity::class.java)
         }
-        RxView.clicks(btn_Service).subscribe {
+        RxView.clicks(btn_Service_1).subscribe {
             val apkName = DownloadService.getApkName("1.0.0", "app-toyo.apk");
             DownloadService.install(Utils.getApp(),"1.0.0",apkName,
                     "http://oss.qcshendeng.com/app-toyo.apk")
@@ -173,6 +174,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_sneaker).subscribe {
             SneakerUtils.sneakError(this,"错误提示","测试~测试")
+        }
+
+        RxView.clicks(btn_ppt).subscribe{
+            ArmsUtils.startActivity(this,PPtTestActivity::class.java)
         }
     }
 

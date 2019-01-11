@@ -3,6 +3,7 @@ package com.shetj.diyalbume.ppttest
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R
 import com.zhouyou.http.EasyHttp
 import com.zhouyou.http.cache.model.CacheMode
@@ -65,6 +66,10 @@ class PPtTestActivity : BaseActivity<BasePresenter<*>>() {
                         }
                     })
         })
+
+        RxView.clicks(btn_new_index).subscribe {
+            ArmsUtils.startActivity(this,NewIndexActivity::class.java)
+        }
     }
 
     override fun initData() {

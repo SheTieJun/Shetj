@@ -27,5 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="留言推送"/>
+
+    <Button
+        android:id="@+id/btn_new_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新主页"/>
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

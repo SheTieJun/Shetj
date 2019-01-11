@@ -8,15 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <!-- 允许使用transitions -->
-        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
-        <!--是否覆盖执行，其实可以理解成是否同步执行还是顺序执行-->
-        <item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">false</item>
-        <item name="android:windowAllowReturnTransitionOverlap" tools:targetApi="lollipop">false</item>
-    </style>
+    <!--<style name="AppTheme.NoActionBar" parent="Theme.AppCompat">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--&lt;!&ndash; 允许使用transitions &ndash;&gt;-->
+        <!--<item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>-->
+        <!--&lt;!&ndash;是否覆盖执行，其实可以理解成是否同步执行还是顺序执行&ndash;&gt;-->
+        <!--<item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">false</item>-->
+        <!--<item name="android:windowAllowReturnTransitionOverlap" tools:targetApi="lollipop">false</item>-->
+    <!--</style>-->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 

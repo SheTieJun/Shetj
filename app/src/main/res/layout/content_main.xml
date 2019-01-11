@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_play"/>
     <Button
-        android:id="@+id/btn_Service"
+        android:id="@+id/btn_Service_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -65,6 +65,7 @@
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_test_auto"/>
+
     <Button
         android:id="@+id/btn_view"
         android:layout_width="wrap_content"
@@ -74,6 +75,19 @@
         android:text="系统控件"
         app:layout_constraintStart_toEndOf="@+id/btn_test_auto"
         app:layout_constraintTop_toBottomOf="@+id/btn_fresco"/>
+
+
+    <Button
+        android:id="@+id/btn_ppt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ppt"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Service_1"/>
+
     <Button
         android:id="@+id/btn_local_music"
         android:layout_width="wrap_content"
@@ -333,7 +347,7 @@
         android:layout_marginTop="8dp"
         android:text="gestureDetector"
         android:textAllCaps="false"
-        app:layout_constraintStart_toEndOf="@+id/btn_Service"
+        app:layout_constraintStart_toEndOf="@+id/btn_Service_1"
         app:layout_constraintTop_toBottomOf="@+id/btn_view"/>
 
     <Button
