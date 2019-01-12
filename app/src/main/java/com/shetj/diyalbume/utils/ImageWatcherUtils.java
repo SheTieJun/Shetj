@@ -50,6 +50,11 @@ public class ImageWatcherUtils {
 		iwHelper.show(imageView, mapping, convert(dataList));
 	}
 
+
+	public void showPic(ImageView imageView, List<String> dataList,SparseArray<ImageView>  mapping){
+		iwHelper.show(imageView, mapping, convert(dataList));
+	}
+
 	public List<Uri> convert(List<String>   data  ){
 		ArrayList<Uri> list =  new  ArrayList<Uri>();
 		for (String datum : data) {
