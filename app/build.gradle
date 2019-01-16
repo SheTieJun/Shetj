@@ -205,7 +205,8 @@ dependencies {
     implementation project(':bdmap')
     implementation project(':router')
     implementation project(':download')
-
+    implementation project(':pay')
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
     implementation 'com.github.iielse:ImageWatcher:1.1.5'

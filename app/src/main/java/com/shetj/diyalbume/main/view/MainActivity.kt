@@ -1,8 +1,10 @@
 package com.shetj.diyalbume.main.view
 
+import android.app.PendingIntent.getActivity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
 import android.support.v7.app.AppCompatActivity
@@ -39,6 +41,12 @@ import me.shetj.base.tools.app.Utils
 import me.shetj.download.DownloadService
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
+import android.widget.Toast
+import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
+import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile.JUMP_TO_NORMAL_BIZ_PROFILE
+import com.tencent.mm.opensdk.openapi.IWXAPI
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
+
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -178,6 +186,22 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         RxView.clicks(btn_ppt).subscribe{
             ArmsUtils.startActivity(this,PPtTestActivity::class.java)
+        }
+
+        RxView.clicks(btn_account).subscribe {
+            val appId = "wxf683bc1904cc8adb"//开发者平台ID
+            val api = WXAPIFactory.createWXAPI(this, appId, false)
+
+            if (api.isWXAppInstalled()) {
+                val req = JumpToBizProfile.Req()
+                req.toUserName = "gh_310dae0b822c" // 公众号原始ID
+                req.extMsg = "shetj_test"
+                req.profileType = JumpToBizProfile.JUMP_TO_NORMAL_BIZ_PROFILE // 普通公众号
+                api.sendReq(req)
+            } else {
+                Toast.makeText(this, "微信未安装", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
