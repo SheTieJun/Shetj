@@ -94,7 +94,7 @@ public class BDMapActivity extends BaseActivity implements View.OnClickListener 
 
 	private void getLocalPosition() {
 		BDMapLocation.getInstance(getApplicationContext()).stop();
-		LoadingDialog.showLoading(this, "正在获取位置", true);
+		LoadingDialog.showLoading(this, true);
 		BDMapLocation.getInstance(this).setOption(true);
 		BDMapLocation.getInstance(this).start(BDMapLocation.SendTag.DEF);
 	}

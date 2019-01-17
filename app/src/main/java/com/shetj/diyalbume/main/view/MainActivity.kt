@@ -1,17 +1,16 @@
 package com.shetj.diyalbume.main.view
 
-import android.app.PendingIntent.getActivity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
-import com.shetj.diyalbume.R
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
@@ -33,6 +32,8 @@ import com.shetj.diyalbume.ppttest.PPtTestActivity
 import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.test.MobileInfoUtils
 import com.shetj.diyalbume.utils.SneakerUtils
+import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
@@ -41,12 +42,7 @@ import me.shetj.base.tools.app.Utils
 import me.shetj.download.DownloadService
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
-import android.widget.Toast
-import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
-import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile.JUMP_TO_NORMAL_BIZ_PROFILE
-import com.tencent.mm.opensdk.openapi.IWXAPI
-import com.tencent.mm.opensdk.openapi.WXAPIFactory
-
+import com.shetj.diyalbume.R
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -65,6 +61,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ArmsUtils.statuInScreen(this,true)
         initView()
         initData()
         mPresenter =  MainPresenter(this)
@@ -81,6 +78,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
     override fun initView() {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
+          findViewById<View>(R.id.toolbar_back).visibility = View.GONE;
         toolbarTitle.text = "主页"
         bt_create.setOnClickListener {
            mPresenter.showIntroduce()

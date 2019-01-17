@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.shetj.diyalbume.ppttest.StartChallengeActivity">
-    <include layout="@layout/include_title"/>
+    <include layout="@layout/base_include_title"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/iRecyclerView"
         android:layout_width="match_parent"
