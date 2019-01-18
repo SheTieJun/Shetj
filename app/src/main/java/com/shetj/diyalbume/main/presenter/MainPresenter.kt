@@ -97,7 +97,7 @@ class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
                         "':rxFingerPrinter' 指纹部分\n" +
                         "\n" +
                         "':qmuidemo' 腾讯的QMUI 还不错")
-                .onNegative { dialog, which ->
+                .onNegative { dialog, _ ->
                     dialog.cancel()
                 }
                 .negativeText("确定").build()

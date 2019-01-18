@@ -91,13 +91,13 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
             /**
      * 值动画
      */
-    fun startValue(it: View) {
+    fun startValue(view1: View) {
         if (animType) {
             val animation = ValueAnimator.ofInt(0, 100)
             animation.duration = 1000
-            animation.addUpdateListener { animation ->
-                val currentValue = animation?.animatedValue
-                val button = it as Button
+            animation.addUpdateListener {
+                val currentValue = it?.animatedValue
+                val button = view1 as Button
                 button.text = "currentValue = $currentValue"
             }
             animation.start()
@@ -106,8 +106,8 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
             animation2.duration = 3000
             animation2.repeatMode = REVERSE
             animation2.addUpdateListener{ animation ->
-                it.layoutParams.width = animation?.animatedValue as Int
-                it.requestLayout()
+                view1.layoutParams.width = animation?.animatedValue as Int
+                view1.requestLayout()
             }
             animation2.start()
         }

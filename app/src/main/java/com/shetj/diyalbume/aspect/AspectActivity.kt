@@ -35,6 +35,9 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
         RxView.clicks(btn_get_log).subscribe{
             mPresenter.testAspect()
         }
+        RxView.clicks(btn_net_work).subscribe {
+            mPresenter.testNetWork()
+        }
     }
 
     @MPermission(value = [(Manifest.permission.CAMERA),(Manifest.permission.WRITE_EXTERNAL_STORAGE)])
@@ -45,6 +48,7 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
 
     override fun updateView(message: BaseMessage<*>) {
         super.updateView(message)
+
     }
 
 }
