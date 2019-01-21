@@ -10,8 +10,9 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        app:elevation="0dp"
+        app:layout_scrollFlags="scroll|enterAlways">
+
         <include
             android:id="@+id/toolbar"
             layout="@layout/base_include_title"

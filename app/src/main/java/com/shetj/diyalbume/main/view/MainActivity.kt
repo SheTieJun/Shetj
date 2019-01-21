@@ -199,7 +199,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
             } else {
                 Toast.makeText(this, "微信未安装", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
