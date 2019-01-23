@@ -1,5 +1,6 @@
 package com.shetj.diyalbume.main.view
 
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
@@ -43,6 +44,7 @@ import me.shetj.download.DownloadService
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.ohter.OtherActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -65,7 +67,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         initView()
         initData()
         mPresenter =  MainPresenter(this)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener { _ ->
             startActivity(Intent(this,Main3Activity::class.java))
 
         }
@@ -76,10 +78,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
         bindService(intent,conn, AppCompatActivity.BIND_AUTO_CREATE)
     }
 
+    @SuppressLint("CheckResult")
     override fun initView() {
-        val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
-          findViewById<View>(R.id.toolbar_back).visibility = View.GONE;
-        toolbarTitle.text = "主页"
         bt_create.setOnClickListener {
            mPresenter.showIntroduce()
         }
@@ -199,6 +199,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
             } else {
                 Toast.makeText(this, "微信未安装", Toast.LENGTH_SHORT).show()
             }
+        }
+        RxView.clicks(btn_test_qmui).subscribe{
+            ArmsUtils.startActivity(this,OtherActivity::class.java)
         }
     }
 

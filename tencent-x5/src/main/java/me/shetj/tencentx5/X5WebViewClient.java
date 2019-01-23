@@ -26,6 +26,13 @@ public class X5WebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (!url.startsWith("http:") && !url.startsWith("https:")) {
             Intent intent = null;
+            if (url.startsWith("weixin://wap/pay?")) {
+                intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                view.getContext().startActivity(intent);
+                return true;
+            }
             if (parseScheme(url)) {
                 try {
                     intent = Intent.parseUri(url,

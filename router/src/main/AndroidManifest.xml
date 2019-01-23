@@ -4,7 +4,7 @@
     <application>
         <activity android:name=".SchemeFilterActivity">
 
-            <!-- Schame -->
+            <!-- Schema -->
             <intent-filter>
                 <data
                     android:host="me.shetj.router"
