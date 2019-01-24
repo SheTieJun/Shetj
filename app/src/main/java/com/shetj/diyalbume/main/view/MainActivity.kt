@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
@@ -63,7 +64,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ArmsUtils.statuInScreen(this,true)
+        QMUIStatusBarHelper.setStatusBarDarkMode(this)
         initView()
         initData()
         mPresenter =  MainPresenter(this)

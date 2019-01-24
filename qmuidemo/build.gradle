@@ -36,7 +36,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.qmuiteam:qmuilint:1.0.1'
     implementation 'com.qmuiteam:arch:0.1.4'
-    implementation 'com.qmuiteam:qmui:1.1.7'
+    implementation 'com.qmuiteam:qmui:1.1.11'
     implementation project(':lib')
     annotationProcessor project(':compiler')
     implementation "com.android.support:recyclerview-v7:$androidSupportSdkVersion"
