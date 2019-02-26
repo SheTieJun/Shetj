@@ -12,16 +12,34 @@
         android:id="@+id/iFrameRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </FrameLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="image"/>
-</LinearLayout>
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp">
+            <com.shetj.diyalbume.view.RadarView
+                android:id="@+id/radar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:circleColor="#565cd6"
+                app:circleNum="4"
+                app:flicker="3"
+                app:speed="5"
+                android:background="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"
+                app:sweepColor="#565cd6"
+                app:showCross="true"
+                app:raindropNum="4"/>
+        </FrameLayout>
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="image"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -23,16 +23,13 @@ class ExecutorsActivity : AppCompatActivity() {
     private fun testExcutors() {
         val executorService = ExecutorsPool(5, false)
         for (i in 0..19) {
-            var priorityRunnable = PriorityRunnable(
-                    ExecutorsPool.Priority.NORMAL,
-                    Runnable {
-
-                        Flowable.just("${Thread.currentThread().name}NORMAL\n")
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe {
-                                    tv_msg.append(it)
-                                }
-                    } )
+            var priorityRunnable = PriorityRunnable(ExecutorsPool.Priority.NORMAL, Runnable {
+                Flowable.just("${Thread.currentThread().name}NORMAL\n")
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            tv_msg.append(it)
+                        }
+            })
 
             if (i % 3 == 1) {
                 priorityRunnable = PriorityRunnable(ExecutorsPool.Priority.HIGH,Runnable {

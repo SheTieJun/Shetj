@@ -24,6 +24,7 @@ import org.simple.eventbus.ThreadMode;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BaseMessage;
 import me.shetj.base.tools.app.ArmsUtils;
@@ -60,7 +61,6 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 		BDMapLocation.getInstance(getApplicationContext()).stop();
 		initView();
 		initData();
-		mBaiduMap = mMapView.getMap();
 		showMap();
 		setting();
 
@@ -151,7 +151,6 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 			mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
 //		mCurrentMode = MyLocationConfiguration.LocationMode.COMPASS;  //定位罗盘态
 
-
 // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
 			MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
 			mBaiduMap.setMyLocationConfiguration(config);
@@ -171,6 +170,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 		mMapView = findViewById(R.id.mapView);
 		mBtnMy = findViewById(R.id.btn_my);
 		mBtnMy.setOnClickListener(this);
+		mBaiduMap = mMapView.getMap();
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 	@Subscriber(tag = SEND_MAP, mode = ThreadMode.POST)
 	@Override
 	public void updateView(BaseMessage message) {
-		Flowable.just(message)
+		Disposable subscribe = Flowable.just(message)
 						.subscribeOn(AndroidSchedulers.mainThread())
 						.compose(bindToLifecycle())
 						.subscribe(s -> {
