@@ -24,6 +24,8 @@ class CustomActivity : AppCompatActivity() {
         }
 
         button_image.setOnClickListener { addImage() }
+        radar.start()
+        RadarImageView.start()
     }
 
     private fun addImage() {
@@ -38,7 +40,11 @@ class CustomActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onDestroy() {
+        radar.stop()
+        RadarImageView.stop()
+        super.onDestroy()
+    }
 }
 
 
