@@ -48,6 +48,15 @@
         </FrameLayout>
 
     </FrameLayout>
+
+
+    <com.shetj.diyalbume.view.CircleView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="8dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

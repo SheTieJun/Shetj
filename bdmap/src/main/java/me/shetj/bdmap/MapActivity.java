@@ -17,6 +17,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 
 import org.simple.eventbus.Subscriber;
@@ -171,6 +172,13 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 		mBtnMy = findViewById(R.id.btn_my);
 		mBtnMy.setOnClickListener(this);
 		mBaiduMap = mMapView.getMap();
+//		UiSettings settings=mBaiduMap.getUiSettings();
+//		settings.setAllGesturesEnabled(false); //关闭一切手势操作
+//		settings.setOverlookingGesturesEnabled(false);//屏蔽双指下拉时变成3D地图
+//		settings.setZoomGesturesEnabled(false);//获取是否允许缩放手势返回:是否允许缩放手势
+//		mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
+//		mMapView.showZoomControls(false);
+//		mMapView.showScaleControl(false);
 	}
 
 	@Override
@@ -211,7 +219,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 							LatLng ll = new LatLng(location.getLatitude(),
 											location.getLongitude());
 							MapStatus.Builder builder = new MapStatus.Builder();
-							builder.target(ll).zoom(18.0f);
+							builder.target(ll).zoom(13.0f);
 							mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
 							BDMapLocation.getInstance(getApplicationContext()).stop();
 
