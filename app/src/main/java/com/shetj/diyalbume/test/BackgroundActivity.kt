@@ -123,13 +123,11 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
         mPublishSubjectS = PublishSubject.create<String>()
 
         mPublishSubjectS.debounce(200,TimeUnit.MILLISECONDS)
-                .filter({ s -> s.isNotEmpty()  })
-                .switchMap({ s -> getSearchInfo(s) })
+                .filter { s -> s.isNotEmpty()  }
+                .switchMap { s -> getSearchInfo(s) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe({
-                    s -> ArmsUtils.longSnackbar(this,s)
-                })
+                .subscribe { s -> ArmsUtils.longSnackbar(this,s) }
 
         startSearch("s")
 
