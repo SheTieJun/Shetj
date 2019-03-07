@@ -32,6 +32,7 @@
         <FrameLayout
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:background="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"
             android:layout_marginTop="210dp">
             <com.shetj.diyalbume.view.RadarImageView
                 android:id="@+id/RadarImageView"
@@ -41,9 +42,8 @@
                 app:circleNum="4"
                 app:flicker="3"
                 app:speed="5"
-                android:src="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"
                 app:sweepColor="#565cd6"
-                app:showCross="true"
+                app:showCross="false"
                 app:raindropNum="4"/>
         </FrameLayout>
 
@@ -51,8 +51,8 @@
 
 
     <com.shetj.diyalbume.view.CircleView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import me.shetj.base.view.CircleImageView;
+import timber.log.Timber;
 
 public class RadarImageView extends CircleImageView {
 
@@ -200,9 +201,9 @@ public class RadarImageView extends CircleImageView {
             drawSweep(canvas, cx, cy, radius);
             //计算雷达扫描的旋转角度
             mDegrees = (mDegrees + (360 / mSpeed / 60)) % 360;
-
+            Timber.i("mDegrees = " +mDegrees);
             //触发View重新绘制，通过不断的绘制实现View的扫描动画效果
-            invalidate();
+//            invalidate();
         }
 
     }
