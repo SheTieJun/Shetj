@@ -44,8 +44,20 @@ class TranstionActivity : BaseActivity<AnimatorPresenter>() {
         initView()
         initData()
     }
+    /*
+    ChangeBounds	检测View的位置边界创建移动和缩放动画(关注布局边界的变化)
+ChangeTransform	检测View的scale和rotation创建缩放和旋转动画(关注scale和ratation的变化)
+ChangeClipBounds	检测View的剪切区域的位置边界，和ChangeBounds类似。不过ChangeBounds针对的是view而ChangeClipBounds针对的是view的剪切区域setClipBound(Rect rect) 中的rect(关注的是setClipBounds(Rect rect)rect的变化)
+ChangeImageTransform	检测ImageView的ScaleType，并创建相应动画(关注的是ImageView的scaleType)
+Fade	根据View的visibility状态的的不同创建淡入淡动画,调整的是透明度(关注的是View的visibility的状态)
+Slide	根据View的visibility状态的的不同创建滑动动画(关注的是View的visibility的状态)
+Explode	根据View的visibility状态的的不同创建分解动画(关注的是View的visibility的状态)
+AutoTransition	默认动画，ChangeBounds、Fade动画的集合
+
+     */
 
     override fun initView() {
+
         val sceneForLayout1 = Scene.getSceneForLayout(iRoot, R.layout.scen1, rxContext)
         val sceneForLayout2 = Scene.getSceneForLayout(iRoot, R.layout.scen2, rxContext)
         TransitionManager.go(sceneForLayout1)
