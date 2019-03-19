@@ -9,6 +9,12 @@ import android.graphics.Region;
 import android.util.AttributeSet;
 import android.view.View;
 
+
+/**
+ * 1.初始化 画笔
+ * 2.如果有布局限制
+ * 3.onDraw() 中在画布上进行绘制
+ */
 public class CircleView extends View {
 
     // 设置画笔变量

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.view.AlbumImageView
@@ -25,6 +26,9 @@ class CustomActivity : AppCompatActivity() {
 
         button_image.setOnClickListener { addImage() }
         radar.start()
+
+        RadarImageView.animation =  AnimationUtils.loadAnimation(this,R.anim.rotating_3000)
+
         RadarImageView.start()
     }
 
@@ -41,7 +45,7 @@ class CustomActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        radar.stop()
+//        radar.stop()
         RadarImageView.stop()
         super.onDestroy()
     }
