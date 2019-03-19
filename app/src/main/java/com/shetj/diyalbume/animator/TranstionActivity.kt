@@ -74,6 +74,7 @@ class TranstionActivity : BaseActivity<AnimatorPresenter>() {
         }
 
         RxView.clicks(btn_example)
+
                 .subscribe {
                     startActivity(Intent(rxContext, Main3Activity::class.java))
                 }
