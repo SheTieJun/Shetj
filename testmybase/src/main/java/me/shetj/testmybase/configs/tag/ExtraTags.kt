@@ -5,7 +5,7 @@ package shetj.me.base.configs.tag
  * 内容
  * @author shetj
  */
-interface ExtraTags {
+public interface ExtraTags {
     companion object {
 
         val EXTRA_EVENT_TYPE = "extra_event_type"
@@ -14,13 +14,13 @@ interface ExtraTags {
         val EXTRA_EVENT_TITLE = "extra_event_title"
         val EXTRA_EVENT_ID = "extra_event_id"
 
-
+        val WORK_DURATION_KEY = "work_duration_key"
 
         val EXTRA_IMAGE_URL = "imageUrl"
         val EXTRA_SHOW = "isShow"
         val USER_FIRST = "first_open"
 
-
+        private val MSG_COLOR_STOP = 0x010101
 
 
         val EXTRA_COUNSELING_TITLE = "extra_counseling_title"

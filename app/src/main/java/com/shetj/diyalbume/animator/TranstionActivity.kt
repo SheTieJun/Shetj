@@ -86,6 +86,7 @@ AutoTransition	默认动画，ChangeBounds、Fade动画的集合
         }
 
         RxView.clicks(btn_example)
+
                 .subscribe {
                     startActivity(Intent(rxContext, Main3Activity::class.java))
                 }
