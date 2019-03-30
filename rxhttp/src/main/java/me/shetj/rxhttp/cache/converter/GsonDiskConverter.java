@@ -23,8 +23,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import com.zhouyou.http.utils.HttpLog;
-import com.zhouyou.http.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +30,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.ConcurrentModificationException;
+
+import me.shetj.rxhttp.utils.HttpLog;
+import me.shetj.rxhttp.utils.Utils;
 
 /**
  * <p>描述：GSON-数据转换器</p>
