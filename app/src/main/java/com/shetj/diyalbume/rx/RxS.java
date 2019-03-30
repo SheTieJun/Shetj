@@ -1,6 +1,9 @@
 package com.shetj.diyalbume.rx;
 
+import com.shetj.diyalbume.test.Test;
+
 import io.reactivex.Observable;
+import me.shetj.base.tools.json.GsonKit;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.rx<br>
@@ -13,5 +16,9 @@ import io.reactivex.Observable;
 public class RxS {
 	public static Observable Login(String name,String password){
 		return new LoginObservable(name,password);
+	}
+
+	public  static Observable checkMsg(String msg){
+		return new CheckInfoObservable(msg);
 	}
 }

@@ -191,11 +191,19 @@ dependencies {
     implementation 'cn.jiguang.imui:chatinput:0.5.7'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+
+    implementation project(':router')
     kapt 'com.alibaba:arouter-compiler:1.2.1'
+
+
     implementation "com.github.SheTieJun:Base:$base_version"
+
     implementation project(':resources')
+
     implementation 'com.airbnb.android:lottie:2.5.6'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
+
     implementation project(path: ':rxFingerPrinter')
     implementation project(':transition')
     implementation project(':aspectutils')
@@ -204,9 +212,10 @@ dependencies {
     implementation project(':update')
     implementation project(':fresco')
     implementation project(':bdmap')
-    implementation project(':router')
+
     implementation project(':download')
     implementation project(':pay')
+
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
