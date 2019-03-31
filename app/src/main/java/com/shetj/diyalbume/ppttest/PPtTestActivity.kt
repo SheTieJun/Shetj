@@ -37,7 +37,7 @@ class PPtTestActivity : BaseActivity<BasePresenter<*>>() {
             EasyHttp.get("http://ppt66.com:8020/ppt_api/api/v4/push/comPush?loginName=pp667613")
                     .baseUrl("http://baidu.com")
                     .cacheMode(CacheMode.NO_CACHE)
-                    .execute<String>(object : EasyCallBack<String>(){
+                    .execute(object : EasyCallBack<String>(){
                         override fun onSuccess(o: String?) {
                             super.onSuccess(o)
                             ArmsUtils.longSnackbar(this@PPtTestActivity,o)

@@ -235,6 +235,7 @@ public final class RxCache {
      */
     private IStrategy loadStrategy(CacheMode cacheMode) {
         try {
+            //通过同一个文件下的文件获取文件的包名
             String pkName = IStrategy.class.getPackage().getName();
             return (IStrategy) Class.forName(pkName + "." + cacheMode.getClassName()).newInstance();
         } catch (Exception e) {

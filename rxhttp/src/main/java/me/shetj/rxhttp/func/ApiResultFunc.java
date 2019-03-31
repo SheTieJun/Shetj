@@ -63,7 +63,9 @@ public class ApiResultFunc<T> implements Function<ResponseBody, ApiResult<T>> {
         if (type instanceof ParameterizedType) {//自定义ApiResult
             final Class<T> cls = (Class) ((ParameterizedType) type).getRawType();
             if (ApiResult.class.isAssignableFrom(cls)) {
+                // 脱去最外层 获取泛型实例
                 final Type[] params = ((ParameterizedType) type).getActualTypeArguments();
+                // 获取泛型的class
                 final Class clazz = Utils.getClass(params[0], 0);
                 final Class rawType = Utils.getClass(type, 0);
                 try {
