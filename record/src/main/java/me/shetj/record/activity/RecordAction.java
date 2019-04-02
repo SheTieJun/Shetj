@@ -75,7 +75,6 @@ public class RecordAction {
 						.observeOn(AndroidSchedulers.mainThread())
 						.subscribe(aLong -> {
 							ChangeBounds transition = new ChangeBounds();
-							transition.setDuration(200);
 							TransitionManager.go(scene2, transition);
 						} ));
 	}
@@ -87,7 +86,6 @@ public class RecordAction {
 						.observeOn(AndroidSchedulers.mainThread())
 						.subscribe(aLong -> {
 							ChangeBounds transition = new ChangeBounds();
-							transition.setDuration(200);
 							TransitionManager.go(scene1, transition);
 						} ));
 	}

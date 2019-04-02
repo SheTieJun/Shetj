@@ -11,7 +11,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
 import me.shetj.base.tools.json.EmptyUtils;
 
 /**
@@ -37,7 +36,6 @@ public class MediaPlayerUtils implements LifecycleListener,
 	private MediaPlayer mediaPlayer;
 	private PlayerListener listener;
 	private String currentUrl = "";
-	private PublishSubject<Integer> progressSubject;
 	private Disposable timeDisposable;
 
 
@@ -155,14 +153,15 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * 开始计时
 	 */
 	private void startProgress() {
-		if (timeDisposable == null && mediaPlayer != null) {
+		if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
 			timeDisposable = Flowable.interval(0, 500, TimeUnit.MILLISECONDS)
-							.subscribeOn(Schedulers.newThread())
+							.subscribeOn(Schedulers.io())
+							.observeOn(AndroidSchedulers.mainThread())
 							.subscribe(new Consumer<Long>() {
 								@Override
 								public void accept(Long aLong) throws Exception {
 									if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-										progressSubject.onNext(mediaPlayer.getCurrentPosition());
+										listener.onProgress(mediaPlayer.getCurrentPosition(),mediaPlayer.getDuration());
 									}
 								}
 							}, new Consumer<Throwable>() {
@@ -237,15 +236,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 			if (null == listener) {
 				listener = new SimPlayerListener();
 			}
-
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			progressSubject = PublishSubject.create();
-			//设置进度控制
-			Disposable disposable = progressSubject
-							.observeOn(AndroidSchedulers.mainThread())
-							.throttleFirst(1,TimeUnit.MILLISECONDS)
-							.subscribe(aLong -> listener.onProgress(aLong, mediaPlayer.getDuration()));
-			addDispose(disposable);
 		}
 	}
 
@@ -323,7 +314,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	@Override
 	public void onSeekComplete(MediaPlayer mp) {
 		if (null != mediaPlayer) {
-			progressSubject.onNext(mediaPlayer.getCurrentPosition());
+			listener.onProgress(mp.getCurrentPosition(),mp.getDuration());
 		}
 	}
 }

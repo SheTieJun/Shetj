@@ -107,12 +107,13 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 				mTvSaveRecord.setVisibility(View.INVISIBLE);
 				mTvReRecord.setVisibility(View.INVISIBLE);
 				mTvStateMsg.setText("点击录音");
+				Util.showMPTime2(file);
+
 				if (EmptyUtils.isEmpty(oldRecord)) {
 					Record record = new Record("1", file, DateUtils1.date2Str(new Date(), FORMAT_FULL_SN), time, content);
 					RecordDbUtils.getInstance().save(record);
 					EventBus.getDefault().post(record, "update");
 				} else {
-					//TODO 进行拼接
 					String newFileUrl = Util.heBingMp3(oldRecord.getAudio_url(), file);
 					Log.i("record","newFileUrl = " +newFileUrl);
 					oldRecord.setAudio_url(newFileUrl);
