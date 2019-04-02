@@ -1,11 +1,12 @@
 package me.shetj.record.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -15,18 +16,19 @@ import org.simple.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.functions.Consumer;
+import me.shetj.base.base.BaseActivity;
 import me.shetj.base.tools.app.ArmsUtils;
-import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.record.R;
 import me.shetj.record.adapter.RecordAdapter;
 import me.shetj.record.bean.Record;
 import me.shetj.record.bean.RecordDbUtils;
 
-public class RecordListActivity extends AppCompatActivity {
+public class RecordListActivity extends BaseActivity implements View.OnClickListener {
 
 	private RecyclerView mIRecyclerView;
 	private RecordAdapter recordAdapter;
+	private ImageView mIvRecordState;
+	private RelativeLayout mRlRecordView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +38,32 @@ public class RecordListActivity extends AppCompatActivity {
 		initData();
 	}
 
-	private void initData() {
+	@Override
+	protected void initData() {
 		List<Record> allRecord = RecordDbUtils.getInstance().getAllRecord();
 		recordAdapter.setNewData(allRecord);
+		if (allRecord.size() > 0 ){
+			mRlRecordView.setVisibility(View.VISIBLE);
+		}else {
+			mRlRecordView.setVisibility(View.GONE);
+		}
 	}
 
-	private void initView() {
+	@Override
+	protected void initView() {
 		mIRecyclerView = findViewById(R.id.IRecyclerView);
+		mIvRecordState = findViewById(R.id.iv_record_state);
+		mIvRecordState.setOnClickListener(this);
+		mRlRecordView = findViewById(R.id.rl_record_view);
+
+
 		ArmsUtils.configRecycleView(mIRecyclerView, new LinearLayoutManager(this));
 		recordAdapter = new RecordAdapter(new ArrayList<>());
+		recordAdapter.openLoadAnimation();
 		mIRecyclerView.setAdapter(recordAdapter);
 		recordAdapter.setOnItemClickListener((adapter, view, position) -> {
-			ArmsUtils.makeText("position = " +position);
+			RecordActivity.start(this, recordAdapter.getItem(position));
 		});
-		recordAdapter.setHeaderAndEmpty(true);
-		recordAdapter.setOnLoadMoreListener(() ->{
-
-						},mIRecyclerView);
 		View view = LayoutInflater.from(this).inflate(R.layout.empty_view, null);
 		RxView.clicks(view.findViewById(R.id.cd_start_record))
 						.subscribe(o -> startRecord());
@@ -64,11 +75,20 @@ public class RecordListActivity extends AppCompatActivity {
 		RecordActivity.start(this);
 	}
 
-	@Subscriber(tag = "update",mode = ThreadMode.MAIN)
-	public void update(String info){
-
+	@Subscriber(tag = "update", mode = ThreadMode.MAIN)
+	public void update(Record info) {
+		initData();
 	}
 
 
-
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			default:
+				break;
+			case R.id.iv_record_state:
+				startRecord();
+				break;
+		}
+	}
 }

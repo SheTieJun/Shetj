@@ -8,8 +8,10 @@ import com.czt.mp3recorder.MP3Recorder;
 import java.io.File;
 import java.io.IOException;
 
+import kotlin.jvm.Throws;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.file.FileUtils;
+import me.shetj.base.tools.json.EmptyUtils;
 
 /**
  * Created by shetj on 2017/6/9.
@@ -20,10 +22,9 @@ import me.shetj.base.tools.file.FileUtils;
 
 
 public class RecordUtils {
-	public static final int
-					NORMAL = 1,//正常
-					RECORD_ING = 2,//正在录音
-					RECORD_PAUSE = 3;//暂停
+	public static final int   NORMAL = 1; //正常
+	public static final int		RECORD_ING = 2;//正在录音
+	public static final int		RECORD_PAUSE = 3;//暂停
 	private MP3Recorder mRecorder;
 	private String saveFile = "";
 	private int momentState = NORMAL;
@@ -32,6 +33,10 @@ public class RecordUtils {
 	 * 开始录音
 	 */
 	public void  startFullRecord(String saveFile) {
+		if (EmptyUtils.isEmpty(saveFile)){
+			ArmsUtils.makeText("文件不能为空");
+			return;
+		}
 		if (momentState == NORMAL) {
 			this.saveFile = saveFile;
 			mRecorder = new MP3Recorder(new File(saveFile));

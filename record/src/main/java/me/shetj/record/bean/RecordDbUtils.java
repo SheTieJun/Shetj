@@ -12,7 +12,7 @@ public class RecordDbUtils {
 	private static RecordDbUtils instance = null;
 
 	private RecordDbUtils() {
-		dbManager= DbUtils.getDbManager("record", 1);
+		dbManager= DbUtils.getDbManager("record", 2);
 	}
 
 	public static RecordDbUtils getInstance() {

@@ -32,10 +32,11 @@ public class CreateRecordUtils {
 	private RecordCallBack callBack;
 	private CompositeDisposable mCompositeDisposable;
 	private Disposable timeDisposable;
+	private int startTime = 0;
 	//时间记录
 	private int time = 0;
 	//最大时间
-	private int maxTime = 3599;
+	private int maxTime = 3600;
 
 
 	public CreateRecordUtils(ImageView imageView, RecordCallBack callBack){
@@ -45,13 +46,28 @@ public class CreateRecordUtils {
 		});
 	}
 
+	/**
+	 * 设置开始录制时间
+	 * @param startTime
+	 */
+	public void setTime(int startTime) {
+		this.startTime = startTime;
+		this.time = startTime;
+		if (callBack !=null){
+			callBack.onProgress(startTime);
+		}
+	}
+
+	public void setMaxTime(int maxTime) {
+		this.maxTime = maxTime;
+	}
 
 	public void statOrPause() {
 		if (recordUtils.getState() == RecordUtils.NORMAL) {
 			mRecordFile = SDCardUtils.getPath("testRecord")+"/"+ TimeUtil.getTime()+".mp3";
 			recordUtils.startFullRecord(mRecordFile);
 			if (recordUtils.getState() == RecordUtils.RECORD_ING) {
-				time = 0;
+				time = startTime;
 				callBack.start();
 				startProgress();
 			}
@@ -87,8 +103,9 @@ public class CreateRecordUtils {
 	/*                **计时相关**                      */
 
 	private void startProgress() {
-		if (recordUtils != null && recordUtils.getState() ==RecordUtils.RECORD_ING) {
-			timeDisposable = Flowable.interval(1, 1, TimeUnit.SECONDS).take(maxTime-time)
+		if (recordUtils != null && recordUtils.getState() == RecordUtils.RECORD_ING) {
+			timeDisposable = Flowable.interval(1, 1, TimeUnit.SECONDS)
+							.take(maxTime-time)
 							.observeOn(AndroidSchedulers.mainThread())
 							.subscribeOn(Schedulers.io())
 							.subscribe(aLong -> {
@@ -103,6 +120,7 @@ public class CreateRecordUtils {
 								public void accept(Throwable throwable) throws Exception {
 									//出现异常就停止
 									stopProgress();
+									callBack.onError(new Exception("计算时间错误~"));
 								}
 							});
 			addDispose(timeDisposable);

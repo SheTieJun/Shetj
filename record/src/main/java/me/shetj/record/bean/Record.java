@@ -32,16 +32,27 @@ public class Record {
 	private String audioName;
 	@Column(name = "audio_length")
 	private int audioLength;
-
+	@Column(name = "audio_content")
+	private String audioContent;
 	public Record() {
 
 	}
 
-	public Record(String user_id, String audio_url, String audioName, int audioLength) {
+	public Record(String user_id, String audio_url, String audioName, int audioLength,String content) {
 		this.user_id = user_id;
 		this.audio_url = audio_url;
 		this.audioName = audioName;
 		this.audioLength = audioLength;
+		this.audioContent = content;
+	}
+
+
+	public String getAudioContent() {
+		return audioContent;
+	}
+
+	public void setAudioContent(String audioContent) {
+		this.audioContent = audioContent;
 	}
 
 	public String getUser_id() {
