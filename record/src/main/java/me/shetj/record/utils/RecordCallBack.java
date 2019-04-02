@@ -8,8 +8,9 @@ public interface RecordCallBack {
 	/**
 	 * 录制成功
 	 * @param file
+	 * @param time
 	 */
-	void onSuccess(String file) ;
+	void onSuccess(String file, int time) ;
 
 	/**
 	 * 返回录制时间长

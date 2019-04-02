@@ -9,6 +9,7 @@ import java.util.List;
 
 import me.shetj.record.R;
 import me.shetj.record.bean.Record;
+import me.shetj.record.utils.Util;
 
 public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> {
 
@@ -18,8 +19,8 @@ public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> {
 
 	@Override
 	protected void convert(BaseViewHolder helper, Record item) {
-		helper.setText(R.id.tv_name,item.name)
-						.setText(R.id.tv_time,item.time);
+		helper.setText(R.id.tv_name,item.getAudioName())
+						.setText(R.id.tv_time, Util.formatSeconds2(item.getAudioLength()));
 
 	}
 }

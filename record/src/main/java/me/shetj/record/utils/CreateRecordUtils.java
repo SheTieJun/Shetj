@@ -25,13 +25,12 @@ import me.shetj.base.tools.time.TimeUtil;
  * <b>@describe</b><br>
  */
 
-public class CreateQuesUtils {
+public class CreateRecordUtils {
 
 	private RecordUtils recordUtils = new RecordUtils();
 	private String mRecordFile = "";
 	private RecordCallBack callBack;
 	private CompositeDisposable mCompositeDisposable;
-	private PublishSubject<Integer> progressSubject;
 	private Disposable timeDisposable;
 	//时间记录
 	private int time = 0;
@@ -39,24 +38,11 @@ public class CreateQuesUtils {
 	private int maxTime = 3599;
 
 
-	public CreateQuesUtils(ImageView imageView, RecordCallBack callBack){
+	public CreateRecordUtils(ImageView imageView, RecordCallBack callBack){
 		this.callBack = callBack;
 		imageView.setOnClickListener(v -> {
 			statOrPause();
 		});
-		progressSubject = PublishSubject.create();
-		//设置进度控制
-		Disposable disposable = progressSubject
-						.observeOn(AndroidSchedulers.mainThread())
-						.throttleFirst(1,TimeUnit.MILLISECONDS)
-						.subscribe(new Consumer<Integer>() {
-							@Override
-							public void accept(Integer integer) throws Exception {
-
-							}
-						});
-		addDispose(disposable);
-
 	}
 
 
@@ -73,12 +59,20 @@ public class CreateQuesUtils {
 			callBack.pause();
 			recordUtils.pauseFullRecord();
 			stopProgress();
+		}else if (recordUtils.getState() == RecordUtils.RECORD_PAUSE){
+			callBack.start();
+			recordUtils.onResumeFullRecord();
+			startProgress();
 		}
 	}
 
-
-	public void stopFullRecord() {
-		callBack.onSuccess(mRecordFile);
+	public void reRecord() {
+		recordUtils.stopFullRecord();
+		statOrPause();
+	}
+	public void recordComplete() {
+		stopProgress();
+		callBack.onSuccess(mRecordFile,time);
 		recordUtils.stopFullRecord();
 
 	}
@@ -93,26 +87,22 @@ public class CreateQuesUtils {
 	/*                **计时相关**                      */
 
 	private void startProgress() {
-		if (timeDisposable == null && recordUtils != null && recordUtils.getState() ==RecordUtils.RECORD_ING) {
-			timeDisposable = Flowable.interval(0, maxTime, TimeUnit.MILLISECONDS)
-							.subscribeOn(Schedulers.newThread())
+		if (recordUtils != null && recordUtils.getState() ==RecordUtils.RECORD_ING) {
+			timeDisposable = Flowable.interval(1, 1, TimeUnit.SECONDS).take(maxTime-time)
+							.observeOn(AndroidSchedulers.mainThread())
+							.subscribeOn(Schedulers.io())
 							.subscribe(aLong -> {
 								if (recordUtils != null && recordUtils.getState() == RecordUtils.RECORD_ING) {
-									progressSubject.onNext(time++);
+									callBack.onProgress(time++);
 								}
 								if (time>= maxTime){
-									progressSubject.onComplete();
+									recordComplete();
 								}
 							}, new Consumer<Throwable>() {
 								@Override
 								public void accept(Throwable throwable) throws Exception {
 									//出现异常就停止
 									stopProgress();
-								}
-							}, new Action() {
-								@Override
-								public void run() throws Exception {
-									stopFullRecord();
 								}
 							});
 			addDispose(timeDisposable);
@@ -145,6 +135,7 @@ public class CreateQuesUtils {
 			mCompositeDisposable.clear();
 		}
 	}
+
 
 
 }
