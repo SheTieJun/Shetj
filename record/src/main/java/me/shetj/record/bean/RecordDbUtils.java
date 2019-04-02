@@ -47,7 +47,7 @@ public class RecordDbUtils {
 	public  List<Record> getAllRecord(){
 		try {
 			List<Record> all = dbManager.selector(Record.class)
-							.where("user_id","=", "1")
+							.where("user_id","=", "1").orderBy("id",true)
 							.findAll();
 			if (all != null) {
 				return all;
@@ -58,4 +58,11 @@ public class RecordDbUtils {
 		return new ArrayList<>();
 	}
 
+	public void del(Record record) {
+		try {
+			dbManager.delete(record);
+		}catch (DbException e){
+			e.printStackTrace();
+		}
+	}
 }

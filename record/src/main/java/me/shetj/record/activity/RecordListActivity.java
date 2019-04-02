@@ -29,6 +29,8 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 	private RecordAdapter recordAdapter;
 	private ImageView mIvRecordState;
 	private RelativeLayout mRlRecordView;
+	private RecordAction action;
+	private int oldPosition = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,15 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 		recordAdapter.openLoadAnimation();
 		mIRecyclerView.setAdapter(recordAdapter);
 		recordAdapter.setOnItemClickListener((adapter, view, position) -> {
-			RecordActivity.start(this, recordAdapter.getItem(position));
+			Record item = recordAdapter.getItem(position);
+			if (oldPosition != position ) {
+				if (action!=null) {
+					oldPosition = position;
+					action.stopAction();
+				}
+				action = new RecordAction(view.findViewById(R.id.root), item);
+				action.startShow();
+			}
 		});
 		View view = LayoutInflater.from(this).inflate(R.layout.empty_view, null);
 		RxView.clicks(view.findViewById(R.id.cd_start_record))
@@ -71,12 +81,20 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 
 	}
 
+	private void startHasRecord(Record item) {
+		RecordActivity.start(this, item);
+	}
+
 	private void startRecord() {
 		RecordActivity.start(this);
 	}
 
 	@Subscriber(tag = "update", mode = ThreadMode.MAIN)
 	public void update(Record info) {
+		if (action !=null){
+			action.stopAction();
+		}
+		oldPosition = -1;
 		initData();
 	}
 
@@ -89,6 +107,14 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 			case R.id.iv_record_state:
 				startRecord();
 				break;
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (action != null){
+			action.unDispose();
 		}
 	}
 }
