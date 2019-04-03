@@ -120,10 +120,11 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 					Record record = new Record("1", file, DateUtils1.date2Str(new Date(), FORMAT_FULL_SN), time, content);
 					RecordDbUtils.getInstance().save(record);
 					EventBus.getDefault().post(record, "update");
+					back();
 				} else {
 					saveRecord(file);
 				}
-				back();
+
 			}
 
 			@Override
@@ -165,6 +166,7 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 								RecordDbUtils.getInstance().update(oldRecord);
 								EventBus.getDefault().post(oldRecord, "update");
 							}
+							back();
 						});
 	}
 
@@ -190,7 +192,6 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
 	@Override
 	public void back() {
-
 		super.back();
 	}
 

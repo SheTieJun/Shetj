@@ -125,11 +125,4 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 		}
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (recordAdapter !=null){
-			recordAdapter.onResume();
-		}
-	}
 }
