@@ -1,12 +1,14 @@
 package me.shetj.base.tools.app;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Keep;
 import android.support.design.widget.Snackbar;
@@ -76,7 +78,20 @@ public class  ArmsUtils {
         v.setHint(new SpannedString(ss));
     }
 
-
+    /**
+     * 得到资源文件中图片的Uri
+     * @param context 上下文对象
+     * @param id 资源id
+     * @return Uri
+     */
+    public Uri getUriFromDrawableRes(Context context, int id) {
+        Resources resources = context.getResources();
+        String path = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + resources.getResourcePackageName(id) + "/"
+                + resources.getResourceTypeName(id) + "/"
+                + resources.getResourceEntryName(id);
+        return Uri.parse(path);
+    }
 
     /**
      * 获得资源

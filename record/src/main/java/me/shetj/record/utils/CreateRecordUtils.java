@@ -99,6 +99,14 @@ public class CreateRecordUtils {
 		unDispose();
 	}
 
+	public void pause(){
+		if (recordUtils.getState() == RecordUtils.RECORD_ING) {
+			callBack.pause();
+			recordUtils.pauseFullRecord();
+			stopProgress();
+		}
+	}
+
 	/**
 	 * 是否产生了录音
 	 * @return

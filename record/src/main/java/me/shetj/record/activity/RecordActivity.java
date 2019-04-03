@@ -267,6 +267,15 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 		}
 	}
 
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (recordUtils !=null){
+			recordUtils.pause();
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

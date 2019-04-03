@@ -104,6 +104,7 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 			default:
 				break;
 			case R.id.iv_record_state:
+				recordAdapter.setPlayPosition(-1);
 				startRecord();
 				break;
 		}
