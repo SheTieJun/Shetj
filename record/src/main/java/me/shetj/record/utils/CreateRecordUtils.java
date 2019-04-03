@@ -99,12 +99,19 @@ public class CreateRecordUtils {
 		unDispose();
 	}
 
+	/**
+	 * 是否产生了录音
+	 * @return
+	 */
+	public boolean hasRecord(){
+		return time >0;
+	}
 
 	/*                **计时相关**                      */
 
 	private void startProgress() {
 		if (recordUtils != null && recordUtils.getState() == RecordUtils.RECORD_ING) {
-			timeDisposable = Flowable.interval(1, 1, TimeUnit.SECONDS)
+			timeDisposable = Flowable.interval(0, 1, TimeUnit.SECONDS)
 							.take(maxTime-time)
 							.observeOn(AndroidSchedulers.mainThread())
 							.subscribeOn(Schedulers.io())

@@ -12,6 +12,7 @@ import me.shetj.record.R;
 import me.shetj.record.bean.Record;
 import me.shetj.record.utils.LifecycleListener;
 import me.shetj.record.utils.MediaPlayerUtils;
+import me.shetj.record.utils.MpCallback;
 import me.shetj.record.utils.PlayerListener;
 import me.shetj.record.utils.SimPlayerListener;
 import me.shetj.record.utils.Util;
@@ -36,9 +37,21 @@ public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> impl
 						.setGone(R.id.rl_record_view,position == helper.getLayoutPosition())
 						.setText(R.id.tv_time_all,Util.formatSeconds2(item.getAudioLength()))
 						.setText(R.id.tv_read_time,Util.formatSeconds2(0))
-						.setText(R.id.tv_time, "时长："+Util.formatSeconds2(item.getAudioLength()))
-						.setProgress(R.id.progressBar_record,0,item.getAudioLength());
-		Util.showMPTime2(item.getAudio_url());
+		        .setText(R.id.tv_time, "时长："+Util.formatSeconds2(item.getAudioLength()))
+						.setProgress(R.id.progressBar_record,0,item.getAudioLength())
+						.addOnClickListener(R.id.iv_more)
+						.addOnClickListener(R.id.iv_upload);
+		Util.showMPTime2(item.getAudio_url(), new MpCallback() {
+			@Override
+			public void onSuccess(int time) {
+
+			}
+
+			@Override
+			public void onError(Exception e) {
+
+			}
+		});
 
 		helper.getView(R.id.iv_play).setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -65,7 +78,8 @@ public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> impl
 					@Override
 					public void onStop() {
 						super.onStop();
-						helper.setProgress(R.id.progressBar_record,0);
+						helper.setProgress(R.id.progressBar_record,0)
+										.setText(R.id.tv_read_time,Util.formatSeconds2(0));
 						helper.setImageResource(R.id.iv_play,R.mipmap.icon_record_start);
 					}
 
@@ -78,7 +92,8 @@ public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> impl
 					@Override
 					public void onProgress(int current, int size) {
 						super.onProgress(current, size);
-						helper.setProgress(R.id.progressBar_record,current,size);
+						helper.setProgress(R.id.progressBar_record,current,size)
+										.setText(R.id.tv_read_time,Util.formatSeconds2(current/1000));
 					}
 				});
 			}

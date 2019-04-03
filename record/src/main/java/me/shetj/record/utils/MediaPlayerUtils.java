@@ -154,7 +154,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 */
 	private void startProgress() {
 		if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
-			timeDisposable = Flowable.interval(0, 500, TimeUnit.MILLISECONDS)
+			timeDisposable = Flowable.interval(0, 50, TimeUnit.MILLISECONDS)
 							.subscribeOn(Schedulers.io())
 							.observeOn(AndroidSchedulers.mainThread())
 							.subscribe(new Consumer<Long>() {

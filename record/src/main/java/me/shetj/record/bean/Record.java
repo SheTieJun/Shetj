@@ -34,6 +34,7 @@ public class Record {
 	private int audioLength;
 	@Column(name = "audio_content")
 	private String audioContent;
+
 	public Record() {
 
 	}

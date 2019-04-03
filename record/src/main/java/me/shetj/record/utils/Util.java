@@ -181,7 +181,7 @@ public class Util {
 
 
 
-    public static void showMPTime2( String mRecordFile) {
+    public static void showMPTime2( String mRecordFile,MpCallback callback) {
         MediaPlayer	mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         if (!TextUtils.isEmpty(mRecordFile)) {
@@ -190,7 +190,7 @@ public class Util {
                 mediaPlayer.setDataSource(mRecordFile);
                 mediaPlayer.prepareAsync();
                 mediaPlayer.setOnPreparedListener(mp ->{
-                   Log.i("record","时间长度"+mp.getDuration());
+                    callback.onSuccess(mp.getDuration()/1000);
                     mp.release();
                     mp = null;
                 });
@@ -199,6 +199,7 @@ public class Util {
                     return true;
                 });
             } catch (IllegalArgumentException | IllegalStateException | IOException e) {
+                callback.onError(e);
                 e.printStackTrace();
             }
         }

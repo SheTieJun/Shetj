@@ -39,6 +39,9 @@ public class EasyBottomSheetDialog implements View.OnClickListener {
 		rootView.findViewById(R.id.tv_edit_name).setOnClickListener(this);
 		rootView.findViewById(R.id.tv_del).setOnClickListener(this);
 		rootView.findViewById(R.id.tv_cancel).setOnClickListener(this);
+
+		//对于时间已经大于60 分钟的 不显示继续录制
+		rootView.findViewById(R.id.tv_record).setVisibility(record.getAudioLength() > 3599 ? View.GONE:View.VISIBLE);
 		return bottomSheetDialog;
 	}
 

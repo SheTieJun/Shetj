@@ -22,6 +22,7 @@ import me.shetj.record.R;
 import me.shetj.record.adapter.RecordAdapter;
 import me.shetj.record.bean.Record;
 import me.shetj.record.bean.RecordDbUtils;
+import me.shetj.record.view.EasyBottomSheetDialog;
 
 public class RecordListActivity extends BaseActivity implements View.OnClickListener {
 
@@ -29,7 +30,6 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 	private RecordAdapter recordAdapter;
 	private ImageView mIvRecordState;
 	private RelativeLayout mRlRecordView;
-	private RecordAction action;
 
 
 	@Override
@@ -64,7 +64,17 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 		recordAdapter.openLoadAnimation();
 		mIRecyclerView.setAdapter(recordAdapter);
 		recordAdapter.setOnItemClickListener((adapter, view, position) -> {
-				recordAdapter.setPlayPosition(position);
+			recordAdapter.setPlayPosition(position);
+		});
+		recordAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+			switch (view.getId()){
+				case R.id.iv_more:
+					EasyBottomSheetDialog dialog = new EasyBottomSheetDialog(this,recordAdapter.getItem(position));
+					dialog.showBottomSheet();
+					break;
+				default:
+					break;
+			}
 		});
 		View view = LayoutInflater.from(this).inflate(R.layout.empty_view, null);
 		RxView.clicks(view.findViewById(R.id.cd_start_record))
@@ -83,9 +93,6 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 
 	@Subscriber(tag = "update", mode = ThreadMode.MAIN)
 	public void update(Record info) {
-		if (action !=null){
-			action.stopAction();
-		}
 		initData();
 	}
 
@@ -107,9 +114,6 @@ public class RecordListActivity extends BaseActivity implements View.OnClickList
 		super.onDestroy();
 		if (recordAdapter !=null){
 			recordAdapter.onDestroy();
-		}
-		if (action != null){
-			action.unDispose();
 		}
 	}
 

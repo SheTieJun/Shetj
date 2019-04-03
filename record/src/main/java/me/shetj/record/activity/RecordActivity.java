@@ -17,12 +17,20 @@ import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import org.reactivestreams.Publisher;
 import org.simple.eventbus.EventBus;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.app.HideUtil;
@@ -33,6 +41,7 @@ import me.shetj.record.R;
 import me.shetj.record.bean.Record;
 import me.shetj.record.bean.RecordDbUtils;
 import me.shetj.record.utils.CreateRecordUtils;
+import me.shetj.record.utils.MpCallback;
 import me.shetj.record.utils.RecordCallBack;
 import me.shetj.record.utils.Util;
 
@@ -107,17 +116,12 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 				mTvSaveRecord.setVisibility(View.INVISIBLE);
 				mTvReRecord.setVisibility(View.INVISIBLE);
 				mTvStateMsg.setText("点击录音");
-				Util.showMPTime2(file);
-
 				if (EmptyUtils.isEmpty(oldRecord)) {
 					Record record = new Record("1", file, DateUtils1.date2Str(new Date(), FORMAT_FULL_SN), time, content);
 					RecordDbUtils.getInstance().save(record);
 					EventBus.getDefault().post(record, "update");
 				} else {
-					String newFileUrl = Util.heBingMp3(oldRecord.getAudio_url(), file);
-					Log.i("record","newFileUrl = " +newFileUrl);
-					oldRecord.setAudio_url(newFileUrl);
-					oldRecord.setAudioLength(time);
+					saveRecord(file);
 				}
 				back();
 			}
@@ -149,12 +153,44 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 		recordUtils.setMaxTime(1800);
 	}
 
+	private void saveRecord(String file) {
+		Flowable.just(file)
+						.subscribeOn(Schedulers.io())
+						.map(s -> getMergeFile(file))
+						.flatMap(s -> getTimeFlowable(s))
+						.observeOn(Schedulers.io())
+						.subscribe(o -> {
+							oldRecord.setAudioLength(o);
+							if (EmptyUtils.isNotEmpty(oldRecord) && isHasChange) {
+								RecordDbUtils.getInstance().update(oldRecord);
+								EventBus.getDefault().post(oldRecord, "update");
+							}
+						});
+	}
+
+	private String getMergeFile(String file) {
+		String newFileUrl = Util.heBingMp3(oldRecord.getAudio_url(), file);
+		oldRecord.setAudio_url(newFileUrl);
+		return  newFileUrl;
+	}
+
+	private Flowable<Integer> getTimeFlowable(String s) {
+		return Flowable.create(emitter -> Util.showMPTime2(s, new MpCallback() {
+			@Override
+			public void onSuccess(int time) {
+				emitter.onNext(time);
+			}
+
+			@Override
+			public void onError(Exception e) {
+					emitter.onError(e);
+			}
+		}), BackpressureStrategy.BUFFER);
+	}
+
 	@Override
 	public void back() {
-		if (EmptyUtils.isNotEmpty(oldRecord) && isHasChange) {
-			RecordDbUtils.getInstance().update(oldRecord);
-			EventBus.getDefault().post(oldRecord, "update");
-		}
+
 		super.back();
 	}
 
@@ -175,26 +211,24 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
 		RxTextView.afterTextChangeEvents(mEditInfo)
 						.throttleFirst(500, TimeUnit.MILLISECONDS)
-						.subscribe(new Consumer<TextViewAfterTextChangeEvent>() {
-							@Override
-							public void accept(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
-								content = textViewAfterTextChangeEvent.editable().toString();
-								if (EmptyUtils.isNotEmpty(oldRecord)) {
-									oldRecord.setAudioContent(content);
-								}
+						.subscribe(textViewAfterTextChangeEvent -> {
+							content = textViewAfterTextChangeEvent.editable().toString();
+							if (EmptyUtils.isNotEmpty(oldRecord)) {
+								oldRecord.setAudioContent(content);
 							}
 						});
 
-		RxView.focusChanges(mEditInfo).subscribe(new Consumer<Boolean>() {
-			@Override
-			public void accept(Boolean aBoolean) {
-				if (aBoolean) {
-					mRlRecordView.setVisibility(View.GONE);
-				} else {
-					mRlRecordView.setVisibility(View.VISIBLE);
-				}
-			}
-		});
+//		RxView.focusChanges(mEditInfo).subscribe(new Consumer<Boolean>() {
+//			@Override
+//			public void accept(Boolean aBoolean) {
+//				if (aBoolean) {
+//					mRlRecordView.setVisibility(View.GONE);
+//				} else {
+//					mRlRecordView.setVisibility(View.VISIBLE);
+//				}
+//			}
+//		});
+
 
 	}
 
