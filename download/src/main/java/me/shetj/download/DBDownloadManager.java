@@ -3,9 +3,9 @@ package me.shetj.download;
 
 import java.io.File;
 
-import me.shetj.simxutils.xutils.DbManager;
-import me.shetj.simxutils.xutils.DbUtils;
-import me.shetj.simxutils.xutils.ex.DbException;
+import me.shetj.simxutils.DbManager;
+import me.shetj.simxutils.DbUtils;
+import me.shetj.simxutils.ex.DbException;
 
 /**
  * 数据库控制的下载

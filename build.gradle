@@ -37,7 +37,10 @@ allprojects {
         maven {
             url "http://maven.aliyun.com/nexus/content/repositories/releases"
         }
-
+        //腾讯SDK
+        maven {
+            url "https://dl.bintray.com/tencentqcloudterminal/maven"
+        }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
 }

@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 <slide android:slideEdge="top">
     <targets >
-        <target  android:targetId="@id/image_bg"></target>
-        <target  android:targetId="@id/fab"></target>
+        <target android:targetId="@id/image_bg"/>
+        <target android:targetId="@id/fab"/>
 
     </targets>
 </slide>

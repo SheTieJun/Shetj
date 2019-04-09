@@ -13,7 +13,7 @@ public interface UploadFileCallBack<T> {
 	 * @param size 已经上传了几个
 	 * @param allSize 一共要上传的数量
 	 */
-	void progress(int size, int allSize);
+	void progress(long size, long allSize);
 
 	/**
 	 * 上传成功

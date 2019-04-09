@@ -32,5 +32,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api 'com.aliyun.dpa:oss-android-sdk:2.9.0'
     api 'com.qiniu:qiniu-android-sdk:7.3.11'//7牛
+    // 增加这行
+    api ('com.tencent.qcloud:cosxml-lite:5.4.21'){ //腾讯云
+        exclude group:'com.tencent.qcloud', module: 'mtaUtils' //关闭mta上报功能
+    }
+    api 'com.tencent.cos:cos:4.3.2+@aar'
     implementation "com.github.SheTieJun:Base:$base_version"
 }

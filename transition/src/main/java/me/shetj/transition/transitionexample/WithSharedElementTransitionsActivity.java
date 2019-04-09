@@ -36,7 +36,8 @@ public class WithSharedElementTransitionsActivity extends AppCompatActivity {
     }
 
     private Transition initSharedElementEnterTransition() {
-        final Transition sharedTransition=TransitionInflater.from(this).inflateTransition(R.transition.changebounds_with_arcmotion);
+        final Transition sharedTransition=
+                TransitionInflater.from(this).inflateTransition(R.transition.changebounds_with_arcmotion);
         sharedTransition.addListener(new Transition.TransitionListener() {
             @Override
             public void onTransitionStart(Transition transition) {
@@ -71,7 +72,8 @@ public class WithSharedElementTransitionsActivity extends AppCompatActivity {
     }
 
     private Transition initContentEnterTransition() {
-        Transition transition= TransitionInflater.from(this).inflateTransition(R.transition.slide_and_fade);
+        Transition transition =
+                TransitionInflater.from(this).inflateTransition(R.transition.slide_and_fade);
         transition.addListener(new Transition.TransitionListener() {
             @Override
             public void onTransitionStart(Transition transition) {
