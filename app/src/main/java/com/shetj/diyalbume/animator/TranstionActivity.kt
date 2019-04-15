@@ -99,7 +99,7 @@ AutoTransition	默认动画，ChangeBounds、Fade动画的集合
     protected fun initScene(@IdRes rootView: Int, @LayoutRes scene1_layout: Int, @LayoutRes scene2_layout: Int) {
         val sceneRoot = findViewById<View>(rootView) as ViewGroup
         val scene1 = Scene.getSceneForLayout(sceneRoot, scene1_layout, this)
-//        val scene2 = Scene.getSceneForLayout(sceneRoot, scene2_layout, this)
+        val scene2 = Scene.getSceneForLayout(sceneRoot, scene2_layout, this)
         TransitionManager.go(scene1)
     }
 }

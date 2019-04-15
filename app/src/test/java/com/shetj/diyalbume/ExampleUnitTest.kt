@@ -41,4 +41,9 @@ class ExampleUnitTest {
 
         return 0.0
     }
+
+    @Test
+    fun  testString(){
+        System.out.print("退款将收取【%s】1%%的手续费")
+    }
 }
