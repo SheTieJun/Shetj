@@ -1,5 +1,7 @@
 package com.shetj.diyalbume;
 
+import android.util.Base64;
+
 /**
  * <b>@packageName：</b> com.shetj.diyalbume<br>
  * <b>@author：</b> shetj<br>
@@ -39,9 +41,15 @@ public class Test {
 //		return getNext(l1,l2,0);
 	}
 
-	public int lengthOfLongestSubstring(String s) {
+	@org.junit.Test
+	public void lengthOfLongestSubstring(String s) {
 
-		return 0;
+
+String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQWNjb3VudFRva2VuIiwiaWQiOjI1NTY2LCJuaWNrbmFtZSI6IuWNiuWym-iNvOmdoSIsInNleCI6IjIiLCJzdGF0dXMiOiJub3JtYWwiLCJzdWJzY3JpYmVkIjowLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU1NTU4MzgyNywiZXhwIjoxNTU1NjA1NDI3fQ.GByicj67OaLbwB6vrXbhCmeojvc5odkE44HsILWvkEM";
+
+		String[] split = token.split("\\.");
+		String info = new String(Base64.decode(split[1].getBytes(), Base64.URL_SAFE));
+		System.out.print(info);
 	}
 
 }
