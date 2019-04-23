@@ -1,4 +1,4 @@
-package me.shetj.download;
+package me.shetj.download.base;
 
 /**
  * Created by wyouflf on 15/11/10.

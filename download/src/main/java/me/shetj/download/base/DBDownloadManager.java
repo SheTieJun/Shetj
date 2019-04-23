@@ -1,4 +1,4 @@
-package me.shetj.download;
+package me.shetj.download.base;
 
 
 import java.io.File;

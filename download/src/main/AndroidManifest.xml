@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="me.shetj.download">
 
@@ -9,9 +10,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application android:allowBackup="true">
+        <activity android:name=".view.DownloadActivity">
+        </activity>
 
-        <service android:name=".DownloadService"
-                 android:enabled="true"/>
+        <service
+            android:name=".base.DownloadService"
+            android:enabled="true"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.FileProvider"

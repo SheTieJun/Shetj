@@ -1,5 +1,7 @@
-package me.shetj.download;
+package me.shetj.download.base;
 
+
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import me.shetj.simxutils.db.annotation.Column;
 import me.shetj.simxutils.db.annotation.Table;
@@ -10,19 +12,23 @@ import me.shetj.simxutils.db.annotation.Table;
  * Time: 下午8:11
  */
 @Table(name = "download", onCreated = "CREATE UNIQUE INDEX index_name ON download(label,fileSavePath)")
-public class DownloadInfo {
+public class DownloadInfo implements MultiItemEntity {
 
     public DownloadInfo() {
     }
 
     @Column(name = "id", isId = true)
-    private long id;
+    private int id;
 
     @Column(name = "state")
     private DownloadState state = DownloadState.STOPPED;
 
     @Column(name = "url")
     private String url;
+
+
+    @Column(name = "downloadUrl")
+    private String downloadUrl;
 
     @Column(name = "label")
     private String label;
@@ -54,11 +60,11 @@ public class DownloadInfo {
         this.queryKey = queryKey;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -126,6 +132,14 @@ public class DownloadInfo {
         this.autoRename = autoRename;
     }
 
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,8 +152,15 @@ public class DownloadInfo {
         return true;
     }
 
+
+
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
+    }
+
+    @Override
+    public int getItemType() {
+        return 0;
     }
 }
