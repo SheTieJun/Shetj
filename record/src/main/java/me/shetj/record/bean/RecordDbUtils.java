@@ -3,9 +3,10 @@ package me.shetj.record.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.shetj.simxutils.xutils.DbManager;
-import me.shetj.simxutils.xutils.DbUtils;
-import me.shetj.simxutils.xutils.ex.DbException;
+import me.shetj.simxutils.DbManager;
+import me.shetj.simxutils.DbUtils;
+import me.shetj.simxutils.ex.DbException;
+
 
 public class RecordDbUtils {
 	private DbManager dbManager ;

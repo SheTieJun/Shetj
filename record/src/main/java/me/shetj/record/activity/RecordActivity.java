@@ -1,9 +1,12 @@
 package me.shetj.record.activity;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -38,6 +41,7 @@ import me.shetj.base.tools.json.EmptyUtils;
 import me.shetj.base.tools.json.GsonKit;
 import me.shetj.base.tools.time.DateUtils1;
 import me.shetj.record.R;
+import me.shetj.record.RecordService;
 import me.shetj.record.bean.Record;
 import me.shetj.record.bean.RecordDbUtils;
 import me.shetj.record.utils.CreateRecordUtils;
@@ -55,13 +59,16 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 	private TextView mTvReRecord;
 	private TextView mTvSaveRecord;
 	private ImageView mIvRecordState;
-	private CreateRecordUtils recordUtils;
+//	private CreateRecordUtils recordUtils;
 	private TextView mTvStateMsg;
 	private String content;
 	private Record oldRecord;
 	private RelativeLayout mRlRecordView;
 	private boolean isHasChange = false;
-
+	private RecordService myService;
+	private boolean bindService;
+	private RecordCallBack recordCallBack;
+	private RecordService.Work work;
 	public static void start(Context context) {
 		context.startActivity(new Intent(context, RecordActivity.class));
 	}
@@ -93,7 +100,26 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
 	@Override
 	protected void initData() {
-		recordUtils = new CreateRecordUtils(mIvRecordState, new RecordCallBack() {
+//		recordUtils = new CreateRecordUtils();
+		bindService();
+		String recordInfo = getIntent().getStringExtra("oldRecord");
+		if (EmptyUtils.isNotEmpty(recordInfo)) {
+			oldRecord = GsonKit.jsonToBean(recordInfo, Record.class);
+			mEditInfo.setText(oldRecord.getAudioContent());
+		}
+
+
+
+		mIvRecordState.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (work!=null) {
+					work.startWork(oldRecord);
+				}
+			}
+		});
+
+		 recordCallBack = new RecordCallBack() {
 			@Override
 			public void start() {
 				isHasChange = true;
@@ -142,17 +168,39 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 			public void onError(Exception e) {
 
 			}
-		});
+		};
+	}
 
-		String recordInfo = getIntent().getStringExtra("oldRecord");
-		if (EmptyUtils.isNotEmpty(recordInfo)) {
-			oldRecord = GsonKit.jsonToBean(recordInfo, Record.class);
-			recordUtils.setTime(oldRecord.getAudioLength());
-			mEditInfo.setText(oldRecord.getAudioContent());
+
+	//绑定service
+	private void bindService() {
+		Intent intent = new Intent(this, RecordService.class);
+		startService(intent);
+		bindService = bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+	}
+
+	private ServiceConnection serviceConnection = new ServiceConnection() {
+
+
+
+
+		@Override
+		public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+			//获取绑定binder 强制转化为MyService.Work
+			work = (RecordService.Work) iBinder;
+			myService = work.getMyService();
+			myService.registerCallBack(recordCallBack);
 		}
 
-		recordUtils.setMaxTime(1800);
-	}
+		@Override
+		public void onServiceDisconnected(ComponentName componentName) {
+			if (myService != null) {
+				myService.unRegisterCallBack(recordCallBack);
+			}
+		}
+	};
+
+
 
 	private void saveRecord(String file) {
 		Flowable.just(file)
@@ -219,16 +267,6 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 							}
 						});
 
-//		RxView.focusChanges(mEditInfo).subscribe(new Consumer<Boolean>() {
-//			@Override
-//			public void accept(Boolean aBoolean) {
-//				if (aBoolean) {
-//					mRlRecordView.setVisibility(View.GONE);
-//				} else {
-//					mRlRecordView.setVisibility(View.VISIBLE);
-//				}
-//			}
-//		});
 
 
 	}
@@ -256,13 +294,19 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 			default:
 				break;
 			case R.id.tv_reRecord:
-				recordUtils.reRecord();
+				if (work!=null) {
+					work.reRecord(oldRecord);
+				}
 				break;
 			case R.id.tv_save_record:
-				recordUtils.recordComplete();
+				if (work!=null) {
+					work.recordComplete( );
+				}
 				break;
 			case R.id.iv_record_state:
-				recordUtils.statOrPause();
+				if (work!=null) {
+					work.startWork(oldRecord);
+				}
 				break;
 		}
 	}
@@ -271,14 +315,18 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (recordUtils !=null){
-			recordUtils.pause();
-		}
+
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		recordUtils.clear();
+		unBindService();
+	}
+
+	public void unBindService() {
+		if (bindService && serviceConnection != null) {
+			unbindService(serviceConnection);
+		}
 	}
 }

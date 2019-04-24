@@ -1,18 +1,13 @@
 package me.shetj.record.utils;
 
-import android.widget.ImageView;
-
-
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
 import me.shetj.base.tools.file.SDCardUtils;
 import me.shetj.base.tools.time.TimeUtil;
 
@@ -39,11 +34,8 @@ public class CreateRecordUtils {
 	private int maxTime = 3600;
 
 
-	public CreateRecordUtils(ImageView imageView, RecordCallBack callBack){
+	public CreateRecordUtils(RecordCallBack callBack){
 		this.callBack = callBack;
-		imageView.setOnClickListener(v -> {
-			statOrPause();
-		});
 	}
 
 	/**

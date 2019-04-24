@@ -1,8 +1,8 @@
 package me.shetj.record.bean;
 
 
-import me.shetj.simxutils.xutils.db.annotation.Column;
-import me.shetj.simxutils.xutils.db.annotation.Table;
+import me.shetj.simxutils.db.annotation.Column;
+import me.shetj.simxutils.db.annotation.Table;
 
 /**
  * 类名称：Record<br>
