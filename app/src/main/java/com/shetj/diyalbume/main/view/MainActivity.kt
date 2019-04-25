@@ -44,6 +44,7 @@ import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.ohter.OtherActivity
+import me.shetj.download.view.DownloadActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -201,6 +202,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         RxView.clicks(btn_test_qmui).subscribe{
             ArmsUtils.startActivity(this,OtherActivity::class.java)
+        }
+        RxView.clicks(btn_download).subscribe {
+            ArmsUtils.startActivity(this, DownloadActivity::class.java)
         }
     }
 

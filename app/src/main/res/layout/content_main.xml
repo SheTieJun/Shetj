@@ -109,6 +109,16 @@
         app:layout_constraintStart_toEndOf="@+id/btn_account"
         app:layout_constraintTop_toBottomOf="@+id/btn_Service_1"/>
     <Button
+        android:id="@+id/btn_download"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="download"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ppt"/>
+    <Button
         android:id="@+id/btn_local_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

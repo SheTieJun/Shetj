@@ -9,6 +9,9 @@ import com.liulishuo.filedownloader.FileDownloadConnectListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import org.simple.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -16,6 +19,8 @@ import java.util.List;
 import me.shetj.download.adapter.TaskItemViewHolder;
 
 public   class TasksManager {
+
+
   private final static class HolderClass {
     private final static TasksManager INSTANCE
             = new  TasksManager();
@@ -48,17 +53,18 @@ public   class TasksManager {
     if (task == null) {
       return;
     }
-
     task.setTag(holder);
   }
 
   public void releaseTask() {
     taskSparseArray.clear();
   }
-
+  public List<DownloadInfo> getAllTask() {
+    return modelList;
+  }
   private FileDownloadConnectListener listener;
 
-  private void registerServiceConnectionListener(final WeakReference<Activity>
+  private void registerServiceConnectionListener(final WeakReference<RxAppCompatActivity>
                                                          activityWeakReference) {
     if (listener != null) {
       FileDownloader.getImpl().removeServiceConnectListener(listener);
@@ -73,7 +79,7 @@ public   class TasksManager {
           return;
         }
         //刷新
-//                    activityWeakReference.get().postNotifyDataChanged();
+        EventBus.getDefault().post("refresh","refresh");
       }
 
       @Override
@@ -83,7 +89,7 @@ public   class TasksManager {
           return;
         }
         //刷新
-//                    activityWeakReference.get().postNotifyDataChanged();
+        EventBus.getDefault().post("refresh","refresh");
       }
     };
 
@@ -95,8 +101,8 @@ public   class TasksManager {
     listener = null;
   }
 
-  public void onCreate(final WeakReference<Activity> activityWeakReference) {
-    if (!FileDownloader.getImpl().isServiceConnected()) {
+  public void onCreate(final WeakReference<RxAppCompatActivity> activityWeakReference) {
+    if (!isReady()) {
       FileDownloader.getImpl().bindService();
       registerServiceConnectionListener(activityWeakReference);
     }

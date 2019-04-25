@@ -2,6 +2,7 @@ package me.shetj.download.base;
 
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.liulishuo.filedownloader.model.FileDownloadStatus;
 
 import me.shetj.simxutils.db.annotation.Column;
 import me.shetj.simxutils.db.annotation.Table;
@@ -21,14 +22,18 @@ public class DownloadInfo implements MultiItemEntity {
     private int id;
 
     @Column(name = "state")
-    private DownloadState state = DownloadState.STOPPED;
+    private int state = FileDownloadStatus.paused;
 
     @Column(name = "url")
     private String url;
 
-
     @Column(name = "downloadUrl")
     private String downloadUrl;
+
+
+    @Column(name = "downloadId")
+    private int downloadId;
+
 
     @Column(name = "label")
     private String label;
@@ -36,43 +41,19 @@ public class DownloadInfo implements MultiItemEntity {
     @Column(name = "fileSavePath")
     private String fileSavePath;
 
-    @Column(name = "progress")
-    private int progress;
-
-    @Column(name = "fileLength")
-    private long fileLength;
-
-    @Column(name = "autoResume")
-    private boolean autoResume;
-
-    @Column(name = "autoRename")
-    private boolean autoRename;
-
-    @Column(name = "queryKey")
-    private String queryKey;
-
-
-    public String getQueryKey() {
-        return queryKey;
+    public int getDownloadId() {
+        return downloadId;
     }
 
-    public void setQueryKey(String queryKey) {
-        this.queryKey = queryKey;
+    public void setDownloadId(int downloadId) {
+        this.downloadId = downloadId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public DownloadState getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(DownloadState state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -92,6 +73,15 @@ public class DownloadInfo implements MultiItemEntity {
         this.label = label;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     public String getFileSavePath() {
         return fileSavePath;
     }
@@ -100,37 +90,6 @@ public class DownloadInfo implements MultiItemEntity {
         this.fileSavePath = fileSavePath;
     }
 
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int progress) {
-        this.progress = progress;
-    }
-
-    public long getFileLength() {
-        return fileLength;
-    }
-
-    public void setFileLength(long fileLength) {
-        this.fileLength = fileLength;
-    }
-
-    public boolean isAutoResume() {
-        return autoResume;
-    }
-
-    public void setAutoResume(boolean autoResume) {
-        this.autoResume = autoResume;
-    }
-
-    public boolean isAutoRename() {
-        return autoRename;
-    }
-
-    public void setAutoRename(boolean autoRename) {
-        this.autoRename = autoRename;
-    }
 
     public String getDownloadUrl() {
         return downloadUrl;
@@ -147,7 +106,7 @@ public class DownloadInfo implements MultiItemEntity {
 
         DownloadInfo that = (DownloadInfo) o;
 
-        if (!queryKey.equals(that.queryKey)) return false;
+        if (!downloadUrl.equals(that.downloadUrl)) return false;
 
         return true;
     }

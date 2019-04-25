@@ -33,5 +33,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "com.github.SheTieJun:Base:$base_version"
     implementation project(':simxutils')
-    implementation 'com.liulishuo.filedownloader:library:1.7.3'
+    api 'com.liulishuo.filedownloader:library:1.7.3'
 }

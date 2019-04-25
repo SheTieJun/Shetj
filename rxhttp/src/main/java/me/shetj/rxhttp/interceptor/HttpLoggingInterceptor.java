@@ -44,6 +44,7 @@ import okio.Buffer;
  */
 public class HttpLoggingInterceptor implements Interceptor {
 
+
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
     private volatile Level level = Level.NONE;
@@ -55,7 +56,7 @@ public class HttpLoggingInterceptor implements Interceptor {
         NONE,       //不打印log
         BASIC,      //只打印 请求首行 和 响应首行
         HEADERS,    //打印请求和响应的所有 Header
-        BODY,        //body
+        BODY        //所有数据全部打印
     }
 
     public void log(String message) {
@@ -104,6 +105,8 @@ public class HttpLoggingInterceptor implements Interceptor {
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
 
+        //Logc.e(tag, "+++++++++++++++++++++++++++end+++++++++++耗时:" + tookMs + "毫秒");
+
         //响应日志拦截
         return logForResponse(response, tookMs);
     }
@@ -125,6 +128,7 @@ public class HttpLoggingInterceptor implements Interceptor {
                 for (int i = 0, count = headers.size(); i < count; i++) {
                     log("\t" + headers.name(i) + ": " + headers.value(i));
                 }
+
                 //log(" ");
                 if (logBody && hasRequestBody) {
                     if (isPlaintext(requestBody.contentType())) {
@@ -134,7 +138,6 @@ public class HttpLoggingInterceptor implements Interceptor {
                     }
                 }
             }
-
         } catch (Exception e) {
             e(e);
         } finally {
@@ -153,12 +156,12 @@ public class HttpLoggingInterceptor implements Interceptor {
         try {
             log("<-- " + clone.code() + ' ' + clone.message() + ' ' +URLDecoder.decode(clone.request().url().url().toString(),UTF8.name()) + " (" + tookMs + "ms）");
             if (logHeaders) {
-//                log(" ");
-//                Headers headers = clone.headers();
-//                for (int i = 0, count = headers.size(); i < count; i++) {
-//                    log("\t" + headers.name(i) + ": " + headers.value(i));
-//                }
-//                log(" ");
+                log(" ");
+                Headers headers = clone.headers();
+                for (int i = 0, count = headers.size(); i < count; i++) {
+                    log("\t" + headers.name(i) + ": " + headers.value(i));
+                }
+                log(" ");
                 if (logBody && HttpHeaders.hasBody(clone)) {
                     if (isPlaintext(responseBody.contentType())) {
                         String body = responseBody.string();
@@ -210,13 +213,26 @@ public class HttpLoggingInterceptor implements Interceptor {
             if (contentType != null) {
                 charset = contentType.charset(UTF8);
             }
-            log("\tbody:" + URLDecoder.decode(buffer.readString(charset),UTF8.name()));
+            String result = buffer.readString(charset);
+            log("\tbody:" + URLDecoder.decode(replacer(result),UTF8.name()));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void e(Throwable t) {
+    private String replacer(String content) {
+        String data = content;
+        try {
+            data = data.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
+            data = data.replaceAll("\\+", "%2B");
+            data = URLDecoder.decode(data, "utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public void e(java.lang.Throwable t) {
         if (isLogEnable) t.printStackTrace();
     }
 }
