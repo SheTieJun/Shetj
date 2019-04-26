@@ -11,21 +11,17 @@ import me.shetj.download.base.TasksManager;
 
 public  class TaskItemViewHolder extends BaseViewHolder {
 
-
-  /**
-   * viewHolder position
-   */
   public int position;
-  /**
-   * download id
-   */
   public int id;
-  public  DownloadInfo downloadInfo;
+  public DownloadInfo downloadInfo;
 
   public TaskItemViewHolder(View view) {
     super(view);
   }
 
+  /**
+   * 设置一些数据方便操作
+   */
   public void update(final int id, final int position, DownloadInfo downloadInfo) {
     this.id = id;
     this.downloadInfo = downloadInfo;
@@ -33,6 +29,9 @@ public  class TaskItemViewHolder extends BaseViewHolder {
   }
 
 
+  /**
+   * 下载完成后展示
+   */
   public void updateDownloaded() {
     setMax(R.id.task_pb,1);
     setProgress(R.id.task_pb,1);
@@ -40,6 +39,9 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     setText(R.id.task_action_btn,"删除");
   }
 
+  /**
+   * 有下载数据，但是不完整
+   */
   public void updateNotDownloaded(final int status, final long sofar, final long total) {
     if (sofar > 0 && total > 0) {
       final float percent = sofar
@@ -69,6 +71,9 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     setText(R.id.task_action_btn,R.string.start);
   }
 
+  /**
+   * 下载中，有数据变化
+   */
   public void updateDownloading(final int status, final long sofar, final long total,final int speed) {
     final float percent = sofar
             / (float) total;
@@ -88,9 +93,6 @@ public  class TaskItemViewHolder extends BaseViewHolder {
         break;
       case FileDownloadStatus.progress:
         setText(R.id.task_status_tv, String.format("状态: 正在下载 %s %%", String.valueOf(progress)));
-        downloadInfo.setProgress(progress);
-        downloadInfo.setTotalBytes(total);
-        downloadInfo.setSoFarBytes(sofar);
         TasksManager.getImpl().updateDb(downloadInfo);
         break;
       default:

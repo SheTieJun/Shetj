@@ -7,11 +7,6 @@ import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import me.shetj.simxutils.db.annotation.Column;
 import me.shetj.simxutils.db.annotation.Table;
 
-/**
- * Author: wyouflf
- * Date: 13-11-10
- * Time: 下午8:11
- */
 @Table(name = "download", onCreated = "CREATE UNIQUE INDEX index_name ON download(downloadUrl,fileSavePath)")
 public class DownloadInfo implements MultiItemEntity {
 
@@ -22,16 +17,16 @@ public class DownloadInfo implements MultiItemEntity {
     private int id;
 
     @Column(name = "state")
-    private int state = FileDownloadStatus.paused;
+    private int state = FileDownloadStatus.paused;//状态，目前有fileDownloader 控制
 
     @Column(name = "url")
-    private String url;
+    private String url;//图片
 
     @Column(name = "downloadUrl")
-    private String downloadUrl;
+    private String downloadUrl;//下载地址
 
     @Column(name = "downloadId")
-    private int downloadId;
+    private int downloadId;//下载的ID
 
     @Column(name = "soFarBytes")
     private long soFarBytes;//下载长度
@@ -43,10 +38,10 @@ public class DownloadInfo implements MultiItemEntity {
     private int progress;//进度
 
     @Column(name = "label")
-    private String label;
+    private String label;//名称
 
     @Column(name = "fileSavePath")
-    private String fileSavePath;
+    private String fileSavePath;//保存地址
 
     @Column(name = "lectureId")
     private String lectureId;//课程id

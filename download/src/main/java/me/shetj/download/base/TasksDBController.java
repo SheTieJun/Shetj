@@ -11,14 +11,21 @@ import me.shetj.simxutils.DbManager;
 import me.shetj.simxutils.DbUtils;
 import me.shetj.simxutils.ex.DbException;
 
-public  class TasksManagerDBController {
+/**
+ * 下载数据的数据库操作
+ */
+public  class TasksDBController {
 
     private final DbManager db;
 
-    public TasksManagerDBController() {
+    public TasksDBController() {
         db = DbUtils.getDbManager("download",5);
     }
 
+    /**
+     * 获取所有的下载
+     * @return
+     */
     public List<DownloadInfo> getAllTasks() {
         try {
             List<DownloadInfo> all = db.selector(DownloadInfo.class).findAll();
@@ -31,16 +38,24 @@ public  class TasksManagerDBController {
         return new ArrayList<>();
     }
 
+    /**
+     * 添加一条下载数据
+     * @param url  下载地址
+     * @param path 保存地址
+     * @return
+     */
     public DownloadInfo addTask(final String url, final String path) {
-
         String fileSavePath = new File(path).getAbsolutePath();
+        //taskID
         final int id = FileDownloadUtils.generateId(url, path);
         DownloadInfo downloadInfo = null;
         try {
+            //重新数据库，看是否存在这一条数据
             downloadInfo = db.selector(DownloadInfo.class)
                     .where("downloadUrl", "=", url)
                     .where("fileSavePath", "=", fileSavePath)
                     .findFirst();
+            //如果不存在，就保存一条新的数据
             if (downloadInfo == null) {
                 downloadInfo = new DownloadInfo();
                 downloadInfo.setId(id);
@@ -51,7 +66,8 @@ public  class TasksManagerDBController {
                 db.save(downloadInfo);
                 return  downloadInfo;
             }else {
-                ArmsUtils.makeText("已经存在相同的");
+                //如果存在就提示，已经下载了
+                ArmsUtils.makeText("已经存在下载列表");
             }
         } catch (DbException e) {
             e.printStackTrace();
@@ -59,6 +75,10 @@ public  class TasksManagerDBController {
         return  null;
     }
 
+    /**
+     * 更新下载数据
+     * @param downloadInfo
+     */
     public void updateDownloadInfo(DownloadInfo downloadInfo){
         try {
             db.saveOrUpdate(downloadInfo);
@@ -67,7 +87,10 @@ public  class TasksManagerDBController {
         }
     }
 
-
+    /**
+     * 删除下载的数据
+     * @param downloadInfo
+     */
     public void delDownloadInfo(DownloadInfo downloadInfo) {
         try {
             db.delete(downloadInfo);

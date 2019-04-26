@@ -49,32 +49,28 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 
 		adapter = new TaskItemAdapter(new ArrayList<DownloadInfo>());
 		adapter.bindToRecyclerView(mIRecyclerView);
-
-		TasksManager.getImpl().onCreate(new WeakReference<RxAppCompatActivity>(this));
-
+		TasksManager.getImpl().onCreate();
 		adapter.setNewData(TasksManager.getImpl().getAllTask());
+
 		mFab = findViewById(R.id.btn_add);
 		mFab.setOnClickListener(this);
 	}
 
 	@Override
 	protected void initData() {
-		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "下载中",
-						"下载...", 100);
-		FileDownloader.getImpl().startForeground(100, notification);
+//		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "下载中",
+//						"下载...", 100);
+//		FileDownloader.getImpl().startForeground(100, notification);
 	}
 
 	@Subscriber(tag = "refresh", mode = ThreadMode.MAIN)
 	public void reresh(String refresh) {
-		adapter.notifyDataSetChanged();
+		adapter.setNewData(TasksManager.getImpl().getAllTask());
 	}
 
 	@Override
 	protected void onDestroy() {
-		TasksManager.getImpl().onDestroy();
 		adapter = null;
-//		FileDownloader.getImpl().pauseAll();
-		FileDownloader.getImpl().stopForeground(true);
 		super.onDestroy();
 	}
 
