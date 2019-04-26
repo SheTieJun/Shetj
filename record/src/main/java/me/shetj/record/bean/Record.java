@@ -87,4 +87,9 @@ public class Record {
 	public void setAudioLength(int audioLength) {
 		this.audioLength = audioLength;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 }

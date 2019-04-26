@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -175,7 +176,11 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 	//绑定service
 	private void bindService() {
 		Intent intent = new Intent(this, RecordService.class);
-		startService(intent);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			startForegroundService(intent);
+		}else {
+			startService(intent);
+		}
 		bindService = bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 	}
 

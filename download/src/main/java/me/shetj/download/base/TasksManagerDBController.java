@@ -16,7 +16,7 @@ public  class TasksManagerDBController {
     private final DbManager db;
 
     public TasksManagerDBController() {
-        db = DbUtils.getDbManager("download",3);
+        db = DbUtils.getDbManager("download",5);
     }
 
     public List<DownloadInfo> getAllTasks() {
@@ -44,6 +44,7 @@ public  class TasksManagerDBController {
             if (downloadInfo == null) {
                 downloadInfo = new DownloadInfo();
                 downloadInfo.setId(id);
+                downloadInfo.setDownloadId(id);
                 downloadInfo.setLabel(fileSavePath);
                 downloadInfo.setDownloadUrl(url);
                 downloadInfo.setFileSavePath(fileSavePath);
@@ -58,5 +59,20 @@ public  class TasksManagerDBController {
         return  null;
     }
 
+    public void updateDownloadInfo(DownloadInfo downloadInfo){
+        try {
+            db.saveOrUpdate(downloadInfo);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
 
+
+    public void delDownloadInfo(DownloadInfo downloadInfo) {
+        try {
+            db.delete(downloadInfo);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
 }

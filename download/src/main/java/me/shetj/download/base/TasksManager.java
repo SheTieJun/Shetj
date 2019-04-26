@@ -6,6 +6,7 @@ import android.util.SparseArray;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadConnectListener;
+import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
@@ -16,9 +17,11 @@ import org.simple.eventbus.EventBus;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.download.adapter.TaskItemViewHolder;
 
 public   class TasksManager {
+
 
 
   private final static class HolderClass {
@@ -38,6 +41,7 @@ public   class TasksManager {
     modelList = dbController.getAllTasks();
   }
 
+
   private SparseArray<BaseDownloadTask> taskSparseArray = new SparseArray<>();
 
   public void addTaskForViewHolder(final BaseDownloadTask task) {
@@ -48,12 +52,13 @@ public   class TasksManager {
     taskSparseArray.remove(id);
   }
 
-  public void updateViewHolder(final int id, final TaskItemViewHolder holder) {
+  public void updateViewHolder(final int id, final TaskItemViewHolder holder, FileDownloadListener taskDownloadListener) {
     final BaseDownloadTask task = taskSparseArray.get(id);
     if (task == null) {
       return;
     }
-    task.setTag(holder);
+    task.setTag(holder)
+        .setListener(taskDownloadListener);
   }
 
   public void releaseTask() {
@@ -123,13 +128,26 @@ public   class TasksManager {
 
   public DownloadInfo getById(final int id) {
     for (DownloadInfo model : modelList) {
-      if (model.getId() == id) {
+      if (model.getDownloadId() == id) {
         return model;
       }
     }
 
     return null;
   }
+
+  /**
+   * 开始下载
+   * @param model
+   */
+  public void startDownload( DownloadInfo model) {
+    BaseDownloadTask task = FileDownloader.getImpl().create(model.getDownloadUrl())
+            .setPath(model.getFileSavePath())
+            .setCallbackProgressTimes(100);
+    addTaskForViewHolder(task);
+    task.start();
+  }
+
 
   /**
    * @param status Download Status
@@ -167,10 +185,14 @@ public   class TasksManager {
 
     final int id = FileDownloadUtils.generateId(url, path);
     DownloadInfo model = getById(id);
+    //如果已经在下载列表 就不要下载了
     if (model != null) {
-      return model;
+      ArmsUtils.makeText("已经存在相同的");
+      return null;
     }
+
     final DownloadInfo newModel = dbController.addTask(url, path);
+    //如果不在，就加入到列表下载了
     if (newModel != null) {
       modelList.add(newModel);
     }
@@ -182,7 +204,17 @@ public   class TasksManager {
     if (TextUtils.isEmpty(url)) {
       return null;
     }
-
     return FileDownloadUtils.getDefaultSaveFilePath(url);
   }
+
+  public void updateDb(DownloadInfo downloadInfo){
+    dbController.updateDownloadInfo(downloadInfo);
+  }
+
+  public void delDb(DownloadInfo downloadInfo) {
+    getAllTask().remove(downloadInfo);
+    dbController.delDownloadInfo(downloadInfo);
+  }
+
+
 }

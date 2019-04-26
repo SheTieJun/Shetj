@@ -207,7 +207,7 @@ public class OSSUtils {
 					final File file = files.get(i);
 					asyncUpload(file.getPath(), urlPath, new UploadFileCallBack<String>() {
 						@Override
-						public void progress(int size, int allSize) {
+						public void progress(long size, long allSize) {
 							callBack.progress(strings.size(), files.size());
 						}
 

@@ -1,5 +1,6 @@
 package me.shetj.download.view;
 
+import android.app.Notification;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,11 +12,12 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
 
-import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import me.shetj.base.base.BaseActivity;
+import me.shetj.base.tools.time.TimeUtil;
+import me.shetj.download.DownloadNotification;
 import me.shetj.download.R;
 import me.shetj.download.adapter.TaskItemAdapter;
 import me.shetj.download.base.DownloadInfo;
@@ -30,6 +32,7 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 	//	private DownloadAdapter adapter;
 	private TaskItemAdapter adapter;
 	private Button mFab;
+	private Notification notification;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,9 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 
 	@Override
 	protected void initData() {
-
+		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "下载中",
+						"下载...", 100);
+		FileDownloader.getImpl().startForeground(100, notification);
 	}
 
 	@Subscriber(tag = "refresh", mode = ThreadMode.MAIN)
@@ -68,7 +73,8 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 	protected void onDestroy() {
 		TasksManager.getImpl().onDestroy();
 		adapter = null;
-		FileDownloader.getImpl().pauseAll();
+//		FileDownloader.getImpl().pauseAll();
+		FileDownloader.getImpl().stopForeground(true);
 		super.onDestroy();
 	}
 
@@ -76,8 +82,12 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 	public void onClick(View v) {
 		int i = v.getId();
 		if (i == R.id.btn_add) {
-			TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk");
-			adapter.notifyDataSetChanged();
+			DownloadInfo downloadInfo =
+							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk");
+			if (downloadInfo !=null) {
+				TasksManager.getImpl().startDownload(downloadInfo);
+				adapter.notifyDataSetChanged();
+			}
 		} else {
 
 		}

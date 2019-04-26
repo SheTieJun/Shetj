@@ -6,6 +6,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.liulishuo.filedownloader.model.FileDownloadStatus;
 
 import me.shetj.download.R;
+import me.shetj.download.base.DownloadInfo;
+import me.shetj.download.base.TasksManager;
 
 public  class TaskItemViewHolder extends BaseViewHolder {
 
@@ -18,13 +20,15 @@ public  class TaskItemViewHolder extends BaseViewHolder {
    * download id
    */
   public int id;
+  public  DownloadInfo downloadInfo;
 
   public TaskItemViewHolder(View view) {
     super(view);
   }
 
-  public void update(final int id, final int position) {
+  public void update(final int id, final int position, DownloadInfo downloadInfo) {
     this.id = id;
+    this.downloadInfo = downloadInfo;
     this.position = position;
   }
 
@@ -49,9 +53,13 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     }
     switch (status) {
       case FileDownloadStatus.error:
-       setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_error);
+        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_error);
         break;
       case FileDownloadStatus.paused:
+        setText(R.id.task_status_speed,String.format("%sKB/s", String.valueOf(0)));
+        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_paused);
+        break;
+      case FileDownloadStatus.INVALID_STATUS:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_paused);
         break;
       default:
@@ -61,12 +69,13 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     setText(R.id.task_action_btn,R.string.start);
   }
 
-  public void updateDownloading(final int status, final long sofar, final long total) {
+  public void updateDownloading(final int status, final long sofar, final long total,final int speed) {
     final float percent = sofar
             / (float) total;
+    int progress = (int) (percent * 100);
     setMax(R.id.task_pb,100);
-    setProgress(R.id.task_pb,(int) (percent * 100));
-
+    setProgress(R.id.task_pb, progress);
+    setText(R.id.task_status_speed,String.format("%sKB/s", String.valueOf(speed)));
     switch (status) {
       case FileDownloadStatus.pending:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_pending);
@@ -78,10 +87,14 @@ public  class TaskItemViewHolder extends BaseViewHolder {
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_connected);
         break;
       case FileDownloadStatus.progress:
-        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_progress);
+        setText(R.id.task_status_tv, String.format("状态: 正在下载 %s %%", String.valueOf(progress)));
+        downloadInfo.setProgress(progress);
+        downloadInfo.setTotalBytes(total);
+        downloadInfo.setSoFarBytes(sofar);
+        TasksManager.getImpl().updateDb(downloadInfo);
         break;
       default:
-        setText(R.id.task_status_tv, String.format("状态: 正在下载 %s", String.valueOf(status)));
+        setText(R.id.task_status_tv, String.format("状态: 正在下载 %s  %%", String.valueOf(status)));
         break;
     }
     setText(R.id.task_action_btn,R.string.pause);

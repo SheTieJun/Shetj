@@ -1,14 +1,14 @@
 package me.shetj.record;
 
 
+import android.app.Notification;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
-import java.util.LinkedList;
-import java.util.List;
 
 import me.shetj.base.base.BaseService;
 import me.shetj.record.bean.Record;
@@ -18,8 +18,10 @@ import me.shetj.record.utils.RecordCallBack;
 public class RecordService extends BaseService {
 
 
-	private List<RecordCallBack> callBacks = new LinkedList<>();
+	private  RecordCallBack  callBacks = null;
 	private Work work;
+	private Notification notification;
+
 	private WeakReference<RecordService> myService = new WeakReference<>(RecordService.this);
 	private CreateRecordUtils createRecordUtils;
 	private Work getWork() {
@@ -28,6 +30,8 @@ public class RecordService extends BaseService {
 		}
 		return work;
 	}
+
+
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -68,8 +72,8 @@ public class RecordService extends BaseService {
 
 	//注册接口
 	public void registerCallBack(RecordCallBack callBack) {
-		if (callBacks != null) {
-			callBacks.add(callBack);
+		if (callBack != null) {
+			this.callBacks = callBack;
 		}
 	}
 
@@ -80,9 +84,7 @@ public class RecordService extends BaseService {
 	 * @return
 	 */
 	public boolean unRegisterCallBack(RecordCallBack callBack) {
-		if (callBacks != null && callBacks.contains(callBack)) {
-			return callBacks.remove(callBack);
-		}
+		callBacks =null;
 		return false;
 	}
 
@@ -92,54 +94,58 @@ public class RecordService extends BaseService {
 		createRecordUtils = new CreateRecordUtils(new RecordCallBack() {
 			@Override
 			public void start() {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.start();
+				if (callBacks != null) {
+					callBacks.start();
 				}
-
 			}
 
 			@Override
 			public void pause() {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.pause();
+				if (callBacks != null) {
+					callBacks.pause();
 				}
 			}
 
 			@Override
 			public void onSuccess(String file, int time) {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.onSuccess(file,time);
+				if (callBacks != null) {
+					callBacks.onSuccess(file,time);
 				}
 			}
 
 			@Override
 			public void onProgress(int time) {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.onProgress(time);
+				if (callBacks != null) {
+					callBacks.onProgress(time);
 				}
 			}
 
 			@Override
 			public void onMaxProgress(int time) {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.onMaxProgress(time);
+				if (callBacks != null) {
+					callBacks.onMaxProgress(time);
 				}
 			}
 
 			@Override
 			public void onError(Exception e) {
-				for (RecordCallBack callBack : callBacks) {
-					callBack.onError(e);
+				if (callBacks != null) {
+					callBacks.onError(e);
 				}
 			}
 		});
 		createRecordUtils.setMaxTime(1800);
+
+		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "录音中",
+						"录音中", 100);
+		 startForeground(1,notification);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		createRecordUtils.clear();
+		stopForeground(true);
 	}
 
 	public void onTaskRemoved(Intent rootIntent) {
@@ -150,4 +156,6 @@ public class RecordService extends BaseService {
 		//stop service
 		super.onTaskRemoved(rootIntent);
 	}
+
+
 }

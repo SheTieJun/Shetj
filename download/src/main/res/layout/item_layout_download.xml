@@ -28,7 +28,14 @@
             android:text="status: connected"
             android:textColor="@android:color/secondary_text_dark"
             android:textSize="16sp" />
-
+        <TextView
+            android:id="@+id/task_status_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="0KB/s"
+            android:textColor="@android:color/secondary_text_dark"
+            android:textSize="16sp" />
         <ProgressBar
             android:id="@+id/task_pb"
             style="?android:attr/progressBarStyleHorizontal"

@@ -43,7 +43,7 @@
     <string name="tasks_manager_demo_status_paused">状态: 暂停</string>
     <string name="tasks_manager_demo_status_completed">状态: 下载完成</string>
     <string name="tasks_manager_demo_status_not_downloaded">状态: 未下载</string>
-
+    <string name="tasks_manager_demo_status_idle">状态: 空闲</string>
     <string name="hybrid_test_title">混合测试</string>
     <string name="hybrid_test_deleted_file" formatted="false">已删除: %s</string>
     <string name="hybrid_test_start_single_task" formatted="false">启动单任务下载: %s</string>

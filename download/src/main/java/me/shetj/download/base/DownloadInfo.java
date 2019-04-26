@@ -12,7 +12,7 @@ import me.shetj.simxutils.db.annotation.Table;
  * Date: 13-11-10
  * Time: 下午8:11
  */
-@Table(name = "download", onCreated = "CREATE UNIQUE INDEX index_name ON download(label,fileSavePath)")
+@Table(name = "download", onCreated = "CREATE UNIQUE INDEX index_name ON download(downloadUrl,fileSavePath)")
 public class DownloadInfo implements MultiItemEntity {
 
     public DownloadInfo() {
@@ -30,16 +30,54 @@ public class DownloadInfo implements MultiItemEntity {
     @Column(name = "downloadUrl")
     private String downloadUrl;
 
-
     @Column(name = "downloadId")
     private int downloadId;
 
+    @Column(name = "soFarBytes")
+    private long soFarBytes;//下载长度
+
+    @Column(name = "totalBytes")
+    private long totalBytes;//总长度
+
+    @Column(name = "progress")
+    private int progress;//进度
 
     @Column(name = "label")
     private String label;
 
     @Column(name = "fileSavePath")
     private String fileSavePath;
+
+    @Column(name = "lectureId")
+    private String lectureId;//课程id
+
+    @Column(name = "channelId")
+    private String channelId;//专栏id
+
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public String getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(String lectureId) {
+        this.lectureId = lectureId;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
 
     public int getDownloadId() {
         return downloadId;
@@ -81,6 +119,21 @@ public class DownloadInfo implements MultiItemEntity {
         this.id = id;
     }
 
+    public long getSoFarBytes() {
+        return soFarBytes;
+    }
+
+    public void setSoFarBytes(long soFarBytes) {
+        this.soFarBytes = soFarBytes;
+    }
+
+    public long getTotalBytes() {
+        return totalBytes;
+    }
+
+    public void setTotalBytes(long totalBytes) {
+        this.totalBytes = totalBytes;
+    }
 
     public String getFileSavePath() {
         return fileSavePath;
