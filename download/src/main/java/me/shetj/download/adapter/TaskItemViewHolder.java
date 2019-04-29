@@ -38,6 +38,7 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     downloadInfo.setState(FileDownloadStatus.completed);
     TasksManager.getImpl().updateDb(downloadInfo);
     setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(100)));
+    setText(R.id.task_speed_msg, "");
   }
 
   /**
@@ -49,22 +50,23 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     int progress = (int) (percent * 100);
     switch (status) {
       case FileDownloadStatus.error:
-        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_error);
+        setText(R.id.task_status_tv, R.string.tasks_manager_demo_status_error);
         break;
       case FileDownloadStatus.paused:
-        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_paused);
+        setText(R.id.task_status_tv, R.string.tasks_manager_demo_status_paused);
         break;
       case FileDownloadStatus.INVALID_STATUS:
-        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_paused);
+        setText(R.id.task_status_tv, R.string.tasks_manager_demo_status_paused);
         break;
       default:
-        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_not_downloaded);
+        setText(R.id.task_status_tv, R.string.tasks_manager_demo_status_not_downloaded);
         break;
     }
     downloadInfo.setState(status);
     TasksManager.getImpl().updateDb(downloadInfo);
-    setImageResource(R.id.iv_action,R.mipmap.icon_start_download);
-    setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(progress)));
+    setImageResource(R.id.iv_action, R.mipmap.icon_start_download);
+    setText(R.id.task_yellow_msg, String.format("%s%%", String.valueOf(progress)));
+    setText(R.id.task_speed_msg, "");
   }
 
   /**
@@ -74,6 +76,7 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     final float percent = sofar
             / (float) total;
     int progress = (int) (percent * 100);
+    setText(R.id.task_speed_msg,String.format("%sKB/s", String.valueOf(speed)));
     switch (status) {
       case FileDownloadStatus.pending:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_pending);
@@ -87,6 +90,7 @@ public  class TaskItemViewHolder extends BaseViewHolder {
       case FileDownloadStatus.progress:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_downloading);
         setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(progress)));
+
         break;
       default:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_downloading);

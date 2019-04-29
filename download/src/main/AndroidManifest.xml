@@ -10,8 +10,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
-    <application android:allowBackup="true"
-        >
+    <application android:allowBackup="true">
+        <activity android:name=".view.ChannelsActivity">
+        </activity>
         <activity android:name=".view.DownloadActivity">
         </activity>
 

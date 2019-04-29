@@ -1,27 +1,17 @@
 package me.shetj.download.view;
 
-import android.app.Notification;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import com.liulishuo.filedownloader.FileDownloader;
-import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
-import com.liulishuo.filedownloader.util.FileDownloadLog;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
 
-import java.lang.ref.WeakReference;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.ArrayList;
 
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.tools.time.TimeUtil;
-import me.shetj.download.DownloadNotification;
 import me.shetj.download.R;
 import me.shetj.download.adapter.TaskItemAdapter;
 import me.shetj.download.base.DownloadInfo;
@@ -33,10 +23,10 @@ import me.shetj.download.base.TasksManager;
 public class DownloadActivity extends BaseActivity<DownloadPresenter> implements View.OnClickListener {
 
 	private RecyclerView mIRecyclerView;
-	//	private DownloadAdapter adapter;
 	private TaskItemAdapter adapter;
 	private Button mFab;
-	private Notification notification;
+	private Button mBtnDel;
+	private boolean isDel = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +46,8 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 
 		mFab = findViewById(R.id.btn_add);
 		mFab.setOnClickListener(this);
+		mBtnDel = (Button) findViewById(R.id.btn_del);
+		mBtnDel.setOnClickListener(this);
 	}
 
 	@Override
@@ -78,13 +70,16 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 		int i = v.getId();
 		if (i == R.id.btn_add) {
 			DownloadInfo downloadInfo =
-							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk?"+TimeUtil.getYMDHMSTime());
+							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk?" + TimeUtil.getYMDHMSTime());
 
-			if (downloadInfo !=null) {
+			if (downloadInfo != null) {
 				TasksManager.getImpl().startDownload(downloadInfo);
 				adapter.notifyDataSetChanged();
 				TasksManager.getImpl().getTypeList();
 			}
+		}if (i == R.id.btn_del){
+			isDel = !isDel;
+			adapter.setDelModel(isDel);
 		}
 	}
 }

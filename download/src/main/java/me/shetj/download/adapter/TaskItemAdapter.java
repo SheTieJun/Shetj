@@ -2,6 +2,7 @@ package me.shetj.download.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -12,7 +13,9 @@ import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.shetj.download.R;
 import me.shetj.download.base.DownloadInfo;
@@ -20,6 +23,10 @@ import me.shetj.download.base.DownloadSampleListener;
 import me.shetj.download.base.TasksManager;
 
 public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemViewHolder> {
+
+	private boolean isDelModel = false;
+
+	private Map<Integer,DownloadInfo> downloadInfoMap = new HashMap<>();
 
 	//下载进度回调
 	private FileDownloadListener taskDownloadListener = new DownloadSampleListener();
@@ -30,10 +37,12 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 	}
 
 	@Override
-	protected void convert(final TaskItemViewHolder helper, DownloadInfo model) {
+	protected void convert(final TaskItemViewHolder helper, final DownloadInfo model) {
 		int  position = helper.getLayoutPosition();
 
 		helper.update(model.getDownloadId(), position,model);
+
+		helper.setGone(R.id.checkbox_del,isDelModel);
 
 		helper.getView(R.id.iv_action).setTag(helper);
 		helper.setText(R.id.tv_name,model.getLabel());
@@ -77,7 +86,22 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 			helper.setVisible(R.id.iv_action,false);
 		}
 
+		if (isDelModel){
+			//如果是删除模式，需要展示选择中的
+			helper.setChecked(R.id.checkbox_del,downloadInfoMap.containsKey(helper.getAdapterPosition()));
+		}
 
+
+		helper.setOnCheckedChangeListener(R.id.checkbox_del, new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					if (b){
+						downloadInfoMap.put(helper.getAdapterPosition(),model);
+					}else {
+						downloadInfoMap.remove(helper.getAdapterPosition());
+					}
+			}
+		});
 	}
 
 	@Override
@@ -112,6 +136,15 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 		remove(position);
 	}
 
+	public void delAll(){
+		for (Integer position : downloadInfoMap.keySet()){
+			TasksManager.getImpl().getTask(downloadInfoMap.get(position)).pause();
+			new File(TasksManager.getImpl().get( position).getFileSavePath()).delete();
+			TasksManager.getImpl().delDb(downloadInfoMap.get(position));
+			remove(position);
+		}
+	}
+
 	/**
 	 * 开始下载
 	 * @param holder
@@ -134,4 +167,15 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 		}
 	}
 
+	/**
+	 * 设置是不是删除的model
+	 * @param isDelModel 删除模式
+	 */
+	public void setDelModel(boolean isDelModel) {
+		this.isDelModel = isDelModel;
+		if (!isDelModel){
+			downloadInfoMap.clear();
+		}
+		notifyDataSetChanged();
+	}
 }
