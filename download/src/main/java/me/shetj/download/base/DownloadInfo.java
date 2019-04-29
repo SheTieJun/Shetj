@@ -49,6 +49,27 @@ public class DownloadInfo implements MultiItemEntity {
     @Column(name = "channelId")
     private String channelId;//专栏id
 
+    @Column(name = "liveRoomId")
+    private String liveRoomId;//直播间
+
+    @Column(name = "rawJson")
+    private String rawJson;//课程内容
+
+    public String getRawJson() {
+        return rawJson;
+    }
+
+    public void setRawJson(String rawJson) {
+        this.rawJson = rawJson;
+    }
+
+    public String getLiveRoomId() {
+        return liveRoomId;
+    }
+
+    public void setLiveRoomId(String liveRoomId) {
+        this.liveRoomId = liveRoomId;
+    }
 
     public int getProgress() {
         return progress;
@@ -158,8 +179,6 @@ public class DownloadInfo implements MultiItemEntity {
 
         return true;
     }
-
-
 
     @Override
     public int hashCode() {

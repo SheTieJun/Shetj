@@ -37,6 +37,8 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     setProgress(R.id.task_pb,1);
     setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_completed);
     setText(R.id.task_action_btn,"删除");
+    downloadInfo.setState(FileDownloadStatus.completed);
+    TasksManager.getImpl().updateDb(downloadInfo);
   }
 
   /**
@@ -68,7 +70,11 @@ public  class TaskItemViewHolder extends BaseViewHolder {
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_not_downloaded);
         break;
     }
+    downloadInfo.setState(status);
+    TasksManager.getImpl().updateDb(downloadInfo);
     setText(R.id.task_action_btn,R.string.start);
+
+
   }
 
   /**

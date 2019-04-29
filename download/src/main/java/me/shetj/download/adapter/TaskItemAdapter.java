@@ -109,6 +109,7 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 				new File(TasksManager.getImpl().get(holder.position).getFileSavePath()).delete();
 				holder.getView(R.id.task_action_btn).setEnabled(true);
 				TasksManager.getImpl().delDb(holder.downloadInfo);
+				remove(holder.position);
 			}
 		}
 	};

@@ -80,6 +80,7 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 		if (i == R.id.btn_add) {
 			DownloadInfo downloadInfo =
 							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk");
+
 			if (downloadInfo !=null) {
 				TasksManager.getImpl().startDownload(downloadInfo);
 				adapter.notifyDataSetChanged();
