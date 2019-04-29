@@ -53,7 +53,7 @@ public class DownloadInfo implements MultiItemEntity {
     private String liveRoomId;//直播间
 
     @Column(name = "rawJson")
-    private String rawJson;//课程内容
+    private String rawJson;//课程内容Json
 
     public String getRawJson() {
         return rawJson;

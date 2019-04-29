@@ -7,12 +7,16 @@ import android.view.View;
 import android.widget.Button;
 
 import com.liulishuo.filedownloader.FileDownloader;
+import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
+import com.liulishuo.filedownloader.util.FileDownloadLog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
 
 import java.lang.ref.WeakReference;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.ArrayList;
 
 import me.shetj.base.base.BaseActivity;
@@ -38,15 +42,13 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_download_activty);
+
 		initView();
 		initData();
 	}
 
 	protected void initView() {
 		mIRecyclerView = findViewById(R.id.IRecyclerView);
-//		adapter = new DownloadAdapter(new ArrayList());
-//		adapter.bindToRecyclerView(mIRecyclerView);
-
 		adapter = new TaskItemAdapter(new ArrayList<DownloadInfo>());
 		adapter.bindToRecyclerView(mIRecyclerView);
 		TasksManager.getImpl().onCreate();
@@ -58,9 +60,6 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 
 	@Override
 	protected void initData() {
-//		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "下载中",
-//						"下载...", 100);
-//		FileDownloader.getImpl().startForeground(100, notification);
 	}
 
 	@Subscriber(tag = "refresh", mode = ThreadMode.MAIN)
@@ -79,14 +78,13 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 		int i = v.getId();
 		if (i == R.id.btn_add) {
 			DownloadInfo downloadInfo =
-							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk");
+							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk?"+TimeUtil.getYMDHMSTime());
 
 			if (downloadInfo !=null) {
 				TasksManager.getImpl().startDownload(downloadInfo);
 				adapter.notifyDataSetChanged();
+				TasksManager.getImpl().getTypeList();
 			}
-		} else {
-
 		}
 	}
 }

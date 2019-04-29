@@ -33,34 +33,25 @@ public  class TaskItemViewHolder extends BaseViewHolder {
    * 下载完成后展示
    */
   public void updateDownloaded() {
-    setMax(R.id.task_pb,1);
-    setProgress(R.id.task_pb,1);
     setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_completed);
-    setText(R.id.task_action_btn,"删除");
+    setGone(R.id.iv_action,false);
     downloadInfo.setState(FileDownloadStatus.completed);
     TasksManager.getImpl().updateDb(downloadInfo);
+    setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(100)));
   }
 
   /**
    * 有下载数据，但是不完整
    */
   public void updateNotDownloaded(final int status, final long sofar, final long total) {
-    if (sofar > 0 && total > 0) {
-      final float percent = sofar
-              / (float) total;
-
-      setMax(R.id.task_pb,100);
-      setProgress(R.id.task_pb,(int) (percent * 100));
-    } else {
-      setMax(R.id.task_pb,1);
-      setProgress(R.id.task_pb,0);
-    }
+    final float percent = sofar
+            / (float) total;
+    int progress = (int) (percent * 100);
     switch (status) {
       case FileDownloadStatus.error:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_error);
         break;
       case FileDownloadStatus.paused:
-        setText(R.id.task_status_speed,String.format("%sKB/s", String.valueOf(0)));
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_paused);
         break;
       case FileDownloadStatus.INVALID_STATUS:
@@ -72,9 +63,8 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     }
     downloadInfo.setState(status);
     TasksManager.getImpl().updateDb(downloadInfo);
-    setText(R.id.task_action_btn,R.string.start);
-
-
+    setImageResource(R.id.iv_action,R.mipmap.icon_start_download);
+    setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(progress)));
   }
 
   /**
@@ -84,9 +74,6 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     final float percent = sofar
             / (float) total;
     int progress = (int) (percent * 100);
-    setMax(R.id.task_pb,100);
-    setProgress(R.id.task_pb, progress);
-    setText(R.id.task_status_speed,String.format("%sKB/s", String.valueOf(speed)));
     switch (status) {
       case FileDownloadStatus.pending:
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_pending);
@@ -98,14 +85,14 @@ public  class TaskItemViewHolder extends BaseViewHolder {
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_connected);
         break;
       case FileDownloadStatus.progress:
-        setText(R.id.task_status_tv, String.format("状态: 正在下载 %s %%", String.valueOf(progress)));
-        TasksManager.getImpl().updateDb(downloadInfo);
+        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_downloading);
+        setText(R.id.task_yellow_msg,String.format("%s%%", String.valueOf(progress)));
         break;
       default:
-        setText(R.id.task_status_tv, String.format("状态: 正在下载 %s  %%", String.valueOf(status)));
+        setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_downloading);
         break;
     }
-    setText(R.id.task_action_btn,R.string.pause);
+    setImageResource(R.id.iv_action,R.mipmap.icon_pause_download);
   }
 
 

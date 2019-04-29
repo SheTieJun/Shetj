@@ -6,9 +6,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.liulishuo.filedownloader.BaseDownloadTask;
-import com.liulishuo.filedownloader.FileDownloadList;
 import com.liulishuo.filedownloader.FileDownloadListener;
-import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
@@ -37,9 +35,9 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 
 		helper.update(model.getDownloadId(), position,model);
 
-		helper.getView(R.id.task_action_btn).setTag(helper);
-		helper.setText(R.id.task_name_tv,model.getLabel());
-		helper.getView(R.id.task_action_btn).setOnClickListener(taskActionOnClickListener);
+		helper.getView(R.id.iv_action).setTag(helper);
+		helper.setText(R.id.tv_name,model.getLabel());
+		helper.getView(R.id.iv_action).setOnClickListener(taskActionOnClickListener);
 
 		//给task 绑定helper
 		TasksManager.getImpl().updateViewHolder(helper.id, helper,taskDownloadListener);
@@ -47,10 +45,8 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 		//如果已经连接服务
 		if (TasksManager.getImpl().isReady()) {
 			//下载服务启动
-			helper.getView(R.id.task_action_btn).setEnabled(true);
-
+			helper.setVisible(R.id.iv_action,true);
 			final int status = TasksManager.getImpl().getStatus(model.getDownloadId(), model.getFileSavePath());
-
 			if (status == FileDownloadStatus.pending || status == FileDownloadStatus.started ||
 							status == FileDownloadStatus.connected) {
 				//开始下载
@@ -74,10 +70,11 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 				helper.updateNotDownloaded(status, TasksManager.getImpl().getSoFar(model.getDownloadId()),
 								TasksManager.getImpl().getTotal(model.getDownloadId()));
 			}
+			model.setState(status);
+			TasksManager.getImpl().updateDb(model);
 		}else {
 			//下载服务还未启动
-			helper.setText(R.id.task_action_btn,R.string.tasks_manager_demo_status_loading);
-			helper.getView(R.id.task_action_btn).setEnabled(false);
+			helper.setVisible(R.id.iv_action,false);
 		}
 
 
@@ -95,24 +92,25 @@ public  class TaskItemAdapter extends BaseQuickAdapter<DownloadInfo,TaskItemView
 				return;
 			}
 			TaskItemViewHolder holder = (TaskItemViewHolder) v.getTag();
-
-			CharSequence action = ((TextView) v).getText();
-			if (action.equals(v.getResources().getString(R.string.pause))) {
+			int state = holder.downloadInfo.getState();
+			if (state != FileDownloadStatus.paused && state != FileDownloadStatus.completed) {
 				// to pause
 				FileDownloader.getImpl().pause(holder.id);
-			} else if (action.equals(v.getResources().getString(R.string.start))) {
+				holder.downloadInfo.setState(FileDownloadStatus.paused);
+			} else if (state == FileDownloadStatus.paused || state == FileDownloadStatus.error) {
 				// to start
 				final DownloadInfo model = TasksManager.getImpl().get(holder.position);
 				startDownload(holder, model);
-			} else if (action.equals(v.getResources().getString(R.string.delete))) {
-				// to delete
-				new File(TasksManager.getImpl().get(holder.position).getFileSavePath()).delete();
-				holder.getView(R.id.task_action_btn).setEnabled(true);
-				TasksManager.getImpl().delDb(holder.downloadInfo);
-				remove(holder.position);
+				model.setState(FileDownloadStatus.started);
 			}
 		}
 	};
+
+	private void deleteDownload(int position) {
+		new File(TasksManager.getImpl().get( position).getFileSavePath()).delete();
+		TasksManager.getImpl().delDb(getData().get(position));
+		remove(position);
+	}
 
 	/**
 	 * 开始下载

@@ -1,7 +1,6 @@
 package me.shetj.download.base;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
@@ -171,6 +170,10 @@ public   class TasksManager {
     dbController.delDownloadInfo(downloadInfo);
   }
 
+  public List<String> getTypeList(){
+    return dbController.getTypeList();
+  }
+
   /**
    * 结束
    */
@@ -197,7 +200,8 @@ public   class TasksManager {
     BaseDownloadTask task = FileDownloader.getImpl().create(model.getDownloadUrl())
             .setPath(model.getFileSavePath())
             .setAutoRetryTimes(5)
-            .setCallbackProgressTimes(100);
+            .setCallbackProgressTimes(100)
+            .addHeader("Referer","https://m.lizhiweike.com");
     addTaskForViewHolder(task);
     task.start();
   }

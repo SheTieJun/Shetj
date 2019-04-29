@@ -33,17 +33,17 @@
 
     <string name="tasks_manager_demo_title">任务管理器案例</string>
     <string name="tasks_manager_demo_name" formatted="false">任务: %d</string>
-    <string name="tasks_manager_demo_status_loading">状态: 加载中...</string>
-    <string name="tasks_manager_demo_status_pending">状态: 队列中</string>
-    <string name="tasks_manager_demo_status_started">状态: 开始下载</string>
-    <string name="tasks_manager_demo_status_connected">状态: 已连接上</string>
-    <string name="tasks_manager_demo_status_progress">状态: 下载中...</string>
-    <string name="tasks_manager_demo_status_downloading" formatted="false">状态: 正在下载 %d</string>
-    <string name="tasks_manager_demo_status_error">状态: 出错</string>
-    <string name="tasks_manager_demo_status_paused">状态: 暂停</string>
-    <string name="tasks_manager_demo_status_completed">状态: 下载完成</string>
-    <string name="tasks_manager_demo_status_not_downloaded">状态: 未下载</string>
-    <string name="tasks_manager_demo_status_idle">状态: 空闲</string>
+    <string name="tasks_manager_demo_status_loading">加载中...</string>
+    <string name="tasks_manager_demo_status_pending">等待下载中</string>
+    <string name="tasks_manager_demo_status_started">开始下载</string>
+    <string name="tasks_manager_demo_status_connected">已连接上</string>
+    <string name="tasks_manager_demo_status_progress">下载中</string>
+    <string name="tasks_manager_demo_status_downloading">下载中</string>
+    <string name="tasks_manager_demo_status_error">下载失败，点击重试</string>
+    <string name="tasks_manager_demo_status_paused">已暂停</string>
+    <string name="tasks_manager_demo_status_completed">下载完成</string>
+    <string name="tasks_manager_demo_status_not_downloaded">未下载</string>
+    <string name="tasks_manager_demo_status_idle">空闲</string>
     <string name="hybrid_test_title">混合测试</string>
     <string name="hybrid_test_deleted_file" formatted="false">已删除: %s</string>
     <string name="hybrid_test_start_single_task" formatted="false">启动单任务下载: %s</string>
