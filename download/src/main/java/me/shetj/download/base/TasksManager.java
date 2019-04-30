@@ -30,6 +30,7 @@ public   class TasksManager {
     return HolderClass.INSTANCE;
   }
 
+  //数据库操作
   private TasksDBController dbController;
 
   //同步保存数据库的数据
@@ -137,7 +138,6 @@ public   class TasksManager {
   public BaseDownloadTask getTask(DownloadInfo model) {
     return taskSparseArray.get(model.getDownloadId());
   }
-
 
   public DownloadInfo get(final int position) {
     return modelList.get(position);

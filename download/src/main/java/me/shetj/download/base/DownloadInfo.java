@@ -49,11 +49,44 @@ public class DownloadInfo implements MultiItemEntity {
     @Column(name = "channelId")
     private String channelId;//专栏id
 
+    @Column(name = "singleClass")
+    private boolean isSingClass;//是不是单课
+
     @Column(name = "liveRoomId")
     private String liveRoomId;//直播间
 
     @Column(name = "rawJson")
     private String rawJson;//课程内容Json
+
+    @Column(name = "isAudio")
+    private boolean isAudio;//不是MP4
+
+    @Column(name = "audioLength")
+    private String audio_length;//分钟
+
+    public boolean isSingClass() {
+        return isSingClass;
+    }
+
+    public void setSingClass(boolean singClass) {
+        isSingClass = singClass;
+    }
+
+    public String getAudio_length() {
+        return audio_length;
+    }
+
+    public void setAudio_length(String audio_length) {
+        this.audio_length = audio_length;
+    }
+
+    public boolean isAudio() {
+        return isAudio;
+    }
+
+    public void setAudio(boolean audio) {
+        isAudio = audio;
+    }
 
     public String getRawJson() {
         return rawJson;

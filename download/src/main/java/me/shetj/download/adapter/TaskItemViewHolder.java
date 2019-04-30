@@ -64,7 +64,7 @@ public  class TaskItemViewHolder extends BaseViewHolder {
     }
     downloadInfo.setState(status);
     TasksManager.getImpl().updateDb(downloadInfo);
-    setImageResource(R.id.iv_action, R.mipmap.icon_start_download);
+    setImageResource(R.id.iv_action, R.mipmap.icon_cache_start_download);
     setText(R.id.task_yellow_msg, String.format("%s%%", String.valueOf(progress)));
     setText(R.id.task_speed_msg, "");
   }
@@ -96,7 +96,7 @@ public  class TaskItemViewHolder extends BaseViewHolder {
         setText(R.id.task_status_tv,R.string.tasks_manager_demo_status_downloading);
         break;
     }
-    setImageResource(R.id.iv_action,R.mipmap.icon_pause_download);
+    setImageResource(R.id.iv_action,R.mipmap.icon_cache_pause_download);
   }
 
 

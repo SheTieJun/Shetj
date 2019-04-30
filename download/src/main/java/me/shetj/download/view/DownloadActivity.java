@@ -18,7 +18,9 @@ import me.shetj.download.base.DownloadInfo;
 import me.shetj.download.base.TasksManager;
 
 /**
- * 下载
+ * 正在下载的界面
+ *
+ * @author shetj
  */
 public class DownloadActivity extends BaseActivity<DownloadPresenter> implements View.OnClickListener {
 
@@ -27,6 +29,10 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 	private Button mFab;
 	private Button mBtnDel;
 	private boolean isDel = false;
+	/**
+	 * 批量下载
+	 */
+	private Button mBtnAllList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +52,10 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 
 		mFab = findViewById(R.id.btn_add);
 		mFab.setOnClickListener(this);
-		mBtnDel = (Button) findViewById(R.id.btn_del);
+		mBtnDel = findViewById(R.id.btn_del);
 		mBtnDel.setOnClickListener(this);
+		mBtnAllList = findViewById(R.id.btn_all_list);
+		mBtnAllList.setOnClickListener(this);
 	}
 
 	@Override
@@ -77,9 +85,13 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 				adapter.notifyDataSetChanged();
 				TasksManager.getImpl().getTypeList();
 			}
-		}if (i == R.id.btn_del){
+		}
+		if (i == R.id.btn_del) {
 			isDel = !isDel;
 			adapter.setDelModel(isDel);
+		}
+		if (i == R.id.btn_all_list){
+			ChannelDownloadListActivity.start(this);
 		}
 	}
 }

@@ -11,7 +11,13 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application android:allowBackup="true">
-        <activity android:name=".view.ChannelsActivity">
+        <activity android:name=".view.ChannelDownloadedActivity">
+        </activity>
+        <activity android:name=".view.MyDownloadActivity">
+        </activity>
+        <activity android:name=".view.ChannelDownloadListActivity">
+        </activity>
+        <activity android:name=".view.ChannelDownloadActivity">
         </activity>
         <activity android:name=".view.DownloadActivity">
         </activity>

@@ -10,6 +10,7 @@
         android:id="@+id/IRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager">
     </android.support.v7.widget.RecyclerView>
 
@@ -36,4 +37,17 @@
         android:text="删除"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Button
+        android:id="@+id/btn_all_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="批量下载"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_del"/>
 </android.support.constraint.ConstraintLayout>

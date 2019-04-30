@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <RelativeLayout
+        android:id="@+id/fl_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginBottom="7.5dp"
+        android:background="@drawable/selector_createlecture_tab_bg">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="第三课 如何高效阅读"
+            android:textColor="@color/weike_text_class_selector"
+            android:textSize="16sp"/>
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_title"
+            android:textColor="@color/weike_text_class_selector2"
+            android:text="12分钟" />
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_title"
+            android:layout_toRightOf="@id/tv_time"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/weike_text_class_selector2"
+            android:text="2.30M" />
+
+        <ImageView
+            android:id="@+id/iv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_cache_downloaded"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/tv_size"
+            />
+    </RelativeLayout>
+</FrameLayout>

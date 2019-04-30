@@ -5,11 +5,17 @@ import android.os.Bundle;
 
 import me.shetj.download.R;
 
-public class ChannelsActivity extends AppCompatActivity {
+/**
+ * 我的下载界面
+ */
+public class MyDownloadActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_channels);
+		setContentView(R.layout.activity_my_download);
+
+		//TODO 查询所有单课
+		//TODO 查询所有的专栏
 	}
 }
