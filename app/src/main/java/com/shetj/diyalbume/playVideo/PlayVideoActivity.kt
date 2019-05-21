@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
+import com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
 import me.shetj.base.tools.app.ArmsUtils
@@ -25,6 +27,7 @@ class PlayVideoActivity : AppCompatActivity() {
         }
 
         showRecycleView()
+
     }
 
     private fun showRecycleView() {

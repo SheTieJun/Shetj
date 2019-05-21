@@ -24,7 +24,6 @@ import com.shetj.diyalbume.image.ImageTestActivity
 import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.map.BDMapActivity
-import com.shetj.diyalbume.miui.MiUIActivity
 import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
@@ -89,7 +88,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
         btn_custom.setOnClickListener {
             startActivity(Intent(this,CustomActivity::class.java))
         }
-        btn_miui.setOnClickListener { ArmsUtils.startActivity(this,MiUIActivity::class.java) }
 
         btn_openGL.setOnClickListener{ArmsUtils.startActivity(this,GlTestActivity::class.java)}
 

@@ -16,8 +16,11 @@ public class ClassAdapter extends BaseQuickAdapter<ClassInfo,TaskItemViewHolder>
 
 	private Map<Integer,ClassInfo> infoMap = new HashMap<>();
 
-	public ClassAdapter(@Nullable List<ClassInfo> data) {
+	private View targetView;
+
+	public ClassAdapter(@Nullable List<ClassInfo> data,View targetView) {
 		super(R.layout.item_layout_download_class_info,data);
+		this.targetView = targetView;
 	}
 
 	@Override
@@ -41,7 +44,24 @@ public class ClassAdapter extends BaseQuickAdapter<ClassInfo,TaskItemViewHolder>
 
 	public void downloadAll(){
 		for (Integer position : infoMap.keySet()){
-			//下载
+//
+//			View inflate = LayoutInflater.from(mContext).inflate(R.layout.item_layout_download_class_info, null);
+//			ClassInfo item = infoMap.get(position);
+//			TaskItemViewHolder holder = new TaskItemViewHolder(inflate);
+//
+//				holder.getView(R.id.fl_root).setSelected(item.isSelect);
+//				holder.getView(R.id.tv_title).setSelected(item.isSelect);
+//				holder.getView(R.id.tv_time).setSelected(item.isSelect);
+//				holder.getView(R.id.tv_size).setSelected(item.isSelect);
+//			FloatingElement builder = new FloatingBuilder()
+//							.anchorView(getRecyclerView().findViewHolderForLayoutPosition(position).itemView.findViewById(R.id.fl_root))
+//							.targetView(inflate)
+//							.offsetX(100)
+//              .offsetY(0)
+//							.floatingTransition(new TranslateFloatingTransition())
+//							.build();
+//			Floating floating = new Floating((Activity) mContext);
+//			floating.startFloating(builder);
 		}
 	}
 

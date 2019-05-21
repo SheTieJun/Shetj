@@ -23,9 +23,13 @@ public class ChannelDownloadListActivity extends AppCompatActivity implements Vi
 
 	private RecyclerView mIRecyclerView;
 	private ClassAdapter classAdapter;
+	/**
+	 * 下载
+	 */
+	private Button mDownload;
 
 	public static void start(Context context) {
-		context.startActivity(new Intent(context,ChannelDownloadListActivity.class));
+		context.startActivity(new Intent(context, ChannelDownloadListActivity.class));
 	}
 
 	@Override
@@ -38,8 +42,11 @@ public class ChannelDownloadListActivity extends AppCompatActivity implements Vi
 
 	private void initView() {
 		mIRecyclerView = findViewById(R.id.IRecyclerView);
-		classAdapter = new ClassAdapter(new ArrayList<ClassInfo>());
-		mIRecyclerView.setAdapter(classAdapter);
+
+		mDownload = (Button) findViewById(R.id.download);
+		mDownload.setOnClickListener(this);
+		classAdapter = new ClassAdapter(new ArrayList<ClassInfo>(),mDownload);
+		classAdapter.bindToRecyclerView(mIRecyclerView);
 		initDemo();
 
 		classAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -48,6 +55,8 @@ public class ChannelDownloadListActivity extends AppCompatActivity implements Vi
 				setSelect(position);
 			}
 		});
+
+
 	}
 
 	private void setSelect(int position) {
@@ -72,5 +81,8 @@ public class ChannelDownloadListActivity extends AppCompatActivity implements Vi
 	@Override
 	public void onClick(View v) {
 		int i = v.getId();
+		if (i == R.id.download){
+			classAdapter.downloadAll();
+		}
 	}
 }

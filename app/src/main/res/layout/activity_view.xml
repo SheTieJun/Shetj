@@ -132,7 +132,7 @@
         android:clickable="true"
         app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/aurora_menuitem_send_pres"/>
+     />
 
     <ImageView
         android:id="@+id/imageView"

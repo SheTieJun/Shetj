@@ -34,4 +34,5 @@ dependencies {
     implementation "com.github.SheTieJun:Base:$base_version"
     implementation project(':simxutils')
     api 'com.liulishuo.filedownloader:library:1.7.3'
+    api 'com.ufreedom.uikit:FloatingViewLib:1.0.2'
 }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="第三课 如何高效阅读"
-            android:textColor="@color/weike_text_class_selector"
+            android:textColor="@color/weike_text_lecture_selector"
             android:textSize="16sp"/>
 
 
@@ -31,7 +31,7 @@
             android:textSize="14sp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/tv_title"
-            android:textColor="@color/weike_text_class_selector2"
+            android:textColor="@color/weike_text_lecture_selector2"
             android:text="12分钟" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_below="@id/tv_title"
             android:layout_toRightOf="@id/tv_time"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/weike_text_class_selector2"
+            android:textColor="@color/weike_text_lecture_selector2"
             android:text="2.30M" />
 
         <ImageView
