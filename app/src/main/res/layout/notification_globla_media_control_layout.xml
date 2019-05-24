@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/color_orange">
+    <LinearLayout
+        android:id="@+id/ll_del_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_del"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:paddingRight="8dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_delete_photo"/>
+        <ImageView
+            android:id="@+id/iv_lecture"
+            android:layout_width="78dp"
+            android:layout_height="44dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ll_del_img"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="45dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="音乐标题"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/ll_del_img"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:textSize="10sp"
+
+        android:text="00:00/00:00"/>
+
+
+    <FrameLayout
+        android:id="@+id/audioBtnLayout"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/picture_audio">
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="6dp"
+            android:src="@drawable/picture_audio" />
+        <ProgressBar
+            android:id="@+id/audioLoading"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</RelativeLayout>

@@ -5,6 +5,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.alibaba.android.arouter.facade.model.RouteMeta.build
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
+import com.shetj.diyalbume.nitification.MusicNotification
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
@@ -30,10 +31,10 @@ class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
 
     fun showNotification() {
 
-        DownloadNotification.notify(view.rxContext, R.drawable.example_picture,"DownloadNotification",
-                "DownloadNotification",1)
-        MessageNotification.notify(view.rxContext,"MessageNotificationXXX",2)
-
+//        DownloadNotification.notify(view.rxContext, R.drawable.example_picture,"DownloadNotification",
+//                "DownloadNotification",1)
+//        MessageNotification.notify(view.rxContext,"MessageNotificationXXX",2)
+        MusicNotification.notify(view.rxContext.applicationContext,"音乐播放器")
     }
 
     fun showIntroduce() {
