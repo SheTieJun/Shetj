@@ -7,14 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.lizhiweike.base.event.MainThreadEvent;
-import com.lizhiweike.player.BgPlayerHelper;
-import com.lizhiweike.player.model.BgPlayerModel;
-import com.lizhiweike.player.notification.MusicNotification;
-import com.lizhiweike.widget.view.GlobalMediaControl;
-import com.util.log.LogUtil;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Method;
 
@@ -36,7 +28,6 @@ public class MediaControlReceiver extends BroadcastReceiver {
 		if (TextUtils.isEmpty(action)) {
 			return;
 		}
-		LogUtil.i("MediaControlReceiver", action);
 		switch (action) {
 			case NOTIFICATION_ITEM_BUTTON_LAST:
 				break;
@@ -46,11 +37,9 @@ public class MediaControlReceiver extends BroadcastReceiver {
 				break;
 			case NOTIFICATION_ITEM_BUTTON_CLEAR:
 				MusicNotification.INSTANCE.cancel(context);
-				BgPlayerHelper.getInstance().clear();
 				break;
 			case NOTIFICATION_ITEM_BUTTON_OPEN:
 				collapseStatusBar(context);
-				EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.PLAT_OPEN_LECTURE, 1));
 				break;
 			default:
 				break;
