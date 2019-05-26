@@ -1,7 +1,6 @@
 package me.shetj.record.utils;
 
 /**
- * <b>@packageName：</b> com.shetj.diyalbume.pipiti.utils<br>
  * <b>@author：</b> shetj<br>
  * <b>@createTime：</b> 2018/10/24 0024<br>
  * <b>@company：</b><br>

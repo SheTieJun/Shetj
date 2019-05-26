@@ -2,32 +2,36 @@ package me.shetj.record.view;
 
 import android.content.Context;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseViewHolder;
+
 import org.simple.eventbus.EventBus;
 
-import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.record.R;
-import me.shetj.record.activity.RecordActivity;
 import me.shetj.record.bean.Record;
-import me.shetj.record.bean.RecordDbUtils;
+import me.shetj.record.utils.ActionCallback;
+
 
 /**
- * Project Name:android
- * Package Name:com.lizhiweike.widget.dialog
- * Created by lahm on 2018/8/29 12:05 .
- * <p>
- * Copyright (c) 2016—2017 https://www.lizhiweike.com all rights reserved.
+ * 录音更多菜单
  */
-public class EasyBottomSheetDialog implements View.OnClickListener {
+public class RecordBottomSheetDialog implements View.OnClickListener {
 	private BottomSheetDialog easyBottomSheetDialog;
 	private Record record;
 	private Context context ;
+	private ActionCallback callback;
+	private int position = -1;
+	private BaseViewHolder baseViewHolder;
 
-	public EasyBottomSheetDialog(Context context, Record record) {
+	public RecordBottomSheetDialog(Context context, int position, Record record, BaseViewHolder viewHolder, ActionCallback callback) {
 		this.record = record;
+		this.position = position;
 		this.context = context;
+		this.callback = callback;
+		this.baseViewHolder = viewHolder;
 		this.easyBottomSheetDialog = buildBottomSheetDialog(context);
 	}
 
@@ -41,7 +45,7 @@ public class EasyBottomSheetDialog implements View.OnClickListener {
 		rootView.findViewById(R.id.tv_cancel).setOnClickListener(this);
 
 		//对于时间已经大于60 分钟的 不显示继续录制
-		rootView.findViewById(R.id.tv_record).setVisibility(record.getAudioLength() > 3599 ? View.GONE:View.VISIBLE);
+		rootView.findViewById(R.id.tv_record).setVisibility(record.getAudioLength() > 3599 ? View.GONE: View.VISIBLE);
 		return bottomSheetDialog;
 	}
 
@@ -58,23 +62,22 @@ public class EasyBottomSheetDialog implements View.OnClickListener {
 	public void onClick(View view) {
 		switch (view.getId()){
 			case R.id.tv_record:
-				RecordActivity.start(context,record);
+				callback.onEvent(2);
 				dismissBottomSheet();
 				break;
 			case R.id.tv_del:
-				RecordDbUtils.getInstance().del(record);
-				EventBus.getDefault().post(new Record(),"update");
 				dismissBottomSheet();
 				break;
 			case R.id.tv_cancel:
 				dismissBottomSheet();
 				break;
 			case R.id.tv_edit_name:
-				ArmsUtils.makeText("展示修改界面");
 				dismissBottomSheet();
 				break;
 			default:
 				break;
 		}
 	}
+
+
 }
