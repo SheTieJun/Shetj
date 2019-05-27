@@ -155,7 +155,7 @@ public class MyRecordPage {
 	}
 
 
-	@Subscriber(mode = ThreadMode.MAIN)
+	@Subscriber(mode = ThreadMode.MAIN,tag = "1")
 	public void refreshData(MainThreadEvent event) {
 		switch (event.getType()) {
 			case MainThreadEvent.RECORD_REFRESH_MY:

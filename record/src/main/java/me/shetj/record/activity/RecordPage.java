@@ -274,7 +274,7 @@ public class RecordPage implements View.OnClickListener {
 								oldRecord.setAudioContent(mEditInfo.getText().toString());
 								oldRecord.setAudioLength(o);
 								RecordDbUtils.getInstance().update(oldRecord);
-								EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord));
+								EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord),"1");
 							}
 							if (isFinish) {
 								callback.onEvent(1);
@@ -333,9 +333,9 @@ public class RecordPage implements View.OnClickListener {
 			Record record = new Record("1", file, TimeUtil.getYMDHMSTime(),
 							Util.getAudioLength(context, file), mEditInfo.getText().toString());
 			RecordDbUtils.getInstance().save(record);
-
+			EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_MY, record),"1");
 		}catch (Exception e){
-			Log.i("lizhiweike-saveRecord",e.getMessage());
+			Log.i("record",e.getMessage());
 		}
 	}
 

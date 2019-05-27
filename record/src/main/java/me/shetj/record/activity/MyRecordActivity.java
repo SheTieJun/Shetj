@@ -19,6 +19,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.record.R;
+import me.shetj.record.RecordingNotification;
 import me.shetj.record.bean.Record;
 import me.shetj.record.utils.ActionCallback;
 
@@ -72,6 +73,7 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_record);
 		ArmsUtils.statuInScreen(this,true);
+		canRecord();
 		//展示界面
 		initView();
 		initData();
@@ -212,6 +214,8 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 			mAudioManager = null;
 			afChangeListener =null;
 		}
+
+		RecordingNotification.INSTANCE.cancel(this);
 		super.onDestroy();
 	}
 
