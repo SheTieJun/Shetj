@@ -1,8 +1,6 @@
 package me.shetj.record;
 
 
-import android.app.Notification;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
@@ -20,7 +18,6 @@ public class RecordService extends BaseService {
 
 	private  RecordCallBack  callBacks = null;
 	private Work work;
-	private Notification notification;
 
 	private WeakReference<RecordService> myService = new WeakReference<>(RecordService.this);
 	private CreateRecordUtils createRecordUtils;
@@ -40,12 +37,6 @@ public class RecordService extends BaseService {
 
 
 	public class Work extends Binder {
-		public void startWork(Record oldRecord) {
-			if (oldRecord != null){
-				createRecordUtils.setTime(oldRecord.getAudioLength());
-			}
-			createRecordUtils.statOrPause();
-		}
 
 		public void stop(){
 			createRecordUtils.recordComplete();
@@ -66,6 +57,30 @@ public class RecordService extends BaseService {
 		public void recordComplete() {
 			createRecordUtils.recordComplete();
 		}
+
+		public void setTime(int audioLength) {
+			createRecordUtils.setTime(audioLength);
+		}
+
+		public void statOrPause() {
+			createRecordUtils.statOrPause();
+		}
+
+		public boolean hasRecord() {
+			return createRecordUtils.hasRecord();
+		}
+
+		public void pause() {
+			createRecordUtils.pause();
+		}
+
+		public void clear() {
+			createRecordUtils.clear();
+		}
+
+		public boolean isRecording() {
+			return createRecordUtils.isRecording();
+		}
 	}
 
 
@@ -84,7 +99,8 @@ public class RecordService extends BaseService {
 	 * @return
 	 */
 	public boolean unRegisterCallBack(RecordCallBack callBack) {
-		callBacks =null;
+		callBacks = callBack;
+		stopForeground(true);
 		return false;
 	}
 
@@ -96,13 +112,20 @@ public class RecordService extends BaseService {
 			public void start() {
 				if (callBacks != null) {
 					callBacks.start();
+					startForeground("RecordService".hashCode(),RecordingNotification.INSTANCE.getNotification(1,RecordService.this));
 				}
+			}
+
+			@Override
+			public void onRecording(int time, int volume) {
+
 			}
 
 			@Override
 			public void pause() {
 				if (callBacks != null) {
 					callBacks.pause();
+					startForeground("RecordService".hashCode(),RecordingNotification.INSTANCE.getNotification(2,RecordService.this));
 				}
 			}
 
@@ -110,6 +133,7 @@ public class RecordService extends BaseService {
 			public void onSuccess(String file, int time) {
 				if (callBacks != null) {
 					callBacks.onSuccess(file,time);
+					startForeground("RecordService".hashCode(),RecordingNotification.INSTANCE.getNotification(3,RecordService.this));
 				}
 			}
 
@@ -133,12 +157,24 @@ public class RecordService extends BaseService {
 					callBacks.onError(e);
 				}
 			}
+
+			@Override
+			public void autoComplete(String file, int time) {
+				if (callBacks != null) {
+					callBacks.autoComplete(file, time);
+				}
+			}
+
+			@Override
+			public void needPermission() {
+				if (callBacks != null) {
+					callBacks.needPermission();
+				}
+			}
 		});
 		createRecordUtils.setMaxTime(1800);
 
-		notification = DownloadNotification.notify(this, R.drawable.icon_loading, "录音中",
-						"录音中", 100);
-		 startForeground(1,notification);
+
 	}
 
 	@Override
@@ -148,6 +184,7 @@ public class RecordService extends BaseService {
 		stopForeground(true);
 	}
 
+	@Override
 	public void onTaskRemoved(Intent rootIntent) {
 		if (createRecordUtils.hasRecord()){
 			createRecordUtils.recordComplete();

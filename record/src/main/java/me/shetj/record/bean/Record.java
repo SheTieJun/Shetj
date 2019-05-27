@@ -5,41 +5,31 @@ import me.shetj.simxutils.db.annotation.Column;
 import me.shetj.simxutils.db.annotation.Table;
 
 /**
- * 类名称：Record<br>
- * 内容摘要： 推送过来的录音<br>
- * 属性描述：<br>
- * 方法描述：<br>
- * 修改备注：   <br>
- * 创建时间： 2017/1/11 14:48 <br>
- * 公司：深圳市华移科技股份有限公司<br>
- *
- * @author shetj<br>
+ *  录音
  */
-
-@Table(name = "Record")
+@Table(name = "record")
 public class Record {
 
-
-
-	//id
 	@Column(name = "id",isId = true,autoGen = true)
 	private int id;
 	@Column(name = "user_id")
-	private String user_id;
+	private String user_id;//是否绑定用户，默认不绑定用户
 	@Column(name = "audio_url")
-	private String audio_url;
+	private String audio_url;//保存的路径
 	@Column(name = "audio_name")
-	private String audioName;
+	private String audioName;//录音的名称
 	@Column(name = "audio_length")
-	private int audioLength;
+	private int audioLength;//长度
 	@Column(name = "audio_content")
-	private String audioContent;
+	private String audioContent;//内容
+	@Column(name = "otherInfo")
+	private String otherInfo;// 预览信息
 
 	public Record() {
 
 	}
 
-	public Record(String user_id, String audio_url, String audioName, int audioLength,String content) {
+	public Record(String user_id, String audio_url, String audioName, int audioLength, String content) {
 		this.user_id = user_id;
 		this.audio_url = audio_url;
 		this.audioName = audioName;
@@ -86,10 +76,5 @@ public class Record {
 
 	public void setAudioLength(int audioLength) {
 		this.audioLength = audioLength;
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
 	}
 }

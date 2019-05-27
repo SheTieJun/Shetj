@@ -2,16 +2,17 @@ package me.shetj.record.utils;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.text.TextUtils;
+
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import me.shetj.base.tools.json.EmptyUtils;
 
 /**
  * <b>@author：</b> shetj<br>
@@ -19,7 +20,7 @@ import me.shetj.base.tools.json.EmptyUtils;
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b> {@link MediaPlayerUtils} 音乐播放</b><br>
  *
- *   <b> 播放 {@link MediaPlayerUtils#playOrStop(String url,PlayerListener listener)}}</b><br>
+ *   <b> 播放 {@link MediaPlayerUtils#playOrStop( String url,PlayerListener listener)}}</b><br>
  *   <b> 暂停  {@link MediaPlayerUtils#pause()} <br/>
  *   <b> 恢复  {@link MediaPlayerUtils#resume()} ()} <br/>
  *   <b> 停止  {@link MediaPlayerUtils#stopPlay()} ()} <br/>
@@ -37,6 +38,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	private PlayerListener listener;
 	private String currentUrl = "";
 	private Disposable timeDisposable;
+	private AtomicBoolean isPlay = new AtomicBoolean(true);
 
 
 
@@ -49,11 +51,11 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * @param url
 	 * @param listener
 	 */
-	private void play(String url,PlayerListener listener){
+	private void play(String url, PlayerListener listener){
 		if (null != listener) {
 			this.listener = listener;
 		}else {
-			this.listener = new SimPlayerListener();
+			this.listener = new EasyPlayerListener();
 		}
 		setCurrentUrl(url);
 		if (null == mediaPlayer){
@@ -78,6 +80,43 @@ public class MediaPlayerUtils implements LifecycleListener,
 	}
 
 	/**
+	 * 重新播放url
+	 * @param url
+	 */
+	public void playNoStart(String url, PlayerListener listener){
+		if (null != listener) {
+			this.listener = listener;
+		}else {
+			this.listener = new EasyPlayerListener();
+		}
+		setIsPlay(false);
+		setCurrentUrl(url);
+		if (null == mediaPlayer){
+			initMedia();
+		}
+		try {
+			mediaPlayer.reset();
+			mediaPlayer.setDataSource(url);
+			mediaPlayer.prepareAsync();
+			//监听
+			mediaPlayer.setOnPreparedListener(this);
+			mediaPlayer.setOnErrorListener(this);
+			mediaPlayer.setOnCompletionListener(this);
+			mediaPlayer.setOnSeekCompleteListener(this);
+			//是否循环
+			if (listener !=null) {
+				mediaPlayer.setLooping(listener.isLoop());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setIsPlay(boolean isPlay) {
+		this.isPlay.set(isPlay);
+	}
+
+	/**
 	 * 获取当前播放的url
 	 * @return currentUrl
 	 */
@@ -92,14 +131,14 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * @param url 播放的url
 	 * @param listener 监听变化
 	 */
-	public  void playOrStop(String url,PlayerListener listener) {
+	public  void playOrStop(String url, PlayerListener listener) {
 
 		//判断是否是当前播放的url
 		if (url.equals(getCurrentUrl()) && mediaPlayer != null){
 			if (listener!=null) {
 				this.listener = listener;
 			}else {
-				this.listener = new SimPlayerListener();
+				this.listener = new EasyPlayerListener();
 			}
 			if (mediaPlayer.isPlaying()){
 				pause();
@@ -127,21 +166,20 @@ public class MediaPlayerUtils implements LifecycleListener,
 	/**
 	 * 外部设置进度变化
 	 */
-	public void  progressChange(int changeSize){
-		if (mediaPlayer != null && EmptyUtils.isNotEmpty(getCurrentUrl())) {
+	public void seekTo(int changeSize){
+		if (mediaPlayer != null && !TextUtils.isEmpty(getCurrentUrl())) {
+			setIsPlay(!isPause());
+			mediaPlayer.start();
 			mediaPlayer.seekTo(changeSize);
 		}
 	}
-
 
 	/**
 	 * 清空播放信息
 	 */
 	private void release(){
 		unDispose();
-		if (EmptyUtils.isNotEmpty(currentUrl)){
-			currentUrl = "";
-		}
+		currentUrl = "";
 		//释放MediaPlay
 		if (null != mediaPlayer) {
 			mediaPlayer.release();
@@ -154,22 +192,14 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 */
 	private void startProgress() {
 		if ( mediaPlayer != null && mediaPlayer.isPlaying()) {
-			timeDisposable = Flowable.interval(0, 50, TimeUnit.MILLISECONDS)
+			timeDisposable = Flowable.interval(0, 150, TimeUnit.MILLISECONDS)
 							.subscribeOn(Schedulers.io())
 							.observeOn(AndroidSchedulers.mainThread())
-							.subscribe(new Consumer<Long>() {
-								@Override
-								public void accept(Long aLong) throws Exception {
-									if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-										listener.onProgress(mediaPlayer.getCurrentPosition(),mediaPlayer.getDuration());
-									}
+							.subscribe(aLong -> {
+								if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+									listener.onProgress(mediaPlayer.getCurrentPosition(),mediaPlayer.getDuration());
 								}
-							}, new Consumer<Throwable>() {
-								@Override
-								public void accept(Throwable throwable) throws Exception {
-									stopProgress();
-								}
-							});
+							}, throwable -> stopProgress());
 			addDispose(timeDisposable);
 		}
 	}
@@ -189,7 +219,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 */
 	public void pause(){
 		if (mediaPlayer !=null && mediaPlayer.isPlaying()
-						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
+						&& !TextUtils.isEmpty(getCurrentUrl())) {
 			stopProgress();
 			mediaPlayer.pause();
 			listener.onPause();
@@ -199,8 +229,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 	 * 恢复，并且开始计时
 	 */
 	public void resume(){
-		if (mediaPlayer !=null && !mediaPlayer.isPlaying()
-						&& EmptyUtils.isNotEmpty(getCurrentUrl())) {
+		if (isPause() && !TextUtils.isEmpty(getCurrentUrl())) {
 			mediaPlayer.start();
 			listener.onResume();
 			startProgress();
@@ -217,10 +246,14 @@ public class MediaPlayerUtils implements LifecycleListener,
 
 
 	public  void  stopPlay(){
-		if (null !=mediaPlayer ){
-			startProgress();
-			mediaPlayer.stop();
-			listener.onStop();
+		try {
+			if (null != mediaPlayer) {
+				startProgress();
+				mediaPlayer.stop();
+				listener.onStop();
+				release();
+			}
+		}catch (Exception e) {
 			release();
 		}
 	}
@@ -234,7 +267,7 @@ public class MediaPlayerUtils implements LifecycleListener,
 			mediaPlayer = new MediaPlayer();
 
 			if (null == listener) {
-				listener = new SimPlayerListener();
+				listener = new EasyPlayerListener();
 			}
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		}
@@ -266,6 +299,10 @@ public class MediaPlayerUtils implements LifecycleListener,
 
 	@Override
 	public void onPrepared(MediaPlayer mp) {
+		if (!isPlay.get()){
+			setIsPlay(true);
+			return;
+		}
 		mp.start();
 		startProgress();
 		listener.onStart(getCurrentUrl());
@@ -314,7 +351,11 @@ public class MediaPlayerUtils implements LifecycleListener,
 	@Override
 	public void onSeekComplete(MediaPlayer mp) {
 		if (null != mediaPlayer) {
-			listener.onProgress(mp.getCurrentPosition(),mp.getDuration());
+			listener.onProgress(mp.getDuration(),mp.getDuration());
+		}
+		if (!isPlay.get()){
+			setIsPlay(true);
+			onPause();
 		}
 	}
 }

@@ -2,26 +2,29 @@ package me.shetj.record.utils;
 
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 
 import com.czt.mp3recorder.MP3Recorder;
 
 import java.io.File;
 import java.io.IOException;
 
-import kotlin.jvm.Throws;
-import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.file.FileUtils;
-import me.shetj.base.tools.json.EmptyUtils;
+
 
 /**
  * Created by shetj on 2017/6/9.
- * 抽象方法
- * 公共方法
- * 私有方法
+	* 录音工具的封装
  */
 
 
 public class RecordUtils {
+	private   RecordCallBack callBack;
+
+	public RecordUtils(RecordCallBack callBack) {
+		this.callBack = callBack;
+	}
+
 	public static final int   NORMAL = 1; //正常
 	public static final int		RECORD_ING = 2;//正在录音
 	public static final int		RECORD_PAUSE = 3;//暂停
@@ -33,8 +36,7 @@ public class RecordUtils {
 	 * 开始录音
 	 */
 	public void  startFullRecord(String saveFile) {
-		if (EmptyUtils.isEmpty(saveFile)){
-			ArmsUtils.makeText("文件不能为空");
+		if (TextUtils.isEmpty(saveFile)){
 			return;
 		}
 		if (momentState == NORMAL) {
@@ -45,8 +47,9 @@ public class RecordUtils {
 				public void handleMessage(Message msg) {
 					super.handleMessage(msg);
 					if (msg.what == MP3Recorder.ERROR_TYPE) {
-						ArmsUtils.makeText("没有麦克风权限");
 						resolveError();
+						callBack.onError(new Exception("需要权限"));
+						callBack.needPermission();
 					}
 				}
 			});
@@ -54,16 +57,18 @@ public class RecordUtils {
 				mRecorder.start();
 			} catch (IOException e) {
 				e.printStackTrace();
-				ArmsUtils.makeText("录音出现异常");
 				resolveError();
 				momentState = NORMAL;
+			}finally{
+				momentState = RECORD_ING;
 			}
 		}else if (momentState == RECORD_PAUSE){
 			if (mRecorder != null&&mRecorder.isPause()) {
 				mRecorder.setPause(false);
 			}
+			momentState = RECORD_ING;
 		}
-		momentState = RECORD_ING;
+
 	}
 
 
@@ -89,6 +94,9 @@ public class RecordUtils {
 		momentState = NORMAL;
 	}
 
+	public int getRealVolume(){
+		return mRecorder.getRealVolume();
+	}
 
 	/**
 	 * 暂停录音
