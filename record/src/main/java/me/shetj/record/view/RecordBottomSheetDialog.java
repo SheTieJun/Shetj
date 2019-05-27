@@ -12,7 +12,9 @@ import org.simple.eventbus.EventBus;
 
 import me.shetj.record.R;
 import me.shetj.record.bean.Record;
+import me.shetj.record.bean.RecordDbUtils;
 import me.shetj.record.utils.ActionCallback;
+import me.shetj.record.utils.MainThreadEvent;
 
 
 /**
@@ -66,6 +68,8 @@ public class RecordBottomSheetDialog implements View.OnClickListener {
 				dismissBottomSheet();
 				break;
 			case R.id.tv_del:
+				RecordDbUtils.getInstance().del(record);
+				EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_DEL, position));
 				dismissBottomSheet();
 				break;
 			case R.id.tv_cancel:

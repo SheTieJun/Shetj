@@ -31,11 +31,13 @@ import org.simple.eventbus.EventBus;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import me.jessyan.autosize.utils.LogUtils;
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.time.TimeUtil;
 import me.shetj.record.R;
@@ -47,6 +49,7 @@ import me.shetj.record.utils.CreateRecordUtils;
 import me.shetj.record.utils.MainThreadEvent;
 import me.shetj.record.utils.RecordCallBack;
 import me.shetj.record.utils.Util;
+import timber.log.Timber;
 
 /**
  * 录制声音界面
@@ -72,6 +75,7 @@ public class RecordPage implements View.OnClickListener {
 	private RecordCallBack recordCallBack;
 	private RecordService.Work work;
 	private RecordService myService;
+	private Intent intent;
 
 	public RecordPage(AppCompatActivity context, ViewGroup mRoot, ActionCallback callback) {
 		this.context = context;
@@ -106,7 +110,7 @@ public class RecordPage implements View.OnClickListener {
 
 	//绑定service
 	private void bindService() {
-		Intent intent = new Intent(context, RecordService.class);
+		intent = new Intent(context, RecordService.class);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			context.startForegroundService(intent);
 		}else {
@@ -274,7 +278,7 @@ public class RecordPage implements View.OnClickListener {
 								oldRecord.setAudioContent(mEditInfo.getText().toString());
 								oldRecord.setAudioLength(o);
 								RecordDbUtils.getInstance().update(oldRecord);
-								EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord),"1");
+								EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord));
 							}
 							if (isFinish) {
 								callback.onEvent(1);
@@ -333,7 +337,7 @@ public class RecordPage implements View.OnClickListener {
 			Record record = new Record("1", file, TimeUtil.getYMDHMSTime(),
 							Util.getAudioLength(context, file), mEditInfo.getText().toString());
 			RecordDbUtils.getInstance().save(record);
-			EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_MY, record),"1");
+			EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_MY, record));
 		}catch (Exception e){
 			Log.i("record",e.getMessage());
 		}
@@ -440,6 +444,8 @@ public class RecordPage implements View.OnClickListener {
 	}
 
 	protected void onDestroy() {
+		Timber.i("onDestroy");
+		context.stopService(intent);
 		unBindService();
 	}
 

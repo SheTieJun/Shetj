@@ -90,6 +90,7 @@ public class RecordService extends BaseService {
 		if (callBack != null) {
 			this.callBacks = callBack;
 		}
+		Log.i("RecordService","registerCallBack");
 	}
 
 	/**
@@ -101,6 +102,7 @@ public class RecordService extends BaseService {
 	public boolean unRegisterCallBack(RecordCallBack callBack) {
 		callBacks = callBack;
 		stopForeground(true);
+		Log.i("RecordService","unRegisterCallBack");
 		return false;
 	}
 
@@ -181,6 +183,7 @@ public class RecordService extends BaseService {
 	public void onDestroy() {
 		super.onDestroy();
 		createRecordUtils.clear();
+		Log.i("RecordService","onDestroy");
 		stopForeground(true);
 	}
 

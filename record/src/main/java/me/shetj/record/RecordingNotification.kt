@@ -12,6 +12,7 @@ import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.support.v4.content.ContextCompat
+import me.shetj.record.activity.MyRecordActivity
 
 
 /**
@@ -51,21 +52,17 @@ object RecordingNotification {
             else -> "录音已完成"
         }
 
-//        val intent = Intent(context, Reco::class.java)
-//
-//
-//        remoteViews = getCustomView(context)
-//
+        val intent = Intent(context, MyRecordActivity::class.java)
 //         点击跳转到主界面
-//        val intentGo = PendingIntent.getActivity(context, 5, intent,
-//                PendingIntent.FLAG_UPDATE_CURRENT)
-//        remoteViews?.setOnClickPendingIntent(R.id.iv_lecture, intentGo)
+        val intentGo = PendingIntent.getActivity(context, 1, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = NotificationCompat.Builder(context, createNotificationChannel(context))
                 .setSmallIcon(R.mipmap.record)
                 .setContentTitle("录音机")
                 .setContentText(content)
                 .setOngoing(true)
+                .setContentIntent(intentGo)
                 .setSound(null)
                 .setVibrate(longArrayOf(0))
                 .setDefaults(NotificationCompat.DEFAULT_ALL)

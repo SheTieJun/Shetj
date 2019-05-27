@@ -79,7 +79,6 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 		initData();
 	}
 
-
 	@Override
 	protected void initData() {
 		mAudioManager = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
