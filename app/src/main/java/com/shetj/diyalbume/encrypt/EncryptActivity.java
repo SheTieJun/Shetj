@@ -1,6 +1,8 @@
 package com.shetj.diyalbume.encrypt;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,13 @@ public class EncryptActivity extends BaseActivity implements View.OnClickListene
 	private EditText mEditJiemi;
 	/**  */
 	private TextView mText2;
+
+	private Handler handler =new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

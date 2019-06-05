@@ -35,18 +35,13 @@ public class HttpOssManager {
   public  void getOSSFromSever(final EasyCallBack<String> callBack){
     if (TokenManager.getInstance().isLogin()){
       TokenManager.getInstance().getToken()
-              .map(new Function<String, Disposable>() {
-                @Override
-                public Disposable apply(String token) throws Exception {
-                  return  EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
-                          .baseUrl(ShetjApi.HTTP_USER)
-                          .headers("Authorization", "Bearer " + token)
-                          .cacheKey(ArmsUtils.encodeToMD5(ShetjApi.User.URL_GET_OSS_STS))
-                          .cacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
-                          .cacheTime(24 * 60 * 60 * 1000 - 60*60*1000)
-                          .execute(callBack);
-                }
-              });
+              .map(token -> EasyHttp.get(ShetjApi.User.URL_GET_OSS_STS)
+                      .baseUrl(ShetjApi.HTTP_USER)
+                      .headers("Authorization", "Bearer " + token)
+                      .cacheKey(ArmsUtils.encodeToMD5(ShetjApi.User.URL_GET_OSS_STS))
+                      .cacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
+                      .cacheTime(24 * 60 * 60 * 1000 - 60*60*1000)
+                      .execute(callBack));
     }else {
       callBack.onError(new ApiException(new Throwable("您还没有登录！"),402));
     }

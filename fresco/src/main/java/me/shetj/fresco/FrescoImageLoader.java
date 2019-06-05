@@ -26,12 +26,13 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
  * <b>@company：</b><br>
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b> FrescoImageLoader 图片加载<br>
- *   <b>  远程图片	<b>	http://, https://	HttpURLConnection 或者参考 使用其他网络加载方案<br>
- * 本地文件	 <b>file://	FileInputStream<br>
- * Content 	<b>provider	content://	ContentResolver<br>
- * asset目录下的资源		<b>asset://	AssetManager<br>
- * res目录下的资源	<b>	res://	Resources.openRawResource<br>
- * Uri中指定图片数据		<b>data:mime/type;base64,	数据类型必须符合 rfc2397规定 (仅支持 UTF-8)<br>
+ *
+ *   <b>  远程图片:	http://, https://	HttpURLConnection 或者参考 使用其他网络加载方案<br>
+ *   <b> 本地文件	 :  file://	FileInputStream<br>
+ *   <b> Content :	 provider	content://	ContentResolver<br>
+ *   <b> asset目录下的资源	: asset://	AssetManager<br>
+ *   <b> res目录下的资源	: res://	Resources.openRawResource<br>
+ *  <b>  Uri中指定图片数据	: data:mime/type;base64,	数据类型必须符合 rfc2397规定 (仅支持 UTF-8)<br>
  */
 public class FrescoImageLoader implements ImageLoader {
 

@@ -42,6 +42,7 @@ import me.shetj.download.base.DownloadService
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.ohter.OtherActivity
 import me.shetj.download.view.DownloadActivity
 
@@ -203,6 +204,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         RxView.clicks(btn_download).subscribe {
             ArmsUtils.startActivity(this, DownloadActivity::class.java)
+        }
+
+        RxView.clicks(btn_job_scheduler).subscribe {
+            ArmsUtils.startActivity(this, JobSchedulerActivity::class.java)
         }
     }
 

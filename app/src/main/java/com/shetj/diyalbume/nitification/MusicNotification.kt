@@ -56,7 +56,6 @@ object MusicNotification {
                 playOrPause, PendingIntent.FLAG_UPDATE_CURRENT)
         remoteViews?.setOnClickPendingIntent(R.id.audioBtnLayout, intentPlay)
 
-
         val builder = NotificationCompat.Builder(context,createNotificationChannel(context))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setOngoing(true)
