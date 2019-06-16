@@ -1,0 +1,21 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/retrying.png"
+        android:shortcutDisabledMessage="下载"
+        android:shortcutId="download"
+        android:shortcutLongLabel="下载"
+        android:shortcutShortLabel="下载"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.Main"
+            android:targetClass="com.shetj.diyalbume.main.view.MainActivity"
+            android:targetPackage="com.shetj.diyalbume" />
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="me.shetj.download.view.DownloadActivity"
+            android:targetPackage="com.shetj.diyalbume" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

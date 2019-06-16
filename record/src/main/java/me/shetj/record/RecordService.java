@@ -18,7 +18,6 @@ public class RecordService extends BaseService {
 
 	private  RecordCallBack  callBacks = null;
 	private Work work;
-
 	private WeakReference<RecordService> myService = new WeakReference<>(RecordService.this);
 	private CreateRecordUtils createRecordUtils;
 	private Work getWork() {
@@ -27,8 +26,6 @@ public class RecordService extends BaseService {
 		}
 		return work;
 	}
-
-
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -54,6 +51,19 @@ public class RecordService extends BaseService {
 			createRecordUtils.statOrPause();
 		}
 
+		//注册接口
+		public void setCallBack(RecordCallBack callBack) {
+			if (callBack != null) {
+				callBacks = callBack;
+			}
+		}
+		public boolean stop(RecordCallBack callBack) {
+			stopForeground(true);
+			stopSelf();
+			return false;
+		}
+
+
 		public void recordComplete() {
 			createRecordUtils.recordComplete();
 		}
@@ -74,37 +84,12 @@ public class RecordService extends BaseService {
 			createRecordUtils.pause();
 		}
 
-		public void clear() {
-			createRecordUtils.clear();
-		}
 
 		public boolean isRecording() {
 			return createRecordUtils.isRecording();
 		}
 	}
 
-
-
-	//注册接口
-	public void registerCallBack(RecordCallBack callBack) {
-		if (callBack != null) {
-			this.callBacks = callBack;
-		}
-		Log.i("RecordService","registerCallBack");
-	}
-
-	/**
-	 * 注销接口 false注销失败
-	 *
-	 * @param callBack
-	 * @return
-	 */
-	public boolean unRegisterCallBack(RecordCallBack callBack) {
-		callBacks = callBack;
-		stopForeground(true);
-		Log.i("RecordService","unRegisterCallBack");
-		return false;
-	}
 
 
 	@Override
@@ -120,7 +105,7 @@ public class RecordService extends BaseService {
 
 			@Override
 			public void onRecording(int time, int volume) {
-
+					startForeground("RecordService".hashCode(),RecordingNotification.INSTANCE.getNotification(1,RecordService.this));
 			}
 
 			@Override
@@ -175,16 +160,14 @@ public class RecordService extends BaseService {
 			}
 		});
 		createRecordUtils.setMaxTime(1800);
-
-
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		createRecordUtils.clear();
-		Log.i("RecordService","onDestroy");
 		stopForeground(true);
+
 	}
 
 	@Override

@@ -121,20 +121,15 @@ public class RecordPage implements View.OnClickListener {
 
 	private ServiceConnection serviceConnection = new ServiceConnection() {
 
-
 		@Override
 		public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
 			//获取绑定binder 强制转化为MyService.Work
 			work = (RecordService.Work) iBinder;
-			myService = work.getMyService();
-			myService.registerCallBack(recordCallBack);
+			work.setCallBack(recordCallBack);
 		}
 
 		@Override
 		public void onServiceDisconnected(ComponentName componentName) {
-			if (myService != null) {
-				myService.unRegisterCallBack(recordCallBack);
-			}
 		}
 	};
 
@@ -297,18 +292,10 @@ public class RecordPage implements View.OnClickListener {
 		new AlertDialog.Builder(context)
 						.setTitle("录音已保存")
 						.setMessage("已成功录满60分钟，录音已保存。是否继续录制下一条？")
-						.setNegativeButton("查看本条", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								callback.onEvent(1);
-							}
-						})
-						.setPositiveButton("录下一条", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								setRecord(null);
-								ArmsUtils.makeText("上条录音已保存至“我的录音”");
-							}
+						.setNegativeButton("查看本条", (dialog, which) -> callback.onEvent(1))
+						.setPositiveButton("录下一条", (dialog, which) -> {
+							setRecord(null);
+							ArmsUtils.makeText("上条录音已保存至“我的录音”");
 						})
 						.show();
 	}

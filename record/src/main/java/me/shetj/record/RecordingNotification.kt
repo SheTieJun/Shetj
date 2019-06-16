@@ -64,8 +64,8 @@ object RecordingNotification {
                 .setOngoing(true)
                 .setContentIntent(intentGo)
                 .setSound(null)
+                .setDefaults(NotificationCompat.FLAG_ONLY_ALERT_ONCE)
                 .setVibrate(longArrayOf(0))
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setColor(ContextCompat.getColor(context.applicationContext, R.color.colorPrimary))
                 .setPriority(NotificationCompat.PRIORITY_MAX)
         return builder.build()
@@ -89,9 +89,9 @@ object RecordingNotification {
      */
     private fun createNotificationChannel(context: Context): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId ="record"
-            val channelName = "record"
-            val channelDescription = "record"
+            val channelId ="录音机"
+            val channelName = "录音机"
+            val channelDescription = "录音机"
             val channelImportance = NotificationManager.IMPORTANCE_DEFAULT
 
             val notificationChannel = NotificationChannel(channelId, channelName, channelImportance)

@@ -49,7 +49,8 @@ dependencies {
     implementation "com.android.support:customtabs:$androidSupportSdkVersion"
     implementation "com.android.support:recyclerview-v7:$androidSupportSdkVersion"
     implementation "com.android.support:cardview-v7:$androidSupportSdkVersion"
-    implementation 'com.github.CarGuo:RecordWave:v1.1.8'
-    implementation "com.github.SheTieJun:Base:$base_version"
+    //录音直接转MP3
+    implementation 'com.github.SheTieJun:RecordWave:f7dd8a01a0'
+    implementation "com.github.SheTieJun:Base:$base_kt_version"
     implementation project(':simxutils')
 }

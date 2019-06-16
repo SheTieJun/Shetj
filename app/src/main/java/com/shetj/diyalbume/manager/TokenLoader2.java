@@ -49,7 +49,7 @@ public class TokenLoader2 {
 			Timber.i("token过期了");
 			return getNetTokenLocked();
 		} else {
-			Timber.i("使用本地缓存token = " + cacheToken);
+			Timber.i("使用本地缓存token = %s", cacheToken);
 			return Observable.just(cacheToken);
 		}
 	}
@@ -63,7 +63,7 @@ public class TokenLoader2 {
 				.upJson(GsonKit.objectToJson(map))
 				.execute(String.class)
 				.doOnNext(token -> {
-					Timber.i( "存储Token=" + token);
+					Timber.i( "存储Token=%s", token);
 					TokenManager.getInstance().setToken(token);
 					mRefreshing.set(false);
 				}).doOnError(throwable -> mRefreshing.set(false)).subscribeOn(Schedulers.io());

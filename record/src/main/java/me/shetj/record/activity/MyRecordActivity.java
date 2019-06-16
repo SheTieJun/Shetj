@@ -44,30 +44,6 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 	private Transition myRecordTransition;
 	private AudioManager mAudioManager;
 
-	/**
-	 * 个人中心进入录音界面，上传后不会关闭该界面
-	 * @param context 上下文
-	 * @param type “record” 为录音界面，“recordList” 为我的录音界面
-	 */
-	public static void start(Fragment context, String type, int liveroomId) {
-		Intent intent = new Intent(context.getActivity(), MyRecordActivity.class);
-		intent.putExtra(TYPE,type);
-		intent.putExtra("liveroom_id", liveroomId);
-		context.startActivityForResult(intent,REQUEST_FRAGMENT_RECORD_CODE);
-	}
-
-
-	/**
-	 * 其他进入录音界面，上传后会关闭该界面
-	 * @param context
-	 */
-	public static void startForResult(Activity context){
-		Intent intent = new Intent(context, MyRecordActivity.class);
-		intent.putExtra(TYPE,"recordList");
-		intent.putExtra(NEED_CLOSE,true);
-		context.startActivityForResult(intent,REQUEST_RECORD_CODE);
-	}
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,58 +55,6 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 		initData();
 	}
 
-	@Override
-	protected void initData() {
-		mAudioManager = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (mAudioManager != null && isRecord) {
-			mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC,
-							AudioManager.AUDIOFOCUS_GAIN);
-		}
-	}
-
-	AudioManager.OnAudioFocusChangeListener afChangeListener = focusChange -> {
-		switch (focusChange){
-			case AudioManager.AUDIOFOCUS_LOSS:
-				//长时间丢失焦点,当其他应用申请的焦点为AUDIOFOCUS_GAIN时，
-				//会触发此回调事件，例如播放QQ音乐，网易云音乐等
-				//通常需要暂停音乐播放，若没有暂停播放就会出现和其他音乐同时输出声音
-				pauseAction();
-				//释放焦点，该方法可根据需要来决定是否调用
-				//若焦点释放掉之后，将不会再自动获得
-				break;
-			case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-				//短暂性丢失焦点，当其他应用申请AUDIOFOCUS_GAIN_TRANSIENT或AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE时，
-				//会触发此回调事件，例如播放短视频，拨打电话等。
-				//通常需要暂停音乐播放
-				pauseAction();
-				break;
-			case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-				//短暂性丢失焦点并作降音处理
-				pauseAction();
-				break;
-			case AudioManager.AUDIOFOCUS_GAIN:
-				//当其他应用申请焦点之后又释放焦点会触发此回调
-				//可重新播放音乐
-				break;
-		}
-	};
-
-	/**
-	 * 暂停所有播放、录音动作
-	 */
-	private void pauseAction() {
-		if (recordAction != null) {
-			recordAction.onPause();
-		}
-		if (myRecordAction != null) {
-			myRecordAction.onPause();
-		}
-	}
 
 	@Override
 	protected void initView() {
@@ -144,6 +68,11 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 		myRecordTransition = TransitionInflater.from(this).inflateTransition(R.transition.my_record_page_slide);
 			isRecord = false;
 			TransitionManager.go(myRecordAction.getScene(),myRecordTransition);
+	}
+
+	@Override
+	protected void initData() {
+
 	}
 
 
@@ -208,12 +137,6 @@ public class MyRecordActivity extends BaseActivity implements ActionCallback {
 		if (myRecordAction !=null){
 			myRecordAction.onDestroy();
 		}
-		if (mAudioManager != null) {
-			mAudioManager.abandonAudioFocus(afChangeListener);
-			mAudioManager = null;
-			afChangeListener =null;
-		}
-
 		RecordingNotification.INSTANCE.cancel(this);
 		super.onDestroy();
 	}
