@@ -11,6 +11,7 @@ import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.fingerprinter.FPerException
 import me.shetj.fingerprinter.RxFingerPrinter
+import timber.log.Timber
 
 
 /**
@@ -29,29 +30,11 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finger_print)
-        fpv.setOnStateChangedListener(FingerPrinterView.OnStateChangedListener { state ->
-            if (state == FingerPrinterView.STATE_CORRECT_PWD) {
-                ArmsUtils.makeText("指纹识别成功")
-                onBackPressed()
-                return@OnStateChangedListener
-            }
-            if (state == FingerPrinterView.STATE_WRONG_PWD) {
-                ArmsUtils.makeText("指纹识别失败，请重试")
-                fpv.state = FingerPrinterView.STATE_NO_SCANING
-            }
-        })
         rxFingerPrinter =  RxFingerPrinter(this)
 
-        val observer = object : DisposableObserver<Boolean>() {
+        val observer = object : DisposableObserver<Int>() {
 
             override fun onStart() {
-                if (fpv.state == FingerPrinterView.STATE_SCANING) {
-                    return
-                } else if (fpv.state == FingerPrinterView.STATE_CORRECT_PWD || fpv.state == FingerPrinterView.STATE_WRONG_PWD) {
-                    fpv.state = FingerPrinterView.STATE_NO_SCANING
-                } else {
-                    fpv.state = FingerPrinterView.STATE_SCANING
-                }
             }
 
             override fun onError(e: Throwable) {
@@ -63,21 +46,28 @@ class FingerPrintActivity : BaseActivity<BasePresenter<*>>() {
             override fun onComplete() {
             }
 
-            override fun onNext(aBoolean: Boolean) {
-                if (aBoolean) {
-                    fpv.state = FingerPrinterView.STATE_CORRECT_PWD
-                } else {
-                    fpv.state = FingerPrinterView.STATE_WRONG_PWD
-                }
+            override fun onNext(type: Int) {
+                Timber.i(type.toString())
+               when(type){
+                   0 ->{
+                        ArmsUtils.makeText("验证失败！")
+                   }
+                   1 ->{
+                       ArmsUtils.makeText("验证成功！")
+                   }
+                   else->{
+                        finish()
+                   }
+               }
             }
         }
-
+        rxFingerPrinter.init()
+                .compose(bindToLifecycle())
+                .subscribe(observer)
 
 
         bt_open.setOnClickListener {
-            rxFingerPrinter.begin()
-                    .compose(bindToLifecycle())
-                    .subscribe(observer)
+            rxFingerPrinter.start()
         }
 
         btn_sys.setOnClickListener{

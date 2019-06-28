@@ -54,6 +54,7 @@ public class CircleView extends View {
     // 如View有style属性时
     public  CircleView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        init();
     }
 
     // 画笔初始化

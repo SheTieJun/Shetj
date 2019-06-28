@@ -199,7 +199,7 @@ dependencies {
 
     implementation project(':resources')
 
-    implementation 'com.airbnb.android:lottie:2.5.6'
+    implementation 'com.airbnb.android:lottie:2.7.0'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
 
     implementation project(path: ':rxFingerPrinter')

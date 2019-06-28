@@ -5,8 +5,8 @@ buildscript {
 
     ext.base_version = "bfd7192479"
 //  ext.base_version ="29e6 d653 86"
-
-    ext.base_kt_version = "00cd89a0c6"
+//    ext.base_kt_version = "00cd89a0c6"
+    ext.base_kt_version = "da5dd23306"
     repositories {
         google()
         jcenter()
@@ -20,9 +20,12 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
 
 //        classpath 'com.devyok.ipc:ipc-gradle-plugin:0.0.1'
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.2'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        // tinkersuppor
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
 
         //阿里路由
         classpath "com.alibaba:arouter-register:1.0.2"

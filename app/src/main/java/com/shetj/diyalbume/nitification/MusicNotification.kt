@@ -115,5 +115,23 @@ object MusicNotification {
         }
     }
 
+    fun createBgNotif(context: Context): Notification {
+        val intents =
+                context.packageManager.getLaunchIntentForPackage(context.packageName)
+        val pendingIntent= PendingIntent.getActivity(context, 0, intents,
+                PendingIntent.FLAG_UPDATE_CURRENT)
+        val  builder = NotificationCompat.Builder(context, createNotificationChannel(context))
+        builder.setSound(null)
+                .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.shetj_logo))
+                .setDefaults(NotificationCompat.FLAG_ONLY_ALERT_ONCE)
+                .setOngoing(true)
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setContentTitle("荔枝微课")
+                .setContentText("荔枝微课成长每时每刻")
+                .setContentIntent(pendingIntent)
+                .setSmallIcon(R.mipmap.shetj_logo)
+        return builder.build()
+    }
 
 }

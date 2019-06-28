@@ -1,0 +1,112 @@
+apply plugin: 'com.tencent.bugly.tinker-support'
+
+def bakPath = file("${buildDir}/bakApk/")
+
+/**
+ * 此处填写每次构建生成的基准包目录
+ */
+def baseApkDir = "app-1119-11-57-40"
+
+/**
+ * 2017-06-23
+ *
+ * Android开发人员务必follow以下打包操作
+ * 一.构建基准包(供线上发布)
+ * 1.更改tinkerId "版本号-base";
+ * 2.gradle输入指令  assembleRelease,在app/build/bakApk/baseApkDir/渠道名/可看到*.apk/*mapping.txt/*R.txt 文件;
+ * 3.保留基准包及其txt文件,此时的基准包已经进行混淆及签名操作;
+ * 4.去加固,只做自动签名操作,不要多渠道再打包了.废弃channelForLegu值;
+ * 5.发布该线上包.
+ *
+ * 二.构建补丁包
+ * 1.更改tinkerId "版本号-patch";
+ * 2.更改baseApkDir路径,要根据 !未加固的基准包生成补丁包! 去构建补丁;
+ * 3.gradle指令 tinker-support -> buildTinkerPatch渠道Release生成单个渠道补丁包;
+ * 4.去outputs/patch/渠道名/拿patch_signed_7zip.apk
+ * 5.去bugly上传该补丁.
+ *
+ * 测试tips:
+ * 1.目前多渠道打包,统一通过编译UMENG_CHANNEL来确定,AS工具去检查UMENG_CHANNEL/BUGLY_CHANNEL是否一致;
+ * 2.目前不能一次性打所有渠道的补丁包,需要单个生成补丁,优化请参考
+ * https://buglydevteam.github.io/2017/05/15/solution-of-multiple-channel-hotpatch/
+ *
+ * 3.测试人员检查 Tinker补丁下发后,问题包(线上包)app需要重启两次才能生效,原理不细说;
+ * 4.测试人员可在bugly系统查看下发数量/(激活)修复设备数量;
+ *
+ */
+tinkerSupport {
+
+    // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性
+    tinkerId = "4110000-base"
+
+    // 开启tinker-support插件，默认值true
+    enable = true
+
+    // 指定归档目录，默认值当前module的子目录tinker
+    autoBackupApkDir = "${bakPath}"
+
+    // 是否启用覆盖tinkerPatch配置功能，默认值false
+    // 开启后tinkerPatch配置不生效，即无需添加tinkerPatch
+    overrideTinkerPatchConfiguration = true
+
+    // 编译补丁包时，必需指定基线版本的apk，默认值为空
+    // 如果为空，则表示不是进行补丁包的编译
+    // @{link tinkerPatch.oldApk }
+    baseApk = "${bakPath}/${baseApkDir}/app-release.apk"
+
+    // 对应tinker插件applyMapping
+    baseApkProguardMapping = "${bakPath}/${baseApkDir}/app-release-mapping.txt"
+
+    // 对应tinker插件applyResourceMapping
+    baseApkResourceMapping = "${bakPath}/${baseApkDir}/app-release-R.txt"
+
+    // 构建多渠道补丁时使用
+    buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
+
+    // 是否启用加固模式，默认为false.(tinker-spport 1.0.7起支持）
+    isProtectedApp = true
+
+    // 是否开启反射Application模式
+    enableProxyApplication = true
+
+    // 是否支持新增非export的Activity（注意：设置为true才能修改AndroidManifest文件）
+    supportHotplugComponent = true
+}
+
+/**
+ * 一般来说,我们无需对下面的参数做任何的修改
+ * 对于各参数的详细介绍请参考:
+ * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
+ */
+tinkerPatch {
+    //oldApk ="${bakPath}/${appName}/app-release.apk"
+    ignoreWarning = false
+    useSign = true
+    dex {
+        dexMode = "jar"
+        pattern = ["classes*.dex"]
+        loader = []
+    }
+    lib {
+        pattern = ["lib/*/*.so"]
+    }
+
+    res {
+        pattern = ["res/*", "r/*", "assets/*", "resources.arsc", "AndroidManifest.xml"]
+        ignoreChange = []
+        largeModSize = 100
+    }
+
+    packageConfig {
+    }
+    sevenZip {
+        zipArtifact = "com.tencent.mm:SevenZip:1.1.10"
+//        path = "/usr/local/bin/7za"
+    }
+    buildConfig {
+        keepDexApply = false
+        //tinkerId = "1.0.1-base"
+        //applyMapping = "${bakPath}/${appName}/app-release-mapping.txt" //  可选，设置mapping文件，建议保持旧apk的proguard混淆方式
+        //applyResourceMapping = "${bakPath}/${appName}/app-release-R.txt" // 可选，设置R.txt文件，通过旧apk文件保持ResId的分配
+    }
+}
