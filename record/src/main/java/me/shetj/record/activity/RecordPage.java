@@ -111,11 +111,7 @@ public class RecordPage implements View.OnClickListener {
 	//绑定service
 	private void bindService() {
 		intent = new Intent(context, RecordService.class);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			context.startForegroundService(intent);
-		}else {
-			context.startService(intent);
-		}
+		context.startService(intent);
 		bindService = context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 	}
 
@@ -264,25 +260,25 @@ public class RecordPage implements View.OnClickListener {
 	 */
 	private void saveOldRecord(String file, boolean isFinish) {
 		Flowable.just(file)
-						.subscribeOn(Schedulers.io())
-						.map(s -> getMergeFile(file))
-						.flatMap(s -> getMediaTime(s))
-						.observeOn(AndroidSchedulers.mainThread())
-						.subscribe(o -> {
-							if (oldRecord != null && isHasChange) {
-								oldRecord.setAudioContent(mEditInfo.getText().toString());
-								oldRecord.setAudioLength(o);
-								RecordDbUtils.getInstance().update(oldRecord);
-								EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord));
-							}
-							if (isFinish) {
-								callback.onEvent(1);
-							} else {
-								showRecordNewDialog();
-							}
-						},e ->{
-							callback.onEvent(1);
-						});
+				.subscribeOn(Schedulers.io())
+				.map(s -> getMergeFile(file))
+				.flatMap(s -> getMediaTime(s))
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(o -> {
+					if (oldRecord != null && isHasChange) {
+						oldRecord.setAudioContent(mEditInfo.getText().toString());
+						oldRecord.setAudioLength(o);
+						RecordDbUtils.getInstance().update(oldRecord);
+						EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_RECORD, oldRecord));
+					}
+					if (isFinish) {
+						callback.onEvent(1);
+					} else {
+						showRecordNewDialog();
+					}
+				},e ->{
+					callback.onEvent(1);
+				});
 	}
 
 	/**
@@ -322,7 +318,7 @@ public class RecordPage implements View.OnClickListener {
 	private void saveRecord(String file, int time) {
 		try {
 			Record record = new Record("1", file, TimeUtil.getYMDHMSTime(),
-							Util.getAudioLength(context, file), mEditInfo.getText().toString());
+					Util.getAudioLength(context, file), mEditInfo.getText().toString());
 			RecordDbUtils.getInstance().save(record);
 			EventBus.getDefault().post(new MainThreadEvent<>(MainThreadEvent.RECORD_REFRESH_MY, record));
 		}catch (Exception e){
@@ -379,14 +375,14 @@ public class RecordPage implements View.OnClickListener {
 	 */
 	private void showRerecordDialog() {
 		new AlertDialog.Builder(context)
-						.setTitle("重新录制")
-						.setMessage("确定删除当前的录音，并重新录制吗？")
-						.setNegativeButton("取消", (dialog, which) -> work.recordComplete())
-						.setPositiveButton("重录", (dialog, which) -> {
-							setRecord(oldRecord);
-							work.reRecord(null);
-						})
-						.show();
+				.setTitle("重新录制")
+				.setMessage("确定删除当前的录音，并重新录制吗？")
+				.setNegativeButton("取消", (dialog, which) -> work.recordComplete())
+				.setPositiveButton("重录", (dialog, which) -> {
+					setRecord(oldRecord);
+					work.reRecord(null);
+				})
+				.show();
 	}
 
 	/**
@@ -395,11 +391,11 @@ public class RecordPage implements View.OnClickListener {
 	protected void showTipDialog() {
 		onPause();//先暂停
 		new AlertDialog.Builder(context)
-						.setTitle("温馨提示")
-						.setMessage("确定要停止录音吗？")
-						.setNegativeButton("停止录音", (dialog, which) -> work.recordComplete())
-						.setPositiveButton("继续录音", (dialog, which) -> work.statOrPause())
-						.show();
+				.setTitle("温馨提示")
+				.setMessage("确定要停止录音吗？")
+				.setNegativeButton("停止录音", (dialog, which) -> work.recordComplete())
+				.setPositiveButton("继续录音", (dialog, which) -> work.statOrPause())
+				.show();
 	}
 
 	protected void onStop() {
