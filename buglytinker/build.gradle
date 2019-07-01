@@ -38,7 +38,7 @@ android {
 
 ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
-    tinkerEnabled = true
+    tinkerEnabled = false
 }
 
 if (ext.tinkerEnabled) {

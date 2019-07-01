@@ -22,6 +22,8 @@ public class RxFingerPrinter  {
     public static final int FINGER_CANCEL = 3;
     public static final int FINGER_FAIL = 0;
     public static final int FINGER_SUCCEED = 1;
+    public static final int FINGER_FAILED_ERROR = 5;
+    public static final int PERMISSION_DENIED_ERROE = 6;
 
     private BiometricPrompt mBiometricPrompt;
     private CancellationSignal mCancellationSignal;
@@ -44,7 +46,7 @@ public class RxFingerPrinter  {
     private void initBiometric() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_BIOMETRIC)
                 != PackageManager.PERMISSION_GRANTED) {
-            publishSubject.onError(new FPerException(PERMISSION_DENIED_ERROE));
+            publishSubject.onNext(PERMISSION_DENIED_ERROE);
             return;
         }
         mBiometricPrompt = new BiometricPrompt.Builder(context)
@@ -70,7 +72,7 @@ public class RxFingerPrinter  {
             @Override
             public void onAuthenticationError(int errorCode, CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                publishSubject.onError(new FPerException(FINGERPRINTERS_FAILED_ERROR));
+                publishSubject.onNext(FINGER_FAILED_ERROR);
             }
 
             @Override
@@ -93,7 +95,4 @@ public class RxFingerPrinter  {
     }
 
 
-    public void onDestory(){
-        publishSubject.onComplete();
-    }
 }

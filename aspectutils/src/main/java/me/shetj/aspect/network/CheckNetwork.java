@@ -1,6 +1,5 @@
 package me.shetj.aspect.network;
 
-import android.content.Context;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
