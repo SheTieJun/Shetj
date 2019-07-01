@@ -350,9 +350,6 @@ public class MediaPlayerUtils implements LifecycleListener,
 
 	@Override
 	public void onSeekComplete(MediaPlayer mp) {
-		if (null != mediaPlayer) {
-			listener.onProgress(mp.getDuration(),mp.getDuration());
-		}
 		if (!isPlay.get()){
 			setIsPlay(true);
 			onPause();
