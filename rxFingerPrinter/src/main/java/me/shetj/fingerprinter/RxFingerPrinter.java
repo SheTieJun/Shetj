@@ -1,6 +1,7 @@
 package me.shetj.fingerprinter;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -16,7 +17,7 @@ import static me.shetj.fingerprinter.CodeException.FINGERPRINTERS_FAILED_ERROR;
 import static me.shetj.fingerprinter.CodeException.PERMISSION_DENIED_ERROE;
 import static me.shetj.fingerprinter.CodeException.SYSTEM_API_ERROR;
 
-
+@TargetApi(Build.VERSION_CODES.P)
 public class RxFingerPrinter  {
     public static final int FINGER_CLICK_CANCEL = 4;
     public static final int FINGER_CANCEL = 3;
@@ -42,6 +43,7 @@ public class RxFingerPrinter  {
         initBiometric();
         return publishSubject;
     }
+
 
     private void initBiometric() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_BIOMETRIC)
