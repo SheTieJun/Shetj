@@ -5,8 +5,8 @@ buildscript {
 
     ext.base_version = "bfd7192479"
 //  ext.base_version ="29e6 d653 86"
-//    ext.base_kt_version = "00cd89a0c6"
-    ext.base_kt_version = "da5dd23306"
+//    ext.base_kt_version = "6171b383ae"
+    ext.base_kt_version =   "6171b383ae"
     repositories {
         google()
         jcenter()
