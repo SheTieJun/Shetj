@@ -1,7 +1,6 @@
 package me.shetj.base.base;
 
-import android.os.Message;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;

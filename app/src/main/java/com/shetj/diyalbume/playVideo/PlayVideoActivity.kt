@@ -1,10 +1,10 @@
 package com.shetj.diyalbume.playVideo
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.GSYVideoManager
@@ -36,7 +36,7 @@ class PlayVideoActivity : AppCompatActivity() {
 
         var adapter = AutoRecycleView(list)
 
-        var linearLayoutManager = LinearLayoutManager(this)
+        var linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         ArmsUtils.configRecycleView(iRecyclerView,linearLayoutManager)
 
         //限定范围为屏幕一半的上下偏移100
@@ -47,17 +47,17 @@ class PlayVideoActivity : AppCompatActivity() {
 
 
 
-        iRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        iRecyclerView.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
 
             internal var firstVisibleItem: Int = 0
             internal var lastVisibleItem: Int = 0
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 scrollCalculatorHelper.onScrollStateChanged(recyclerView, newState,linearLayoutManager)
             }
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition()
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()

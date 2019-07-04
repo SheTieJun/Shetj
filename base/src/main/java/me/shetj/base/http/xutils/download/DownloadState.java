@@ -1,6 +1,6 @@
 package me.shetj.base.http.xutils.download;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * Created by wyouflf on 15/11/10.

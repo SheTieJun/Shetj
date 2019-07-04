@@ -2,10 +2,10 @@ package me.shetj.base.tools.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.Keep;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
+import androidx.annotation.Keep;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import android.view.View;
 
 @Keep

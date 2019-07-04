@@ -1,8 +1,8 @@
 package me.shetj.base.view.autolayout;
 
 import android.content.Context;
-import android.support.annotation.Keep;
-import android.support.design.widget.CollapsingToolbarLayout;
+import androidx.annotation.Keep;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 

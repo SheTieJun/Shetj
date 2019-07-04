@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         >
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             style="@style/Material_TextAppearance_Title"
             android:background="?android:colorPrimary"
@@ -24,7 +24,7 @@
                 style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
        <Button
            android:text="ChangeBounds"
            android:layout_margin="8dp"

@@ -1,8 +1,8 @@
 package me.shetj.base.base;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Keep;
+import androidx.annotation.IdRes;
+import androidx.annotation.Keep;
 import android.view.View;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;

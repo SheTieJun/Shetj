@@ -2,7 +2,7 @@ package com.qmuiteam.qmuidemo.fragment.components.qqface.emojicon;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.support.v4.util.LruCache;
 
 public class EmojiCache {

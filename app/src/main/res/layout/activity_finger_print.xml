@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fingerprint.FingerPrintActivity">
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cv"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -24,7 +24,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
     <Button
         android:id="@+id/bt_open"
         android:layout_width="match_parent"

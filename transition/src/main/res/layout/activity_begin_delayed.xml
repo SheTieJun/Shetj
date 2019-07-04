@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".transitionexample.BeginDelayedActivity">
-<android.support.v7.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
     android:id="@+id/toolBar"
     style="@style/Material_TextAppearance_Title"
     android:background="?android:colorPrimary"
@@ -17,7 +17,7 @@
         style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</android.support.v7.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:id="@+id/scene_root"

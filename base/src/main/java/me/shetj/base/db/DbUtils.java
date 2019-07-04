@@ -1,6 +1,6 @@
 package me.shetj.base.db;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import org.xutils.DbManager;
 import org.xutils.ex.DbException;

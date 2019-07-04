@@ -1,6 +1,6 @@
 package me.shetj.upload;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * 上传管理

@@ -3,7 +3,7 @@ package me.shetj.base.view.autolayout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;

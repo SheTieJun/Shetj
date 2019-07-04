@@ -2,8 +2,8 @@ package me.shetj.base.view.autolayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.Keep;
-import android.support.design.widget.TabLayout;
+import androidx.annotation.Keep;
+import com.google.android.material.tabs.TabLayout;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;

@@ -1,6 +1,6 @@
 package com.shetj.components.module;
 
-import android.arch.persistence.room.Room;
+import androidx.room.Room;
 
 import com.shetj.components.db.UserDataBase;
 import com.shetj.components.scope.ActivityScope;

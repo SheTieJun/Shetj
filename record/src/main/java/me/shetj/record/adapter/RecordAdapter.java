@@ -2,7 +2,7 @@ package me.shetj.record.adapter;
 
 import android.animation.ValueAnimator;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ProgressBar;

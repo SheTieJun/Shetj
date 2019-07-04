@@ -2,7 +2,7 @@ package com.shetj.diyalbume.createAlbum.view
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.view.Gravity
 import android.view.View.VISIBLE
 import android.widget.LinearLayout

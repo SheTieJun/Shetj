@@ -3,7 +3,7 @@ package com.shetj.diyalbume.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;

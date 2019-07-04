@@ -8,13 +8,11 @@ import android.content.pm.PackageManager;
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.CancellationSignal;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import io.reactivex.subjects.PublishSubject;
 
-import static me.shetj.fingerprinter.CodeException.FINGERPRINTERS_FAILED_ERROR;
-import static me.shetj.fingerprinter.CodeException.PERMISSION_DENIED_ERROE;
 import static me.shetj.fingerprinter.CodeException.SYSTEM_API_ERROR;
 
 @TargetApi(Build.VERSION_CODES.P)

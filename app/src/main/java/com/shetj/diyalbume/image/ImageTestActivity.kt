@@ -2,7 +2,7 @@ package com.shetj.diyalbume.image
 
 import android.graphics.*
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint

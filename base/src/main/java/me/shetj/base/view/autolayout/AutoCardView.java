@@ -1,8 +1,8 @@
 package me.shetj.base.view.autolayout;
 
 import android.content.Context;
-import android.support.annotation.Keep;
-import android.support.v7.widget.CardView;
+import androidx.annotation.Keep;
+import androidx.cardview.widget.CardView;
 import android.util.AttributeSet;
 
 import com.zhy.autolayout.AutoFrameLayout;

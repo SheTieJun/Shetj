@@ -3,7 +3,7 @@ package me.shetj.base.http.xutils;
 
 
 import android.app.Application;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.TextUtils;
 
 import org.xutils.common.Callback.Cancelable;

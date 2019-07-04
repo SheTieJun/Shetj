@@ -19,7 +19,7 @@ package me.shetj.update;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 
 public class MessageReadReceiver extends BroadcastReceiver {

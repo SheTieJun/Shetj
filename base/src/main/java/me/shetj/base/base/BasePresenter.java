@@ -2,7 +2,7 @@ package me.shetj.base.base;
 
 
 import android.content.Intent;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import org.simple.eventbus.EventBus;
 import org.xutils.common.util.LogUtil;

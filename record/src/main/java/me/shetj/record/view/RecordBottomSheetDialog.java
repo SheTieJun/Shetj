@@ -1,8 +1,8 @@
 package me.shetj.record.view;
 
 import android.content.Context;
-import android.support.design.widget.BottomSheetDialog;
-import android.text.TextUtils;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import android.view.LayoutInflater;
 import android.view.View;
 

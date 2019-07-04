@@ -1,6 +1,6 @@
 package me.shetj.base.http.xutils;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import org.xutils.common.Callback;
 

@@ -2,7 +2,7 @@ package me.shetj.base.view;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;

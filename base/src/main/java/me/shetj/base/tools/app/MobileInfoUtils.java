@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.Keep;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.Keep;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 
 import me.shetj.base.tools.file.SPUtils;

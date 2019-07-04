@@ -1,8 +1,7 @@
 package com.shetj.diyalbume.ppttest;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -11,8 +10,6 @@ import com.shetj.diyalbume.R;
 import com.shetj.diyalbume.miui.GlideApp;
 
 import java.util.List;
-
-import me.shetj.base.tools.app.ArmsUtils;
 
 /**
  * <b>@packageName：</b> com.shetj.diyalbume.ppttest<br>

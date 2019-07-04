@@ -1,7 +1,7 @@
 package com.shetj.components.user;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.shetj.components.db.User;
 import com.shetj.components.db.UserDao;

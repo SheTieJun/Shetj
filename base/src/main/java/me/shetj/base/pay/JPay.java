@@ -1,7 +1,7 @@
 package me.shetj.base.pay;
 
 import android.app.Activity;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.TextUtils;
 
 import org.json.JSONException;
