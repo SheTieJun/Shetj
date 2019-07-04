@@ -1,9 +1,8 @@
 package me.shetj.download.adapter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.liulishuo.filedownloader.BaseDownloadTask;

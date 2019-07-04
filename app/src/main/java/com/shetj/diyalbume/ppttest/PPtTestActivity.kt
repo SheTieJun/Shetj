@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.ppttest
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R

@@ -1,6 +1,6 @@
 package me.shetj.simxutils;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import me.shetj.simxutils.db.DbManagerImpl;
 import me.shetj.simxutils.ex.DbException;

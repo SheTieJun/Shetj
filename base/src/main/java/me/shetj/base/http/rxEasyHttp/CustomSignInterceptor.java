@@ -1,6 +1,6 @@
 package me.shetj.base.http.rxEasyHttp;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.zhouyou.http.interceptor.BaseDynamicInterceptor;
 

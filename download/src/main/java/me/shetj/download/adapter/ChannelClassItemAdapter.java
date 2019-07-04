@@ -1,25 +1,17 @@
 package me.shetj.download.adapter;
 
-import android.support.annotation.Nullable;
-import android.view.View;
+import androidx.annotation.Nullable;
+
 import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.liulishuo.filedownloader.BaseDownloadTask;
-import com.liulishuo.filedownloader.FileDownloadListener;
-import com.liulishuo.filedownloader.FileDownloader;
-import com.liulishuo.filedownloader.model.FileDownloadStatus;
-import com.liulishuo.filedownloader.util.FileDownloadUtils;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import me.shetj.download.R;
 import me.shetj.download.base.ClassInfo;
-import me.shetj.download.base.DownloadInfo;
-import me.shetj.download.base.DownloadSampleListener;
 import me.shetj.download.base.TasksManager;
 
 public  class ChannelClassItemAdapter extends BaseQuickAdapter<ClassInfo,TaskItemViewHolder> {

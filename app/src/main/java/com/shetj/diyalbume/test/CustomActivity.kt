@@ -1,8 +1,8 @@
 package com.shetj.diyalbume.test
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.alibaba.android.arouter.facade.annotation.Route

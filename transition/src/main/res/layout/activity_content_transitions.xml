@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.wakehao.transitionexample.ContentTransitionsActivity">
-<android.support.v7.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
     android:id="@+id/toolBar"
     android:elevation="@dimen/elevation_toolbar"
     style="@style/Material_TextAppearance_Title"
@@ -17,7 +17,7 @@
         style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</android.support.v7.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>
     <ImageView
         android:id="@+id/image_bgg"
         android:src="@mipmap/bg_1"

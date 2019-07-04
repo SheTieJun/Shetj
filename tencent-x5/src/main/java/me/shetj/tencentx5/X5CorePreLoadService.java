@@ -2,7 +2,7 @@ package me.shetj.tencentx5;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.tencent.smtt.sdk.QbSdk;
 

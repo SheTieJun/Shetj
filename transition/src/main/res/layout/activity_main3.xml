@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
        >
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         style="@style/Material_TextAppearance_Title"
         android:background="@color/colorPrimary"
@@ -25,8 +25,8 @@
         style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    </android.support.v7.widget.Toolbar>
-<android.support.v7.widget.CardView
+    </androidx.appcompat.widget.Toolbar>
+<androidx.cardview.widget.CardView
     android:layout_margin="16dp"
     android:onClick="goScene"
     app:cardCornerRadius="4dp"
@@ -37,9 +37,9 @@
         android:text="sceneDemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_margin="16dp"
             android:onClick="goBeginDelayed"
             app:cardCornerRadius="4dp"
@@ -50,8 +50,8 @@
                 android:text="beginDelayedDemo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
         android:layout_margin="16dp"
         android:onClick="goContentTransitions"
         app:cardCornerRadius="4dp"
@@ -62,9 +62,9 @@
             android:text="ContentTransitions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_margin="16dp"
             android:onClick="goContent_and_Shared"
             app:cardCornerRadius="4dp"
@@ -76,7 +76,7 @@
                 android:text="Activity/Fragment Transition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>

@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.executors
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
 import com.shetj.diyalbume.R

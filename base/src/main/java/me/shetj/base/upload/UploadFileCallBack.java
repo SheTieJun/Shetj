@@ -1,6 +1,6 @@
 package me.shetj.base.upload;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 @Keep
 public interface UploadFileCallBack<T> {

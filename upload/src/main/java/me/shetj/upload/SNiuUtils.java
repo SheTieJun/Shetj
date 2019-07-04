@@ -1,7 +1,7 @@
 package me.shetj.upload;
 
 import android.os.Message;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.qiniu.android.common.FixedZone;
 import com.qiniu.android.http.ResponseInfo;

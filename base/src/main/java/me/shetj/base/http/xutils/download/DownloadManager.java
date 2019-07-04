@@ -1,6 +1,6 @@
 package me.shetj.base.http.xutils.download;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.TextUtils;
 
 import org.xutils.DbManager;

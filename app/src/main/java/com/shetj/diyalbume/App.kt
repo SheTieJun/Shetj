@@ -3,7 +3,7 @@ package com.shetj.diyalbume
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.devyok.ipc.utils.LogControler
 import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection

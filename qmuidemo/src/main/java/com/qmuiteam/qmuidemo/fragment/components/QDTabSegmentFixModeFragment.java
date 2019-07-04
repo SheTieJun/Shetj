@@ -1,6 +1,6 @@
 package com.qmuiteam.qmuidemo.fragment.components;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;

@@ -1,9 +1,9 @@
 package me.shetj.base.view.autolayout;
 
 import android.content.Context;
-import android.support.annotation.Keep;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 

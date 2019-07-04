@@ -1,7 +1,7 @@
 package com.shetj.diyalbume
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.InstrumentationRegistry
+import androidx.test.runner.AndroidJUnit4
 import io.reactivex.Observable
 import io.reactivex.functions.Function
 import org.junit.Assert.assertEquals

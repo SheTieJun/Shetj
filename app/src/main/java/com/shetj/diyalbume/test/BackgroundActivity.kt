@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.test
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R

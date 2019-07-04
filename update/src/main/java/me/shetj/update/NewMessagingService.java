@@ -23,11 +23,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.CarExtender;
-import android.support.v4.app.NotificationCompat.CarExtender.UnreadConversation;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.app.RemoteInput;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.CarExtender;
+import androidx.core.app.NotificationCompat.CarExtender.UnreadConversation;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.RemoteInput;
 
 public class NewMessagingService extends Service {
 	public static final String READ_ACTION =

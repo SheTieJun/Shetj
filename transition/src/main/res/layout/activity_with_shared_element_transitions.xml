@@ -5,7 +5,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
     >
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:elevation="@dimen/elevation_toolbar"
         style="@style/Material_TextAppearance_Title"
@@ -18,7 +18,7 @@
             style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <RelativeLayout
         android:id="@+id/relay_flag"
         android:layout_below="@id/toolBar"
@@ -36,7 +36,7 @@
             android:transitionName="shared_image_"
             android:layout_width="150dp"
             android:layout_height="150dp" />
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:scaleX="0"
             android:scaleY="0"

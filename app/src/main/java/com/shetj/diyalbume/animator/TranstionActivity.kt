@@ -4,9 +4,9 @@ import android.content.Intent
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.support.annotation.RequiresApi
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import android.transition.Explode
 import android.transition.Slide
 import android.view.Gravity

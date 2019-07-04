@@ -3,7 +3,7 @@ package com.shetj.diyalbume.bluetooth
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Gravity
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -87,7 +87,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         mPresenter = BluetoothPresenter(this)
         mPresenter.getPer(ArmsUtils.getRxPermissions(this))
         adapter = BluetoothListAdapter(ArrayList())
-        ArmsUtils.configRecycleView(iRecyclerView,LinearLayoutManager(rxContext))
+        ArmsUtils.configRecycleView(iRecyclerView, androidx.recyclerview.widget.LinearLayoutManager(rxContext))
 
         iRecyclerView.addItemDecoration(Decoration.builder().color(R.color.line_color).headerCount(1).build())
         val textView = TextView(rxContext)

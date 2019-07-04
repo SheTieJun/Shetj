@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.utils;
 
 import android.app.Activity;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.view.ViewGroup;
 
 import com.irozon.sneaker.Sneaker;

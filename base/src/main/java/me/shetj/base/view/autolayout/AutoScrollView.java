@@ -1,8 +1,8 @@
 package me.shetj.base.view.autolayout;
 
 import android.content.Context;
-import android.support.annotation.Keep;
-import android.support.annotation.Nullable;
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ScrollView;

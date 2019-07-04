@@ -3,8 +3,8 @@ package me.shetj.base.tools.app;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.support.annotation.Keep;
-import android.support.annotation.Nullable;
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 

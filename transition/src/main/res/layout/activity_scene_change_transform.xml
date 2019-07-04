@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             style="@style/Material_TextAppearance_Title"
             android:background="?android:colorPrimary"
@@ -25,7 +25,7 @@
                 style="@style/MaterialAnimations.TextAppearance.Title.Inverse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
         <FrameLayout
             android:id="@+id/scene_root"
             android:layout_width="match_parent"

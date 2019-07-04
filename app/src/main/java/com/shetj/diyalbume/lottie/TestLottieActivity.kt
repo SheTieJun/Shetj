@@ -3,7 +3,7 @@ package com.shetj.diyalbume.lottie
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.SeekBar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding2.view.RxView
