@@ -2,17 +2,16 @@ package com.shetj.diyalbume.main.view
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_main_3.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
-import me.shetj.base.base.BaseSwipeBackActivity
 import me.shetj.router.RouterUtils
 import me.shetj.tencentx5.WebPageActivity
 
 @Route(path = "/shetj/Main3Activity")
-class Main3Activity : BaseSwipeBackActivity<BasePresenter<*>>() {
+class Main3Activity : BaseActivity<BasePresenter<*>>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,50 +39,50 @@ class Main3Activity : BaseSwipeBackActivity<BasePresenter<*>>() {
             RouterUtils.startOpen("/shetj/GlTestActivity")
         }
 
-        RxView.clicks(btn_openGL3D).subscribe {
+        btn_openGL3D.clicks().subscribe {
             RouterUtils.startOpen("/shetj/OpenGL3DActivity")
         }
-        RxView.clicks(btn_jiami).subscribe {
+        btn_jiami.clicks().subscribe {
             RouterUtils.startOpen("/shetj/EncryptActivity")
         }
-        RxView.clicks(btn_tup).subscribe{
+        btn_tup.clicks().subscribe{
             RouterUtils.startOpen("/shetj/ImageTestActivity")
         }
 
-        RxView.clicks(btn_treadPool).subscribe {
+        btn_treadPool.clicks().subscribe {
             RouterUtils.startOpen("/shetj/ExecutorsActivity")
         }
-        RxView.clicks(btn_animator).subscribe {
+        btn_animator.clicks().subscribe {
             RouterUtils.startOpen("/shetj/AnimatorActivity")
         }
-        RxView.clicks(btn_bluetooth).subscribe {
+        btn_bluetooth.clicks().subscribe {
             RouterUtils.startOpen("/shetj/BluetoothActivity")
         }
 
-        RxView.clicks(btn_lottie).subscribe{
+        btn_lottie.clicks().subscribe{
             RouterUtils.startOpen("/shetj/TestLottieActivity")
         }
-        RxView.clicks(btn_finger).subscribe{
+        btn_finger.clicks().subscribe{
             RouterUtils.startOpen("/shetj/FingerPrintActivity")
         }
 
-        RxView.clicks(btn_CustomTabs).subscribe {
+        btn_CustomTabs.clicks().subscribe {
             CustomTabsHelper.openUrl(rxContext,"https://github.com/SheTieJun")
         }
-        RxView.clicks(btn_Aspect).subscribe {
+        btn_Aspect.clicks().subscribe {
             RouterUtils.startOpen("/shetj/AspectActivity")
         }
 
-        RxView.clicks(btn_x5)
+        btn_x5.clicks()
                 .subscribe {
                     WebPageActivity.startBrowserActivity(this,"",1)
                 }
 
-        RxView.clicks(btn_map)
+        btn_map.clicks()
                 .subscribe {
                     RouterUtils.startOpen("/shetj/BDMapActivity")
                 }
-        RxView.clicks(btn_fresco)
+        btn_fresco.clicks()
                 .subscribe {
                     RouterUtils.startOpen("/shetj/FrescoActivity")
                 }

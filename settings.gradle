@@ -1,8 +1,8 @@
 include ':app', ':base', ':resources', ':components', ':router', ':packinter', ':extended_kt', ':ar', ':buglytinker', ':workmanager',
         ':search', ':rxhttp', ':record',
         ':AIDLtest', ':jguang', ':encrypt', ':mlkittest',
-        ':transition', ':aspectutils', ':room', ':tencent-x5',
+        ':transition', ':room', ':tencent-x5',
         ':alihotfix', ':update', ':upload', ':simxutils',
         ':download', ':fresco', ':pay', ':bdmap',
-        ':testmybase', ':umeng', ':compiler', ':lib', ':share'
+         ':umeng', ':compiler', ':lib', ':share'
 include ':rxFingerPrinter' ,':qmuidemo'

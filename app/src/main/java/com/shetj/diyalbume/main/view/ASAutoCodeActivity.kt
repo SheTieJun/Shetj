@@ -1,15 +1,15 @@
 package com.shetj.diyalbume.main.view
 
 import android.os.Bundle
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import kotlinx.android.synthetic.main.activity_asauto_code.*
-import me.shetj.base.base.BaseSwipeBackActivity
+import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.update.*
 
-class ASAutoCodeActivity : BaseSwipeBackActivity<MainPresenter>() {
+class ASAutoCodeActivity : BaseActivity<MainPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_asauto_code)
@@ -17,32 +17,32 @@ class ASAutoCodeActivity : BaseSwipeBackActivity<MainPresenter>() {
         initData()
     }
     override fun initData() {
-        RxView.clicks(btn_DetailFragment)
+        btn_DetailFragment.clicks()
                 .subscribe {
                     ArmsUtils.startActivity(this, ItemListActivity::class.java)
                 }
-        RxView.clicks(btn_BottomNavigationActivity)
+        btn_BottomNavigationActivity.clicks()
                 .subscribe {
                     ArmsUtils.startActivity(this, BottomNavigationActivity::class.java)
                 }
-        RxView.clicks(fullscreenActivity).subscribe {
+        fullscreenActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  FullscreenActivity::class.java)
         }
 
-        RxView.clicks(loginActivity).subscribe {
+        loginActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  LoginActivity::class.java)
         }
 
-        RxView.clicks(navigationDrawerActivity).subscribe {
+        navigationDrawerActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  NavigationDrawerActivity::class.java)
         }
-        RxView.clicks(scrollingActivity).subscribe {
+        scrollingActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  ScrollingActivity::class.java)
         }
-        RxView.clicks(tabActivity).subscribe {
+        tabActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  TabActivity::class.java)
         }
-        RxView.clicks(settingsActivity).subscribe {
+        settingsActivity.clicks().subscribe {
             ArmsUtils.startActivity(this,  SettingsActivity::class.java)
         }
     }

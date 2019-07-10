@@ -13,6 +13,8 @@ import com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
 import me.shetj.base.tools.app.ArmsUtils
+import java.util.*
+
 @Route(path = "/shetj/PlayVideoActivity")
 class PlayVideoActivity : AppCompatActivity() {
 

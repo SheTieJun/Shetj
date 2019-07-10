@@ -12,8 +12,6 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.sonic.sdk.SonicSession;
 
-import me.shetj.base.tools.time.TimeUtil;
-import timber.log.Timber;
 
 public class X5WebViewClient extends WebViewClient {
     private SonicSession sonicSession;
@@ -59,7 +57,6 @@ public class X5WebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
         super.onPageStarted(webView, s, bitmap);
-        Timber.i("onPageStarted = %s",time =  TimeUtil.getTime());
     }
 
     @TargetApi(21)
@@ -81,7 +78,6 @@ public class X5WebViewClient extends WebViewClient {
         if (sonicSession != null) {
             sonicSession.getSessionClient().pageFinish(s);
         }
-        Timber.i("onPageFinished = %s", TimeUtil.getTime()-time);
     }
 
     private  boolean parseScheme(String url) {

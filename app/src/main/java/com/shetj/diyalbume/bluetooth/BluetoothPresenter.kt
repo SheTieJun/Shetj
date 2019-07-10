@@ -34,7 +34,9 @@ class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {
     fun startSearch(textView: TextView) {
         BleManager.getInstance().scan(object : BleScanCallback(){
             override fun onScanFinished(scanResultList: MutableList<BleDevice>?) {
-               view.updateView(getMessage(1,scanResultList))
+                scanResultList?.let {
+                    view.updateView(getMessage(1,scanResultList))
+                }
             }
 
             override fun onScanStarted(success: Boolean) {

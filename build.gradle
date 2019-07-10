@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 buildscript {
-    ext.kotlin_version = '1.3.31'  
+    ext.kotlin_version = '1.3.40'
 
     ext.base_version = "6171b383ae"
 //  ext.base_version ="29e6 d653 86"
@@ -13,7 +13,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 //        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.10'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0' // Add this line

@@ -25,28 +25,21 @@ class CustomActivity : AppCompatActivity() {
         }
 
         button_image.setOnClickListener { addImage() }
-        radar.start()
 
-        RadarImageView.animation =  AnimationUtils.loadAnimation(this,R.anim.rotating_3000)
-
-        RadarImageView.start()
     }
 
     private fun addImage() {
         val image = AlbumImageView(this)
         image.layoutParams = ViewGroup.LayoutParams(200,200)
-        image.setImageResource(R.mipmap.ic_error)
-        iFrameRoot.addView(image)
+        image.setImageResource(R.mipmap.shetj_logo)
 
         image.setOnClickListener {
-            ArmsUtils.longSnackbar(this,image.json)
+            ArmsUtils.makeText(image.json)
         }
 
     }
 
     override fun onDestroy() {
-//        radar.stop()
-        RadarImageView.stop()
         super.onDestroy()
     }
 }

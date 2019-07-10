@@ -5,6 +5,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,7 +18,6 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 
 import org.simple.eventbus.Subscriber;
@@ -27,7 +27,6 @@ import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import me.shetj.base.base.BaseActivity;
-import me.shetj.base.base.BaseMessage;
 import me.shetj.base.tools.app.ArmsUtils;
 
 import static me.shetj.bdmap.BDMapLocation.SEND_MAP;
@@ -199,7 +198,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 	private int i = 0;
 	@Subscriber(tag = SEND_MAP, mode = ThreadMode.POST)
 	@Override
-	public void updateView(BaseMessage message) {
+	public void updateView(Message message) {
 		Disposable subscribe = Flowable.just(message)
 						.subscribeOn(AndroidSchedulers.mainThread())
 						.compose(bindToLifecycle())

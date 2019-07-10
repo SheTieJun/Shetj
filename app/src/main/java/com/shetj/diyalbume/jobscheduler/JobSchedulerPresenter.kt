@@ -62,7 +62,7 @@ class JobSchedulerPresenter(view:IView) :BasePresenter<BaseModel>(view){
     }
 
 
-    fun stopService(){
+    private fun stopService(){
         val intent = Intent(view.rxContext,MyJobService::class.java)
         view.rxContext.stopService(intent)
     }

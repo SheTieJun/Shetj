@@ -31,7 +31,7 @@ class CreateActivity : BaseActivity<CreatePresenter>() {
 
     override fun initData() {
         mPresenter = CreatePresenter(this)
-        mPresenter.createAlbum()
+        mPresenter?.createAlbum()
     }
 
     override fun initView() {

@@ -8,55 +8,16 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.shetj.diyalbume.test.CustomActivity"
     tools:showIn="@layout/activity_custom">
-    <FrameLayout
-        android:id="@+id/iFrameRoot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:layout_width="200dp"
-            android:layout_height="200dp">
-            <com.shetj.diyalbume.view.RadarView
-                android:id="@+id/radar"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:circleColor="#565cd6"
-                app:circleNum="4"
-                app:flicker="3"
-                app:speed="5"
-                android:background="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"
-                app:sweepColor="#565cd6"
-                app:showCross="true"
-                app:raindropNum="4"/>
-        </FrameLayout>
-        <FrameLayout
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@mipmap/b2de9c82d158ccbf2863d70817d8bc3eb1354120"
-            android:layout_marginTop="210dp">
-            <com.shetj.diyalbume.view.RadarImageView
-                android:id="@+id/RadarImageView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:circleColor="#565cd6"
-                app:circleNum="4"
-                app:flicker="3"
-                app:speed="5"
-                app:sweepColor="#565cd6"
-                app:showCross="false"
-                app:raindropNum="4"/>
-        </FrameLayout>
-
-    </FrameLayout>
 
 
     <com.shetj.diyalbume.view.CircleView
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="8dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

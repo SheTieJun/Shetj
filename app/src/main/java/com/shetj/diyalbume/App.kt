@@ -28,7 +28,7 @@ import java.net.Proxy
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        s.init(this,BuildConfig.DEBUG,"http://baidu.com/")
+        s.init(this,BuildConfig.DEBUG )
         if(BuildConfig.DEBUG){
             LogControler.enableDebug()
         }

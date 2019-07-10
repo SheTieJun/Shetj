@@ -2,15 +2,16 @@ package com.shetj.diyalbume.image
 
 import android.graphics.*
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_image_test.*
+
 @Route(path = "/shetj/ImageTestActivity")
 class ImageTestActivity : AppCompatActivity() {
 
@@ -18,7 +19,7 @@ class ImageTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_test)
 
-        RxView.clicks(btn_commit)
+        btn_commit.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
             iv_preview.setImageBitmap(getShareingBitmap(BitmapFactory.decodeResource(resources,R.mipmap.icon_qr),edit_query.text.toString(),20))
