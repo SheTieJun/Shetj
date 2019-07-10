@@ -8,10 +8,10 @@ import com.shetj.components.user.UserActivity;
 import com.shetj.components.user.UserModel;
 import com.shetj.components.user.UserRepository;
 
-import org.xutils.x;
 
 import dagger.Module;
 import dagger.Provides;
+import me.shetj.base.tools.app.Utils;
 
 /**
  * <b>@packageName：</b> com.shetj.components.module<br>
@@ -48,7 +48,7 @@ public class UserModule {
 	}
 
 	public UserDataBase getDb() {
-		return Room.databaseBuilder(x.app().getApplicationContext(),
+		return Room.databaseBuilder(Utils.getApp().getApplicationContext(),
 						UserDataBase.class, "database-user").build();
 	}
 }

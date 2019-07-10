@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- //基础权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 蓝牙 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -20,7 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".SophixStubApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/shetj_logo"
         android:label="@string/app_name"
@@ -28,18 +27,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <!--service-->
-
-        <service android:name=".jobscheduler.MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
-
-        <!--end service-->
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name=".behavior.BehaviorActivity"></activity>
+        <!-- service -->
+        <service
+            android:name=".jobscheduler.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- end service -->
         <service
             android:name=".utils.DownloadService"
-            android:enabled="true"/>
+            android:enabled="true" />
 
-        <activity android:name=".jobscheduler.JobSchedulerActivity"></activity>
+        <activity android:name=".jobscheduler.JobSchedulerActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -76,20 +74,20 @@
         <activity
             android:name=".playVideo.PlayVideoActivity"
             android:label="@string/title_activity_paly_video"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".test.BackgroundActivity"
             android:label="@string/title_activity_background"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".test.CustomActivity"
             android:label="@string/title_activity_custom"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ppttest.Main2Activity"></activity>
-        <activity android:name=".encrypt.EncryptActivity"></activity>
-        <activity android:name=".ppttest.StartChallengeActivity"></activity>
-        <activity android:name=".gltest.GlTestActivity"></activity>
-        <activity android:name=".gltest.OpenGL3DActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ppttest.Main2Activity" />
+        <activity android:name=".encrypt.EncryptActivity" />
+        <activity android:name=".ppttest.StartChallengeActivity" />
+        <activity android:name=".gltest.GlTestActivity" />
+        <activity android:name=".gltest.OpenGL3DActivity" />
 
         <service android:name=".aidltest.MyService">
             <intent-filter>
@@ -99,22 +97,22 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".fingerprint.FingerPrintActivity"></activity>
-        <activity android:name=".image.ImageTestActivity"></activity>
-        <activity android:name=".executors.ExecutorsActivity"></activity>
-        <activity android:name=".animator.AnimatorActivity"></activity>
-        <activity android:name=".bluetooth.BluetoothActivity"></activity>
-        <activity android:name=".lottie.TestLottieActivity"></activity>
-        <activity android:name=".animator.TranstionActivity"></activity>
-        <activity android:name=".aspect.AspectActivity"></activity>
-        <activity android:name=".map.BDMapActivity"></activity>
-        <activity android:name=".main.view.Main3Activity"></activity>
-        <activity android:name=".image.FrescoActivity"></activity>
-        <activity android:name=".pipiti.gesture.GestureActivity"></activity>
-        <activity android:name=".main.view.ASAutoCodeActivity"></activity>
-        <activity android:name=".main.view.ViewActivity"></activity>
-        <activity android:name=".pipiti.localMusic.LocalMusicActivity"></activity>
-        <activity android:name=".ppttest.NewIndexActivity"></activity>
+        <activity android:name=".fingerprint.FingerPrintActivity" />
+        <activity android:name=".image.ImageTestActivity" />
+        <activity android:name=".executors.ExecutorsActivity" />
+        <activity android:name=".animator.AnimatorActivity" />
+        <activity android:name=".bluetooth.BluetoothActivity" />
+        <activity android:name=".lottie.TestLottieActivity" />
+        <activity android:name=".animator.TranstionActivity" />
+        <activity android:name=".aspect.AspectActivity" />
+        <activity android:name=".map.BDMapActivity" />
+        <activity android:name=".main.view.Main3Activity" />
+        <activity android:name=".image.FrescoActivity" />
+        <activity android:name=".pipiti.gesture.GestureActivity" />
+        <activity android:name=".main.view.ASAutoCodeActivity" />
+        <activity android:name=".main.view.ViewActivity" />
+        <activity android:name=".pipiti.localMusic.LocalMusicActivity" />
+        <activity android:name=".ppttest.NewIndexActivity" />
         <activity android:name=".ppttest.PPtTestActivity" />
     </application>
 

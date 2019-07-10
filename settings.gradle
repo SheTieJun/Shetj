@@ -1,5 +1,5 @@
-include ':app', ':base', ':resources', ':components', ':router', ':packinter', ':extended_kt', ':ar', ':buglytinker', ':workmanager',
-        ':search', ':rxhttp', ':record',
+include ':app', ':resources', ':components', ':router',  ':extended_kt', ':ar', ':buglytinker', ':workmanager',
+        ':search', ':rxhttp',
         ':AIDLtest', ':jguang', ':encrypt', ':mlkittest',
         ':transition', ':room', ':tencent-x5',
         ':alihotfix', ':update', ':upload', ':simxutils',

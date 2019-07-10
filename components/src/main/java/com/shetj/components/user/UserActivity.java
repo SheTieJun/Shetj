@@ -54,7 +54,6 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 						.inject(this);
 		initView();
 		initData();
-
 	}
 
 
@@ -86,8 +85,8 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	private void initView() {
 
 		mLifecycleRegistry = new LifecycleRegistry(this);
-		mLifecycleRegistry.markState(Lifecycle.State.CREATED);
-		this.getLifecycle().addObserver(new UserObserver());
+		mLifecycleRegistry.setCurrentState(Lifecycle.State.CREATED);
+	 	getLifecycle().addObserver(new UserObserver());
 
 		mFab = findViewById(R.id.fab);
 		mTvMsg = findViewById(R.id.tv_msg);
@@ -103,6 +102,6 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mLifecycleRegistry.markState(Lifecycle.State.STARTED);
+		mLifecycleRegistry.setCurrentState(Lifecycle.State.STARTED);
 	}
 }
