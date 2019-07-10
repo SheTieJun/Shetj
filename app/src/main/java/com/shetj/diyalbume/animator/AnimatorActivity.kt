@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_animator.*
@@ -26,11 +26,11 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
         mPresenter  = AnimatorPresenter(this)
 
 
-        RxView.clicks(btn_change)
+        btn_change.clicks()
                 .subscribe {
-                    mPresenter.setType()
+                    mPresenter?.setType()
                 }
-        RxView.clicks(btn_transitionManager)
+        btn_transitionManager.clicks()
                 .subscribe {
                     val intent = Intent(rxContext, TranstionActivity::class.java)
                     ActivityCompat.startActivity(rxContext, intent, ActivityOptionsCompat.makeSceneTransitionAnimation(rxContext).toBundle())
@@ -39,52 +39,52 @@ class AnimatorActivity : BaseActivity<AnimatorPresenter>() {
 
     override fun initData() {
 
-        RxView.clicks(btn_alpha)
+        btn_alpha.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startAlphaAnim(btn_alpha)
+                    mPresenter?.startAlphaAnim(btn_alpha)
                 }
 
-        RxView.clicks(btn_tran)
+        btn_tran.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startTran(btn_tran)
+                    mPresenter?.startTran(btn_tran)
                 }
 
-        RxView.clicks(btn_rotation)
+        btn_rotation.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
-                    mPresenter.startRota(btn_rotation)
+                    mPresenter?.startRota(btn_rotation)
                 }
 
-        RxView.clicks(btn_sca)
+        btn_sca.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startScale(btn_sca)
+                    mPresenter?.startScale(btn_sca)
                 }
 
-        RxView.clicks(btn_value)
+        btn_value.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startValue(btn_value)
+                    mPresenter?.startValue(btn_value)
                 }
 
-        RxView.clicks(btn_object)
+        btn_object.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startObject(btn_object)
+                    mPresenter?.startObject(btn_object)
                 }
 
-        RxView.clicks(btn_set)
+        btn_set.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startSet(btn_set)
+                    mPresenter?.startSet(btn_set)
                 }
 
-        RxView.clicks(btn_view_property)
+        btn_view_property.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    mPresenter.startViewProperty(btn_view_property)
+                    mPresenter?.startViewProperty(btn_view_property)
                 }
     }
 }

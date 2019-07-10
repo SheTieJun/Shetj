@@ -10,7 +10,6 @@ import java.util.List;
 
 import me.shetj.base.tools.app.ArmsUtils;
 import me.shetj.base.tools.json.GsonKit;
-import me.shetj.base.tools.time.TimeUtil;
 import me.shetj.simxutils.DbManager;
 import me.shetj.simxutils.DbUtils;
 import me.shetj.simxutils.db.table.DbModel;
@@ -106,7 +105,7 @@ public  class TasksDBController {
 				downloadInfo.setDownloadId(id);
 				downloadInfo.setLabel(fileSavePath);
 				downloadInfo.setDownloadUrl(url);
-				downloadInfo.setChannelId(TimeUtil.getHMSTime());
+				downloadInfo.setChannelId(System.currentTimeMillis()+"");
 				downloadInfo.setFileSavePath(fileSavePath);
 				db.save(downloadInfo);
 				return  downloadInfo;

@@ -9,12 +9,11 @@ import com.tencent.smtt.sdk.ValueCallback;
 
 import me.shetj.base.base.BaseActivity;
 import me.shetj.base.base.BasePresenter;
-import me.shetj.base.base.BaseSwipeBackActivity;
 
 /**
  * @author Administrator
  */
-public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseSwipeBackActivity<T> {
+public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseActivity  {
 
     protected ValueCallback<Uri> uploadFile;
     protected ValueCallback<Uri[]> uploadFiles;
@@ -79,6 +78,7 @@ public abstract class BaseX5WebActivity<T extends BasePresenter> extends BaseSwi
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         if (intent == null || mWebView == null || intent.getData() == null) {
             return;
         }

@@ -1,9 +1,9 @@
 package com.shetj.diyalbume.test
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.snackbar.Snackbar
 import com.shetj.diyalbume.R
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -96,7 +96,11 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                 .compose(this.bindToLifecycle())
                 .subscribe(
                         { value -> mTvDownloadResult.text ="Current Progress=" + value },
-                        { e -> showMessage(e.message!!) },{ showMessage("ok") })
+                        { e ->
+
+                        },{
+
+                })
 
         mPublishSubject = PublishSubject.create()
 
@@ -127,7 +131,7 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                 .switchMap { s -> getSearchInfo(s) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe { s -> ArmsUtils.longSnackbar(this,s) }
+                .subscribe { s -> ArmsUtils.makeText(s) }
 
         startSearch("s")
 
@@ -219,7 +223,7 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                 e.onComplete()
             }
         }.retryWhen(Function { t -> return@Function t.flatMap { t1 ->
-            ArmsUtils.makeText(t1.message)
+            ArmsUtils.makeText(t1.message!!)
             if (number < 5){
                 number++
                 return@flatMap  Observable.timer(1000, TimeUnit.MILLISECONDS)
@@ -231,7 +235,7 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
             Log.d(TAG, "DisposableObserver onNext=" + value)
         },
                 { e->
-                    Log.d(TAG, "DisposableObserver onError=" + e)
+                     Timber.d("DisposableObserver onError=" + e)
                 },
                 {
                     Log.d(TAG, "DisposableObserver onComplete")

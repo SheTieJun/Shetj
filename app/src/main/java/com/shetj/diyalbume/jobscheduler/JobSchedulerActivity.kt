@@ -1,10 +1,10 @@
 package com.shetj.diyalbume.jobscheduler
 
 import android.os.Bundle
+import android.os.Message
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_job_scheduler.*
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.base.BaseMessage
 
 /**
  * jobScheduler 测试界面
@@ -22,11 +22,11 @@ class JobSchedulerActivity : BaseActivity<JobSchedulerPresenter>() {
 
     private fun initEvent() {
         btn_job.setOnClickListener {
-            mPresenter.startJob()
+            mPresenter?.startJob()
         }
 
         btn_cancel_job.setOnClickListener {
-            mPresenter.cancel()
+            mPresenter?.cancel()
         }
 
     }
@@ -37,12 +37,12 @@ class JobSchedulerActivity : BaseActivity<JobSchedulerPresenter>() {
 
     override fun initData() {
         mPresenter = JobSchedulerPresenter(this)
-        mPresenter.startService()
+        mPresenter?.startService()
     }
 
-    override fun updateView(message: BaseMessage<*>) {
+    override fun updateView(message: Message) {
         super.updateView(message)
-        when(message.type){
+        when(message.arg1){
             1 ->{
                 tv_msg.text = message.obj.toString()
             }

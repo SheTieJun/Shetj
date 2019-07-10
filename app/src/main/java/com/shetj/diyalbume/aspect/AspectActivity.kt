@@ -2,13 +2,13 @@ package com.shetj.diyalbume.aspect
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Message
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_aspect.*
 import me.shetj.aspect.permission.MPermission
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.base.BaseMessage
 import me.shetj.base.tools.app.ArmsUtils
 
 @Route(path = "/shetj/AspectActivity")
@@ -29,14 +29,14 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
 
     override fun initView() {
 
-        RxView.clicks(btn_get_info).subscribe{
+        btn_get_info.clicks().subscribe{
            testAspect()
         }
-        RxView.clicks(btn_get_log).subscribe{
-            mPresenter.testAspect()
+        btn_get_log.clicks().subscribe{
+            mPresenter?.testAspect()
         }
-        RxView.clicks(btn_net_work).subscribe {
-            mPresenter.testNetWork()
+        btn_net_work.clicks().subscribe {
+            mPresenter?.testNetWork()
         }
     }
 
@@ -46,7 +46,7 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
     }
 
 
-    override fun updateView(message: BaseMessage<*>) {
+    override fun updateView(message: Message) {
         super.updateView(message)
 
     }

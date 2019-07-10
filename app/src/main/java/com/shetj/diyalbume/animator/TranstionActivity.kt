@@ -15,7 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import com.transitionseverywhere.ChangeBounds
 import com.transitionseverywhere.ChangeClipBounds
@@ -61,7 +61,7 @@ AutoTransition	默认动画，ChangeBounds、Fade动画的集合
         val sceneForLayout1 = Scene.getSceneForLayout(iRoot, R.layout.scen1, rxContext)
         val sceneForLayout2 = Scene.getSceneForLayout(iRoot, R.layout.scen2, rxContext)
         TransitionManager.go(sceneForLayout1)
-        RxView.clicks(btn_change).subscribe {
+        btn_change.clicks().subscribe {
             isScene1 = !isScene1
             TransitionManager.go(if(isScene1)sceneForLayout2 else sceneForLayout1, ChangeBounds())
 
@@ -80,12 +80,12 @@ AutoTransition	默认动画，ChangeBounds、Fade动画的集合
         val scene1 = Scene(iRoot, inflate)
         val scene2 = Scene(iRoot, inflate2)
 
-        RxView.clicks(btn_changeClipBounds).subscribe {
+        btn_changeClipBounds.clicks().subscribe {
             isScene1 = !isScene1
             TransitionManager.go(if(isScene1)scene1 else scene2, ChangeClipBounds())
         }
 
-        RxView.clicks(btn_example)
+        btn_example.clicks()
 
                 .subscribe {
                     startActivity(Intent(rxContext, Main3Activity::class.java))

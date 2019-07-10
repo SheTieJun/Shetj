@@ -3,7 +3,6 @@ package me.shetj.transition.transitionexample;
 import android.animation.Animator;
 import android.graphics.Color;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.transition.Transition;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import me.shetj.transition.R;
 

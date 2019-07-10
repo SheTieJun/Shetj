@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 
 import com.tencent.smtt.sdk.QbSdk;
 
-import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
 
 /**
@@ -24,7 +23,7 @@ public class X5CorePreLoadService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        time = TimeUtil.getTime();
+        time = System.currentTimeMillis();
         initX5();
     }
 
@@ -43,7 +42,7 @@ public class X5CorePreLoadService extends IntentService {
 
         @Override
         public void onViewInitFinished(boolean arg0) {
-            Timber.i("X5=%s", String.valueOf(TimeUtil.getTime()- time) );
+            Timber.i("X5=%s", String.valueOf(System.currentTimeMillis()- time) );
         }
 
         @Override

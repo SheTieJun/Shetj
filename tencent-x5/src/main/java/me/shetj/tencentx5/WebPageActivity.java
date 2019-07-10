@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding3.view.RxView;
 import com.tencent.sonic.sdk.SonicConfig;
 import com.tencent.sonic.sdk.SonicEngine;
 import com.tencent.sonic.sdk.SonicSession;

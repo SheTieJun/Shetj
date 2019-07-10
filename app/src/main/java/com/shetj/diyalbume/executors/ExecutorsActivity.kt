@@ -3,7 +3,7 @@ package com.shetj.diyalbume.executors
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,7 +15,7 @@ class ExecutorsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_executors)
-        RxView.clicks(btn_test).subscribe {
+        btn_test.clicks().subscribe {
             testExcutors()
         }
     }

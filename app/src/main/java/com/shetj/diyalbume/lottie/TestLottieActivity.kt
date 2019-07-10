@@ -3,19 +3,17 @@ package com.shetj.diyalbume.lottie
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.SeekBar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_test_lottie.*
+import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
-import me.shetj.base.base.BaseSwipeBackActivity
-import me.shetj.base.view.LoadingDialog
 
 @Route(path = "/shetj/TestLottieActivity")
-class TestLottieActivity : BaseSwipeBackActivity<BasePresenter<*>>() {
+class TestLottieActivity : BaseActivity<BasePresenter<*>>() {
     override fun initData() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -67,10 +65,10 @@ class TestLottieActivity : BaseSwipeBackActivity<BasePresenter<*>>() {
 
         })
 
-        RxView.clicks(loading).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            LoadingDialog.showLoading(this,true)
+        loading.clicks().observeOn(AndroidSchedulers.mainThread()).subscribe {
+//            LoadingDialog.showLoading(this,true)
         }
-        RxView.clicks(lottie).observeOn(AndroidSchedulers.mainThread()).subscribe {
+        lottie.clicks().observeOn(AndroidSchedulers.mainThread()).subscribe {
             LottieDialog.showLoading(this,true)
         }
     }

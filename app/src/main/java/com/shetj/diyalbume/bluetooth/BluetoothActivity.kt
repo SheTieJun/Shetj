@@ -3,19 +3,17 @@ package com.shetj.diyalbume.bluetooth
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.os.Message
 import android.view.Gravity
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.clj.fastble.BleManager
 import com.clj.fastble.data.BleDevice
 import com.clj.fastble.scan.BleScanRuleConfig
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.base.BaseMessage
-import me.shetj.base.decoration.Decoration
 import me.shetj.base.tools.app.ArmsUtils
 
 
@@ -85,11 +83,9 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
 
     override fun initView() {
         mPresenter = BluetoothPresenter(this)
-        mPresenter.getPer(ArmsUtils.getRxPermissions(this))
+        mPresenter?.getPer(ArmsUtils.getRxPermissions(this))
         adapter = BluetoothListAdapter(ArrayList())
         ArmsUtils.configRecycleView(iRecyclerView, androidx.recyclerview.widget.LinearLayoutManager(rxContext))
-
-        iRecyclerView.addItemDecoration(Decoration.builder().color(R.color.line_color).headerCount(1).build())
         val textView = TextView(rxContext)
         textView.text = "搜索"
         textView.gravity = Gravity.CENTER
@@ -97,23 +93,23 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         textView.setPadding(dp10, dp10,
                 dp10, dp10)
 
-        RxView.clicks(textView)
+        textView.clicks()
                 .subscribe {
-                    mPresenter.startSearch(textView)
+                    mPresenter?.startSearch(textView)
                 }
         adapter.addHeaderView(textView)
 
         adapter.setOnItemClickListener { _, _, position ->
-            mPresenter.connect(this.adapter.getItem(position))
+            mPresenter?.connect(this.adapter.getItem(position))
         }
 
         iRecyclerView.adapter = adapter
     }
 
 
-    override fun updateView(message: BaseMessage<*>) {
+    override fun updateView(message: Message) {
         super.updateView(message)
-        when(message?.type ){
+        when(message.arg1 ){
             1 ->{
                 adapter.setNewData(message.obj as MutableList<BleDevice>?)
             }

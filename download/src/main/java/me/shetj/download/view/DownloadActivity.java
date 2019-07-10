@@ -1,9 +1,10 @@
 package me.shetj.download.view;
 
 import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
@@ -11,7 +12,6 @@ import org.simple.eventbus.ThreadMode;
 import java.util.ArrayList;
 
 import me.shetj.base.base.BaseActivity;
-import me.shetj.base.tools.time.TimeUtil;
 import me.shetj.download.R;
 import me.shetj.download.adapter.TaskItemAdapter;
 import me.shetj.download.base.DownloadInfo;
@@ -78,7 +78,7 @@ public class DownloadActivity extends BaseActivity<DownloadPresenter> implements
 		int i = v.getId();
 		if (i == R.id.btn_add) {
 			DownloadInfo downloadInfo =
-							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk?" + TimeUtil.getYMDHMSTime());
+							TasksManager.getImpl().addTask("https://dldir1.qq.com/foxmail/work_weixin/wxwork_android_2.4.5.5571_100001.apk?" + System.currentTimeMillis());
 
 			if (downloadInfo != null) {
 				TasksManager.getImpl().startDownload(downloadInfo);

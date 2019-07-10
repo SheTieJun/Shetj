@@ -9,7 +9,7 @@ import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.jakewharton.rxbinding2.view.RxView
+import com.jakewharton.rxbinding3.view.clicks
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
@@ -29,7 +29,6 @@ import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.PlayVideoActivity
 import com.shetj.diyalbume.ppttest.PPtTestActivity
 import com.shetj.diyalbume.test.CustomActivity
-import com.shetj.diyalbume.test.MobileInfoUtils
 import com.shetj.diyalbume.utils.SneakerUtils
 import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
@@ -43,7 +42,6 @@ import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
-import com.shetj.diyalbume.ohter.OtherActivity
 import me.shetj.download.view.DownloadActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
@@ -81,9 +79,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
     @SuppressLint("CheckResult")
     override fun initView() {
         bt_create.setOnClickListener {
-           mPresenter.showIntroduce()
+           mPresenter?.showIntroduce()
         }
-        RxView.clicks(btn_play).subscribe {
+        btn_play.clicks().subscribe {
             startActivity(Intent(this,PlayVideoActivity::class.java))
         }
         btn_custom.setOnClickListener {
@@ -92,100 +90,98 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         btn_openGL.setOnClickListener{ArmsUtils.startActivity(this,GlTestActivity::class.java)}
 
-        RxView.clicks(btn_openGL3D).subscribe {
+        btn_openGL3D.clicks().subscribe {
             ArmsUtils.startActivity( this,OpenGL3DActivity::class.java)
         }
-        RxView.clicks(btn_jiami).subscribe {
+        btn_jiami.clicks( ).subscribe {
             ArmsUtils.startActivity( this,EncryptActivity::class.java)
         }
-        RxView.clicks(btn_tup).subscribe{
+        btn_tup.clicks( ).subscribe{
             ArmsUtils.startActivity( this,ImageTestActivity::class.java)
         }
 
-        RxView.clicks(btn_treadPool).subscribe {
+        btn_treadPool.clicks( ).subscribe {
             ArmsUtils.startActivity( this,ExecutorsActivity::class.java)
         }
-        RxView.clicks(btn_animator).subscribe {
+        btn_animator.clicks().subscribe {
             ArmsUtils.startActivity( this,AnimatorActivity::class.java)
         }
-        RxView.clicks(btn_bluetooth).subscribe {
+        btn_bluetooth.clicks().subscribe {
             ArmsUtils.startActivity(this,BluetoothActivity::class.java)
         }
 
-        RxView.clicks(btn_lottie).subscribe{
+        btn_lottie.clicks().subscribe{
             ArmsUtils.startActivity(this,TestLottieActivity::class.java)
         }
-        RxView.clicks(btn_finger).subscribe{
+        btn_finger.clicks().subscribe{
             ArmsUtils.startActivity(this,FingerPrintActivity::class.java)
         }
 
-        RxView.clicks(btn_CustomTabs).subscribe {
+        btn_CustomTabs.clicks().subscribe {
             CustomTabsHelper.openUrl(rxContext,"https://github.com/SheTieJun")
         }
-        RxView.clicks(btn_Aspect).subscribe {
+        btn_Aspect.clicks().subscribe {
             ArmsUtils.startActivity(this,AspectActivity::class.java)
         }
-        RxView.clicks(btn_hotfix).subscribe {
+        btn_hotfix.clicks().subscribe {
             ArmsUtils.makeText("只是接入 未测试 阿里-hotfix！")
         }
 
-        RxView.clicks(btn_x5)
+        btn_x5.clicks()
                 .subscribe {
                     WebPageActivity.startBrowserActivity(this,"https://gitee.com/shetj",1)
                 }
 
-        RxView.clicks(btn_scheme)
+        btn_scheme.clicks()
                 .subscribe {
                     WebPageActivity.startBrowserActivity(this, "file:///android_asset/test.html",1)
                 }
-        RxView.clicks(btn_notification)
+        btn_notification.clicks()
                 .subscribe {
-                    mPresenter.showNotification()
+                    mPresenter?.showNotification()
                 }
-        RxView.clicks(btn_map)
+        btn_map.clicks()
                 .subscribe {
                     ArmsUtils.startActivity(this,BDMapActivity::class.java)
                 }
-        RxView.clicks(btn_fresco)
+        btn_fresco.clicks( )
                 .subscribe {
                     ArmsUtils.startActivity(this,FrescoActivity::class.java)
                 }
-        RxView.clicks(btn_test_auto).subscribe {
+        btn_test_auto.clicks().subscribe {
                 ArmsUtils.startActivity(this,ASAutoCodeActivity::class.java)
         }
-        RxView.clicks(btn_view).subscribe {
+        btn_view.clicks().subscribe {
             ArmsUtils.startActivity(this,ViewActivity::class.java)
         }
-        RxView.clicks(btn_local_music).subscribe {
+        btn_local_music.clicks().subscribe {
             ArmsUtils.startActivity(this,LocalMusicActivity::class.java)
         }
-        RxView.clicks(btn_Service_1).subscribe {
+        btn_Service_1.clicks().subscribe {
             val apkName = DownloadService.getApkName("1.0.0", "app-toyo.apk");
-            DownloadService.install(Utils.getApp(),"1.0.0",apkName,
+            DownloadService.install(Utils.app,"1.0.0",apkName,
                     "http://oss.qcshendeng.com/app-toyo.apk")
         }
 
-        RxView.clicks(btn_ges).subscribe {
+        btn_ges.clicks().subscribe {
             ArmsUtils.startActivity(this,GestureActivity::class.java)
         }
 
-        RxView.clicks(btn_open_luck).subscribe {
+        btn_open_luck.clicks().subscribe {
             iMyAidlInterface?.start()
         }
-        RxView.clicks(btn_auto_open).subscribe {
-            MobileInfoUtils.jumpStartInterface(this)
-            MobileInfoUtils.toSelfSetting(this)
+        btn_auto_open.clicks().subscribe {
         }
 
-        RxView.clicks(btn_sneaker).subscribe {
+        btn_sneaker.clicks().subscribe {
             SneakerUtils.sneakError(this,"错误提示","测试~测试")
         }
 
-        RxView.clicks(btn_ppt).subscribe{
+        btn_ppt.clicks().subscribe{
             ArmsUtils.startActivity(this,PPtTestActivity::class.java)
         }
 
-        RxView.clicks(btn_account).subscribe {
+        btn_account.clicks().subscribe {
             val appId = "wxf683bc1904cc8adb"//开发者平台ID
             val api = WXAPIFactory.createWXAPI(this, appId, false)
 
@@ -199,14 +195,13 @@ class MainActivity : BaseActivity<MainPresenter>(){
                 Toast.makeText(this, "微信未安装", Toast.LENGTH_SHORT).show()
             }
         }
-        RxView.clicks(btn_test_qmui).subscribe{
-            ArmsUtils.startActivity(this,OtherActivity::class.java)
+        btn_test_qmui.clicks().subscribe{
         }
-        RxView.clicks(btn_download).subscribe {
+        btn_download.clicks().subscribe {
             ArmsUtils.startActivity(this, DownloadActivity::class.java)
         }
 
-        RxView.clicks(btn_job_scheduler).subscribe {
+        btn_job_scheduler.clicks().subscribe {
             ArmsUtils.startActivity(this, JobSchedulerActivity::class.java)
         }
     }
