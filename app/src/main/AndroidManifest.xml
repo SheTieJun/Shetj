@@ -35,10 +35,11 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <!--end service-->
-
+        <service
+            android:name=".utils.DownloadService"
+            android:enabled="true"/>
 
         <activity android:name=".jobscheduler.JobSchedulerActivity"></activity>
-        <activity android:name=".ohter.OtherActivity"></activity>
 
         <meta-data
             android:name="UMENG_APPKEY"

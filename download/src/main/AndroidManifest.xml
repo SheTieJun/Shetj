@@ -22,9 +22,6 @@
         <activity android:name=".view.DownloadActivity">
         </activity>
 
-        <service
-            android:name=".base.DownloadService"
-            android:enabled="true"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

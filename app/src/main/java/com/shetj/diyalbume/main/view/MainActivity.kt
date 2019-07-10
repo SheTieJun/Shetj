@@ -37,11 +37,11 @@ import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
-import me.shetj.download.base.DownloadService
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
+import com.shetj.diyalbume.utils.DownloadService
 import me.shetj.download.view.DownloadActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
