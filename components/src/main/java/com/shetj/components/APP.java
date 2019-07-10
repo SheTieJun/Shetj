@@ -2,7 +2,7 @@ package com.shetj.components;
 
 import android.app.Application;
 
-import org.xutils.x;
+import me.shetj.base.s;
 
 /**
  * <b>@packageName：</b> com.shetj.components<br>
@@ -17,9 +17,7 @@ public class APP extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		x.Ext.init(this);
-		x.Ext.setDebug(true);
-
+		s.init(this, BuildConfig.DEBUG);
 	}
 
 

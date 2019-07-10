@@ -86,7 +86,7 @@ class CircleView : View {
         canvas.clipRect(0, 0, width, height)
         mPath!!.addCircle((width / 2).toFloat(), (height / 2).toFloat(), r.toFloat(), Path.Direction.CCW)
 
-        canvas.clipPath(mPath!!, Region.Op.XOR)
+        canvas.clipPath(mPath!!)
         canvas.drawColor(Color.BLUE)
         //        canvas.restore();
 

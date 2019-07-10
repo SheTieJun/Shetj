@@ -65,9 +65,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
         initView()
         initData()
         mPresenter =  MainPresenter(this)
-        fab.setOnClickListener { _ ->
+        fab.setOnClickListener {
             startActivity(Intent(this,Main3Activity::class.java))
-
         }
     }
     override fun initData() {

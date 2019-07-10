@@ -74,6 +74,9 @@ class DownloadService : Service() {
     }
 
     override fun onDestroy() {
+        if (mReceiver != null) {
+            unregisterReceiver(mReceiver)
+        }
         super.onDestroy()
     }
 

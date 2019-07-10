@@ -106,9 +106,6 @@ android {
             dirs 'libs'
         }
     }
-    configurations.all {
-        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
-    }
 
     compileOptions {
         targetCompatibility 1.8
@@ -143,11 +140,6 @@ android {
             if (requested.group == 'com.google.code.gson') {
                 if (!requested.name.startsWith("multidex")) {
                     details.useVersion '2.8.2'
-                }
-            }
-            if (requested.group == 'com.google.code.findbugs') {
-                if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '3.0.0'
                 }
             }
             if (requested.group == 'com.github.bumptech.glide') {
