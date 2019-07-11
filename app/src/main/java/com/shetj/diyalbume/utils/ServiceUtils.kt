@@ -3,7 +3,9 @@ package com.shetj.diyalbume.utils
 import android.app.ActivityManager
 import android.content.ComponentName
 import android.content.Context
+import android.os.Build
 import android.text.TextUtils
+import androidx.annotation.RequiresApi
 
 import java.util.ArrayList
 
@@ -37,6 +39,7 @@ object ServiceUtils {
      * @param context
      * @param className 某个界面名称
      */
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun isActivityForeground(context: Context?, className: String): Boolean {
         if (context == null || TextUtils.isEmpty(className)) {
             return false
@@ -46,7 +49,7 @@ object ServiceUtils {
         val list = am.getRunningTasks(1)
         if (list != null && list.size > 0) {
             val cpn = list[0].topActivity
-            if (className == cpn.className) {
+            if (className == cpn?.className) {
                 return true
             }
         }

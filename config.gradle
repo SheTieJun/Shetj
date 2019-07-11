@@ -1,9 +1,8 @@
 ext {
-            compileSdkVersion       = 28
-            targetSdkVersion        = 28
+            compileSdkVersion       = 29
+            targetSdkVersion        = 29
             versionCode             = 2
             versionName             = "2.0"
-            androidSupportSdkVersion= "28.0.0"
             baseVersion             = "21bbbba885"
-             minSdkVersion          = 21
+            minSdkVersion          = 21
 }
