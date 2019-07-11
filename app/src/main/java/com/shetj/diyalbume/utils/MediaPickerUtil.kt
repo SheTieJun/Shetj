@@ -190,31 +190,23 @@ object MediaPickerUtil {
     }
 
     fun getImageName(media: LocalMedia): String {
-        var name = ""
-        if (media.isCompressed) {
-            name = File(media.compressPath).name
-        } else if (media.isCut) {
-            name = File(media.cutPath).name
-        } else {
-            name = File(media.path).name
+        return when {
+            media.isCompressed -> File(media.compressPath).name
+            media.isCut -> File(media.cutPath).name
+            else -> File(media.path).name
         }
-        return name
     }
 
 
     fun getImagePath(media: LocalMedia): String {
-        var name = ""
-        Timber.i("getCutPath =" + media.compressPath)
-        Timber.i("getCutPath =" + media.cutPath)
-        Timber.i("getPath =" + media.path)
-        if (media.isCompressed) {
-            name = media.compressPath
-        } else if (media.isCut) {
-            name = media.cutPath
-        } else {
-            name = media.path
+        Timber.i("getCutPath =%s", media.compressPath)
+        Timber.i("getCutPath =%s", media.cutPath)
+        Timber.i("getPath =%s", media.path)
+        return when {
+            media.isCompressed -> media.compressPath
+            media.isCut -> media.cutPath
+            else -> media.path
         }
-        return name
     }
 
     fun startPickVideo(activity: Activity, selectVideo: List<LocalMedia>) {

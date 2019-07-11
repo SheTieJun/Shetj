@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
     tools:context="com.shetj.diyalbume.main.view.MainActivity"
     tools:showIn="@layout/activity_main">
 
@@ -148,17 +148,17 @@
         android:layout_marginTop="5dp"
         android:text="自定义"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_miui"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_behavior"/>
 
     <Button
-        android:id="@+id/btn_miui"
+        android:id="@+id/btn_behavior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="自定义UI"
+        android:text="behavior"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_jiami"/>
 
@@ -216,7 +216,7 @@
         android:id="@+id/btn_tup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btn_miui"
+        android:layout_alignStart="@+id/btn_behavior"
         android:layout_alignTop="@+id/btn_openGL"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
@@ -301,7 +301,7 @@
         android:layout_marginTop="5dp"
         android:text="CustomTabsUrl"
         android:textAllCaps="false"
-        app:layout_constraintStart_toEndOf="@+id/btn_miui"
+        app:layout_constraintStart_toEndOf="@+id/btn_behavior"
         app:layout_constraintTop_toBottomOf="@+id/btn_finger"/>
 
     <Button

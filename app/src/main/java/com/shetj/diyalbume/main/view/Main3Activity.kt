@@ -31,7 +31,7 @@ class Main3Activity : BaseActivity<BasePresenter<*>>() {
         btn_custom.setOnClickListener {
             RouterUtils.startOpen("/shetj/CustomActivity")
         }
-        btn_miui.setOnClickListener {
+        btn_behavior.setOnClickListener {
             RouterUtils.startOpen("/shetj/MiUIActivity")
         }
 

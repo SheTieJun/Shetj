@@ -40,6 +40,7 @@ import me.shetj.base.tools.app.Utils
 import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.utils.DownloadService
 import me.shetj.download.view.DownloadActivity
@@ -124,6 +125,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         btn_hotfix.clicks().subscribe {
             ArmsUtils.makeText("只是接入 未测试 阿里-hotfix！")
+        }
+        btn_behavior.setOnClickListener {
+            ArmsUtils.startActivity(this,BehaviorActivity::class.java)
         }
 
         btn_x5.clicks()
