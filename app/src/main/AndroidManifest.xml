@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.shetj.diyalbume.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/shetj_logo"
         android:label="@string/app_name"
@@ -28,8 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".behavior.BehaviorActivity"></activity>
-        <!-- service -->
+        <activity android:name=".worker.WorkerActivity"></activity>
+        <activity android:name=".behavior.BehaviorActivity" /> <!-- service -->
         <service
             android:name=".jobscheduler.MyJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- end service -->

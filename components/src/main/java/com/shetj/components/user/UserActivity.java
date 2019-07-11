@@ -1,17 +1,12 @@
 package com.shetj.components.user;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleRegistry;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shetj.components.R;
-import com.shetj.components.component.DaggerUserComponent;
 import com.shetj.components.db.User;
 import com.shetj.components.module.UserModule;
 
@@ -25,9 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import me.shetj.base.tools.json.GsonKit;
 
-public class UserActivity extends AppCompatActivity implements LifecycleOwner {
+public class UserActivity extends AppCompatActivity   {
 
-	private LifecycleRegistry mLifecycleRegistry;
 
 	@Inject
 	UserModel mUserModel;
@@ -83,25 +77,10 @@ public class UserActivity extends AppCompatActivity implements LifecycleOwner {
 	}
 
 	private void initView() {
-
-		mLifecycleRegistry = new LifecycleRegistry(this);
-		mLifecycleRegistry.setCurrentState(Lifecycle.State.CREATED);
 	 	getLifecycle().addObserver(new UserObserver());
 
 		mFab = findViewById(R.id.fab);
 		mTvMsg = findViewById(R.id.tv_msg);
 	}
 
-	@NonNull
-	@Override
-	public Lifecycle getLifecycle() {
-		return mLifecycleRegistry;
-
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		mLifecycleRegistry.setCurrentState(Lifecycle.State.STARTED);
-	}
 }

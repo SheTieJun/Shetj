@@ -17,15 +17,15 @@ android {
         }
     }
 
-    libraryVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.aar')) {
-                def fileName = outputFile.name.replace(".aar", "-shetj.aar")
-                outputFileName = fileName
-            }
-        }
-    }
+//    libraryVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.aar')) {
+//                def fileName = outputFile.name.replace(".aar", "-shetj.aar")
+//                outputFileName = fileName
+//            }
+//        }
+//    }
 }
 
 dependencies {
