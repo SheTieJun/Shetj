@@ -9,6 +9,7 @@ import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.widget.TooltipCompat
 import com.jakewharton.rxbinding3.view.clicks
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.shetj.diyalbume.animator.AnimatorActivity
@@ -43,6 +44,7 @@ import com.shetj.diyalbume.R
 import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.utils.DownloadService
+import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
@@ -142,6 +144,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         btn_notification.clicks()
                 .subscribe {
                     mPresenter?.showNotification()
+                    TooltipCompat.setTooltipText(btn_notification,"通知栏")
                 }
         btn_map.clicks()
                 .subscribe {
@@ -173,7 +176,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
         btn_open_luck.clicks().subscribe {
             iMyAidlInterface?.start()
         }
-        btn_auto_open.clicks().subscribe {
+        btn_Worker.clicks().subscribe {
+            ArmsUtils.startActivity(this,WorkerActivity::class.java)
         }
 
         btn_sneaker.clicks().subscribe {

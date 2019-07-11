@@ -4,7 +4,6 @@ import android.content.Intent
 import com.afollestad.materialdialogs.MaterialDialog
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.nitification.MusicNotification
-import kotlinx.android.synthetic.main.activity_encrypt.*
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
