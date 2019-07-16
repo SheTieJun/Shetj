@@ -25,6 +25,58 @@ class WorkerActivity : AppCompatActivity() {
             startPeriodicWork()
         }
 
+        addRxWorker.setOnClickListener {
+            startRxOneWork()
+        }
+
+        addRxPeriodicWorkRequest.setOnClickListener {
+            startRxPeriodicWork()
+        }
+
+    }
+
+    private fun startRxPeriodicWork() {
+
+        val rxPeriodicWork = getRxPeriodicWork()
+
+        WorkManager.getInstance().apply {
+            enqueue(rxPeriodicWork)
+
+        }
+        WorkManager.getInstance().getWorkInfoByIdLiveData(rxPeriodicWork.id)
+                .observe(this, Observer<WorkInfo> {
+                    Timber.d(GsonKit.objectToJson(it))
+                    if (it.state.isFinished) {
+                        it.showInfo()
+                    }
+                })
+    }
+
+
+
+    private fun startRxOneWork() {
+        val oneWork = getRxOneWorK()
+
+        WorkManager.getInstance().apply {
+            enqueue(oneWork)
+
+
+        }
+        WorkManager.getInstance().getWorkInfoByIdLiveData(oneWork.id)
+                .observe(this, Observer<WorkInfo> {
+                    Timber.d(GsonKit.objectToJson(it))
+                    if (it.state.isFinished) {
+                        it.showInfo()
+                    }
+                })
+    }
+
+
+    fun getRxOneWorK(): OneTimeWorkRequest {
+       return OneTimeWorkRequestBuilder<MyRxWork>().setConstraints(getConstraints())
+                .setInputData(getData("startRxOneWork"))
+                .addTag("startRxOneWork")
+                .build()
     }
 
 
@@ -72,17 +124,18 @@ class WorkerActivity : AppCompatActivity() {
     }
 
 
+    private fun getRxPeriodicWork(): PeriodicWorkRequest {
+
+        return PeriodicWorkRequestBuilder<MyRxWork>(15,TimeUnit.MINUTES)
+                .setConstraints(getConstraints())
+                .setInputData(getData("getRxPeriodicWork"))
+                .addTag("getRxPeriodicWork")
+                .build()
+    }
+
     fun startOneWork(){
-
         val oneWork = getOneWork()
-
-
-
-        WorkManager.getInstance().apply {
-            enqueue(oneWork)
-
-
-        }
+        WorkManager.getInstance().apply { enqueue(oneWork) }
         WorkManager.getInstance().getWorkInfoByIdLiveData(oneWork.id)
                 .observe(this, Observer<WorkInfo> {
                     Timber.d(GsonKit.objectToJson(it))
