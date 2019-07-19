@@ -12,6 +12,7 @@ object RxUtils {
             it.subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .onTerminateDetach()
         }
     }
 

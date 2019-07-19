@@ -86,6 +86,7 @@ class Main3Activity : BaseActivity<BasePresenter<*>>() {
                 .subscribe {
                     RouterUtils.startOpen("/shetj/FrescoActivity")
                 }
+
     }
 
     override fun initData() {

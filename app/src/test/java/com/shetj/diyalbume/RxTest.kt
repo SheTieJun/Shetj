@@ -1,5 +1,6 @@
 package com.shetj.diyalbume
 
+import com.shetj.diyalbume.rx.RxS
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -27,6 +28,13 @@ class RxTest {
                 .subscribe {
                     print(it)
                 }
+
+
+        RxS.checkMsg("xxxx").subscribe( {
+            print(GsonKit.objectToJson(it))
+        },{
+            print(it)
+        })
     }
 
     @Test
@@ -37,7 +45,7 @@ class RxTest {
                 }
                 .take(100)
                 .subscribe {
-                    print(it)
+                    println(it)
                 }
     }
 
@@ -59,6 +67,7 @@ class RxTest {
 
     @Test
     fun  testStart(){
+        //延迟操作
         Observable.timer(1,TimeUnit.SECONDS)
                 .subscribe {
                     print(it)
@@ -70,6 +79,7 @@ class RxTest {
         Observable.just(1,1,2,3,4,5)
                 .distinct()//过滤相同的操作
                 .scan { t1: Int, t2: Int ->
+                    //累计值t1,t2是不断发射的值
                     print("t1=$t1\n")
                     return@scan t1+t2
                 }
@@ -77,6 +87,7 @@ class RxTest {
                     print(GsonKit.objectToJson(it))
                 }
     }
+
 
 
 }

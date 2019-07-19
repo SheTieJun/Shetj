@@ -10,6 +10,9 @@ import kotlinx.android.synthetic.main.activity_behavior.*
 import me.shetj.base.tools.app.ArmsUtils
 import timber.log.Timber
 
+/**
+ * [BottomSheetBehavior]
+ */
 class BehaviorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

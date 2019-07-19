@@ -104,6 +104,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         }
 
         iRecyclerView.adapter = adapter
+
     }
 
 
