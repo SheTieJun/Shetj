@@ -28,7 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".markdown.MarkDownActivity"></activity>
+        <activity android:name=".playVideo.MediaActivity"></activity>
+        <activity android:name=".markdown.MarkDownActivity" />
         <activity android:name=".worker.WorkerActivity" />
         <activity android:name=".behavior.BehaviorActivity" /> <!-- service -->
         <service
@@ -115,6 +116,12 @@
         <activity android:name=".pipiti.localMusic.LocalMusicActivity" />
         <activity android:name=".ppttest.NewIndexActivity" />
         <activity android:name=".ppttest.PPtTestActivity" />
+
+        <service android:name="com.shetj.diyalbume.playVideo.MediaService">
+            <intent-filter >
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
