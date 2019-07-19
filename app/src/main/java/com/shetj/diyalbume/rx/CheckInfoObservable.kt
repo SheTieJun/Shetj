@@ -4,6 +4,7 @@ package com.shetj.diyalbume.rx
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
+import io.reactivex.disposables.Disposable
 import me.shetj.base.tools.json.GsonKit
 
 /**
@@ -12,30 +13,32 @@ import me.shetj.base.tools.json.GsonKit
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**  <br></br>
  */
-internal class CheckInfoObservable(private val msg: String) : Observable<Any>() {
-
-    override fun subscribeActual(observer: Observer<in Any>) {
-        observer.onSubscribe(CheckListener(GsonKit.jsonToBean(msg, ReturnMsg::class.java), observer))
+class CheckInfoObservable(private val msg: String) : Observable<ReturnMsg<*>>() {
+    override fun subscribeActual(observer: Observer<in ReturnMsg<*>>?) {
+        observer?.onSubscribe(CheckListener(GsonKit.jsonToBean(msg, ReturnMsg::class.java), observer))
     }
 
-    internal class CheckListener(returnMsg: ReturnMsg<*>?, observer: Observer<in Any>) : MainThreadDisposable() {
+    internal class CheckListener(returnMsg: ReturnMsg<*>?, observer: Observer<in ReturnMsg<*>>) : Disposable {
+        override fun isDisposed(): Boolean {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun dispose() {
+
+        }
 
         init {
             if (null == returnMsg) {
                 observer.onError(Throwable("msg is null"))
-            }
-            if (returnMsg!!.code == 1) {
-                observer.onNext(returnMsg)
-            } else if (returnMsg.code == 422) {
-                observer.onError(Throwable("登录失效"))
-            } else {
-                observer.onError(Throwable(returnMsg.message))
+            }else {
+                when {
+                    returnMsg.code == 1 -> observer.onNext(returnMsg)
+                    returnMsg.code == 422 -> observer.onError(Throwable("登录失效"))
+                    else -> observer.onError(Throwable(returnMsg.message))
+                }
             }
             observer.onComplete()
         }
 
-        override fun onDispose() {
-
-        }
     }
 }

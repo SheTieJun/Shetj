@@ -43,6 +43,7 @@ import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
+import com.shetj.diyalbume.markdown.MarkDownActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
@@ -192,7 +193,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
             val appId = "wxf683bc1904cc8adb"//开发者平台ID
             val api = WXAPIFactory.createWXAPI(this, appId, false)
 
-            if (api.isWXAppInstalled()) {
+            if (api.isWXAppInstalled) {
                 val req = JumpToBizProfile.Req()
                 req.toUserName = "gh_310dae0b822c" // 公众号原始ID
                 req.extMsg = "shetj_test"
@@ -202,7 +203,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
                 Toast.makeText(this, "微信未安装", Toast.LENGTH_SHORT).show()
             }
         }
-        btn_test_qmui.clicks().subscribe{
+        btn_markdown.clicks().subscribe{
+            ArmsUtils.startActivity(this,MarkDownActivity::class.java)
         }
         btn_download.clicks().subscribe {
             ArmsUtils.startActivity(this, DownloadActivity::class.java)

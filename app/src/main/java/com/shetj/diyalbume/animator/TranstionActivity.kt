@@ -14,13 +14,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeClipBounds
+import androidx.transition.Scene
+import androidx.transition.TransitionManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
-import com.transitionseverywhere.ChangeBounds
-import com.transitionseverywhere.ChangeClipBounds
-import com.transitionseverywhere.Scene
-import com.transitionseverywhere.TransitionManager
 import kotlinx.android.synthetic.main.activity_transtion.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.transition.transitionexample.Main3Activity

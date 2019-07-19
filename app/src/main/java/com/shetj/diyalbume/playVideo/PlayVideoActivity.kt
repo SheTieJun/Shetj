@@ -1,15 +1,13 @@
 package com.shetj.diyalbume.playVideo
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.snackbar.Snackbar
 import com.shetj.diyalbume.R
-import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
-import com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
 import me.shetj.base.tools.app.ArmsUtils
@@ -38,7 +36,7 @@ class PlayVideoActivity : AppCompatActivity() {
 
         var adapter = AutoRecycleView(list)
 
-        var linearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        var linearLayoutManager = LinearLayoutManager(this)
         ArmsUtils.configRecycleView(iRecyclerView,linearLayoutManager)
 
         //限定范围为屏幕一半的上下偏移100
@@ -49,17 +47,17 @@ class PlayVideoActivity : AppCompatActivity() {
 
 
 
-        iRecyclerView.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+        iRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
-            internal var firstVisibleItem: Int = 0
-            internal var lastVisibleItem: Int = 0
+            var firstVisibleItem: Int = 0
+            var lastVisibleItem: Int = 0
 
-            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 scrollCalculatorHelper.onScrollStateChanged(recyclerView, newState,linearLayoutManager)
             }
 
-            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition()
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()

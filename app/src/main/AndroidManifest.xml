@@ -28,7 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".worker.WorkerActivity"></activity>
+        <activity android:name=".markdown.MarkDownActivity"></activity>
+        <activity android:name=".worker.WorkerActivity" />
         <activity android:name=".behavior.BehaviorActivity" /> <!-- service -->
         <service
             android:name=".jobscheduler.MyJobService"
