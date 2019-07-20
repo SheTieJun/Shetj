@@ -10,6 +10,7 @@ import com.shetj.diyalbume.R
 import me.shetj.base.base.BaseActivity
 import timber.log.Timber
 
+
 /**
  */
 class MediaActivity : BaseActivity<MediaPresenter>() {
@@ -18,7 +19,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
     private var mBrowserConnectionCallback: MediaBrowserCompat.ConnectionCallback ?=null
     private var mediaBrowser:MediaBrowserCompat ?= null //媒体浏览器
 
-    private var controller: MediaControllerCompat?=null
+    private var mMediaController: MediaControllerCompat?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +51,14 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                 Timber.i("连接成功")
                 mediaBrowser?.apply {
                     if (isConnected){
-                        root
-                        unsubscribe(root)
-                        subscribe(root,mBrowserSubscriptionCallback)
-                        controller = MediaControllerCompat(rxContext,sessionToken)
-                        controller?.registerCallback(mMediaControllerCallback)
+                        mMediaController = MediaControllerCompat.getMediaController(rxContext)
+                        mMediaController?.registerCallback(mMediaControllerCallback)
+
+                        // Sync existing MediaSession state to the UI.同步信息
+                        mMediaController?.metadata?.let {
+                            mMediaControllerCallback.onMetadataChanged(mMediaController?.metadata!!)
+                        }
+                        mMediaControllerCallback.onPlaybackStateChanged(mMediaController?.playbackState)
                     }
                 }
             }
@@ -71,20 +75,60 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                 null)
 
         //connect → onConnected → subscribe → onChildrenLoaded
+        //3.建立连接
+        mediaBrowser?.connect()
+        //ID 用来区分列表
+        mediaBrowser?.subscribe("ID", mBrowserSubscriptionCallback)
 
 
+        //客户端通过调用sendCustomAction，根据与服务端的协商，制定相应的action类型，进行数据的传递交互。
+//        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
+    }
+
+    /**
+     *  客户端通过调用sendCustomAction，根据与服务端的协商，制定相应的action类型，进行数据的传递交互。
+     */
+    private val mCustomActionCallback = object : MediaBrowserCompat.CustomActionCallback() {
+        override fun onProgressUpdate(action: String?, extras: Bundle?, data: Bundle?) {
+            super.onProgressUpdate(action, extras, data)
+            Timber.i("mCustomActionCallback :onProgressUpdate----数据变化")
+        }
+
+        override fun onResult(action: String?, extras: Bundle?, resultData: Bundle?) {
+            super.onResult(action, extras, resultData)
+            Timber.i("mCustomActionCallback :onResult ----数据变化")
+        }
+
+        override fun onError(action: String?, extras: Bundle?, data: Bundle?) {
+            super.onError(action, extras, data)
+            Timber.i("mCustomActionCallback :onError ----数据变化")
+        }
     }
 
     /**
      * 向媒体浏览器服务发起订阅请求的回调接口
+     * 客户端通过调用subscribe方法，传递MediaID，在SubscriptionCallback的方法中进行处理。
      */
     private val mBrowserSubscriptionCallback = object:MediaBrowserCompat.SubscriptionCallback(){
         override fun onChildrenLoaded(parentId: String, children: MutableList<MediaBrowserCompat.MediaItem>) {
             super.onChildrenLoaded(parentId, children)
             Timber.i("onChildrenLoaded---")
+
+            //children 为来自Service的列表数据
             children.forEach{
                 Timber.i(it.description.title.toString())
             }
+
+            if (mMediaController == null) {
+                return
+            }
+            // Queue up all media items for this simple sample.
+            for (mediaItem in children) {
+                mMediaController?.addQueueItem(mediaItem.description)
+            }
+
+            // Call "playFromMedia" so the UI is updated.
+            mMediaController?.transportControls?.prepare()
         }
     }
 
@@ -102,19 +146,40 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
             Timber.i(info)
         }
 
-        override fun onMetadataChanged(metadata: MediaMetadataCompat?) {
-            super.onMetadataChanged(metadata)
-            //音乐播放改变回调
+        override fun onSessionDestroyed() {
+            super.onSessionDestroyed()
+            //Session销毁
+            onPlaybackStateChanged(null)
+        }
+
+        override  fun onRepeatModeChanged(repeatMode: Int) {
+            super.onRepeatModeChanged(repeatMode)
+            Timber.i("onRepeatModeChanged ----循环模式发生变化")
+        }
+
+        override  fun onShuffleModeChanged(shuffleMode: Int) {
+            super.onShuffleModeChanged(shuffleMode)
+            Timber.i("onShuffleModeChanged ----随机模式发生变化")
+            //随机模式发生变化
+        }
+
+        override  fun onMetadataChanged(metadata: MediaMetadataCompat) {
+            super. onMetadataChanged(metadata)
+            Timber.i("onMetadataChanged ----数据变化")
+            //数据变化
         }
     }
 
+    /**
+     * 播放控制
+     */
     fun startOrPause(){
-        when(controller?.playbackState?.state){
+        when(mMediaController?.playbackState?.state){
             PlaybackStateCompat.STATE_PLAYING ->{
-                controller?.transportControls?.pause()
+                mMediaController?.transportControls?.pause()
             }
             PlaybackStateCompat.STATE_PAUSED ->{
-                controller?.transportControls?.play()
+                mMediaController?.transportControls?.play()
             }
         }
     }

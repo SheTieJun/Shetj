@@ -5,4 +5,5 @@ class Music {
     var size: Long = 0
     var url: String?=null
     var duration: Long = 0
+    var img :String ?=null
 }

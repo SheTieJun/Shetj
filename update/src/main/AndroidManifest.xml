@@ -2,18 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="me.shetj.update">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- Include required permissions for Google Mobile Ads to run. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
+        </activity>
+        <!-- Include the AdActivity configChanges and theme. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent"/>
+
         <meta-data
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc"/>
-
         <!--
          Main music service, provides media browsing and media playback services to
          consumers through MediaBrowserService and MediaSession. Consumers connect to it through
@@ -93,22 +103,6 @@
             android:label="@string/title_activity_tab"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
-        <!--<provider-->
-            <!--android:name=".MySliceProvider"-->
-            <!--android:authorities="me.shetj.update"-->
-            <!--android:exported="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.VIEW"/>-->
-
-                <!--<category android:name="android.app.slice.category.SLICE"/>-->
-
-                <!--<data-->
-                    <!--android:host="shetj.me"-->
-                    <!--android:pathPrefix="/hello"-->
-                    <!--android:scheme="http"/>-->
-            <!--</intent-filter>-->
-        <!--</provider>-->
     </application>
 
 </manifest>
