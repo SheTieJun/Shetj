@@ -44,7 +44,8 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
     private fun loadFileData() {
         val disposable = Flowable.create(FlowableOnSubscribe<List<Music>> { emitter ->
             val resolver = view.rxContext.contentResolver
-            val cursor = resolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, null)
+            val cursor = resolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    null, null, null, null)
             cursor!!.moveToFirst()
             musicList = ArrayList()
             if (cursor.moveToFirst()) {
@@ -74,7 +75,8 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
                 .subscribeOn(Schedulers.io())
                 .compose(view.rxContext.bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ music -> view.updateView(getMessage(1, music)) }, { throwable -> throwable.message?.let { ArmsUtils.makeText(it) } })
+                .subscribe({ music -> view.updateView(getMessage(1, music)) },
+                        { throwable -> throwable.message?.let { ArmsUtils.makeText(it) } })
         addDispose(disposable)
     }
 }
