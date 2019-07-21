@@ -145,7 +145,7 @@ public class MusicService extends MediaBrowserServiceCompat {
                     mServiceInStartedState = true;
                 }
                 //
-                startForeground(MediaNotificationManager.NOTIFICATION_ID, notification);
+                startForeground(MediaNotificationManager.Companion.getNOTIFICATION_ID(), notification);
             }
 
             /**
@@ -157,7 +157,7 @@ public class MusicService extends MediaBrowserServiceCompat {
                         mMediaNotificationManager.getNotification(
                                 mMediaPlayerManager.getCurrentMedia(), state, getSessionToken());
                 mMediaNotificationManager.getNotificationManager()
-                        .notify(MediaNotificationManager.NOTIFICATION_ID, notification);
+                        .notify(MediaNotificationManager.Companion.getNOTIFICATION_ID(), notification);
             }
 
             /**

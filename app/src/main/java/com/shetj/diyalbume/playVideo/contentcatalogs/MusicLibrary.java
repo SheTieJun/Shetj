@@ -107,11 +107,10 @@ public class MusicLibrary {
      * 根据id 获取图片
      *
      * @param context
-     * @param mediaId
+     * @param mediaId  可以对mediaID 头部做区分（本地音乐，应用内音乐，线上音乐）
      * @return
      */
     public static Bitmap getAlbumBitmap(Context context, String mediaId) {
-        //
         return BitmapFactory.decodeResource(context.getResources(), MusicLibrary.getAlbumRes(mediaId));
     }
 
