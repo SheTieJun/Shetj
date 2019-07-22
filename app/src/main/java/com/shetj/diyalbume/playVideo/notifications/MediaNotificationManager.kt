@@ -52,14 +52,10 @@ class MediaNotificationManager(private val mContext: Context) {
     private val mPauseAction: NotificationCompat.Action
     private val mNextAction: NotificationCompat.Action
     private val mPrevAction: NotificationCompat.Action
-    private  val notificationManager: NotificationManager
-
     private val isAndroidOOrHigher: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
     init {
-        // NotificationManager
-        notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         /**
          *
@@ -89,7 +85,7 @@ class MediaNotificationManager(private val mContext: Context) {
 
         // Cancel all notifications to handle the case where the Service was killed and
         // restarted by the system.
-        notificationManager.cancelAll()
+        NotificationManagerCompat.from(mContext).cancelAll()
     }// MediaBrowserService
 
     fun onDestroy() {
@@ -149,7 +145,7 @@ class MediaNotificationManager(private val mContext: Context) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createChannel() {
-        if (notificationManager.getNotificationChannel(CHANNEL_ID) == null) {
+        if (NotificationManagerCompat.from(mContext).getNotificationChannel(CHANNEL_ID) == null) {
             val name = "MediaSession"
             val description = "MediaSession and MediaPlayer"
             val importance = NotificationManager.IMPORTANCE_LOW
@@ -158,7 +154,7 @@ class MediaNotificationManager(private val mContext: Context) {
             mChannel.enableLights(true)
             mChannel.lightColor = Color.RED
             mChannel.enableVibration(true)
-            notificationManager.createNotificationChannel(mChannel)
+            NotificationManagerCompat.from(mContext).createNotificationChannel(mChannel)
             Timber.d( "createChannel: New channel created")
         } else {
             Timber.d( "createChannel: Existing channel reused")
