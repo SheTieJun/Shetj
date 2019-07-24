@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.playVideo;
+package com.shetj.diyalbume.playVideo.media;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

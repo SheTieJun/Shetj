@@ -27,13 +27,12 @@ import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.map.BDMapActivity
 import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
-import com.shetj.diyalbume.playVideo.PlayVideoActivity
+import com.shetj.diyalbume.playVideo.video.PlayVideoActivity
 import com.shetj.diyalbume.ppttest.PPtTestActivity
 import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.utils.SneakerUtils
 import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
@@ -44,7 +43,7 @@ import com.shetj.diyalbume.R
 import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.markdown.MarkDownActivity
-import com.shetj.diyalbume.playVideo.MediaActivity
+import com.shetj.diyalbume.playVideo.media.MediaActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
@@ -86,7 +85,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
            mPresenter?.showIntroduce()
         }
         btn_play.clicks().subscribe {
-            startActivity(Intent(this,PlayVideoActivity::class.java))
+            startActivity(Intent(this, PlayVideoActivity::class.java))
         }
         btn_custom.setOnClickListener {
             startActivity(Intent(this,CustomActivity::class.java))
@@ -216,7 +215,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
 
         music.setOnClickListener {
-            ArmsUtils.startActivity(this,MediaActivity::class.java)
+            ArmsUtils.startActivity(this, MediaActivity::class.java)
         }
     }
 

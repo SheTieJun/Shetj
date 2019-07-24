@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo.notifications
+package com.shetj.diyalbume.playVideo.media.notifications
 
 
 import android.app.Notification
@@ -32,7 +32,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.main.view.MainActivity
-import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat

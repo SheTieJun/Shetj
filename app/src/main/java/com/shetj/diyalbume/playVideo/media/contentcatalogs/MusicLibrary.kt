@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo.contentcatalogs
+package com.shetj.diyalbume.playVideo.media.contentcatalogs
 
 
 import android.content.ContentResolver

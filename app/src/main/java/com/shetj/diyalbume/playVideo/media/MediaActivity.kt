@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.media
 
 import android.content.ComponentName
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.pipiti.localMusic.Music
-import com.shetj.diyalbume.pipiti.localMusic.MusicSelectAdapter
 import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
@@ -75,7 +73,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         }
 
         mediaBrowser = MediaBrowserCompat(this,
-                ComponentName(this,MediaService::class.java)
+                ComponentName(this, MediaService::class.java)
                 ,mBrowserConnectionCallback,
                 null)
 

@@ -1,15 +1,11 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.media
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
 import android.support.v4.media.MediaBrowserCompat
-import android.support.v4.media.MediaMetadataCompat
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.shetj.diyalbume.R
-
-import java.util.ArrayList
 
 class MusicAdapter(data: List<MediaBrowserCompat.MediaItem>?) : BaseQuickAdapter<MediaBrowserCompat.MediaItem, BaseViewHolder>(R.layout.item_select_music, data) {
 
