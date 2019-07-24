@@ -1,7 +1,9 @@
-package com.shetj.diyalbume.pipiti.localMusic
+package com.shetj.diyalbume.playVideo
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
+import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.MediaMetadataCompat
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -9,11 +11,8 @@ import com.shetj.diyalbume.R
 
 import java.util.ArrayList
 
-class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewHolder>(R.layout.item_select_music, data) {
+class MusicAdapter(data: List<MediaBrowserCompat.MediaItem>?) : BaseQuickAdapter<MediaBrowserCompat.MediaItem, BaseViewHolder>(R.layout.item_select_music, data) {
 
-    private var select = -1
-    private val MusicList: ArrayList<Music>? = null
-    private val player: MediaPlayer? = null
 
     /******************** 存储相关常量  */
     /**
@@ -30,24 +29,10 @@ class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewH
     val GB = 1073741824
 
 
-    override fun convert(helper: BaseViewHolder, item: Music) {
-        helper.setText(R.id.tv_music_name, item.name)
-                .setText(R.id.tv_music_size, byte2FitMemorySize(item.size))
-                .setText(R.id.tv_music_time, formatTime(item.duration))
+    override fun convert(helper: BaseViewHolder, item: MediaBrowserCompat.MediaItem) {
+        helper.setText(R.id.tv_music_name, item.description.title)
                 .addOnClickListener(R.id.tv_play)
 
-    }
-
-    fun setSelect(position: Int) {
-        select = position
-    }
-
-    fun getSelect(): String? {
-        return if (select != -1) {
-            MusicList!![select].url
-        } else {
-            null
-        }
     }
 
     @SuppressLint("DefaultLocale")

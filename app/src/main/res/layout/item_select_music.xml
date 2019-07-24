@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:elevation="2dp"
     app:cardCornerRadius="5dp"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="扑慧明"
+            tool:text="扑慧明"
             android:maxLength="12"
             android:ellipsize="end"
             android:textColor="@color/black"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:text=" 500kb"
+            tool:text=" 500kb"
             android:textColor="@color/deepGray"
             android:textSize="12sp"/>
         <TextView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:text=" 00:00"
+            tool:text=" 00:00"
             android:textColor="@color/deepGray"
             android:textSize="12sp"/>
 
@@ -54,5 +54,5 @@
         android:layout_gravity="center_vertical|right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="试听"/>
+        tool:text="试听"/>
 </androidx.cardview.widget.CardView>

@@ -2,19 +2,27 @@ package com.shetj.diyalbume.playVideo
 
 import android.content.ComponentName
 import android.os.Bundle
+import android.os.Message
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.pipiti.localMusic.Music
+import com.shetj.diyalbume.pipiti.localMusic.MusicSelectAdapter
+import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
+import java.util.ArrayList
 
 
 /**
  */
 class MediaActivity : BaseActivity<MediaPresenter>() {
 
+    private lateinit var mAdapter: MusicAdapter
     //连接状态回调接口
     private var mBrowserConnectionCallback: MediaBrowserCompat.ConnectionCallback ?=null
     private var mediaBrowser:MediaBrowserCompat ?= null //媒体浏览器
@@ -29,18 +37,16 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
     }
 
     override fun initData() {
-
+        mPresenter = MediaPresenter(this)
+        mAdapter = MusicAdapter(ArrayList())
+        mAdapter.bindToRecyclerView(iRecyclerView)
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            run {
+                ArmsUtils.makeText(GsonKit.objectToJson(mAdapter.getItem(position)!!)!!)
+            }
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        mediaBrowser?.connect()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mediaBrowser?.disconnect()
-    }
 
     override fun initView() {
         mPresenter = MediaPresenter(this)
@@ -53,7 +59,6 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                     if (isConnected){
                         mMediaController = MediaControllerCompat.getMediaController(rxContext)
                         mMediaController?.registerCallback(mMediaControllerCallback)
-
                         // Sync existing MediaSession state to the UI.同步信息
                         mMediaController?.metadata?.let {
                             mMediaControllerCallback.onMetadataChanged(mMediaController?.metadata!!)
@@ -79,7 +84,6 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         mediaBrowser?.connect()
         //ID 用来区分列表
         mediaBrowser?.subscribe("ID", mBrowserSubscriptionCallback)
-
 
         //客户端通过调用sendCustomAction，根据与服务端的协商，制定相应的action类型，进行数据的传递交互。
 //        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
@@ -119,6 +123,8 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                 Timber.i(it.description.title.toString())
             }
 
+            mAdapter.setNewData(children)
+            Timber.i("setNewData---")
             if (mMediaController == null) {
                 return
             }
@@ -184,5 +190,8 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         }
     }
 
+    override fun updateView(message: Message) {
+        super.updateView(message)
+    }
 
 }

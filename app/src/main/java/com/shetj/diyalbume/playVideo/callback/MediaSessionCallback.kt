@@ -14,12 +14,8 @@ import java.util.ArrayList
 import timber.log.Timber
 
 /**
- * MediaSessionCallback
- *
- *
+ * [MediaSessionCallback]
  * 用户对UI的操作将最终回调到这里。通过MediaSessionCallback 操作播放器
- *
- *
  * The callback class will receive all the user's actions, like play, pause, etc;
  */
 class MediaSessionCallback(private val context: Context,
@@ -63,7 +59,7 @@ class MediaSessionCallback(private val context: Context,
 
         val mediaId = mPlaylist[mQueueIndex].description.mediaId
         // 根据音频 获取音频数据
-        mPreparedMedia = MusicLibrary.getMetadata(context, mediaId)
+        mPreparedMedia = MusicLibrary.getMetadata(context, mediaId!!)
         mMediaSessionCompat.setMetadata(mPreparedMedia)
         // 激活mediaSession
         if (!mMediaSessionCompat.isActive) {

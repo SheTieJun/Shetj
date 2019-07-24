@@ -1,4 +1,4 @@
-include ':app',  ':components', ':router',  ':extended_kt', ':ar', ':buglytinker', ':workmanager',
+include ':app',  ':components', ':router',  ':extended_kt', ':ar', ':buglytinker',
         ':search', ':rxhttp',
           ':jguang', ':encrypt', ':mlkittest',
         ':transition', ':room', ':tencent-x5',

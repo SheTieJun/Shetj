@@ -35,7 +35,7 @@ abstract class PlayerAdapter(context: Context) {
     // OnAudioFocusChangeListener
     private val mAudioFocusHelper: AudioFocusHelper
 
-    protected var currentMedia: MediaMetadataCompat ? =null
+    var currentMedia: MediaMetadataCompat ? =null
 
     abstract val isPlaying: Boolean
 

@@ -23,7 +23,7 @@ import java.net.Proxy
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class App : Application() {
+class APP : Application() {
     override fun onCreate() {
         super.onCreate()
         s.init(this,BuildConfig.DEBUG )

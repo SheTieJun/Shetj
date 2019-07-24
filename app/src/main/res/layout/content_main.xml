@@ -15,7 +15,6 @@
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bt_create"
@@ -28,10 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="介绍"
+        android:text="@string/indro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -39,10 +37,9 @@
         android:id="@+id/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="自动play原理"
+        android:text="@string/auto_play"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_custom"/>
 
@@ -52,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="AS自动生成的代码效果"
+        android:text="@string/auto_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_play"/>
     <Button
@@ -61,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="DownloadService"
+        android:text="@string/downloadservice"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_test_auto"/>
@@ -72,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="系统控件"
+        android:text="@string/sys_code"
         app:layout_constraintStart_toEndOf="@+id/btn_test_auto"
         app:layout_constraintTop_toBottomOf="@+id/btn_fresco"/>
 
@@ -83,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="ppt"
+        android:text="@string/ppt"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Service_1"/>
@@ -94,7 +91,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="跳转微信"
+        android:text="@string/jump_wx"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_ppt"
         app:layout_constraintTop_toBottomOf="@+id/btn_Service_1"/>
@@ -104,7 +101,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="markDownView"
+        android:text="@string/markdownview"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_account"
         app:layout_constraintTop_toBottomOf="@+id/btn_Service_1"/>
@@ -114,7 +111,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="download"
+        android:text="@string/download"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ppt"/>
@@ -125,7 +122,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="job_scheduler"
+        android:text="@string/job_scheduler"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_download"
         app:layout_constraintTop_toBottomOf="@+id/btn_ppt" />
@@ -135,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="内容提供者"
+        android:text="@string/content"
         app:layout_constraintStart_toEndOf="@+id/btn_view"
         app:layout_constraintTop_toBottomOf="@+id/btn_scheme"/>
     <Button
@@ -143,10 +140,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="自定义"
+        android:text="@string/design"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_behavior"/>
 
@@ -155,10 +151,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="behavior"
+        android:text="@string/behavior"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_jiami"/>
 
@@ -167,11 +162,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:textAllCaps="false"
-        android:text="GLTest"
+        android:text="@string/gltest"
         app:layout_constraintStart_toEndOf="@+id/bt_create"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -180,10 +174,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:textAllCaps="false"
-        android:text="GL3D"
+        android:text="@string/gl3d"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_openGL"
         app:layout_constraintStart_toEndOf="@+id/btn_openGL"
         />
@@ -192,10 +185,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:textAllCaps="false"
-        android:text="Worker"
+        android:text="@string/worker"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_openGL"
         app:layout_constraintStart_toEndOf="@+id/btn_openGL3D"
         />
@@ -205,10 +197,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="加密解密"
+        android:text="@string/pass_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_tup"/>
 
@@ -218,10 +210,10 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/btn_behavior"
         android:layout_alignTop="@+id/btn_openGL"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="图文生成"
+        android:text="@string/pic_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_treadPool"/>
 
@@ -231,9 +223,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/bt_create"
         android:layout_alignTop="@+id/btn_openGL"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
-        android:text="线程池"
+        android:text="@string/tread_pool"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_create"/>
 
@@ -241,9 +233,9 @@
         android:id="@+id/btn_animator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
-        android:text="基础动画"
+        android:text="@string/anni"
         app:layout_constraintStart_toEndOf="@+id/btn_treadPool"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL"/>
 
@@ -252,11 +244,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:textAllCaps="false"
-        android:text="蓝牙Ble"
+        android:text="@string/ble"
         app:layout_constraintBottom_toTopOf="@+id/btn_finger"
         app:layout_constraintStart_toEndOf="@+id/btn_tup"
         app:layout_constraintTop_toBottomOf="@+id/btn_animator"/>
@@ -265,30 +257,30 @@
         android:id="@+id/btn_lottie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:textAllCaps="false"
-        android:text="lottie+spinkit"
+        android:text="@string/lottie_spinkit"
         app:layout_constraintStart_toEndOf="@+id/btn_animator"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL3D"/>
     <Button
         android:id="@+id/btn_sneaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:textAllCaps="false"
-        android:text="Sneaker"
+        android:text="@string/sneaker"
         app:layout_constraintStart_toEndOf="@+id/btn_lottie"
         app:layout_constraintTop_toBottomOf="@+id/btn_openGL3D"/>
     <Button
         android:id="@+id/btn_finger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+         
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="指纹"
+        android:text="@string/finger"
         app:layout_constraintStart_toEndOf="@+id/btn_jiami"
         app:layout_constraintTop_toBottomOf="@+id/btn_bluetooth"
         />
@@ -299,7 +291,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="CustomTabsUrl"
+        android:text="@string/customtabsurl"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_behavior"
         app:layout_constraintTop_toBottomOf="@+id/btn_finger"/>
@@ -310,7 +302,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="AOP - Aspect"
+        android:text="@string/aop_aspect"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_custom"
         app:layout_constraintTop_toBottomOf="@+id/btn_CustomTabs"/>
@@ -321,7 +313,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="通过热修复添加按钮"
+        android:text="@string/hotfix"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_bluetooth"
         app:layout_constraintTop_toBottomOf="@+id/btn_lottie"/>
@@ -331,7 +323,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="腾讯X5+VasSonic"
+        android:text="@string/x5_vassonic"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_finger"
         app:layout_constraintTop_toBottomOf="@+id/btn_hotfix"/>
@@ -342,7 +334,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="notification"
+        android:text="@string/notification"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_CustomTabs"
         app:layout_constraintTop_toBottomOf="@+id/btn_x5"/>
@@ -352,10 +344,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="百度地图"
+        android:text="@string/map"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_Aspect"
         app:layout_constraintTop_toBottomOf="@+id/btn_notification"/>
+
+    <Button
+        android:id="@+id/music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_notification"
+        app:layout_constraintStart_toEndOf="@id/btn_map"
+        android:layout_marginTop="5dp"
+        android:text="music"/>
 
     <Button
         android:id="@+id/btn_fresco"
@@ -363,7 +364,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="Fresco+图片"
+        android:text="@string/fresco"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_play"
         app:layout_constraintTop_toBottomOf="@+id/btn_map"/>
@@ -375,7 +376,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="web_scheme"
+        android:text="@string/web_scheme"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_fresco"
         app:layout_constraintTop_toBottomOf="@+id/btn_map"/>
@@ -386,7 +387,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="gestureDetector"
+        android:text="@string/gesturedetector"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_Service_1"
         app:layout_constraintTop_toBottomOf="@+id/btn_view"/>
@@ -397,7 +398,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:text="AIDL打开LuckAPP"
+        android:text="@string/aidl_luckapp"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_ges"
         app:layout_constraintTop_toBottomOf="@+id/btn_view"/>

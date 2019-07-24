@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".App"
+        android:name="com.shetj.diyalbume.APP"
         android:allowBackup="true"
         android:icon="@mipmap/shetj_logo"
         android:label="@string/app_name"
@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".playVideo.MediaActivity"></activity>
+        <activity android:name=".playVideo.MediaActivity" />
         <activity android:name=".markdown.MarkDownActivity" />
         <activity android:name=".worker.WorkerActivity" />
         <activity android:name=".behavior.BehaviorActivity" /> <!-- service -->
