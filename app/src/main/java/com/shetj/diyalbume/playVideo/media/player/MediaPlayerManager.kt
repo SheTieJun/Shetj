@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo.player
+package com.shetj.diyalbume.playVideo.media.player
 
 import android.content.Context
 import android.media.MediaPlayer
@@ -22,8 +22,8 @@ import android.os.SystemClock
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
 
-import com.shetj.diyalbume.playVideo.PlaybackInfoListener
-import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.PlaybackInfoListener
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 
 
 /**

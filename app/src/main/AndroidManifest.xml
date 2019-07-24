@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".playVideo.MediaActivity" />
+        <activity android:name=".playVideo.media.MediaActivity" />
         <activity android:name=".markdown.MarkDownActivity" />
         <activity android:name=".worker.WorkerActivity" />
         <activity android:name=".behavior.BehaviorActivity" /> <!-- service -->
@@ -74,17 +74,14 @@
                 android:value="com.shetj.diyalbume.main.view.MainActivity" />
         </activity>
         <activity
-            android:name=".playVideo.PlayVideoActivity"
-            android:label="@string/title_activity_paly_video"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".playVideo.video.PlayVideoActivity"
+            />
         <activity
             android:name=".test.BackgroundActivity"
-            android:label="@string/title_activity_background"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".test.CustomActivity"
-            android:label="@string/title_activity_custom"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity android:name=".ppttest.Main2Activity" />
         <activity android:name=".encrypt.EncryptActivity" />
         <activity android:name=".ppttest.StartChallengeActivity" />
@@ -117,7 +114,7 @@
         <activity android:name=".ppttest.NewIndexActivity" />
         <activity android:name=".ppttest.PPtTestActivity" />
 
-        <service android:name="com.shetj.diyalbume.playVideo.MediaService">
+        <service android:name="com.shetj.diyalbume.playVideo.media.MediaService">
             <intent-filter >
                 <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>

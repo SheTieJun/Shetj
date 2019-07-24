@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.video
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,16 +10,25 @@ import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
+import me.shetj.base.base.BaseActivity
+import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.addFragmentToActivity
 import java.util.*
 
 @Route(path = "/shetj/PlayVideoActivity")
-class PlayVideoActivity : AppCompatActivity() {
+class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
+    private   var videoPlayFragment: VideoPlayFragment ?= null
+
+    override fun initView() {
+    }
+
+    override fun initData() {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paly_video)
-        setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -28,6 +37,18 @@ class PlayVideoActivity : AppCompatActivity() {
 
         showRecycleView()
 
+        initFragment()
+    }
+
+    private fun initFragment() {
+        videoPlayFragment = VideoPlayFragment()
+        supportFragmentManager.addFragmentToActivity(videoPlayFragment!!,R.id.fl_content)
+    }
+
+    override fun onBackPressed() {
+        if (videoPlayFragment?.onBackPressed()!!){
+            super.onBackPressed()
+        }
     }
 
     private fun showRecycleView() {
@@ -43,7 +64,7 @@ class PlayVideoActivity : AppCompatActivity() {
         val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 200f)
         val playBottom = CommonUtil.getScreenHeight(this) / 2 + CommonUtil.dip2px(this, 200f)
         //自定播放帮助类
-        var scrollCalculatorHelper = ScrollCalculatorHelper(R.id.tv_string,CommonUtil.getScreenHeight(this) / 2, playTop, playBottom,adapter)
+        var scrollCalculatorHelper = ScrollCalculatorHelper(R.id.tv_string, CommonUtil.getScreenHeight(this) / 2, playTop, playBottom, adapter)
 
 
 

@@ -1,16 +1,12 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.media
 
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
-import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
-import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
@@ -18,12 +14,10 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.session.MediaButtonReceiver
 import timber.log.Timber
-import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.session.MediaControllerCompat
 import androidx.annotation.NonNull
 import com.shetj.diyalbume.pipiti.localMusic.Music
-import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
-import java.io.File
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 import java.util.concurrent.TimeUnit
 
 
@@ -145,7 +139,7 @@ class MediaService : MediaBrowserServiceCompat() {
             val mediaMetadata = controller.metadata
             val description = mediaMetadata.description
             getMediaStyle(mediaSession, context)
-            builder.setStyle(getMediaStyle(mediaSession,context))
+            builder.setStyle(getMediaStyle(mediaSession, context))
                     .setContentTitle(description.title)
                     .setContentText(description.subtitle)
                     .setSubText(description.description)

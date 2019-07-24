@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.video
 
 import android.os.Handler
 import android.view.View

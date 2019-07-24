@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.media
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,10 +22,10 @@ import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 
-import com.shetj.diyalbume.playVideo.callback.MediaSessionCallback
-import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
-import com.shetj.diyalbume.playVideo.notifications.MediaNotificationManager
-import com.shetj.diyalbume.playVideo.player.MediaPlayerManager
+import com.shetj.diyalbume.playVideo.media.callback.MediaSessionCallback
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager
+import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import androidx.core.content.ContextCompat
 import androidx.media.MediaBrowserServiceCompat
 import timber.log.Timber

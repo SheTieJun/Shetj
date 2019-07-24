@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo.client
+package com.shetj.diyalbume.playVideo.media.client
 
 
 import android.content.ComponentName
@@ -26,7 +26,7 @@ import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 
-import com.shetj.diyalbume.playVideo.MediaService
+import com.shetj.diyalbume.playVideo.media.MediaService
 
 import java.util.ArrayList
 import timber.log.Timber

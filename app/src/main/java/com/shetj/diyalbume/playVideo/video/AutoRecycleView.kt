@@ -1,4 +1,4 @@
-package com.shetj.diyalbume.playVideo
+package com.shetj.diyalbume.playVideo.video
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

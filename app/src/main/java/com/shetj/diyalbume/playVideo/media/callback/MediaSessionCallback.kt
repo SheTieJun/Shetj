@@ -1,17 +1,14 @@
-package com.shetj.diyalbume.playVideo.callback
+package com.shetj.diyalbume.playVideo.media.callback
 
 import android.content.Context
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 
-import com.shetj.diyalbume.playVideo.MusicService
-import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
-import com.shetj.diyalbume.playVideo.player.MediaPlayerManager
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 
 import java.util.ArrayList
-
-import timber.log.Timber
 
 /**
  * [MediaSessionCallback]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.shetj.diyalbume.playVideo.player
+package com.shetj.diyalbume.playVideo.media.player
 
 import android.content.BroadcastReceiver
 import android.content.Context
