@@ -28,14 +28,13 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
     }
 
     fun initMusic() {
-        ArmsUtils.getRxPermissions(view.rxContext).request(Manifest.permission.READ_EXTERNAL_STORAGE)
+        ArmsUtils.getRxPermissions(view.rxContext)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe { aBoolean ->
                     if (aBoolean!!) {
                         loadFileData()
                     }
                 }
-
-
     }
 
     /**

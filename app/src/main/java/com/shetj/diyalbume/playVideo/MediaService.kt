@@ -22,7 +22,9 @@ import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.session.MediaControllerCompat
 import androidx.annotation.NonNull
 import com.shetj.diyalbume.pipiti.localMusic.Music
+import com.shetj.diyalbume.playVideo.contentcatalogs.MusicLibrary
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -44,14 +46,16 @@ class MediaService : MediaBrowserServiceCompat() {
 
     override fun onCreate() {
         super.onCreate()
+
         mMediaSession = MediaSessionCompat(this,"mediaService")
+        //2. 设置回调
         mMediaSession?.setCallback(sessionCallback)//设置回调
-        // 3. 开启 MediaButton 和 TransportControls 的支持
+        //3. 开启 MediaButton 和 TransportControls 的支持
         mMediaSession?.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
         //设置Token 后会触发MediaBrowserCompat.connectionCallBack的回调方法
 
 
-        // 4初始化 PlaybackState
+        //4. 初始化 PlaybackState
         mPlaybackState = PlaybackStateCompat
                 .Builder()
                 .setActions(PlaybackStateCompat.ACTION_PLAY or  PlaybackStateCompat.ACTION_PLAY_PAUSE)
@@ -72,32 +76,25 @@ class MediaService : MediaBrowserServiceCompat() {
 
     override fun onLoadChildren(parentId: String, result: Result<MutableList<MediaBrowserCompat.MediaItem>>) {
         Timber.i("onLoadChildren ---- ")
-        // 根据parentMediaId返回播放列表相关信息
+        //通过不同的parentId,获取不同的列表
+        when(parentId)
+        {
+            "ID" ->{
+                MusicUtils.loadFileData(this).map {
+                    val mediaItems = ArrayList<MediaBrowserCompat.MediaItem>()
+                    it.apply {
+                        forEach {
+                            mediaItems.add(createMediaItemAlbum(it))
+                        }
+                    }
+                    mediaItems
+                }.subscribe({
+                    result.sendResult(it)
+                },{
 
-
-        //移除信息，允许sendResult
-        result.detach()
-
-        val mediaItems = ArrayList<MediaBrowserCompat.MediaItem>()
-        //模拟获取音乐数据
-        repeat(10) {
-            mediaItems.add(createMediaItem())
+                })
+            }
         }
-
-        MusicUtils.loadFileData(this).map {
-            val mediaItems = ArrayList<MediaBrowserCompat.MediaItem>()
-           it?.apply {
-               forEach { it ->
-                   mediaItems.add(createMediaItemAlbum(it))
-               }
-           }
-            mediaItems
-        }.subscribe({
-            result.sendResult(it)
-        },{
-            result.sendError(Bundle())
-        })
-
     }
 
     /**
@@ -110,25 +107,14 @@ class MediaService : MediaBrowserServiceCompat() {
 
     @NonNull
     private fun createMediaItemAlbum(@NonNull music: Music): MediaBrowserCompat.MediaItem {
-        val description = MediaDescriptionCompat.Builder()
-                .setMediaId(music.name)
-                .setTitle(music.name)
-                .setIconUri(Uri.fromFile(File(music.url)))
-
-        return MediaBrowserCompat.MediaItem(description.build(), MediaBrowserCompat.MediaItem.FLAG_PLAYABLE)
+            val mediaMetadataCompat = MusicLibrary.getMediaMetadataCompat(mediaId = music.name!!,
+                    album = music.img!!,
+                    duration = music.duration,
+                    durationUnit = TimeUnit.MILLISECONDS,
+                    genre = "1",
+                    title = music.name!!)
+        return MediaBrowserCompat.MediaItem(mediaMetadataCompat.description, MediaBrowserCompat.MediaItem.FLAG_PLAYABLE)
     }
-
-    private fun createMediaItem():MediaBrowserCompat.MediaItem {
-        //我们模拟获取数据的过程，真实情况应该是异步从网络或本地读取数据
-        val metadata = MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_URI, "播放连接")
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, "圣诞歌")
-                .build()
-        //metadata.description 可以设置其他参数
-
-        return MediaBrowserCompat.MediaItem(metadata.description,MediaBrowserCompat.MediaItem.FLAG_PLAYABLE)
-    }
-
 
     /**
      * MediaController.getTransportControls().play

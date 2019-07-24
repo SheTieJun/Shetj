@@ -29,7 +29,6 @@ import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import android.util.Log
 
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.main.view.MainActivity
@@ -52,14 +51,8 @@ class MediaNotificationManager(private val mContext: Context) {
     private val mPauseAction: NotificationCompat.Action
     private val mNextAction: NotificationCompat.Action
     private val mPrevAction: NotificationCompat.Action
-    private val isAndroidOOrHigher: Boolean
-        get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
     init {
-
-        /**
-         *
-         */
         mPlayAction = NotificationCompat.Action(
                 R.drawable.ic_play_arrow_white_24dp,
                 mContext.getString(R.string.label_play),
@@ -82,11 +75,10 @@ class MediaNotificationManager(private val mContext: Context) {
                 MediaButtonReceiver.buildMediaButtonPendingIntent(
                         mContext,
                         PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
-
         // Cancel all notifications to handle the case where the Service was killed and
         // restarted by the system.
         NotificationManagerCompat.from(mContext).cancelAll()
-    }// MediaBrowserService
+    }
 
     fun onDestroy() {
         Timber.d( "onDestroy: ")
@@ -107,38 +99,44 @@ class MediaNotificationManager(private val mContext: Context) {
                                   description: MediaDescriptionCompat): NotificationCompat.Builder {
 
         // Create the (mandatory) notification channel when running on Android Oreo.
-        if (isAndroidOOrHigher) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel()
         }
 
         val builder = NotificationCompat.Builder(mContext, CHANNEL_ID)
-        builder.setStyle(
-                androidx.media.app.NotificationCompat.MediaStyle()
-                        .setMediaSession(token)
-                        .setShowActionsInCompactView(0, 1, 2)
-                        // For backwards compatibility with Android L and earlier.
-                        .setShowCancelButton(true)
-                        .setCancelButtonIntent(
-                                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                                        mContext,
-                                        PlaybackStateCompat.ACTION_STOP)))
+        var position = 0
+        if (state.actions and PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS != 0L) {
+            builder.addAction(mPrevAction)
+            ++position
+        }
+
+        builder.addAction(if (isPlaying) mPauseAction else mPlayAction)
+
+        if (state.actions and PlaybackStateCompat.ACTION_SKIP_TO_NEXT != 0L) {
+            builder.addAction(mNextAction)
+        }
+
+        val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
+                .setMediaSession(token)
+                .setShowActionsInCompactView(position)
+                .setShowCancelButton(true)
+                .setCancelButtonIntent(
+                        MediaButtonReceiver.buildMediaButtonPendingIntent(
+                                mContext,
+                                PlaybackStateCompat.ACTION_STOP))
+
+        builder.setStyle(mediaStyle)
                 .setColor(ContextCompat.getColor(mContext, R.color.notification_bg))
                 .setSmallIcon(R.drawable.ic_stat_image_audiotrack)
                 .setContentIntent(createContentIntent())
                 .setContentTitle(description.title)
                 .setContentText(description.subtitle)
-                .setLargeIcon(MusicLibrary.getAlbumBitmap(mContext, description.mediaId))
+                .setLargeIcon(MusicLibrary.getAlbumBitmap(mContext, description.mediaId!!))
                 .setDeleteIntent(MediaButtonReceiver.buildMediaButtonPendingIntent(
                         mContext, PlaybackStateCompat.ACTION_STOP))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
-        if (state.actions and PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS != 0L) {
-            builder.addAction(mPrevAction)
-        }
-        builder.addAction(if (isPlaying) mPauseAction else mPlayAction)
-        if (state.actions and PlaybackStateCompat.ACTION_SKIP_TO_NEXT != 0L) {
-            builder.addAction(mNextAction)
-        }
+
 
         return builder
     }

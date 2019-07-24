@@ -44,6 +44,7 @@ import com.shetj.diyalbume.R
 import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.markdown.MarkDownActivity
+import com.shetj.diyalbume.playVideo.MediaActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
@@ -69,9 +70,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         initView()
         initData()
         mPresenter =  MainPresenter(this)
-        fab.setOnClickListener {
-            startActivity(Intent(this,Main3Activity::class.java))
-        }
+//        fab.setOnClickListener {
+//            startActivity(Intent(this,Main3Activity::class.java))
+//        }
     }
     override fun initData() {
         val intent = Intent("me.shetj.StartService")
@@ -212,6 +213,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         btn_job_scheduler.clicks().subscribe {
             ArmsUtils.startActivity(this, JobSchedulerActivity::class.java)
+        }
+
+        music.setOnClickListener {
+            ArmsUtils.startActivity(this,MediaActivity::class.java)
         }
     }
 

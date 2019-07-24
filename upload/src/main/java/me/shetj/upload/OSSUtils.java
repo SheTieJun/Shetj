@@ -33,7 +33,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import me.shetj.base.s;
 import me.shetj.base.tools.json.EmptyUtils;
-import me.shetj.base.tools.time.TimeUtil;
 import timber.log.Timber;
 
 /**
@@ -75,9 +74,9 @@ public class OSSUtils {
 	private  String getUploadKey(String key, String data) {
 		String[] split = new File(data).getName().split("\\.");
 		if (split.length > 1){
-			return "Android" + "/" + key + TimeUtil.getTime()+ "."+split[1];
+			return "Android" + "/" + key + System.currentTimeMillis()+ "."+split[1];
 		}
-		return   "Android" + "/"  +key + TimeUtil.getTime()+ "."+split[0];
+		return   "Android" + "/"  +key + System.currentTimeMillis()+ "."+split[0];
 	}
 	/**
 	 * 当失效时更新，或者重新获取到SecurityToken 更新

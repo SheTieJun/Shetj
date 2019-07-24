@@ -97,7 +97,9 @@ class MediaPlayerManager (context: Context,
         currentMedia = metadata
         // 音频id
         val mediaId = metadata.description.mediaId
-        playFile(MusicLibrary.getMusicFilename(mediaId))
+        mediaId?.let {
+            playFile(MusicLibrary.getMusicFilename(mediaId))
+        }
     }
 
 
