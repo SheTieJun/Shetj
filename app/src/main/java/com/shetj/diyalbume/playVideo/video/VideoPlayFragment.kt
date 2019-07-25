@@ -12,9 +12,7 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.fragment_video_play.*
 import me.shetj.base.base.BaseFragment
 import me.shetj.base.base.BasePresenter
-import com.shuyu.gsyvideoplayer.listener.LockClickListener
-import io.reactivex.Flowable
-import java.util.concurrent.TimeUnit
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +21,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- *
+ * 1.掉用全屏没有成功，发现是没有       android:configChanges="orientation|screenSize|keyboardHidden"
  */
 class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
 
@@ -51,7 +49,7 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
     override fun initEventAndData() {
 
         //外部辅助的旋转，帮助全屏
-        orientationUtils = OrientationUtils(activity, videoView)
+        orientationUtils = OrientationUtils(rxContext, videoView)
         //初始化不打开外部的旋转
         orientationUtils?.isEnable = false
 
@@ -60,12 +58,12 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
         videoView.setIsTouchWiget(true)
 
         videoView.isRotateViewAuto = false
-        videoView.isShowFullAnimation = true
+//        videoView.isShowFullAnimation = true
         videoView.isReleaseWhenLossAudio = true //焦点释放
 
         videoView.fullscreenButton.setOnClickListener {
 //            //直接横屏
-//            orientationUtils?.resolveByClick()
+            orientationUtils?.resolveByClick()
 
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             videoView.startWindowFullscreen(rxContext, true, true)

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+import me.shetj.base.tools.app.ArmsUtils
 
 /**
  *
@@ -72,10 +73,10 @@ class CustomVideoView :StandardGSYVideoPlayer{
         super.onClick(v)
         when(v?.id){
             R.id.iv_speed_small ->{
-
+                ArmsUtils.makeText("切换速度")
             }
             R.id.tv_video_list ->{
-
+                ArmsUtils.makeText("切换播放源")
             }
         }
     }

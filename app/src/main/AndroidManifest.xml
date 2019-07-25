@@ -75,6 +75,7 @@
         </activity>
         <activity
             android:name=".playVideo.video.PlayVideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity
             android:name=".test.BackgroundActivity"
