@@ -1,7 +1,6 @@
 package com.shetj.diyalbume.playVideo.video
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -18,6 +17,7 @@ import java.util.*
 
 @Route(path = "/shetj/PlayVideoActivity")
 class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
+    private var isPause  = true
     private   var videoPlayFragment: VideoPlayFragment ?= null
 
     override fun initView() {
@@ -94,5 +94,23 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
 
         adapter.setPlay(0)
     }
+
+//    override fun onConfigurationChanged(newConfig: Configuration) {
+//        super.onConfigurationChanged(newConfig)
+////        //如果旋转了就全屏
+//        if (!isPause) {
+//            videoPlayFragment?.onConfigurationChanged2(rxContext,newConfig)
+//        }
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//        isPause = true
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        isPause = false
+//    }
 
 }
