@@ -100,6 +100,7 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
             else -> {
             }
         }
+        message.recycle()//释放
     }
 
     override fun onPause() {
