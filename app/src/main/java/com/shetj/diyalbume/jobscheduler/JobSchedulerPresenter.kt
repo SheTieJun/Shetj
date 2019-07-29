@@ -34,6 +34,7 @@ class JobSchedulerPresenter(view:IView) :BasePresenter<BaseModel>(view){
                 else -> "close"
                 }} ").toString()
                 view.updateView(getMessage(1, info))
+
             }
         }
     }

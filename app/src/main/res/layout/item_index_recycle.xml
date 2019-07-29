@@ -41,4 +41,5 @@
         android:padding="5dp"
         android:textSize="12sp"
         android:layout_gravity="right"/>
+
 </androidx.cardview.widget.CardView>
