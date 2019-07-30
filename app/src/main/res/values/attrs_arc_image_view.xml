@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="ArcImageView">
+        <attr name="ArcImage" format="color|reference" />
+        <attr name="ArcHeight" format="dimension"/>
+    </declare-styleable>
+</resources>
