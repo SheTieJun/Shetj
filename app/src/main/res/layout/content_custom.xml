@@ -29,4 +29,6 @@
             android:layout_height="wrap_content"
             android:text="image"/>
     </LinearLayout>
+
+    <include layout="@layout/sample_arc_image_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
