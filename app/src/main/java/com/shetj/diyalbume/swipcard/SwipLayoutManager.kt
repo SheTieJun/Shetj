@@ -36,7 +36,6 @@ class SwipLayoutManager(private var context: Context) :RecyclerView.LayoutManage
         // 然后标记为"Scrap"状态，表示这些View处于可被重用状态(非显示中)。
         // 实际就是把View放到了Recycler中的一个集合中。
         detachAndScrapAttachedViews(recycler)
-
         //计算子部分
         calculateChildrenSite(recycler)
         super.onLayoutChildren(recycler, state)
@@ -45,7 +44,9 @@ class SwipLayoutManager(private var context: Context) :RecyclerView.LayoutManage
 
 
     private fun calculateChildrenSite(recycler: RecyclerView.Recycler) {
-        for (i in 0 until itemCount) {
+        val marTop = ArmsUtils.dip2px(5f)
+        var scale = 1f
+        for (i in  0 until MAX_SHOW_COUNT ) {
             // 遍历Recycler中保存的View取出来
             val view = recycler.getViewForPosition(i)
             addView(view) // 因为刚刚进行了detach操作，所以现在可以重新添加
@@ -56,9 +57,10 @@ class SwipLayoutManager(private var context: Context) :RecyclerView.LayoutManage
             val mTmpRect = Rect()
             //调用这个方法能够调整ItemView的大小，以除去ItemDecorator。
             calculateItemDecorationsForChild(view, mTmpRect)
-
+            scale *= (1f - 0.03f)
+            val mWidth = width * scale
             // 调用这句我们指定了该View的显示区域，并将View显示上去，此时所有区域都用于显示View，
-            layoutDecorated(view, 0, 0, width,   height)
+            layoutDecorated(view, marTop*i,marTop*i , mWidth.toInt()-marTop,   height+ marTop*i)
         }
     }
 

@@ -44,6 +44,7 @@ import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.markdown.MarkDownActivity
 import com.shetj.diyalbume.playVideo.media.MediaActivity
+import com.shetj.diyalbume.swipcard.SwipCardActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
@@ -216,6 +217,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         music.setOnClickListener {
             ArmsUtils.startActivity(this, MediaActivity::class.java)
+        }
+
+        btn_LayoutManager.setOnClickListener {
+            ArmsUtils.startActivity(this,SwipCardActivity::class.java)
         }
     }
 
