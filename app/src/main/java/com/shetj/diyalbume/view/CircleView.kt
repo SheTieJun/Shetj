@@ -88,6 +88,7 @@ class CircleView : View {
 
         canvas.clipPath(mPath!!)
         canvas.drawColor(Color.BLUE)
+
         //        canvas.restore();
 
         //        mPaint1.setColor(Color.BLUE);
