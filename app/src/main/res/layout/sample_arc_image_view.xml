@@ -6,7 +6,7 @@
     <com.shetj.diyalbume.view.ArcImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/forgroun_home_blur"
+        android:src="@mipmap/ic_launcher"
         app:ArcHeight="20dp"
         />
 
