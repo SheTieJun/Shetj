@@ -62,7 +62,7 @@ class ScrollCalculatorHelper(private val playId: Int, private val center: Int, p
                 val halfHeight = textView.height / 2
                 val rangePosition = screenPosition[1] + halfHeight
                 //中心点在播放区域内
-                if (rangePosition >= rangeTop && rangePosition <= rangeBottom) {
+                if (rangePosition in rangeTop..rangeBottom) {
                     if (runnable != null && runnable!!.textView === textView) {
                         textView.text = "同一个$firstVisible$i"
                         return

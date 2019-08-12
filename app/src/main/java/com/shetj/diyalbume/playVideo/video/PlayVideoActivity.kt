@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.snackbar.Snackbar
 import com.shetj.diyalbume.R
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
@@ -20,10 +21,10 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
     private var isPause  = true
     private   var videoPlayFragment: VideoPlayFragment ?= null
 
-    override fun initView() {
+    override fun initData() {
     }
 
-    override fun initData() {
+    override fun initView() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

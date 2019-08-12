@@ -41,11 +41,7 @@ class MediaControlReceiver : BroadcastReceiver() {
             @SuppressLint("WrongConstant")
             val statusBarManager = context.getSystemService("statusbar")
             val collapse: Method
-            if (Build.VERSION.SDK_INT <= 16) {
-                collapse = statusBarManager.javaClass.getMethod("collapse")
-            } else {
-                collapse = statusBarManager.javaClass.getMethod("collapsePanels")
-            }
+            collapse = statusBarManager.javaClass.getMethod("collapsePanels")
             collapse.invoke(statusBarManager)
         } catch (localException: Exception) {
             localException.printStackTrace()
