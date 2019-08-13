@@ -29,7 +29,7 @@ class TokenManager private constructor() {
      */
     val isLogin: Boolean
         get() {
-            val token = SPUtils[s.app.applicationContext, "PRE_CUSTOM_TOKEN", ""] as String?
+            val token = SPUtils.get(s.app.applicationContext, "PRE_CUSTOM_TOKEN", "") as String?
             return EmptyUtils.isNotEmpty(token!!)
         }
 

@@ -19,7 +19,7 @@ class BehaviorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_behavior)
         val behavior  =  BottomSheetBehavior.from<LinearLayout>(tab_layout)
-        behavior.setPeekHeight(ArmsUtils.dip2px(50f),true)
+        behavior.peekHeight = ArmsUtils.dip2px(50f)
 
         behavior.isHideable = true
 

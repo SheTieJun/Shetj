@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.shetj.diyalbume.view.ArcImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@mipmap/ic_launcher"
         app:ArcHeight="20dp"
         />
