@@ -111,7 +111,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     def listSubFile = {
         def resFolder = 'src/main/res/layouts'
@@ -216,7 +218,7 @@ dependencies {
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
-    def work_version = "2.0.1"
+    def work_version = "2.1.0"
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
     // Kotlin + coroutines
@@ -238,6 +240,12 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui:$nav_version" // use -ktx for Kotlin
 
 
+    def camerax_version = "1.0.0-alpha01"
+//    implementation "androidx.camera.core:core:$camerax_version"
+//    implementation "androidx.camera.core:view:$camerax_version"
+//    implementation "androidx.camera.core:camera2:$camerax_version"
+
+    implementation  'androidx.customview:customview:1.1.0-alpha01' //ViewDragHelper
     //MarkDown 空间
     implementation 'us.feras.mdv:markdownview:1.1.0'
 

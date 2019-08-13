@@ -3,10 +3,10 @@ apply from: "config.gradle"
 buildscript {
     ext.kotlin_version = '1.3.40'
 
-    ext.base_version = "6171b383ae"
+    ext.base_version = "073df617c2"
 //  ext.base_version ="29e6 d653 86"
 //    ext.base_kt_version = "6171b383ae"
-    ext.base_kt_version =   "6171b383ae"
+    ext.base_kt_version =   "073df617c2"
 
     repositories {
         google()

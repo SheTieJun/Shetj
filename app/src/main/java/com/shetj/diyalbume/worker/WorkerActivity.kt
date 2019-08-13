@@ -39,11 +39,11 @@ class WorkerActivity : AppCompatActivity() {
 
         val rxPeriodicWork = getRxPeriodicWork()
 
-        WorkManager.getInstance().apply {
+        WorkManager.getInstance(this).apply {
             enqueue(rxPeriodicWork)
 
         }
-        WorkManager.getInstance().getWorkInfoByIdLiveData(rxPeriodicWork.id)
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(rxPeriodicWork.id)
                 .observe(this, Observer<WorkInfo> {
                     Timber.d(GsonKit.objectToJson(it))
                     if (it.state.isFinished) {
@@ -57,12 +57,12 @@ class WorkerActivity : AppCompatActivity() {
     private fun startRxOneWork() {
         val oneWork = getRxOneWorK()
 
-        WorkManager.getInstance().apply {
+        WorkManager.getInstance(this).apply {
             enqueue(oneWork)
 
 
         }
-        WorkManager.getInstance().getWorkInfoByIdLiveData(oneWork.id)
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(oneWork.id)
                 .observe(this, Observer<WorkInfo> {
                     Timber.d(GsonKit.objectToJson(it))
                     if (it.state.isFinished) {
@@ -135,8 +135,8 @@ class WorkerActivity : AppCompatActivity() {
 
     fun startOneWork(){
         val oneWork = getOneWork()
-        WorkManager.getInstance().apply { enqueue(oneWork) }
-        WorkManager.getInstance().getWorkInfoByIdLiveData(oneWork.id)
+        WorkManager.getInstance(this).apply { enqueue(oneWork) }
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(oneWork.id)
                 .observe(this, Observer<WorkInfo> {
                     Timber.d(GsonKit.objectToJson(it))
                         if (it.state.isFinished) {
@@ -147,9 +147,9 @@ class WorkerActivity : AppCompatActivity() {
 
     fun startPeriodicWork(){
         val periodicWork = getPeriodicWork()
-        WorkManager.getInstance().apply { enqueue(periodicWork) }
+        WorkManager.getInstance(this).apply { enqueue(periodicWork) }
 
-        WorkManager.getInstance().getWorkInfoByIdLiveData(periodicWork.id)
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(periodicWork.id)
                 .observe(this, Observer<WorkInfo> {
                     it.apply {
                         if (state.isFinished) {
@@ -169,7 +169,7 @@ class WorkerActivity : AppCompatActivity() {
 
 
     fun cancel(){
-        WorkManager.getInstance().cancelAllWork()
+        WorkManager.getInstance(this).cancelAllWork()
 //        WorkManager.getInstance().cancelAllWorkByTag("getOneWork")
 //        WorkManager.getInstance().cancelAllWorkByTag("getPeriodicWork")
 //        WorkManager.getInstance().cancelWorkById()

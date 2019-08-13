@@ -9,9 +9,14 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.PathEffect
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.appcompat.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.core.view.DragStartHelper
+import androidx.customview.widget.ViewDragHelper
 
 import com.shetj.diyalbume.R
 
@@ -23,7 +28,7 @@ import com.shetj.diyalbume.R
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**<br></br>
  */
-
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 class AlbumImageView : AppCompatImageView {
 
 
@@ -72,8 +77,6 @@ class AlbumImageView : AppCompatImageView {
         mPaint!!.style = Paint.Style.STROKE
         val pathEffect = DashPathEffect(floatArrayOf(15f, 10f), 5f)
         mPaint!!.pathEffect = pathEffect
-
-
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -87,6 +90,7 @@ class AlbumImageView : AppCompatImageView {
         canvas.drawPath(mPath, mPaint!!)
 
     }
+
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.rawX

@@ -26,7 +26,7 @@ class TokenLoader private constructor() {
 
     val cacheToken: String
         get() {
-            var token: String = (SPUtils[s.app.applicationContext, "PRE_CUSTOM_TOKEN", ""] as String?).toString()
+            var token: String = (SPUtils.get(s.app.applicationContext, "PRE_CUSTOM_TOKEN", "") as String?).toString()
             if (EmptyUtils.isNotEmpty(token)) {
                 val timeDiff = TimeUtil.getTimeDiff(getExpire(s.app.applicationContext))
                 if (timeDiff > 50000) {
@@ -88,7 +88,7 @@ class TokenLoader private constructor() {
          * @return the string
          */
         private fun getExpire(c: Context): String {
-            return SPUtils[c, "PRE_CUSTOM_TOKEN_FAILURE_TIME", System.currentTimeMillis()] as String
+            return SPUtils.get(c, "PRE_CUSTOM_TOKEN_FAILURE_TIME", System.currentTimeMillis()) as String
         }
     }
 
