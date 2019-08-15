@@ -240,10 +240,12 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui:$nav_version" // use -ktx for Kotlin
 
 
-    def camerax_version = "1.0.0-alpha01"
-//    implementation "androidx.camera.core:core:$camerax_version"
-//    implementation "androidx.camera.core:view:$camerax_version"
-//    implementation "androidx.camera.core:camera2:$camerax_version"
+    def camerax_version = "1.0.0-alpha04"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-view:1.0.0-alpha01"
+
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta03'
 
     implementation  'androidx.customview:customview:1.1.0-alpha01' //ViewDragHelper
     //MarkDown 空间

@@ -41,6 +41,7 @@ import me.shetj.luck.StartAidlInterface
 import me.shetj.tencentx5.WebPageActivity
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.behavior.BehaviorActivity
+import com.shetj.diyalbume.camera.CameraxActivity
 import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.markdown.MarkDownActivity
 import com.shetj.diyalbume.playVideo.media.MediaActivity
@@ -221,6 +222,10 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         btn_LayoutManager.setOnClickListener {
             ArmsUtils.startActivity(this,SwipCardActivity::class.java)
+        }
+
+        btn_camera.setOnClickListener {
+            ArmsUtils.startActivity(this,CameraxActivity::class.java)
         }
     }
 
