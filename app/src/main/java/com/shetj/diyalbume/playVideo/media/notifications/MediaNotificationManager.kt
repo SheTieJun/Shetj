@@ -47,34 +47,33 @@ import timber.log.Timber
 class MediaNotificationManager(private val mContext: Context) {
 
 
-    private val mPlayAction: NotificationCompat.Action
-    private val mPauseAction: NotificationCompat.Action
-    private val mNextAction: NotificationCompat.Action
-    private val mPrevAction: NotificationCompat.Action
+    private val mPlayAction: NotificationCompat.Action = NotificationCompat.Action(
+            R.drawable.ic_play_arrow_white_24dp,
+            mContext.getString(R.string.label_play),
+            MediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
+
+    private val mPauseAction: NotificationCompat.Action = NotificationCompat.Action(
+            R.drawable.ic_pause_white_24dp,
+            mContext.getString(R.string.label_pause),
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
+                    mContext,
+                    PlaybackStateCompat.ACTION_PAUSE))
+
+    private val mNextAction: NotificationCompat.Action = NotificationCompat.Action(
+            R.drawable.ic_skip_next_white_24dp,
+            mContext.getString(R.string.label_next),
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
+                    mContext,
+                    PlaybackStateCompat.ACTION_SKIP_TO_NEXT))
+
+    private val mPrevAction: NotificationCompat.Action = NotificationCompat.Action(
+            R.drawable.ic_skip_previous_white_24dp,
+            mContext.getString(R.string.label_previous),
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
+                    mContext,
+                    PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
 
     init {
-        mPlayAction = NotificationCompat.Action(
-                R.drawable.ic_play_arrow_white_24dp,
-                mContext.getString(R.string.label_play),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
-        mPauseAction = NotificationCompat.Action(
-                R.drawable.ic_pause_white_24dp,
-                mContext.getString(R.string.label_pause),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        mContext,
-                        PlaybackStateCompat.ACTION_PAUSE))
-        mNextAction = NotificationCompat.Action(
-                R.drawable.ic_skip_next_white_24dp,
-                mContext.getString(R.string.label_next),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        mContext,
-                        PlaybackStateCompat.ACTION_SKIP_TO_NEXT))
-        mPrevAction = NotificationCompat.Action(
-                R.drawable.ic_skip_previous_white_24dp,
-                mContext.getString(R.string.label_previous),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        mContext,
-                        PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
         // Cancel all notifications to handle the case where the Service was killed and
         // restarted by the system.
         NotificationManagerCompat.from(mContext).cancelAll()
@@ -167,9 +166,9 @@ class MediaNotificationManager(private val mContext: Context) {
     }
 
     companion object {
-        val NOTIFICATION_ID = 412
-        private val CHANNEL_ID = "com.shetj.diyalbume.playVideo"
-        private val REQUEST_CODE = 501
+        const val NOTIFICATION_ID = 412
+        private const val CHANNEL_ID = "com.shetj.diyalbume.playVideo"
+        private const val REQUEST_CODE = 501
     }
 
 }
