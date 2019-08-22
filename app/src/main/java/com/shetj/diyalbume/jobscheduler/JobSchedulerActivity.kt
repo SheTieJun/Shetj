@@ -42,7 +42,7 @@ class JobSchedulerActivity : BaseActivity<JobSchedulerPresenter>() {
 
     override fun updateView(message: Message) {
         super.updateView(message)
-        when(message.arg1){
+        when(message.what){
             1 ->{
                 tv_msg.text = message.obj.toString()
             }

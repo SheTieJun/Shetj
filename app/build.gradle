@@ -191,7 +191,7 @@ dependencies {
     implementation project(':router')
     kapt 'com.alibaba:arouter-compiler:1.2.1'
     implementation "com.github.SheTieJun:Base:$base_version"
-    implementation 'com.airbnb.android:lottie:2.7.0'
+    implementation 'com.airbnb.android:lottie:3.0.7'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
 
     implementation project(path: ':rxFingerPrinter')
@@ -202,8 +202,9 @@ dependencies {
     implementation project(':bdmap')
 
     implementation project(':download')
-
+    def db_version = "a5020e0ed4"  //commit 前10位
     implementation 'com.github.SheTieJun:aspectutils:12004150ad'
+    implementation "com.github.SheTieJun:SimXutilsDb:$db_version"
 
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
     implementation 'com.youth.banner:banner:1.4.10'
@@ -247,8 +248,10 @@ dependencies {
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta03'
 
-    implementation  'androidx.customview:customview:1.1.0-alpha01' //ViewDragHelper
+    implementation 'androidx.customview:customview:1.1.0-alpha01' //ViewDragHelper
     //MarkDown 空间
     implementation 'us.feras.mdv:markdownview:1.1.0'
+
+    implementation 'com.github.microshow:RxFFmpeg:2.1.0'
 
 }
