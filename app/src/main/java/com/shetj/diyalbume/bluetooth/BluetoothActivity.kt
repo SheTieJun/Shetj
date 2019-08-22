@@ -110,7 +110,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
 
     override fun updateView(message: Message) {
         super.updateView(message)
-        when(message.arg1 ){
+        when(message.what ){
             1 ->{
                 adapter.setNewData(message.obj as MutableList<BleDevice>?)
             }

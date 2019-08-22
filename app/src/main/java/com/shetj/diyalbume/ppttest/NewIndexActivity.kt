@@ -50,7 +50,7 @@ class NewIndexActivity : BaseActivity<IndexPresenter>() {
 
     override fun updateView(message: Message) {
         super.updateView(message)
-        when (message.arg1) {
+        when (message.what) {
             1 -> indexAdpter!!.setNewData(message.obj as List<ItemIndex>)
             2 -> {
             }

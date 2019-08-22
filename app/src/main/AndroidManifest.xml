@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" /> <!-- 蓝牙6.0需要模糊的地址 -->
@@ -28,8 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".camera.CameraxActivity"></activity>
-        <activity android:name=".swipcard.SwipCardActivity"></activity>
+        <activity android:name=".ffmpeg.RxFFmpegActivity"></activity>
+        <activity android:name=".camera.CameraxActivity" />
+        <activity android:name=".swipcard.SwipCardActivity" />
         <activity android:name=".playVideo.media.MediaActivity" />
         <activity android:name=".markdown.MarkDownActivity" />
         <activity android:name=".worker.WorkerActivity" />

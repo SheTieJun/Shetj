@@ -70,7 +70,7 @@
     <string name="download">download</string>
     <string name="job_scheduler">job_scheduler</string>
     <string name="design">自定义</string>
-    <string name="content">内容提供者</string>
+    <string name="content">内容提供者_本地音乐</string>
     <string name="behavior">behavior</string>
     <string name="gltest">GLTest</string>
     <string name="gl3d">GL3D</string>
