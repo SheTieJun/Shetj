@@ -15,7 +15,11 @@ import me.shetj.base.tools.json.GsonKit
  */
 class CheckInfoObservable(private val msg: String) : Observable<ReturnMsg<*>>() {
     override fun subscribeActual(observer: Observer<in ReturnMsg<*>>?) {
-        observer?.onSubscribe(CheckListener(GsonKit.jsonToBean(msg, ReturnMsg::class.java), observer))
+        val checkListener = CheckListener(GsonKit.jsonToBean(msg, ReturnMsg::class.java), observer!!)
+        observer.onSubscribe(checkListener)
+        checkListener.run {
+
+        }
     }
 
     internal class CheckListener(returnMsg: ReturnMsg<*>?, observer: Observer<in ReturnMsg<*>>) : Disposable {

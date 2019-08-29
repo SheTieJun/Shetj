@@ -49,8 +49,8 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
         ArmsUtils.configRecycleView(mIRecyclerView!!, LinearLayoutManager(this))
         mAdapter = MusicSelectAdapter(ArrayList())
         mAdapter!!.bindToRecyclerView(mIRecyclerView)
-        mAdapter!!.setOnItemClickListener { adapter, view, position -> ArmsUtils.makeText(GsonKit.objectToJson(mAdapter!!.getItem(position)!!)!!) }
-        mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
+        mAdapter!!.setOnItemClickListener { _, _, position -> ArmsUtils.makeText(GsonKit.objectToJson(mAdapter!!.getItem(position)!!)!!) }
+        mAdapter!!.setOnItemChildClickListener { _, _, position ->
             currentPosition = position
             mAdapter!!.getItem(position)!!.url?.let {
                 mediaUtils!!.playOrStop(it, object : SimPlayerListener() {
@@ -71,11 +71,11 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
 
                     override fun isNext(mp: MediaPlayerUtils): Boolean {
                         currentPosition++
-                        if (currentPosition < mAdapter!!.itemCount) {
+                        return if (currentPosition < mAdapter!!.itemCount) {
                             mAdapter!!.getItem(currentPosition)!!.url?.let { it1 -> mp.playOrStop(it1, this) }
-                            return true
+                            true
                         } else {
-                            return false
+                            false
                         }
                     }
 
