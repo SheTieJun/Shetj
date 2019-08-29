@@ -80,6 +80,7 @@ class RxTest {
                 .distinct()//过滤相同的操作
                 .scan { t1: Int, t2: Int ->
                     //累计值t1,t2是不断发射的值
+                    Thread.sleep(200)
                     print("t1=$t1\n")
                     return@scan t1+t2
                 }

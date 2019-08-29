@@ -111,6 +111,7 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -190,7 +191,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
     implementation project(':router')
     kapt 'com.alibaba:arouter-compiler:1.2.1'
-    implementation "com.github.SheTieJun:Base:$base_version"
+
     implementation 'com.airbnb.android:lottie:3.0.7'
     implementation 'com.clj.fastble:FastBleLib:2.3.2'
 
@@ -203,6 +204,7 @@ dependencies {
 
     implementation project(':download')
     def db_version = "a5020e0ed4"  //commit 前10位
+    implementation "com.github.SheTieJun:Base:$base_version"
     implementation 'com.github.SheTieJun:aspectutils:12004150ad'
     implementation "com.github.SheTieJun:SimXutilsDb:$db_version"
 
@@ -252,6 +254,7 @@ dependencies {
     //MarkDown 空间
     implementation 'us.feras.mdv:markdownview:1.1.0'
 
+    //音视频
     implementation 'com.github.microshow:RxFFmpeg:2.1.0'
 
 }
