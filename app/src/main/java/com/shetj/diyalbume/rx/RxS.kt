@@ -12,8 +12,8 @@ import io.reactivex.Observable
  * **@describe**<br></br>
  */
 object RxS {
-    fun Login(name: String, password: String): Observable<*> {
-        return LoginObservable(name, password)
+    fun Login(name: String, password: String)  {
+          LoginObservable(name, password)
     }
 
     fun  checkMsg(msg: String): CheckInfoObservable {

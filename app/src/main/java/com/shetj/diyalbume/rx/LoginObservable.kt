@@ -1,9 +1,7 @@
 package com.shetj.diyalbume.rx
 
 
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.android.MainThreadDisposable
+import io.reactivex.observers.DefaultObserver
 
 /**
  * **@packageName：** com.shetj.diyalbume.rx<br></br>
@@ -13,17 +11,18 @@ import io.reactivex.android.MainThreadDisposable
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**<br></br>
  */
-internal class LoginObservable(private val name: String, private val password: String) : Observable<Any>() {
+internal class LoginObservable(private val name: String, private val password: String) : DefaultObserver<Any>() {
 
-    override fun subscribeActual(observer: Observer<in Any>) {
-        observer.onSubscribe(Listener(observer))
+    override fun onComplete() {
+
     }
 
-    internal class Listener(private val observer: Observer<in Any>) : MainThreadDisposable() {
+    override fun onNext(t: Any) {
 
-
-        override fun onDispose() {
-            observer.onComplete()
-        }
     }
+
+    override fun onError(e: Throwable) {
+
+    }
+
 }
