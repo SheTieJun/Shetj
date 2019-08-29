@@ -16,7 +16,7 @@ class ExampleUnitTest {
 
 
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        for (i in 0 until nums.size) {
+        for (i in nums.indices) {
             if (nums[i] > target) {
                 continue
             } else {
@@ -24,7 +24,7 @@ class ExampleUnitTest {
                     return if (nums[j] > target) {
                         continue
                     } else if (nums[i] + nums[j] == target) {
-                        System.out.print(""+i+"..."+j)
+                        print("$i...$j")
                        return intArrayOf(nums[i], nums[j])
                     } else {
                         continue
