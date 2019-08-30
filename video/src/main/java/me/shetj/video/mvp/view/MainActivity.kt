@@ -1,13 +1,16 @@
-package me.shetj.video
+package me.shetj.video.mvp.view
 
 import android.os.Bundle
+import android.os.Message
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.video.R
+import me.shetj.video.mvp.presenter.MainPresenter
+import me.shetj.video.mvp.presenter.MainPresenter.Companion.INIT_VIDEO_INFO
 
 class MainActivity : BaseActivity<MainPresenter>() {
 
@@ -40,11 +43,20 @@ class MainActivity : BaseActivity<MainPresenter>() {
     }
     override fun initView() {
 
+
     }
     override fun initData() {
         mPresenter = MainPresenter(this)
         mPresenter?.initDate()
     }
 
+    override fun updateView(message: Message) {
+        super.updateView(message)
+        when(message.what){
+            INIT_VIDEO_INFO ->{
+
+            }
+        }
+    }
 
 }

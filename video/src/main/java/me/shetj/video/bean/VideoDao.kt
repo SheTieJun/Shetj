@@ -1,4 +1,4 @@
-package me.shetj.video.model
+package me.shetj.video.bean
 
 import androidx.room.*
 import io.reactivex.Maybe
@@ -13,10 +13,8 @@ interface VideoDao {
     @Query("SELECT * FROM Video ORDER BY videoId")
     fun getVideos():Maybe<List<Video>>
 
-
     @Update
     fun update(video: Video): Single<Long>
-
 
     @Insert
     fun insetr(video: Video):Maybe<Long>
