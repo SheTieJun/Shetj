@@ -3,6 +3,7 @@ package me.shetj.video.mvp.view
 import android.os.Bundle
 import me.shetj.base.base.BaseActivity
 import me.shetj.video.R
+import me.shetj.base.kt.statusInScreen
 import me.shetj.video.mvp.presenter.VideoPresenter
 
 /**
@@ -13,6 +14,7 @@ class AddVideoActivity : BaseActivity<VideoPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_video)
+        statusInScreen()
     }
 
     override fun initData() {

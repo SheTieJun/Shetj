@@ -2,6 +2,7 @@ package me.shetj.video.mvp.presenter
 
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
+import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.video.mvp.model.MainModel
 
 class MainPresenter (view:IView): BasePresenter<MainModel>(view) {
@@ -18,7 +19,7 @@ class MainPresenter (view:IView): BasePresenter<MainModel>(view) {
     fun initDate() {
         addDispose(model?.videoDao
                 ?.getVideos()?.subscribe {
-                    view.updateView(getMessage(INIT_VIDEO_INFO,it))
+                    view.updateView(ArmsUtils.getMessage(INIT_VIDEO_INFO,it))
                 }!!)
     }
 

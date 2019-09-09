@@ -5,6 +5,7 @@ import me.shetj.aspect.network.CheckNetwork
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 
 class AspectPresenter(view :IView) :BasePresenter<AspectModel>(view) {
     @DebugTrace
