@@ -4,6 +4,7 @@ import java.util.ArrayList
 
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
+import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 
 /**
  * **@packageName：** com.shetj.diyalbume.ppttest<br></br>

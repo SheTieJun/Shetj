@@ -11,6 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 import java.util.ArrayList
 
 class MediaPresenter(view:IView) :BasePresenter<MediaModel>(view){

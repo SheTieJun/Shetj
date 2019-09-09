@@ -10,6 +10,7 @@ import com.shetj.diyalbume.jobscheduler.JobUtils.WORK_DURATION_KEY
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
+import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
 import java.lang.StringBuilder

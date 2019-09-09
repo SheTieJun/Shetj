@@ -29,8 +29,6 @@ class NewIndexActivity : BaseActivity<IndexPresenter>() {
 
     override fun initView() {
         mIRecyclerView = findViewById(R.id.IRecyclerView)
-        ArmsUtils.configRecycleView(mIRecyclerView!!, LinearLayoutManager(this))
-
         mIRecyclerView?.scrollX = 1
     }
 

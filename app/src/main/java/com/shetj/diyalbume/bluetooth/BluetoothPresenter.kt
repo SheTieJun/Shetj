@@ -14,6 +14,7 @@ import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 
 
 class BluetoothPresenter(view:IView) : BasePresenter<BaseModel>(view) {

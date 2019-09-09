@@ -3,10 +3,10 @@ apply from: "config.gradle"
 buildscript {
     ext.kotlin_version = '1.3.50'
 
-    ext.base_version = "073df617c2"
+    ext.base_version = "7ddfe46ee7"
 //  ext.base_version ="29e6 d653 86"
 //    ext.base_kt_version = "6171b383ae"
-    ext.base_kt_version = "073df617c2"
+    ext.base_kt_version = "7ddfe46ee7"
 
     repositories {
         google()
@@ -18,7 +18,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 //        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.10'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0' // Add this line
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
 
 //        classpath 'com.devyok.ipc:ipc-gradle-plugin:0.0.1'
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
