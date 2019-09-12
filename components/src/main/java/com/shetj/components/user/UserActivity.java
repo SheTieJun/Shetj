@@ -3,6 +3,14 @@ package com.shetj.components.user;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.Transformations;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,10 +78,64 @@ public class UserActivity extends AppCompatActivity   {
 						}
 		);
 
+		//转换LiveData
+		LiveData<String> map = Transformations.map(mUserModel.getUser(), new Function<User, String>() {
+			@Override
+			public String apply(User input) {
+				return "\"xxxxx\" + users.size() + \"user\"";
+			}
+		});
+
+		map.observe(this, new Observer<String>() {
+			@Override
+			public void onChanged(String s) {
+
+			}
+		});
+
+
+		//添加其他的livedata变化监听
+		//改变数值
+		MediatorLiveData<String> liveData = new MediatorLiveData<String>();
+		liveData.addSource(map, new Observer<String>() {
+			@Override
+			public void onChanged(String s) {
+				liveData.setValue(s);
+			}
+		});
+
+		liveData.observe(this, new Observer<String>() {
+			@Override
+			public void onChanged(String s) {
+				//展示数据
+			}
+		});
+
+		//转换新的liveData
+		LiveData<String> stringLiveData = Transformations.switchMap(mUserModel.getUser(), new Function<User, LiveData<String>>() {
+			@Override
+			public LiveData<String> apply(User input) {
+				if (input.id%2 == 0){
+					return map;
+				}
+				return null;
+			}
+		});
+
+
 		mFab.setOnClickListener(view -> {
 			mUserModel.getUser().setValue(new User(i++, "shetj2" + i, "http://baidi.com"));
 		});
 		publishSubject.onNext(userRepository.getUsers());
+	}
+
+	private void getObserveLive() {
+		new MutableLiveData<String>().observe(this, new Observer<String>() {
+			@Override
+			public void onChanged(String s) {
+
+			}
+		});
 	}
 
 	private void initView() {

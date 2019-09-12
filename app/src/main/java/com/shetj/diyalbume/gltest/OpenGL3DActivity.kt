@@ -22,21 +22,16 @@ class OpenGL3DActivity : BaseActivity<BasePresenter<*>>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (checkSupported()) {
-            glSurfaceView = GLSurfaceView(this)
-            setContentView(glSurfaceView)
-            glRenderer = GLRenderer(this)
-            glSurfaceView.setRenderer(glRenderer)
-            rendererSet = true
-            initView()
-            initData()
-        }else{
-            finish()
-        }
+
 
 
     }
+    override fun startAnimation() {
+    }
 
+    override fun endAnimation() {
+
+    }
 
     private fun checkSupported() : Boolean {
         return GLUtils.checkSupported(this)
@@ -45,74 +40,84 @@ class OpenGL3DActivity : BaseActivity<BasePresenter<*>>() {
     private lateinit var gestureDetector: GestureDetector
 
     override fun initView() {
-        val ges =object : GestureDetector.SimpleOnGestureListener() {
-            override fun onShowPress(e: MotionEvent?) {
-                Timber.i("onShowPress : x = ${e?.x}        y = ${e?.y}")
-            }
 
-            override fun onSingleTapUp(e: MotionEvent?): Boolean {
-                Timber.i("onSingleTapUp : x = ${e?.x}        y = ${e?.y}")
-                return super.onSingleTapUp(e)
-            }
+        if (!checkSupported()) {
+            finish()
+        }else {
+            glSurfaceView = GLSurfaceView(this)
+            setContentView(glSurfaceView)
+            glRenderer = GLRenderer(this)
+            glSurfaceView.setRenderer(glRenderer)
+            rendererSet = true
 
-            override fun onDown(e: MotionEvent?): Boolean {
-                Timber.i("onDown : x = ${e?.x}        y = ${e?.y}")
-                return super.onDown(e)
-            }
+            val ges = object : GestureDetector.SimpleOnGestureListener() {
+                override fun onShowPress(e: MotionEvent?) {
+                    Timber.i("onShowPress : x = ${e?.x}        y = ${e?.y}")
+                }
 
-            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-                Timber.i("onFling : x1 = ${e1?.x}        y1 = ${e1?.y}")
-                Timber.i("onFling : x2 = ${e1?.x}        y2 = ${e1?.y}")
-                Timber.i("onFling : velocityX =  $velocityX")
-                Timber.i("onFling : velocityY = $velocityY")
+                override fun onSingleTapUp(e: MotionEvent?): Boolean {
+                    Timber.i("onSingleTapUp : x = ${e?.x}        y = ${e?.y}")
+                    return super.onSingleTapUp(e)
+                }
 
-                return super.onFling(e1, e2, velocityX, velocityY)
-            }
+                override fun onDown(e: MotionEvent?): Boolean {
+                    Timber.i("onDown : x = ${e?.x}        y = ${e?.y}")
+                    return super.onDown(e)
+                }
 
-            override fun onLongPress(e: MotionEvent?) {
-                Timber.i("onLongPress : x = ${e?.x}        y = ${e?.y}")
-            }
+                override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                    Timber.i("onFling : x1 = ${e1?.x}        y1 = ${e1?.y}")
+                    Timber.i("onFling : x2 = ${e1?.x}        y2 = ${e1?.y}")
+                    Timber.i("onFling : velocityX =  $velocityX")
+                    Timber.i("onFling : velocityY = $velocityY")
 
-            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+                    return super.onFling(e1, e2, velocityX, velocityY)
+                }
+
+                override fun onLongPress(e: MotionEvent?) {
+                    Timber.i("onLongPress : x = ${e?.x}        y = ${e?.y}")
+                }
+
+                override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
 //                glRenderer.rotate(distanceX)
-                Timber.i("onScroll : x1 = ${e1?.x}        y1 = ${e1?.y}")
-                Timber.i("onScroll : x2 = ${e1?.x}        y2 = ${e1?.y}")
-                Timber.i("onScroll : distanceX = $distanceX")
-                Timber.i("onScroll : distanceY = $distanceY")
-                rotateDegreenx = (rotateDegreenx + distanceX).toLong()
+                    Timber.i("onScroll : x1 = ${e1?.x}        y1 = ${e1?.y}")
+                    Timber.i("onScroll : x2 = ${e1?.x}        y2 = ${e1?.y}")
+                    Timber.i("onScroll : distanceX = $distanceX")
+                    Timber.i("onScroll : distanceY = $distanceY")
+                    rotateDegreenx = (rotateDegreenx + distanceX).toLong()
 //                glRotatef(rotateDegreenx.toFloat(), 1.0f, 0.0f, 0.0f)//绕x轴旋转
 //                rotateDegreeny = (rotateDegreeny + distanceY).toLong()
 //                    glRotatef(rotateDegreeny.toFloat(), 0.0f, 1.0f, 0.0f)//绕Y轴旋转
-                glRenderer.rotate(rotateDegreenx.toFloat())
-                glRotatef(rotateDegreeny+distanceY,0f,1f,0f)
-                glSurfaceView.invalidate()
-                return super.onScroll(e1,e2,distanceX, distanceY)
-            }
+                    glRenderer.rotate(rotateDegreenx.toFloat())
+                    glRotatef(rotateDegreeny + distanceY, 0f, 1f, 0f)
+                    glSurfaceView.invalidate()
+                    return super.onScroll(e1, e2, distanceX, distanceY)
+                }
 
-            override fun onDoubleTap(e: MotionEvent?): Boolean {
-                Timber.i("onDoubleTap : x = ${e?.x}        y = ${e?.y}")
-                return super.onDoubleTap(e)
-            }
+                override fun onDoubleTap(e: MotionEvent?): Boolean {
+                    Timber.i("onDoubleTap : x = ${e?.x}        y = ${e?.y}")
+                    return super.onDoubleTap(e)
+                }
 
-            override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
-                Timber.i("onDoubleTapEvent : x = ${e?.x}        y = ${e?.y}")
-                return super.onDoubleTapEvent(e)
-            }
+                override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
+                    Timber.i("onDoubleTapEvent : x = ${e?.x}        y = ${e?.y}")
+                    return super.onDoubleTapEvent(e)
+                }
 
-            override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                Timber.i("onSingleTapConfirmed : x = ${e?.x}        y = ${e?.y}")
-                return super.onSingleTapConfirmed(e)
-            }
+                override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+                    Timber.i("onSingleTapConfirmed : x = ${e?.x}        y = ${e?.y}")
+                    return super.onSingleTapConfirmed(e)
+                }
 
-            override fun onContextClick(e: MotionEvent?): Boolean {
-                Timber.i("onContextClick : x = ${e?.x}        y = ${e?.y}")
-                return super.onContextClick(e)
+                override fun onContextClick(e: MotionEvent?): Boolean {
+                    Timber.i("onContextClick : x = ${e?.x}        y = ${e?.y}")
+                    return super.onContextClick(e)
+                }
+
             }
+            gestureDetector = GestureDetector(this, ges)
 
         }
-
-        gestureDetector = GestureDetector(this,ges)
-
 
     }
 

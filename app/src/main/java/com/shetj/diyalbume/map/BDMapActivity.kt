@@ -50,8 +50,6 @@ class BDMapActivity : BaseActivity<BasePresenter<*>>(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bdmap)
-        initView()
-        initData()
     }
 
     override fun initView() {

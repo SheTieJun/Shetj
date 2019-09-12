@@ -48,7 +48,6 @@ class EncryptActivity : BaseActivity<BasePresenter<*>>(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_encrypt)
-        initView()
     }
 
     override fun initView() {

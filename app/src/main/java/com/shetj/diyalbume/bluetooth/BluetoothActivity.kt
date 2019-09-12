@@ -25,8 +25,6 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blue_tooth)
-        initView()
-        initData()
     }
 
     override fun initData() {
@@ -85,7 +83,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
         mPresenter = BluetoothPresenter(this)
         mPresenter?.getPer(ArmsUtils.getRxPermissions(this))
         adapter = BluetoothListAdapter(ArrayList())
-        ArmsUtils.configRecycleView(iRecyclerView, androidx.recyclerview.widget.LinearLayoutManager(rxContext))
+        iRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rxContext)
         val textView = TextView(rxContext)
         textView.text = "搜索"
         textView.gravity = Gravity.CENTER

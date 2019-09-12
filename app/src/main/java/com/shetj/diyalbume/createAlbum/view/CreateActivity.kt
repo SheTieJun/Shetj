@@ -23,8 +23,6 @@ class CreateActivity : BaseActivity<CreatePresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
-        initView()
-        initData()
 
 
     }

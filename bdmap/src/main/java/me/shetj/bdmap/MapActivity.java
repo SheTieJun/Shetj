@@ -59,8 +59,6 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 		setContentView(R.layout.activity_map);
 		ArmsUtils.statuInScreen(this,false);
 		BDMapLocation.getInstance(getApplicationContext()).stop();
-		initView();
-		initData();
 		showMap();
 		setting();
 

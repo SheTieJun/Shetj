@@ -68,8 +68,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         QMUIStatusBarHelper.setStatusBarDarkMode(this)
-        initView()
-        initData()
         mPresenter =  MainPresenter(this)
 //        fab.setOnClickListener {
 //            startActivity(Intent(this,Main3Activity::class.java))

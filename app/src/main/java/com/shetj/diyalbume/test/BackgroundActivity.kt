@@ -43,7 +43,6 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
                     .setAction("Action", null).show()
         }
 
-        initView()
     }
 
     override fun initView() {

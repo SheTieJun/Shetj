@@ -55,7 +55,8 @@ class BlankFragment : Fragment() , LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun initLazy3(){
-        Log.i("Fragment$cout","initLazy3 = ON_PAUSE")
+        cout =  arguments!!.getInt(ARG_ITEM_COUNT)
+        Log.i("Fragment$cout","initLazy3 = ON_CREATE")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -81,8 +82,8 @@ class BlankFragment : Fragment() , LifecycleObserver {
         Log.i("Fragment$cout","initLazy7 = ON_ANY")
     }
 
-//    开始 ON_PAUSE->ON_START->ON_RESUME
-//    结束前现会ON_PAUSE->ON_STOP->ON_DESTROY
-//    ON_RESUME->ON_PAUSE
-//    ON_PAUSE->ON_RESUME
+//    开始 ON_CREATE -> ON_START -> ON_RESUME
+//    结束前现会 ON_PAUSE -> ON_STOP -> ON_DESTROY
+//    ON_RESUME -> ON_PAUSE
+//    ON_PAUSE -> ON_RESUME
 }

@@ -15,8 +15,6 @@ class JobSchedulerActivity : BaseActivity<JobSchedulerPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_scheduler)
-        initView()
-        initData()
         initEvent()
     }
 

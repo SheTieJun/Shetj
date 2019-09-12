@@ -7,6 +7,7 @@ import androidx.multidex.MultiDex
 import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection
 import com.liulishuo.filedownloader.util.FileDownloadLog
+import com.zhouyou.http.EasyHttp
 import me.shetj.base.s
 import me.shetj.bdmap.BMapManager
 import me.shetj.fresco.FrescoUtils

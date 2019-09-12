@@ -48,6 +48,12 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
 
     override fun initEventAndData() {
 
+    }
+
+
+    override fun onVisible() {
+        super.onVisible()
+
         //外部辅助的旋转，帮助全屏
         orientationUtils = OrientationUtils(rxContext, videoView)
         //初始化不打开外部的旋转
@@ -62,7 +68,7 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
         videoView.isReleaseWhenLossAudio = true //焦点释放
 
         videoView.fullscreenButton.setOnClickListener {
-//            //直接横屏
+            //            //直接横屏
             orientationUtils?.resolveByClick()
 
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
@@ -91,7 +97,6 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
 
         videoView.startPlayLogic()
     }
-
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)

@@ -23,8 +23,6 @@ class MainActivity : BaseActivity<MainPresenter>() {
 
 
         }
-        initView()
-        initData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

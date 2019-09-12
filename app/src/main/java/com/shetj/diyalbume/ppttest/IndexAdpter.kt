@@ -24,10 +24,10 @@ class IndexAdpter(data: List<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseView
         val recyclerView = helper.getView<RecyclerView>(R.id.IRecyclerView)
         if (item.type == "4") {
             val manager = GridLayoutManager(mContext, 2)
-            ArmsUtils.configRecycleView(recyclerView, manager)
+            recyclerView.layoutManager =  manager
         } else {
             val manager = GridLayoutManager(mContext, 3)
-            ArmsUtils.configRecycleView(recyclerView, manager)
+            recyclerView.layoutManager =  manager
         }
 
         when (item.type) {

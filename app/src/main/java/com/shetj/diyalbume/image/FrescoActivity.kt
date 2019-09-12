@@ -20,8 +20,6 @@ class FrescoActivity : BaseActivity<BasePresenter<*>>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fresco)
          imageWatcherUtils = ImageWatcherUtils(this)
-        initView()
-        initData()
     }
     override fun initView() {
         imageLoader.load(my_image_view,"http://oss.ppt66.com/2237/8/1530072334892幻灯片1(8).JPG")

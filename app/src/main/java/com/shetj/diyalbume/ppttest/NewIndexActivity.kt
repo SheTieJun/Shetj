@@ -23,8 +23,6 @@ class NewIndexActivity : BaseActivity<IndexPresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_index)
         ArmsUtils.statuInScreen(this, true)
-        initView()
-        initData()
     }
 
     override fun initView() {

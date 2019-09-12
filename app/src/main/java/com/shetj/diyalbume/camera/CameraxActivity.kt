@@ -27,8 +27,6 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camerax)
-        initView()
-        initData()
     }
 
     override fun initData() {
