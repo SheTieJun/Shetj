@@ -13,8 +13,6 @@ class ASAutoCodeActivity : BaseActivity<MainPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_asauto_code)
-        initView()
-        initData()
     }
     override fun initData() {
         btn_DetailFragment.clicks()

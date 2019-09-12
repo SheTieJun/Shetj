@@ -22,8 +22,6 @@ class GestureActivity : BaseActivity<BasePresenter<*>>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gesture)
-        initView()
-        initData()
     }
     var x = 0f
     var y = 0f

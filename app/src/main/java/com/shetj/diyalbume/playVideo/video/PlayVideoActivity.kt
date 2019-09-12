@@ -6,14 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.snackbar.Snackbar
 import com.shetj.diyalbume.R
-import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_paly_video.*
 import kotlinx.android.synthetic.main.content_play_video.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
-import me.shetj.base.tools.app.ArmsUtils
-import me.shetj.base.tools.app.addFragmentToActivity
+import me.shetj.base.kt.addFragmentToActivity
 import java.util.*
 
 @Route(path = "/shetj/PlayVideoActivity")
@@ -59,7 +57,8 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
         var adapter = AutoRecycleView(list)
 
         var linearLayoutManager = LinearLayoutManager(this)
-        ArmsUtils.configRecycleView(iRecyclerView,linearLayoutManager)
+
+        iRecyclerView.layoutManager = linearLayoutManager
 
         //限定范围为屏幕一半的上下偏移100
         val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 200f)

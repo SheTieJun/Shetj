@@ -29,10 +29,28 @@ class GlTestActivity : BaseActivity<BasePresenter<*>> (){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+    }
+
+    override fun startAnimation() {
+    }
+
+    override fun endAnimation() {
+
+    }
+
+    private fun checkSupported() : Boolean {
+        return GLUtils.checkSupported(this)
+    }
+
+    override fun initView() {
+
         mTriangleBuffer =  OpenGLUtils.floatToBuffer(mTriangleArray)
         mColorBuffer = OpenGLUtils.floatToBuffer(mColor)
 
-        if (checkSupported()) {
+        if (!checkSupported()) {
+                finish()
+        }else{
             glSurfaceView = GLSurfaceView(this)
 //            glSurfaceView.setEGLContextClientVersion(2)
             setContentView(glSurfaceView)
@@ -97,24 +115,8 @@ class GlTestActivity : BaseActivity<BasePresenter<*>> (){
 
                 }
             })
-
             rendererSet = true
-            initView()
-            initData()
-        }else{
-            finish()
         }
-
-
-    }
-
-
-    private fun checkSupported() : Boolean {
-        return GLUtils.checkSupported(this)
-    }
-
-    override fun initView() {
-
     }
 
     override fun initData() {

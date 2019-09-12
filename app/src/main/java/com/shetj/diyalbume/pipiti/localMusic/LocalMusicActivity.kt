@@ -36,8 +36,6 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_local_music)
         ArmsUtils.statuInScreen(this, true)
-        initView()
-        initData()
     }
 
     override fun initView() {
@@ -46,7 +44,6 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
         findViewById<View>(R.id.toolbar_back).setOnClickListener { onBackPressed() }
         mediaUtils = MediaPlayerUtils()
         mIRecyclerView = findViewById<View>(R.id.IRecyclerView) as RecyclerView
-        ArmsUtils.configRecycleView(mIRecyclerView!!, LinearLayoutManager(this))
         mAdapter = MusicSelectAdapter(ArrayList())
         mAdapter!!.bindToRecyclerView(mIRecyclerView)
         mAdapter!!.setOnItemClickListener { _, _, position -> ArmsUtils.makeText(GsonKit.objectToJson(mAdapter!!.getItem(position)!!)!!) }

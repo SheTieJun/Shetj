@@ -18,8 +18,6 @@ class AspectActivity : BaseActivity<AspectPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aspect)
-        initView()
-        initData()
     }
 
     override fun initData() {

@@ -41,8 +41,6 @@ class TranstionActivity : BaseActivity<AnimatorPresenter>() {
         window.reenterTransition = Explode().setDuration(600)
 
 
-        initView()
-        initData()
     }
     /*
     ChangeBounds	检测View的位置边界创建移动和缩放动画(关注布局边界的变化)

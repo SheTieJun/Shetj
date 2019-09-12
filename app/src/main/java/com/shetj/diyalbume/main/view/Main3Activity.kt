@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.main.view
 
 import android.os.Bundle
+import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
@@ -17,7 +18,6 @@ class Main3Activity : BaseActivity<BasePresenter<*>>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_3)
-        initView()
     }
     override fun initView() {
 
