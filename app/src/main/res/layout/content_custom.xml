@@ -32,4 +32,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@mipmap/shetj_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="15dp"
+        android:elevation="5dp"
+        android:outlineAmbientShadowColor="@color/red"
+        android:outlineSpotShadowColor="@color/red"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
