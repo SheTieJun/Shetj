@@ -92,6 +92,7 @@ class CustomActivity : AppCompatActivity() {
             ArmsUtils.makeText(image.json)
         }
 
+        root.addView(image)
 
     }
 

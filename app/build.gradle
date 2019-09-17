@@ -38,10 +38,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'qcshengdeng'
-            keyPassword 'qcshengdeng'
-            storeFile file('./qc.jks')
-            storePassword 'qcshengdeng'
+            keyAlias 'shetj'
+            keyPassword '123456'
+            storeFile file('./test.jks')
+            storePassword '123456'
         }
     }
     lintOptions {
