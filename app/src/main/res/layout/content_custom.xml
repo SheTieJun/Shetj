@@ -44,5 +44,9 @@
         android:outlineSpotShadowColor="@color/red"
         />
 
-
+<com.shetj.diyalbume.view.ArcView
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

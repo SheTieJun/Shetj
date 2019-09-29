@@ -46,7 +46,6 @@ class ArcImageView : AppCompatImageView {
             flags = Paint.ANTI_ALIAS_FLAG
             isAntiAlias = true
             color = Color.WHITE
-            xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
             //设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
             isDither = true
             style = Paint.Style.FILL
@@ -60,7 +59,6 @@ class ArcImageView : AppCompatImageView {
         arcPath.quadTo((width/2).toFloat(),height.toFloat(),width.toFloat(),height.toFloat()-2*mArcHeight)
         arcPath.lineTo(width.toFloat(),0f)
         arcPath.close()
-        canvas.clipPath(arcPath)
         super.onDraw(canvas)
     }
 

@@ -10,12 +10,14 @@ import android.view.Surface
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.*
+import androidx.camera.extensions.BokehImageCaptureExtender
 import com.shetj.diyalbume.R
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_camerax.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
+import timber.log.Timber
 import java.io.File
 
 /**
@@ -61,6 +63,9 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
         }.build()
 
 
+
+
+
         val preview = Preview(previewConfig)
 
         preview.setOnPreviewOutputUpdateListener {
@@ -83,9 +88,21 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
         // 拍照-Add this before CameraX.bindToLifecycle
         val imageCaptureConfig = ImageCaptureConfig.Builder()
                 .apply {
+                    // Create a Extender object which can be used to apply extension
+                    // configurations.
+                    val bokehImageCapture = BokehImageCaptureExtender.create(this)
+                    // Query if extension is available (optional).
+                    if (bokehImageCapture.isExtensionAvailable) {
+                        Timber.i("bokehImageCapture.isExtensionAvailable")
+                        // Enable the extension if available.
+                        bokehImageCapture.enableExtension()
+                    }
                     setTargetAspectRatio(Rational(1, 1))
                     setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
                 }.build()
+
+
+
 
         // Build the image capture use case and attach button click listener
         val imageCapture = ImageCapture(imageCaptureConfig)
