@@ -36,6 +36,7 @@ public enum  BytesTransUtil {
 
     /**
      * 噪音消除算法
+     * 声音会变小
      */
     public void noiseClear(short[] lin,int off,int len) {
         int i,j;
@@ -62,6 +63,12 @@ public enum  BytesTransUtil {
         }
     }
 
+    /**
+     * 但是产生噪音
+     * @param buffer
+     * @param level
+     * @return
+     */
     public short[] adjustVoice(short[] buffer,int level){
         byte[] temp = shorts2Bytes(buffer);
         adjustVoice(temp,level);

@@ -2,6 +2,11 @@ package com.shetj.diyalbume;
 
 import android.util.Base64;
 
+
+import java.util.Date;
+
+import me.shetj.base.tools.time.DateUtils;
+
 /**
  * <b>@packageName：</b> com.shetj.diyalbume<br>
  * <b>@author：</b> shetj<br>
@@ -52,5 +57,15 @@ String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQWNjb3VudFRva2V
 		System.out.print(info);
 	}
 
+
+
+	@org.junit.Test
+	public void testData(){
+		String start_time = "2017-07-23T10:00:00.000Z";
+        String fom = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+		Date calendar = DateUtils.str2Date(start_time, fom);
+		long millis = DateUtils.getMillis(calendar);
+		System.out.print(millis);
+	}
 }
 
