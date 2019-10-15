@@ -1,14 +1,11 @@
 package me.shetj.audiomix.playaudio;
 
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,30 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
 
-import javazoom.jl.decoder.Bitstream;
-import javazoom.jl.decoder.Decoder;
-import javazoom.jl.decoder.Header;
-import javazoom.jl.decoder.SampleBuffer;
 import me.shetj.audiomix.R;
 import me.shetj.audiomix.playaudio.audio.AudioEncoder;
 import me.shetj.audiomix.playaudio.audio.PlayBackMusic;
-import me.shetj.audiomix.playaudio.media.MediaMixAudio;
 import me.shetj.audiomix.playaudio.permission.PermissionsManager;
 import me.shetj.audiomix.playaudio.permission.PermissionsResultAction;
 import me.shetj.audiomix.playaudio.util.BytesTransUtil;
-import me.shetj.audiomix.playaudio.util.FileUtil;
-import me.shetj.audiomix.playaudio.video.VideoDecoder;
-import me.shetj.audiomix.playaudio.video.VideoEncodeDecode;
 
 
 /**

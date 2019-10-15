@@ -11,6 +11,7 @@ import androidx.customview.widget.ViewDragHelper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.view.AlbumImageView
+import com.shetj.diyalbume.view.WaveView
 import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.content_custom.*
 import me.shetj.base.tools.app.ArmsUtils
@@ -19,11 +20,14 @@ import timber.log.Timber
 @Route(path = "/shetj/CustomActivity")
 class CustomActivity : AppCompatActivity() {
 
+    private var v: WaveView?=null
     private var mViewDragHelper: ViewDragHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom)
+        v = findViewById<WaveView>(R.id.wave_view)
+
 
         button_image.setOnClickListener { addImage() }
         mViewDragHelper =    ViewDragHelper.create(root,object :ViewDragHelper.Callback(){
@@ -74,6 +78,8 @@ class CustomActivity : AppCompatActivity() {
                 }
             }
         })
+
+
     }
 
 
@@ -96,8 +102,14 @@ class CustomActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+
     }
 }
 

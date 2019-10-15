@@ -49,4 +49,20 @@
     app:layout_constraintStart_toStartOf="parent"
     android:layout_width="match_parent"
     android:layout_height="200dp"/>
+
+    <com.shetj.diyalbume.view.WaveView
+        android:id="@+id/wave_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <com.shetj.diyalbume.view.WaveView2
+        android:id="@+id/wave_view2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
