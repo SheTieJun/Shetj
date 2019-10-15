@@ -67,7 +67,7 @@ public class WaveView2  extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for (Float waveRadius : waveList) {
-            if (waveRadius * maxWaveRadius < ArmsUtils.dip2px(98)) {
+            if (waveRadius * maxWaveRadius < getWidth()) {
                 paint.setColor(Color.argb((int) (255 * (1 - waveRadius)), 0, 255, 0));//根据进度产生一个argb颜色
                 canvas.drawCircle(centerX, centerY, ArmsUtils.dip2px(23)+waveRadius * maxWaveRadius, paint);//根据进度计算扩散半径
             }
