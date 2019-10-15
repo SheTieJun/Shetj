@@ -4,7 +4,6 @@ import android.Manifest
 import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
-import android.util.Rational
 import android.util.Size
 import android.view.Surface
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
 import timber.log.Timber
 import java.io.File
+import java.util.concurrent.Executor
 
 /**
  * androidx camera2 test
@@ -58,7 +58,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
     private fun startCamera(){
         //创建预览配置
         val previewConfig = PreviewConfig.Builder().apply {
-            setTargetAspectRatio(Rational(ArmsUtils.getScreenWidth(rxContext),ArmsUtils.getScreenHeight(rxContext)))
+            setTargetAspectRatio(AspectRatio.RATIO_16_9)
             setTargetResolution(Size(ArmsUtils.getScreenWidth(rxContext),ArmsUtils.getScreenHeight(rxContext)))
         }.build()
 
@@ -97,7 +97,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
                         // Enable the extension if available.
                         bokehImageCapture.enableExtension()
                     }
-                    setTargetAspectRatio(Rational(1, 1))
+                    setTargetAspectRatio(AspectRatio.RATIO_16_9)
                     setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
                 }.build()
 
@@ -109,15 +109,17 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
         capture_button.setOnClickListener {
             val file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
-            imageCapture.takePicture(file,
+            imageCapture.takePicture(file, Executor {
+
+            },
                     object : ImageCapture.OnImageSavedListener {
-                        override fun onError(error: ImageCapture.UseCaseError,
-                                             message: String, exc: Throwable?) {
+                        override fun onError(imageCaptureError: ImageCapture.ImageCaptureError, message: String, cause: Throwable?) {
                             val msg = "Photo capture failed: $message"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.e("CameraXApp", msg)
-                            exc?.printStackTrace()
+                            cause?.printStackTrace()
                         }
+
 
                         override fun onImageSaved(file: File) {
                             val msg = "Photo capture succeeded: ${file.absolutePath}"

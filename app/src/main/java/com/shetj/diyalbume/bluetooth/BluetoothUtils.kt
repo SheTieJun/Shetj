@@ -52,7 +52,7 @@ object BluetoothUtils {
      * 打开蓝牙
      */
     fun openBluetooth(context: Activity, mBluetoothAdapter:BluetoothAdapter){
-        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled) {
+        if (!mBluetoothAdapter.isEnabled) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             context.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
         }
