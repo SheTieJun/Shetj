@@ -38,7 +38,6 @@ public class WaveView2  extends View {
         init(context);
     }
 
-    //...构造方法略
     private void init(Context context) {
         paint = new Paint();
         waveList = new float[waveRate];
@@ -51,6 +50,7 @@ public class WaveView2  extends View {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Float value = (Float) animation.getAnimatedValue();
                 for (int i = 0; i < waveList.length; i++) {
+
                     float v = value - i * 1.0f / waveRate;
                     if (v < 0 && waveList[i] > 0) {
                         v += 1;
@@ -58,9 +58,11 @@ public class WaveView2  extends View {
                     waveList[i] = v;
                 }
                 invalidate();
+
             }
         });
         valueAnimator.start();
+
     }
 
     @Override

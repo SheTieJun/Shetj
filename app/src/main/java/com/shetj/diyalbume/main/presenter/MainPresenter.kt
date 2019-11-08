@@ -1,7 +1,18 @@
 package com.shetj.diyalbume.main.presenter
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import androidx.core.content.edit
+import androidx.core.graphics.*
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.graphics.drawable.toIcon
+import androidx.core.graphics.drawable.updateBounds
 import com.afollestad.materialdialogs.MaterialDialog
+import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.view.CreateActivity
 import com.shetj.diyalbume.nitification.MusicNotification
 import me.shetj.base.base.BaseModel
@@ -20,6 +31,7 @@ import me.shetj.base.base.IView
 class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
 
 
+
     fun startCreateAlbum() {
         val intent = Intent(view.rxContext, CreateActivity::class.java )
         startActivity (intent)
@@ -31,6 +43,52 @@ class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
 //                "DownloadNotification",1)
 //        MessageNotification.notify(view.rxContext,"MessageNotificationXXX",2)
         MusicNotification.notify(view.rxContext.applicationContext,1)
+    }
+
+    fun Test(){
+
+        view.rxContext.getPreferences(Context.MODE_PRIVATE).edit{
+                putBoolean("key",true)
+        }
+
+        val bitmap = BitmapFactory.decodeResource(view.rxContext.resources, R.drawable.error)
+
+
+        createBitmap(100,100,hasAlpha = true)
+
+        val colorToDrawable = Color.RED.toDrawable()
+
+        val InttoDrawable = Color.parseColor("#ff0000").toDrawable()
+
+        val bitmapIcon = bitmap.toIcon()
+
+        bitmap.scale(100,100)
+
+        val i = bitmap[50, 50]
+
+        val drawable = bitmap.toDrawable(view.rxContext.resources)
+
+        drawable.toBitmap(100,100,Bitmap.Config.RGB_565)
+
+        drawable.updateBounds()
+
+
+
+    }
+
+    fun ColorKt(){
+
+        val colorInt = "##ff0000".toColorInt().apply {
+            blue
+            red
+            green
+            alpha
+        }
+
+        val toColor = colorInt.toColor().apply {
+            component1()
+        }
+
     }
 
     fun showIntroduce() {

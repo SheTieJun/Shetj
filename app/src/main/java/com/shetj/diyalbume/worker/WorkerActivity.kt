@@ -50,6 +50,8 @@ class WorkerActivity : AppCompatActivity() {
                         it.showInfo()
                     }
                 })
+
+
     }
 
 
@@ -143,6 +145,7 @@ class WorkerActivity : AppCompatActivity() {
                             it.showInfo()
                         }
                 })
+
     }
 
     fun startPeriodicWork(){

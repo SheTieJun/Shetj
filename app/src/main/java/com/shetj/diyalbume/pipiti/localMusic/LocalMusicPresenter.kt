@@ -2,6 +2,8 @@ package com.shetj.diyalbume.pipiti.localMusic
 
 import android.Manifest
 import android.provider.MediaStore
+import androidx.core.database.getBlobOrNull
+import androidx.core.database.getStringOrNull
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
@@ -50,7 +52,10 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
             musicList = ArrayList()
             if (cursor.moveToFirst()) {
                 do {
-                    val title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
+
+                    val title = cursor.getStringOrNull(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
+
+//                    val title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
                     val size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
                     val url = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
                     val duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))

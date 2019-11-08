@@ -1,5 +1,7 @@
 package com.shetj.diyalbume
 
+import android.content.ContentValues
+import androidx.core.content.contentValuesOf
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import io.reactivex.Observable
@@ -50,6 +52,17 @@ class ExampleInstrumentedTest {
         } catch (e:InterruptedException ) {
             e.printStackTrace()
         }
+
+    }
+
+
+    @Test
+    fun testInfo(){
+        val initialValues = ContentValues()
+        initialValues.put("key", true)
+
+        val contentValues = contentValuesOf(Pair("key", true), Pair("key1", false))
+        contentValues.put("key3",false)
 
     }
 }

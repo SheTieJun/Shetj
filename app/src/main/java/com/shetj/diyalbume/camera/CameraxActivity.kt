@@ -62,20 +62,12 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
             setTargetResolution(Size(ArmsUtils.getScreenWidth(rxContext),ArmsUtils.getScreenHeight(rxContext)))
         }.build()
 
-
-
-
-
         val preview = Preview(previewConfig)
-
         preview.setOnPreviewOutputUpdateListener {
-
             //更新渲染视图，先移除在添加
             val parent = texture_view.parent as ViewGroup
-
             parent.removeView(texture_view)
             parent.addView(texture_view,0)
-
             texture_view.surfaceTexture = it.surfaceTexture
             // Every time the provided texture view changes, recompute layout
             texture_view.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
@@ -109,7 +101,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
         capture_button.setOnClickListener {
             val file = File(externalMediaDirs.first(),
                     "${System.currentTimeMillis()}.jpg")
-            imageCapture.takePicture(file, Executor {
+            imageCapture.takePicture(file, {
 
             },
                     object : ImageCapture.OnImageSavedListener {

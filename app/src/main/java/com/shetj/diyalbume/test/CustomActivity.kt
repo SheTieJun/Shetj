@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.view.minusAssign
 import androidx.customview.widget.ViewDragHelper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
@@ -99,7 +100,6 @@ class CustomActivity : AppCompatActivity() {
         }
 
         root.addView(image)
-
     }
 
 

@@ -9,6 +9,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
+import androidx.core.animation.*
 import com.shetj.diyalbume.R
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter
@@ -120,7 +121,17 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
         if (animType){
             val animator1 = AnimatorInflater.loadAnimator(view.rxContext, R.animator.anim_object)
             animator1.setTarget(it)
+
+            animator1.addListener(onCancel = {},onEnd = {},onRepeat = {},onStart = {})
+
+            animator1.doOnPause {
+
+            }
+            animator1.doOnResume {
+
+            }
             animator1.start()
+
         }else{
             val animator2 = ObjectAnimator.ofFloat(it, "alpha", 1f, 0f, 1f)
             // 动画效果是:常规 - 全透明 - 常规
