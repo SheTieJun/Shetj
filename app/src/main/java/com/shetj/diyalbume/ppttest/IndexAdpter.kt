@@ -52,4 +52,7 @@ class IndexAdpter(data: List<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseView
         }
 
     }
+
+    fun test(){
+    }
 }

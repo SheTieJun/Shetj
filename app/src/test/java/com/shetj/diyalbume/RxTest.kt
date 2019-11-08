@@ -1,14 +1,39 @@
 package com.shetj.diyalbume
 
 import com.shetj.diyalbume.rx.RxS
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
+import io.reactivex.*
 import me.shetj.base.tools.json.GsonKit
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
 class RxTest {
+
+    fun test(){
+//        Single的SingleObserver中只有onSuccess、onError，并没有onComplete
+        Single.just("test")
+                .subscribe({
+
+                },{
+
+                })
+//        Completable 只有 onComplete 和 onError 事件，同时 Completable 并没有map、flatMap等操作符，它的操作符比起 Observable/Flowable 要少得多。
+        Completable.create {
+
+        }.subscribe({
+
+        },{
+
+        })
+
+        //创建
+        Maybe.create<Int> {
+            it.onSuccess(1)
+        }.subscribe({
+
+        },{},{})
+        //
+    }
+
     @Test
     fun testRepeat(){
         Flowable.just(1)
@@ -59,6 +84,9 @@ class RxTest {
                 .flatMap {
                     return@flatMap Observable.just(it)
                 }
+                .filter {
+                    it>15
+                }
                 .buffer(10) //缓存起来
                 .subscribe {
                     print(GsonKit.objectToJson(it))
@@ -88,6 +116,8 @@ class RxTest {
                     print(GsonKit.objectToJson(it))
                 }
     }
+
+
 
 
 

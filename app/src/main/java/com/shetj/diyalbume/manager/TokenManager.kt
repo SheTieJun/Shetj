@@ -16,7 +16,7 @@ class TokenManager private constructor() {
         get() {
             val cacheToken = TokenLoader.instance.cacheToken
             return if (cacheToken.contains("token_fail")) {
-                TokenLoader.instance.netTokenLocked
+                TokenLoader.instance.netTokenLocked!!
             } else {
                 Observable.just(cacheToken)
             }

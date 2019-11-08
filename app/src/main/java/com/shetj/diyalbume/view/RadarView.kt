@@ -9,6 +9,8 @@ import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import androidx.core.content.res.getBooleanOrThrow
+import androidx.core.content.withStyledAttributes
 
 import com.shetj.diyalbume.R
 
@@ -70,6 +72,7 @@ class RadarView : View {
      */
     private fun getAttrs(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
+
             val mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.RadarView)
             mCircleColor = mTypedArray.getColor(R.styleable.RadarView_circleColor, DEFAULT_COLOR)
             mCircleNum = mTypedArray.getInt(R.styleable.RadarView_circleNum, mCircleNum)
@@ -85,11 +88,6 @@ class RadarView : View {
             if (mSpeed <= 0) {
                 mSpeed = 3f
             }
-            mFlicker = mTypedArray.getFloat(R.styleable.RadarView_flicker, mFlicker)
-            if (mFlicker <= 0) {
-                mFlicker = 3f
-            }
-            mTypedArray.recycle()
         }
     }
 
@@ -128,18 +126,18 @@ class RadarView : View {
      */
     private fun measureWidth(measureSpec: Int, defaultSize: Int): Int {
         var result = 0
-        val specMode = View.MeasureSpec.getMode(measureSpec)
-        val specSize = View.MeasureSpec.getSize(measureSpec)
+        val specMode = MeasureSpec.getMode(measureSpec)
+        val specSize = MeasureSpec.getSize(measureSpec)
 
-        if (specMode == View.MeasureSpec.EXACTLY) {
+        if (specMode == MeasureSpec.EXACTLY) {
             result = specSize
         } else {
             result = defaultSize + paddingLeft + paddingRight
-            if (specMode == View.MeasureSpec.AT_MOST) {
-                result = Math.min(result, specSize)
+            if (specMode == MeasureSpec.AT_MOST) {
+                result = result.coerceAtMost(specSize)
             }
         }
-        result = Math.max(result, suggestedMinimumWidth)
+        result = result.coerceAtLeast(suggestedMinimumWidth)
         return result
     }
 
@@ -152,14 +150,14 @@ class RadarView : View {
      */
     private fun measureHeight(measureSpec: Int, defaultSize: Int): Int {
         var result = 0
-        val specMode = View.MeasureSpec.getMode(measureSpec)
-        val specSize = View.MeasureSpec.getSize(measureSpec)
+        val specMode = MeasureSpec.getMode(measureSpec)
+        val specSize = MeasureSpec.getSize(measureSpec)
 
-        if (specMode == View.MeasureSpec.EXACTLY) {
+        if (specMode == MeasureSpec.EXACTLY) {
             result = specSize
         } else {
             result = defaultSize + paddingTop + paddingBottom
-            if (specMode == View.MeasureSpec.AT_MOST) {
+            if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize)
             }
         }
@@ -327,7 +325,7 @@ class RadarView : View {
          * @return
          */
         fun changeAlpha(): Int {
-            return RadarView.changeAlpha(color, alpha.toInt())
+            return changeAlpha(color, alpha.toInt())
         }
 
     }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import androidx.multidex.MultiDex
+import androidx.work.Configuration
 import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection
 import com.liulishuo.filedownloader.util.FileDownloadLog
@@ -24,7 +25,13 @@ import java.net.Proxy
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b><br>
  */
-class APP : Application() {
+class APP : Application() , Configuration.Provider {
+    override fun getWorkManagerConfiguration(): Configuration {
+
+        return Configuration.Builder()
+                .build()
+    }
+
     override fun onCreate() {
         super.onCreate()
         s.init(this,BuildConfig.DEBUG )

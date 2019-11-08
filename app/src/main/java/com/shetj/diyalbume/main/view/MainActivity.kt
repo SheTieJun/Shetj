@@ -49,6 +49,7 @@ import com.shetj.diyalbume.swipcard.SwipCardActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
 import me.shetj.download.view.DownloadActivity
+import me.shetj.mvvm.MvvmActivity
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -224,6 +225,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
         btn_camera.setOnClickListener {
             ArmsUtils.startActivity(this,CameraxActivity::class.java)
+        }
+        mvvm.setOnClickListener {
+            ArmsUtils.startActivity(this,MvvmActivity::class.java)
         }
     }
 

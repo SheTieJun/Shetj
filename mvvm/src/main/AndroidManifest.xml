@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.shetj.mvvm">
+
+    <application>
+        <activity android:name=".MVVM2Activity"></activity>
+        <activity android:name=".Mvvm2Activity" />
+        <activity android:name=".MvvmActivity" />
+    </application>
+
+</manifest>

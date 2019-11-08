@@ -21,7 +21,7 @@ import timber.log.Timber
 class TokenLoader private constructor() {
 
     private val mRefreshing = AtomicBoolean(false)
-    private val mPublishSubject: PublishSubject<String> = PublishSubject.create()
+    private var mPublishSubject: PublishSubject<String> ?=null
     private val mTokenObservable: Observable<String>
 
     val cacheToken: String
@@ -39,7 +39,7 @@ class TokenLoader private constructor() {
             return "token_fail"
         }
 
-    val netTokenLocked: Observable<String>
+    val netTokenLocked: Observable<String>?
         get() {
             if (mRefreshing.compareAndSet(false, true)) {
                 Timber.i("没有请求，发起一次新的Token请求")
@@ -70,7 +70,8 @@ class TokenLoader private constructor() {
     }
 
     private fun startTokenRequest() {
-        mTokenObservable.subscribe(mPublishSubject)
+        mPublishSubject = PublishSubject.create()
+        mTokenObservable.subscribe(mPublishSubject!!)
     }
 
     companion object {

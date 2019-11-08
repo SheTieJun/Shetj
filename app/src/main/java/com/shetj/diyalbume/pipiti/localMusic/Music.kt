@@ -6,4 +6,9 @@ class Music {
     var url: String?=null
     var duration: Long = 0
     var img :String ?=null
+
+    private fun test(int: Int){
+
+    }
+    private var test = 1
 }
