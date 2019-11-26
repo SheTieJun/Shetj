@@ -11,14 +11,14 @@
     tools:showIn="@layout/activity_custom">
 
 
-    <com.shetj.diyalbume.view.CircleView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--    <com.shetj.diyalbume.view.CircleView-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginBottom="8dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <include layout="@layout/sample_arc_image_view"/>
 
@@ -44,11 +44,11 @@
         android:outlineSpotShadowColor="@color/red"
         />
 
-<com.shetj.diyalbume.view.ArcView
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"/>
+    <com.shetj.diyalbume.view.ArcView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 
     <com.shetj.diyalbume.view.WaveView
         android:id="@+id/wave_view"
@@ -64,5 +64,32 @@
         android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/wave_view"/>
+
+
+    <com.shetj.diyalbume.view.HaloImageView
+        android:id="@+id/HaloImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="录音中"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:haloColor="#FF5A31"
+        app:haloSize="7dp"
+        app:haloBackgroundColor ="#FF5A31"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.shetj.diyalbume.view.LineWaveVoiceView
+        android:id="@+id/line_voice_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/HaloImageView"
+        app:voiceTextSize="14sp"
+        app:voiceTextColor="@color/black"
+        app:voiceLineColor="#FF5A31"
+        app:voiceLineWith="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

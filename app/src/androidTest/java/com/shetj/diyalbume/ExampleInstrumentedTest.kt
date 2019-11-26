@@ -46,9 +46,9 @@ class ExampleInstrumentedTest {
     private fun doWork() {
         var workTime = Math.random()*500 +500
         try {
-            System.out.print("xx"+"doWork start,  threadId=" + Thread.currentThread().id);
+            print("xx"+"doWork start,  threadId=" + Thread.currentThread().id);
             Thread.sleep(workTime.toLong())
-            System.out.print("xx"+ "doWork finished");
+            print("xx"+ "doWork finished");
         } catch (e:InterruptedException ) {
             e.printStackTrace()
         }

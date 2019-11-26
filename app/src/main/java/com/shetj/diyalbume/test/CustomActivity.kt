@@ -12,6 +12,8 @@ import androidx.customview.widget.ViewDragHelper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.view.AlbumImageView
+import com.shetj.diyalbume.view.HaloImageView
+import com.shetj.diyalbume.view.LineWaveVoiceView
 import com.shetj.diyalbume.view.WaveView
 import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.content_custom.*
@@ -21,16 +23,41 @@ import timber.log.Timber
 @Route(path = "/shetj/CustomActivity")
 class CustomActivity : AppCompatActivity() {
 
+    private var haloImageView: HaloImageView? =null
+    private var lineVoiceView : LineWaveVoiceView?= null
     private var v: WaveView?=null
     private var mViewDragHelper: ViewDragHelper? = null
+    private var isRecord = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom)
-        v = findViewById<WaveView>(R.id.wave_view)
+        v = findViewById(R.id.wave_view)
+
+        haloImageView = findViewById<HaloImageView>(R.id.HaloImageView)
+                .apply {
+                    startAnimo()
+        }
+
+        lineVoiceView =  findViewById<LineWaveVoiceView>(R.id.line_voice_view).apply{
+                     setOnClickListener {
+                        if(isRecord){
+                            isRecord  = false
+                            stopRecord()
+                            setText("点击录音")
+                        }else{
+                            isRecord = true
+                            startRecord()
+                            setText("正在录音")
+                        }
+                    }
+                }
 
 
-        button_image.setOnClickListener { addImage() }
+        button_image.setOnClickListener {
+            addImage()
+
+        }
         mViewDragHelper =    ViewDragHelper.create(root,object :ViewDragHelper.Callback(){
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
 
@@ -109,7 +136,7 @@ class CustomActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        haloImageView?.stopAnim()
     }
 }
 
