@@ -19,6 +19,10 @@ class NavigationFragment : Fragment() {
     }
 
 
+    fun init(){
+        nav().navigateUp()
+    }
+
     protected fun nav(): NavController {
         return NavHostFragment.findNavController(this)
     }

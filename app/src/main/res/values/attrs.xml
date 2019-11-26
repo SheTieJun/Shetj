@@ -27,6 +27,13 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="LineWaveVoiceView">
+        <attr name="voiceLineColor" format="color" />
+        <attr name="voiceLineWith" format="dimension"/>
+        <attr name="voiceTextSize" format="dimension"/>
+        <attr name="voiceTextColor" format="color"/>
+        <attr name="updateSpeed" format="integer"/>
+    </declare-styleable>
 
     <declare-styleable name="RadarView">
         <!--圆圈和交叉线的颜色-->
@@ -47,6 +54,12 @@
         <attr name="speed" format="float" />
         <!--水滴显示和消失的速度-->
         <attr name="flicker" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="HaloImageView">
+        <attr name="haloSize" format="dimension" />
+        <attr name="haloColor" format="color" />
+        <attr name="haloBackgroundColor" format="color"/>
     </declare-styleable>
 
 </resources>

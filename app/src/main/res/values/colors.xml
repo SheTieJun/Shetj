@@ -28,6 +28,8 @@
 
     <color name="app_color_description">@color/qmui_config_color_gray_5</color>
 
+    <color name="app_orange">#B7FF5A31</color>
+
     <color name="bar_divider">#D4D6D8</color>
     <color name="tab_panel_bg">#ffffff</color>
     <color name="tab_panel_divider">@color/bar_divider</color>

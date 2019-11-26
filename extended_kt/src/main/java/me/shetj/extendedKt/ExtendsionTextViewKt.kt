@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import java.util.concurrent.locks.Lock
+import kotlin.concurrent.thread
+import kotlin.concurrent.timer
 
 /**
  *
@@ -16,7 +18,6 @@ import java.util.concurrent.locks.Lock
  */
 
 inline fun  ViewGroup.inflate(layoutRes: Int): View {
-
     return LayoutInflater.from(context).inflate(layoutRes, this, false)
 }
 
