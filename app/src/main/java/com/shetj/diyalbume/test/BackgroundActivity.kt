@@ -32,7 +32,6 @@ class BackgroundActivity : BaseActivity<BasePresenter<*>>() {
     private lateinit var  mPublishSubjectS: PublishSubject<String>
     private var mCompositeDisposable = CompositeDisposable()
 
-    private val TAG = "xxxxxxx"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_background)

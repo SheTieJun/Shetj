@@ -17,6 +17,7 @@ import java.util.ArrayList
 
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
+import me.shetj.base.tools.app.ArmsUtils.Companion.statuInScreen
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
 
@@ -35,7 +36,7 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_local_music)
-        ArmsUtils.statuInScreen(this, true)
+        statuInScreen( true)
     }
 
     override fun initView() {

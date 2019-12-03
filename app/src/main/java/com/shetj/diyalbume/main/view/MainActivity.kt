@@ -33,7 +33,6 @@ import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.utils.SneakerUtils
 import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
@@ -48,6 +47,7 @@ import com.shetj.diyalbume.playVideo.media.MediaActivity
 import com.shetj.diyalbume.swipcard.SwipCardActivity
 import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.worker.WorkerActivity
+import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.download.view.DownloadActivity
 import me.shetj.mvvm.MvvmActivity
 

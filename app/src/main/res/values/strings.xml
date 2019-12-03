@@ -35,7 +35,7 @@
     <string name="label_previous">Previous track</string>
     <string name="label_next">Next track</string>
     <string name="indro">介绍</string>
-    <string name="auto_play">自动play原理</string>
+    <string name="auto_play">视频播放</string>
     <string name="auto_code">AS自动生成的代码效果</string>
     <string name="downloadservice">DownloadService</string>
     <string name="sys_code">系统控件</string>

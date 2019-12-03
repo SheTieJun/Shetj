@@ -6,8 +6,7 @@ ext {
 }
 buildscript {
     ext.kotlin_version = '1.3.60'
-    ext.base_version = "83a02b19a0"
-    ext.base_kt_version = "83a02b19a0"
+    ext.base_version = "5becdeee00"
 
     repositories {
         google()

@@ -10,17 +10,6 @@
     tools:context="com.shetj.diyalbume.main.view.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/iRecyclerView"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="11dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/bt_create"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/bt_create"

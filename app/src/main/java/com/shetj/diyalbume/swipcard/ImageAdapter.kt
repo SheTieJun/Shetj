@@ -14,7 +14,7 @@ import com.shetj.diyalbume.R
 class ImageAdapter(data:ArrayList<String>) :BaseQuickAdapter<String,BaseViewHolder>(R.layout.item_detail,data){
 
 
-    override fun convert(helper: BaseViewHolder?, item: String?) {
+    override fun convert(helper: BaseViewHolder, item: String?) {
 
     }
 

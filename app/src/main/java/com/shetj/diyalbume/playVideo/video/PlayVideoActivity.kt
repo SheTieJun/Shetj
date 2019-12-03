@@ -64,7 +64,7 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>() {
         val playTop = CommonUtil.getScreenHeight(this) / 2 - CommonUtil.dip2px(this, 200f)
         val playBottom = CommonUtil.getScreenHeight(this) / 2 + CommonUtil.dip2px(this, 200f)
         //自定播放帮助类
-        var scrollCalculatorHelper = ScrollCalculatorHelper(R.id.tv_string, CommonUtil.getScreenHeight(this) / 2, playTop, playBottom, adapter)
+        val scrollCalculatorHelper = ScrollCalculatorHelper(R.id.tv_string, CommonUtil.getScreenHeight(this) / 2, playTop, playBottom, adapter)
 
 
 

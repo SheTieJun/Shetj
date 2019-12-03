@@ -14,6 +14,7 @@ import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_blue_tooth.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.kt.getRxPermissions
 import me.shetj.base.tools.app.ArmsUtils
 
 
@@ -81,7 +82,7 @@ class BluetoothActivity : BaseActivity<BluetoothPresenter>() {
 
     override fun initView() {
         mPresenter = BluetoothPresenter(this)
-        mPresenter?.getPer(ArmsUtils.getRxPermissions(this))
+        mPresenter?.getPer(getRxPermissions())
         adapter = BluetoothListAdapter(ArrayList())
         iRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rxContext)
         val textView = TextView(rxContext)
