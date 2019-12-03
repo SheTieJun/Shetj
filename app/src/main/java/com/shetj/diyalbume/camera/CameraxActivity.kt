@@ -15,6 +15,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_camerax.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
+import me.shetj.base.kt.hasPermission
 import me.shetj.base.tools.app.ArmsUtils
 import timber.log.Timber
 import java.io.File
@@ -58,7 +59,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
     private fun startCamera(){
         //创建预览配置
         val previewConfig = PreviewConfig.Builder().apply {
-            setTargetAspectRatio(AspectRatio.RATIO_16_9)
+//            setTargetAspectRatio(AspectRatio.RATIO_16_9)
             setTargetResolution(Size(ArmsUtils.getScreenWidth(rxContext),ArmsUtils.getScreenHeight(rxContext)))
         }.build()
 

@@ -20,14 +20,16 @@
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <include layout="@layout/sample_arc_image_view"/>
+    <include
+        layout="@layout/sample_arc_image_view"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-80dp" />
 
     <Button
         android:id="@+id/button_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="288dp"
         android:text="image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,20 +37,22 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@mipmap/shetj_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="292dp"
+        android:layout_marginEnd="264dp"
         android:elevation="5dp"
         android:outlineAmbientShadowColor="@color/red"
         android:outlineSpotShadowColor="@color/red"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/shetj_logo" />
 
     <com.shetj.diyalbume.view.ArcView
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="144dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.shetj.diyalbume.view.WaveView
         android:id="@+id/wave_view"
@@ -89,7 +93,7 @@
         app:voiceTextColor="@color/black"
         app:voiceLineColor="#FF5A31"
         app:voiceLineWith="2dp"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

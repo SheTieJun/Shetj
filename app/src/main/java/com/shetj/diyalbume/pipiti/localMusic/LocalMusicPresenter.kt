@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
+import me.shetj.base.kt.getRxPermissions
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 import java.util.*
@@ -31,7 +32,7 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
     }
 
     fun initMusic() {
-        ArmsUtils.getRxPermissions(view.rxContext)
+        view.rxContext.getRxPermissions()
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe { aBoolean ->
                     if (aBoolean!!) {

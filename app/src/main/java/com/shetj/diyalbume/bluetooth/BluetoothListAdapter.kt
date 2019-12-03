@@ -14,10 +14,8 @@ import com.shetj.diyalbume.R
  */
 class BluetoothListAdapter(strings: MutableList<BleDevice>) : BaseQuickAdapter<BleDevice,BaseViewHolder>(R.layout.item_bluetooth,strings){
 
-
-
-    override fun convert(helper: BaseViewHolder?, item: BleDevice?) {
-        helper?.setText(R.id.tv_msg,"mac = ${item?.mac}")
+    override fun convert(helper: BaseViewHolder, item: BleDevice) {
+        helper.setText(R.id.tv_msg,"mac = ${item?.mac}")
         ?.setText(R.id.tv_name,"name = ${item?.name}")
         ?.setText(R.id.tv_key,"key = ${item?.key}")
     }
