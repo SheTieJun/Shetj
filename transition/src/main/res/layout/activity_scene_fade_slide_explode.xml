@@ -42,6 +42,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/button" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="对应xml tag为`explode`，作用对象：View的Visibility\n\n
+对应xml tag为`fade`，作用对象：View的Visibility\n\n可以在初始化时指定IN或者OUT分别对应淡入和淡出，也可以通过fade.setMode方法设置，若不指定默认为淡入淡出效果\n\n
+对应xml tag为`slide`，作用对象：View的Visibility\n\n可以初始化时传入Gravity.XX，也可以通过slide.setSlideEdge方法设置，默认方向为Gravity.BOTTOM"/>
 
     </LinearLayout>
 </RelativeLayout>

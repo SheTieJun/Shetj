@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".demo.OtherActivity">
+
+    <TextView
+        android:id="@+id/tv_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="15dp"
+        app:layout_constraintDimensionRatio="3:1"
+        android:background="@drawable/shape_stroke"
+        android:text="文字基准线对齐"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_1"
+        app:layout_constraintStart_toEndOf="@id/tv_1"
+        android:layout_marginStart="20dp"
+        android:ellipsize="end"
+        android:background="@drawable/shape_stroke"
+        android:text="对齐dasdjasdjlajsdlkjasdlkjadklsjlajsdkljadklsjlajsdla"/>
+
+    <TextView
+        android:id="@+id/tv_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_1"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="15dp"
+
+        android:background="@drawable/shape_stroke"
+        android:text="圆心布局"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintCircle="@id/tv_2"
+        app:layout_constraintCircleAngle="120"
+        app:layout_constraintCircleRadius="100dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/shape_stroke"
+        android:text="通过圆心布局"/>
+
+
+    <TextView
+        android:id="@+id/tv_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_2"
+        app:layout_constraintEnd_toStartOf="@id/tv_m1"
+        android:layout_marginTop="35dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="5dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:background="@drawable/shape_stroke"
+        android:text="约束比例 =1"/>
+
+    <TextView
+        android:id="@+id/tv_m1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="@id/tv_3"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/tv_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_3"
+        app:layout_constraintHorizontal_weight="2"
+        android:background="@drawable/shape_stroke"
+        app:layout_constrainedWidth="true"
+        android:text="约束比例 =2"/>
+
+    <requestFocus
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <requestFocus
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="292dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

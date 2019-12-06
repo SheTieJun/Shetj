@@ -29,23 +29,27 @@
            android:text="ChangeBounds"
            android:layout_margin="8dp"
            android:onClick="changeBounds"
+           android:textAllCaps="false"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
         <Button
             android:text="changeTransform"
             android:layout_margin="8dp"
             android:onClick="changeTransform"
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
             android:text="changeclipbounds"
             android:layout_margin="8dp"
+            android:textAllCaps="false"
             android:onClick="changeClipBounds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
             android:text="changeimagebounds"
             android:layout_margin="8dp"
+            android:textAllCaps="false"
             android:onClick="changeImageTransform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -54,7 +58,23 @@
             android:text="fadeslideexplode"
             android:layout_margin="8dp"
             android:onClick="fade"
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <Button
+            android:text="ChangeScroll"
+            android:layout_margin="8dp"
+            android:onClick="changeScroll"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+<!--        <Button-->
+<!--            android:text="PathMotion"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:onClick="pathMotion"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
     </LinearLayout>
 </RelativeLayout>

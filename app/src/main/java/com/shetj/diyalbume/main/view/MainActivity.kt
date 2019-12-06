@@ -6,15 +6,18 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.TooltipCompat
 import com.jakewharton.rxbinding3.view.clicks
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import com.shetj.diyalbume.R
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
+import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
+import com.shetj.diyalbume.camera.CameraxActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
 import com.shetj.diyalbume.fingerprint.FingerPrintActivity
@@ -22,34 +25,33 @@ import com.shetj.diyalbume.gltest.GlTestActivity
 import com.shetj.diyalbume.gltest.OpenGL3DActivity
 import com.shetj.diyalbume.image.FrescoActivity
 import com.shetj.diyalbume.image.ImageTestActivity
+import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
 import com.shetj.diyalbume.lottie.TestLottieActivity
 import com.shetj.diyalbume.main.presenter.MainPresenter
 import com.shetj.diyalbume.map.BDMapActivity
+import com.shetj.diyalbume.markdown.MarkDownActivity
 import com.shetj.diyalbume.pipiti.gesture.GestureActivity
 import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
+import com.shetj.diyalbume.playVideo.media.MediaActivity
 import com.shetj.diyalbume.playVideo.video.PlayVideoActivity
 import com.shetj.diyalbume.ppttest.PPtTestActivity
+import com.shetj.diyalbume.swipcard.SwipCardActivity
 import com.shetj.diyalbume.test.CustomActivity
+import com.shetj.diyalbume.utils.DownloadService
 import com.shetj.diyalbume.utils.SneakerUtils
+import com.shetj.diyalbume.worker.WorkerActivity
 import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
+import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
-import me.shetj.luck.StartAidlInterface
-import me.shetj.tencentx5.WebPageActivity
-import com.shetj.diyalbume.R
-import com.shetj.diyalbume.behavior.BehaviorActivity
-import com.shetj.diyalbume.camera.CameraxActivity
-import com.shetj.diyalbume.jobscheduler.JobSchedulerActivity
-import com.shetj.diyalbume.markdown.MarkDownActivity
-import com.shetj.diyalbume.playVideo.media.MediaActivity
-import com.shetj.diyalbume.swipcard.SwipCardActivity
-import com.shetj.diyalbume.utils.DownloadService
-import com.shetj.diyalbume.worker.WorkerActivity
-import kotlinx.android.synthetic.main.content_main.*
+import me.shetj.constraintlayout.TestConstrainLayoutActivity
 import me.shetj.download.view.DownloadActivity
+import me.shetj.luck.StartAidlInterface
 import me.shetj.mvvm.MvvmActivity
+import me.shetj.tencentx5.WebPageActivity
+import timber.log.Timber
 
 class MainActivity : BaseActivity<MainPresenter>(){
     private var iMyAidlInterface: StartAidlInterface? =null
@@ -78,6 +80,21 @@ class MainActivity : BaseActivity<MainPresenter>(){
         val intent = Intent("me.shetj.StartService")
         intent.`package` = "me.shetj.luck"
         bindService(intent,conn, AppCompatActivity.BIND_AUTO_CREATE)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unbindService(conn)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        Timber.i("onAttachedToWindow")
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        Timber.i("onDetachedFromWindow")
     }
 
     @SuppressLint("CheckResult")
@@ -191,7 +208,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
 
         btn_account.clicks().subscribe {
-            val appId = "wxf683bc1904cc8adb"//开发者平台ID
+            val appId = "wx"//开发者平台ID
             val api = WXAPIFactory.createWXAPI(this, appId, false)
 
             if (api.isWXAppInstalled) {
@@ -228,6 +245,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         mvvm.setOnClickListener {
             ArmsUtils.startActivity(this,MvvmActivity::class.java)
+        }
+        btn_ConstrainLayout.setOnClickListener {
+            ArmsUtils.startActivity(this, TestConstrainLayoutActivity::class.java)
         }
     }
 

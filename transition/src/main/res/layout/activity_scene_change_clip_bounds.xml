@@ -42,6 +42,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/button" />
 
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:text="ChangeClipBounds对应xml tag为changeClipBounds，作用对象：View的getClipBounds()值"/>
     </LinearLayout>
 </RelativeLayout>

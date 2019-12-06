@@ -42,6 +42,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/button" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="对应xml tag 为changeTransform，\n作用对象：View的scale和rotation"/>
 
     </LinearLayout>
 </RelativeLayout>
