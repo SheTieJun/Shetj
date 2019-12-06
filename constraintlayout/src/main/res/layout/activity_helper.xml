@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".demo.HelperActivity">
+
+    <me.shetj.constraintlayout.helper.CircularRevealHelper
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_tip"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="为什么需要自定义?\n
+
+保持 view 的层级不变，不像 ViewGroup 会增加 view 的层级
+封装一些特定的行为，方便复用\n
+一个 View 可以被多个 Helper引用，可以很方便组合出一些复杂的效果出来
+如何自定义?\n
+
+Helper持有 view 的引用，所以可以获取 view (getViews)然后操作 view
+提供了 onLayout 前后的 callback（updatePreLayout/updatePreLayout）
+Helper 继承了 view，所以Helper本身也是 view\n
+
+每个 view 不但可以接受一个ConstraintHelper，还可以同时接受多个ConstraintHelper。\n
+
+这是一个CircularRevealHelper" />
+</androidx.constraintlayout.widget.ConstraintLayout>

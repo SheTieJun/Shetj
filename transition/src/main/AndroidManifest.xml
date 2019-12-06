@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.shetj.transition">
-    <application
-        android:allowBackup="true"
-      >
-        <activity android:name=".transitionexample.Main3Activity"
-                  android:theme="@style/AppTheme_Red" >
-        </activity>
+    package="me.shetj.transition">
+
+    <application android:allowBackup="true">
+        <activity android:name=".transitionexample.scene.SceneChangeScrollActivity"></activity>
+        <activity
+            android:name=".transitionexample.Main3Activity"
+            android:theme="@style/AppTheme_Red"></activity>
         <activity
             android:name=".transitionexample.SceneActivity"
             android:theme="@style/AppTheme_Red" />
@@ -24,8 +25,9 @@
             android:name=".transitionexample.WithSharedElementTransitionsActivity"
             android:theme="@style/AppTheme_Yellow" />
         <activity android:name=".transitionexample.ContentAndSharedTransitionActivity" />
-        <activity android:name=".transitionexample.fragment.FragmentTransitionActivity"
-                  android:theme="@style/AppTheme_Blue"
-            ></activity>
+        <activity
+            android:name=".transitionexample.fragment.FragmentTransitionActivity"
+            android:theme="@style/AppTheme_Blue" />
     </application>
+
 </manifest>

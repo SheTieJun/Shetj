@@ -10,6 +10,7 @@ import me.shetj.transition.R;
 import me.shetj.transition.transitionexample.scene.SceneChangeBoundsActivity;
 import me.shetj.transition.transitionexample.scene.SceneChangeClipBoundsActivity;
 import me.shetj.transition.transitionexample.scene.SceneChangeImageTransformActivity;
+import me.shetj.transition.transitionexample.scene.SceneChangeScrollActivity;
 import me.shetj.transition.transitionexample.scene.SceneChangeTransformActivity;
 import me.shetj.transition.transitionexample.scene.SceneFadeSlideExplodeActivity;
 
@@ -49,5 +50,10 @@ public class SceneActivity extends AppCompatActivity {
     public void fade(View view){
         startActivity(new Intent(this, SceneFadeSlideExplodeActivity.class));
     }
-
+    public void changeScroll(View view){
+        startActivity(new Intent(this, SceneChangeScrollActivity.class));
+    }
+    public void pathMotion(View view){
+        startActivity(new Intent(this, SceneChangeScrollActivity.class));
+    }
 }

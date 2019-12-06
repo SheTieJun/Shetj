@@ -11,9 +11,9 @@
         android:layout_height="50dp" />
     <ImageView
         android:id="@+id/cutegirl"
-
         android:src="@mipmap/cutegirl"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="180dp"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 </RelativeLayout>

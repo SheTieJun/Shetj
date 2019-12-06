@@ -165,9 +165,23 @@ android {
                     details.useVersion '3.10.0'
                 }
             }
+            //确保只有一个base
             if (requested.group == 'com.github.SheTieJun') {
                 if (requested.name.startsWith("Base")) {
                     details.useVersion "$base_version"
+                }
+            }
+            if(requested.group == 'androidx.annotation'){
+                if(requested.name.startsWith("annotation")){
+                    details.useVersion "1.1.0"
+                }
+            }
+            if(requested.group == 'androidx.core'){
+                    details.useVersion "$core_ktx"
+            }
+            if(requested.group == 'androidx.constraintlayout'){
+                if(requested.name.startsWith("constraintlayout")){
+                    details.useVersion "$constraintlayout"
                 }
             }
         }
@@ -181,14 +195,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0' //liveData kt
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0' //viewModel kt
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.browser:browser:1.0.0'
@@ -200,7 +216,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-    implementation 'com.shuyu:GSYVideoPlayer:7.0.2'
+    implementation 'com.shuyu:GSYVideoPlayer:7.0.2' //https://github.com/CarGuo/GSYVideoPlayer
     implementation 'com.devyok.ipc:ipc-libcore:0.0.2'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
@@ -219,10 +235,13 @@ dependencies {
     implementation project(':download')
 
 
-    def db_version = "a5020e0ed4"  //commit 前10位
+
     implementation "com.github.SheTieJun:Base:$base_version"
     implementation 'com.github.SheTieJun:aspectutils:12004150ad'
+    def db_version = "a5020e0ed4"  //commit 前10位
     implementation "com.github.SheTieJun:SimXutilsDb:$db_version"
+    implementation "com.github.SheTieJun:OrangeDialog:0.0.1"
+
 
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
     implementation 'com.youth.banner:banner:1.4.10'
@@ -270,5 +289,6 @@ dependencies {
     //音视频
     implementation 'com.github.microshow:RxFFmpeg:2.1.0'
     implementation project(path: ':mvvm')
+    implementation project(path: ':constraintlayout')
 
 }

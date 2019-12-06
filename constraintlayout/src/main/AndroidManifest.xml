@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.shetj.constraintlayout">
+
+    <application>
+        <activity android:name=".demo.ConstrainActivity"></activity>
+        <activity android:name=".demo.MockViewActivity" />
+        <activity android:name=".demo.FilterViewActivity" />
+        <activity android:name=".demo.HelperActivity" />
+        <activity android:name=".demo.OtherActivity" />
+        <activity android:name=".demo.LayerActivity" />
+        <activity android:name=".demo.FlowActivity" />
+        <activity android:name=".TestConstrainLayoutActivity" />
+    </application>
+
+</manifest>

@@ -59,9 +59,6 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 		setContentView(R.layout.activity_map);
 		ArmsUtils.statuInScreen(this,false);
 		BDMapLocation.getInstance(getApplicationContext()).stop();
-		showMap();
-		setting();
-
 	}
 
 
@@ -176,6 +173,13 @@ public class MapActivity extends BaseActivity implements View.OnClickListener, S
 //		mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
 //		mMapView.showZoomControls(false);
 //		mMapView.showScaleControl(false);
+		showMap();
+		setting();
+	}
+
+	@Override
+	public boolean useEventBus() {
+		return true;
 	}
 
 	@Override

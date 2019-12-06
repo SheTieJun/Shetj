@@ -4,7 +4,7 @@
     android:id="@+id/activity_fragment_transition"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wakehao.transitionexample.fragment.FragmentTransitionActivity">
+    >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:elevation="@dimen/elevation_toolbar"
