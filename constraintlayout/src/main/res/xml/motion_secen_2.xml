@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear"
+        >
+<!--        触摸事件
+dragDirection 就是手指滑动的方向了，左右，上下 触发动画事件，拖动到一半松手，动画自动就还原了。
+touchAnchorId 这个东西好像是那个在进行动画的view的id-->
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@id/image"
+            motion:touchAnchorSide="top"
+            />
+
+    </Transition>
+
+<!--一般这玩意有两个对应上边的Transition标签
+每个ConstraintSet里边就是N个Constraint标签了，用来处理想要进行动画的view的位置的。-->
+    <ConstraintSet
+        android:id="@+id/start"
+        >
+
+<!--       Constraint里就是对控件的约束条件，位置大小之类的，-->
+        <Constraint android:id="@id/image">
+
+            <Layout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="5dp"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                />
+<!--
+attributeName   The name of the attribute. Case sensitive. ( MyAttr will look for method setMyAttr(...)
+customColorValue    The value is a color looking setMyAttr(int )
+customIntegerValue      The value is an integer looking setMyAttr(int )
+customFloatValue    The value is a float looking setMyAttr(float )
+customStringValue   The value is a String looking setMyAttr(String )
+customDimension The value is a dimension looking setMyAttr(float )
+customBoolean   The value is true or false looking setMyAttr(boolean )-->
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/red"
+                />
+
+            <CustomAttribute
+                motion:attributeName="Saturation"
+                motion:customFloatValue="1"
+                />
+
+<!--            <CustomAttribute-->
+<!--                motion:attributeName="Crossfade"-->
+<!--                motion:customFloatValue="0"-->
+<!--                />-->
+        </Constraint>
+
+
+    </ConstraintSet>
+
+
+<!--deriveConstraintsFrom : 限制来自 -->
+    <ConstraintSet
+        android:id="@+id/end"
+        motion:deriveConstraintsFrom="@id/start">
+        <Constraint android:id="@id/image">
+
+            <Layout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="8dp"/>
+
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/pink"
+                />
+<!--饱和度-->
+            <CustomAttribute
+                motion:attributeName="Saturation"
+                motion:customFloatValue="0"
+                />
+
+<!--            <CustomAttribute-->
+<!--                motion:attributeName="Crossfade"-->
+<!--                motion:customFloatValue="1"-->
+<!--                />-->
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

@@ -1,7 +1,6 @@
 package me.shetj.constraintlayout
 
 import android.os.Bundle
-import com.jakewharton.rxbinding3.view.clicks
 import kotlinx.android.synthetic.main.activity_test_constrain_layout.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.kt.start
@@ -18,7 +17,7 @@ class TestConstrainLayoutActivity : BaseActivity<ConstrainLayoutPresenter>() {
     }
 
     override fun initView() {
-        btn_flow.clicks().subscribe {
+        btn_flow.setOnClickListener {
             start(FlowActivity::class.java)
         }
         btn_Layer.setOnClickListener {
@@ -35,6 +34,9 @@ class TestConstrainLayoutActivity : BaseActivity<ConstrainLayoutPresenter>() {
         }
         btn_Mock.setOnClickListener {
             start(MockViewActivity::class.java)
+        }
+        btn_MotionLayout.setOnClickListener {
+            start(MotionLayoutActivity::class.java)
         }
     }
 }
