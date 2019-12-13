@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.shetj.constraintlayout.view.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/motion_secen_3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="50dp"
+    android:fitsSystemWindows="false"
+    app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/a_4494807_161247638174_2"/>
+
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        android:text="Monterey"
+        android:textColor="#FFF"
+        android:textSize="32dp" />
+
+    <TextView
+        android:id="@+id/sublabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="California"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        app:fontFamily="cursive" />
+</me.shetj.constraintlayout.view.CollapsibleToolbar>

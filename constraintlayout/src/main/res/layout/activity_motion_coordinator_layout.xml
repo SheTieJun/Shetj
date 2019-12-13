@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:id="@+id/content"
+    tools:context=".demo.MotionCoordinatorLayoutActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <include layout="@layout/motion_coordinatorlayout_head"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+   <include layout="@layout/content_scrolling_text"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

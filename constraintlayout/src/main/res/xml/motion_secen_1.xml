@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@id/end"
+        motion:duration="1000"
+        motion:motionInterpolator="linear"
+        >
+        <!--        触摸事件
+        dragDirection 就是手指滑动的方向了，左右，上下 触发动画事件，拖动到一半松手，动画自动就还原了。
+        touchAnchorId 这个东西好像是那个在进行动画的view的id-->
+        <OnSwipe
+            motion:dragDirection="dragRight"
+            motion:touchAnchorId="@id/button"
+            motion:touchAnchorSide="right"
+            />
+        <!--KeyFrameSet关键帧的集合-->
+        <KeyFrameSet >
+            <!--KeyAttribute 这个是修改在关键帧的地方控件的属性
+             注意必须先修改属性，否则会报错-->
+            <KeyAttribute
+                android:rotation="-45"
+                android:scaleX="2"
+                android:scaleY="2"
+                motion:framePosition="50"
+                motion:motionTarget="@id/button" />
+            <!--KeyPosition 这个是修改关键帧的位置的-->
+            <KeyPosition
+                motion:keyPositionType="pathRelative"
+                motion:percentY="-0.25"
+                motion:framePosition="50"
+                motion:motionTarget="@id/button"/>
+            />
+
+<!--    KeyCycle用来给动画添加振动
+      app:wavePeriod 这个就是波形的次数，比如正弦从0到360是一次，你要执行2次，这里就写个2
+app:framePosition 和上边一样，指定一个时间点，在这个附近应用Cycle
+android:rotation="50" 下边列子是一个角度旋转的动画，这里指定50，就是最大值了。
+android:translationY="50dp" 表示y轴的最大偏移量就是50dp
+-->
+            <KeyCycle
+                android:translationY="50dp"
+                motion:framePosition="100"
+                motion:motionTarget="@id/button"
+                motion:waveOffset="0"
+                motion:wavePeriod="0"
+                motion:waveShape="sin"
+                />
+            <KeyCycle
+                android:translationY="50dp"
+                motion:framePosition="50"
+                motion:motionTarget="@id/button"
+                motion:waveOffset="0"
+                motion:wavePeriod="1"
+                motion:waveShape="sin" />
+            <KeyCycle
+                android:translationY="50dp"
+                motion:framePosition="25"
+                motion:motionTarget="@id/button"
+                motion:waveOffset="0"
+                motion:wavePeriod="1"
+                motion:waveShape="sin" />
+            <KeyCycle
+                android:translationY="50dp"
+                motion:framePosition="75"
+                motion:motionTarget="@id/button"
+                motion:waveOffset="0"
+                motion:wavePeriod="1"
+                motion:waveShape="sin" />
+            <KeyCycle
+                android:translationY="50dp"
+                motion:framePosition="0"
+                motion:motionTarget="@id/button"
+                motion:waveOffset="0"
+                motion:wavePeriod="0"
+                motion:waveShape="sin" />
+
+        </KeyFrameSet>
+
+    </Transition>
+
+    <!--一般这玩意有两个对应上边的Transition标签
+    每个ConstraintSet里边就是N个Constraint标签了，用来处理想要进行动画的view的位置的。-->
+    <ConstraintSet
+        android:id="@+id/start"
+        >
+
+        <!--       Constraint里就是对控件的约束条件，位置大小之类的，-->
+        <Constraint android:id="@id/button">
+
+            <Layout
+                android:layout_width="60dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="5dp"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                />
+            <!--
+            attributeName   The name of the attribute. Case sensitive. ( MyAttr will look for method setMyAttr(...)
+            customColorValue    The value is a color looking setMyAttr(int )
+            customIntegerValue      The value is an integer looking setMyAttr(int )
+            customFloatValue    The value is a float looking setMyAttr(float )
+            customStringValue   The value is a String looking setMyAttr(String )
+            customDimension The value is a dimension looking setMyAttr(float )
+            customBoolean   The value is true or false looking setMyAttr(boolean )-->
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/red"
+                />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <!--deriveConstraintsFrom : 限制来自 -->
+    <ConstraintSet
+        android:id="@+id/end"
+        motion:deriveConstraintsFrom="@id/start">
+        <Constraint android:id="@id/button">
+
+            <Layout
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                motion:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
+
+            <CustomAttribute
+                motion:attributeName="BackgroundColor"
+                motion:customColorValue="@color/base_blue"
+                />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
