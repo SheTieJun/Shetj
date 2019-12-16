@@ -7,9 +7,12 @@
     tools:context=".demo.MotionLayoutActivity">
 
 
-    <include layout="@layout/motion_basic_01"
+    <include
+        layout="@layout/motion_basic_01"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <include layout="@layout/motion_basic_02"/>
 
@@ -40,4 +43,14 @@
         android:textAllCaps="false"
         android:text="Fragment"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_youTu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YouTu"
+        android:textAllCaps="false"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_CoordinatorLayout"
+        app:layout_constraintStart_toEndOf="@+id/btn_fragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

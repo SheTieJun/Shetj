@@ -11,7 +11,7 @@ import me.shetj.constraintlayout.fragment.BlankFragment
 import me.shetj.constraintlayout.fragment.SecondFragment
 import kotlin.math.abs
 
-class FragmentMotionActivity : AppCompatActivity(), View.OnClickListener, MotionLayout.TransitionListener {
+class MotionFragmentActivity : AppCompatActivity(), View.OnClickListener, MotionLayout.TransitionListener {
 
     private var lastProgress = 0f
     private var fragment : Fragment? = null

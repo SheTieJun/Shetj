@@ -34,12 +34,12 @@
                 motion:motionTarget="@id/button"/>
             />
 
-<!--    KeyCycle用来给动画添加振动
-      app:wavePeriod 这个就是波形的次数，比如正弦从0到360是一次，你要执行2次，这里就写个2
-app:framePosition 和上边一样，指定一个时间点，在这个附近应用Cycle
-android:rotation="50" 下边列子是一个角度旋转的动画，这里指定50，就是最大值了。
-android:translationY="50dp" 表示y轴的最大偏移量就是50dp
--->
+            <!--    KeyCycle用来给动画添加振动
+                  app:wavePeriod 这个就是波形的次数，比如正弦从0到360是一次，你要执行2次，这里就写个2
+            app:framePosition 和上边一样，指定一个时间点，在这个附近应用Cycle
+            android:rotation="50" 下边列子是一个角度旋转的动画，这里指定50，就是最大值了。
+            android:translationY="50dp" 表示y轴的最大偏移量就是50dp
+            -->
             <KeyCycle
                 android:translationY="50dp"
                 motion:framePosition="100"
@@ -77,6 +77,22 @@ android:translationY="50dp" 表示y轴的最大偏移量就是50dp
                 motion:wavePeriod="0"
                 motion:waveShape="sin" />
 
+            <!--
+            Calls FloatingActionButton.show() when frame position is being increased and
+            passes around 10%
+
+            <KeyTrigger
+                motion:framePosition="10"
+                motion:motionTarget="@id/fab"
+                motion:onPositiveCross="show" />
+
+            Calls FloatingActionButton.hide() when frame position is being decreased and
+            passes around 20%
+            <KeyTrigger
+                motion:framePosition="20"
+                motion:motionTarget="@id/fab"
+                motion:onNegativeCross="hide" />
+           -->
         </KeyFrameSet>
 
     </Transition>

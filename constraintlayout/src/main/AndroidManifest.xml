@@ -3,8 +3,8 @@
     package="me.shetj.constraintlayout">
 
     <application>
-        <activity android:name=".demo.FragmentMotionActivity"></activity>
-        <activity android:name=".demo.DrawerLayoutActivity" />
+        <activity android:name=".demo.MotionFragmentActivity"/>
+        <activity android:name=".demo.MotionDrawerLayoutActivity" />
         <activity android:name=".demo.MotionCoordinatorLayoutActivity" />
         <activity android:name=".demo.MotionLayoutActivity" />
         <activity android:name=".demo.ConstrainActivity" />
@@ -15,6 +15,7 @@
         <activity android:name=".demo.LayerActivity" />
         <activity android:name=".demo.FlowActivity" />
         <activity android:name=".TestConstrainLayoutActivity" />
+        <activity android:name=".demo.youtubedemo.YouTubeDemoActivity"/>
     </application>
 
 </manifest>
