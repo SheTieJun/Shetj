@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layoutDescription="@xml/motion_fragment"
-    tools:context=".demo.FragmentMotionActivity">
+    tools:context=".demo.MotionFragmentActivity">
 
     <me.shetj.constraintlayout.view.TouchFrameLayout
         android:id="@+id/container"
