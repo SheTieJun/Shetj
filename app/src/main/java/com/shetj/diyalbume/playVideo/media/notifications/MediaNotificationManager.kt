@@ -74,8 +74,6 @@ class MediaNotificationManager(private val mContext: Context) {
                     PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
 
     init {
-        // Cancel all notifications to handle the case where the Service was killed and
-        // restarted by the system.
         NotificationManagerCompat.from(mContext).cancelAll()
     }
 

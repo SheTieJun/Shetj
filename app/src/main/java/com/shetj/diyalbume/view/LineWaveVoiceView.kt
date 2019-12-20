@@ -56,27 +56,31 @@ class LineWaveVoiceView :View {
     }
 
     private fun initView(attrs: AttributeSet, context: Context) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineWaveVoiceView).apply {
-            lineColor = getColor(R.styleable.LineWaveVoiceView_voiceLineColor, ContextCompat.getColor(context, R.color.colorAccent))
-            textColor = getColor(R.styleable.LineWaveVoiceView_voiceTextColor, ContextCompat.getColor(context, R.color.colorAccent))
-            lineWidth = getDimension(R.styleable.LineWaveVoiceView_voiceLineWith, LINE_WIDTH)
-            textSize = getDimension(R.styleable.LineWaveVoiceView_voiceTextSize, 42f)
-            updateSpeed = getInt(R.styleable.LineWaveVoiceView_updateSpeed, 500).toLong()
-        }
-        typedArray.recycle()
-        evenNumberAnimator = ObjectAnimator.ofFloat(minLineHeight, maxLineHeight).apply {
-            addUpdateListener {
-                val changeSize = it.animatedValue as Float
-                oddNumber = changeSize*0.9f
-                oddNumber2 = changeSize*0.65f
-                evenNumber = maxLineHeight - changeSize + 2f
-                evenNumber2 = maxLineHeight - changeSize + 4f
-                postInvalidate()
-            }
-            repeatMode = REVERSE
-            repeatCount = -1
-            duration = updateSpeed
-        }
+        context.obtainStyledAttributes(attrs, R.styleable.LineWaveVoiceView)
+                .apply {
+                    lineColor = getColor(R.styleable.LineWaveVoiceView_voiceLineColor, ContextCompat.getColor(context, R.color.colorAccent))
+                    textColor = getColor(R.styleable.LineWaveVoiceView_voiceTextColor, ContextCompat.getColor(context, R.color.colorAccent))
+                    lineWidth = getDimension(R.styleable.LineWaveVoiceView_voiceLineWith, LINE_WIDTH)
+                    textSize = getDimension(R.styleable.LineWaveVoiceView_voiceTextSize, 42f)
+                    updateSpeed = getInt(R.styleable.LineWaveVoiceView_updateSpeed, 500).toLong()
+
+                    recycle()
+
+                }
+        evenNumberAnimator = ObjectAnimator.ofFloat(minLineHeight, maxLineHeight)
+                .apply {
+                    addUpdateListener {
+                        val changeSize = it.animatedValue as Float
+                        oddNumber = changeSize*0.9f
+                        oddNumber2 = changeSize*0.65f
+                        evenNumber = maxLineHeight - changeSize + 2f
+                        evenNumber2 = maxLineHeight - changeSize + 4f
+                        postInvalidate()
+                    }
+                    repeatMode = REVERSE
+                    repeatCount = -1
+                    duration = updateSpeed
+                }
     }
 
     @Synchronized
@@ -151,6 +155,8 @@ class LineWaveVoiceView :View {
             paint.color = textColor
             paint.textSize = textSize
             val textWidth = paint.measureText(text)
+            //paint.ascent() 上边
+            //paint.descent() 下边
             canvas.drawText(text, widthCentre - textWidth / 2, heightCentre - (paint.ascent() + paint.descent()) / 2, paint)
             //设置颜色
             paint.color = lineColor

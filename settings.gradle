@@ -6,4 +6,4 @@ include ':app',  ':components', ':router', ':constraintlayout',
         ':update', ':upload',
         ':download', ':fresco',  ':bdmap',
          ':umeng', ':compiler', ':lib', ':share'
-include ':rxFingerPrinter' ,':qmuidemo'
+include ':rxFingerPrinter'

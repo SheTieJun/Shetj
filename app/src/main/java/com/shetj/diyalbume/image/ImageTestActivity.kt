@@ -1,6 +1,7 @@
 package com.shetj.diyalbume.image
 
 import android.graphics.*
+import android.os.Build
 import android.os.Bundle
 import android.text.Layout
 import android.text.StaticLayout
@@ -22,8 +23,8 @@ class ImageTestActivity : AppCompatActivity() {
         btn_commit.clicks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-            iv_preview.setImageBitmap(getShareingBitmap(BitmapFactory.decodeResource(resources,R.mipmap.icon_qr),edit_query.text.toString(),20))
-        }
+                    iv_preview.setImageBitmap(getShareBitmap(BitmapFactory.decodeResource(resources,R.mipmap.icon_qr),edit_query.text.toString(),20))
+                }
     }
 
 
@@ -34,33 +35,40 @@ class ImageTestActivity : AppCompatActivity() {
      * @param textSize  文字大小
      * @return
      */
-    private fun getShareingBitmap(imageBitmap: Bitmap, des: String, textSize: Int): Bitmap {
+    private fun getShareBitmap(imageBitmap: Bitmap, des: String, textSize: Int): Bitmap {
         val config = imageBitmap.config
         val sourceBitmapHeight = imageBitmap.height
         val sourceBitmapWidth = imageBitmap.width
         val paint = Paint()
         // 画笔颜色
         paint.color = Color.BLACK
-
-        val textpaint = TextPaint(paint)
+        val textPaint = TextPaint(paint)
         // 文字大小
-        textpaint.textSize = textSize.toFloat()
+        textPaint.textSize = textSize.toFloat()
         // 抗锯齿
-        textpaint.isAntiAlias = true
+        textPaint.isAntiAlias = true
+        val staticLayout : StaticLayout
+        staticLayout = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            StaticLayout.Builder
+                    .obtain(des,0,des.length,textPaint,sourceBitmapWidth)
+                    .apply {
+                        setAlignment(Layout.Alignment.ALIGN_CENTER)
+                        setIncludePad(true)
+                    }.build()
+        }else {
+            StaticLayout(des, textPaint,
+                    sourceBitmapWidth, Layout.Alignment.ALIGN_CENTER, 1f, 1f, true)
+        }
 
-        val title_layout = StaticLayout(des, textpaint,
-                sourceBitmapWidth, Layout.Alignment.ALIGN_CENTER, 1f, 1f, true)
-
-        val share_bitmap = Bitmap.createBitmap(sourceBitmapWidth, sourceBitmapHeight + title_layout.height, config)
-        val canvas = Canvas(share_bitmap)
+        val shareBitmap = Bitmap.createBitmap(sourceBitmapWidth, sourceBitmapHeight + staticLayout.height, config)
+        val canvas = Canvas(shareBitmap)
 
         canvas.drawColor(Color.WHITE)
-
         // 绘制图片
         canvas.drawBitmap(imageBitmap, 0f, 0f, paint)
-        canvas.translate(0f, sourceBitmapHeight.toFloat())
-        title_layout.draw(canvas)
-        canvas.translate(0f, title_layout.height.toFloat())
-        return share_bitmap
+        // 玩下移动
+        canvas.translate(0f, sourceBitmapHeight.toFloat()-staticLayout.height)
+        staticLayout.draw(canvas)
+        return shareBitmap
     }
 }

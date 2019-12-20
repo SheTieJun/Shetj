@@ -51,7 +51,6 @@ class MusicService : MediaBrowserServiceCompat() {
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or
                         MediaSessionCompat.FLAG_HANDLES_QUEUE_COMMANDS or
                         MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
-        // setSessionToken
         sessionToken = mMediaSessionCompat!!.sessionToken
         mMediaNotificationManager = MediaNotificationManager(this)
 
@@ -63,9 +62,9 @@ class MusicService : MediaBrowserServiceCompat() {
     }
 
     override fun onDestroy() {
-        mMediaNotificationManager!!.onDestroy()
-        mMediaPlayerManager!!.stop()
-        mMediaSessionCompat!!.release()
+        mMediaNotificationManager?.onDestroy()
+        mMediaPlayerManager?.stop()
+        mMediaSessionCompat?.release()
         Timber.d("onDestroy: MediaPlayerManager stopped, and MediaSession released")
     }
 

@@ -11,11 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
-    
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
 
-
-    </androidx.cardview.widget.CardView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:src="@drawable/exo_icon_play"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

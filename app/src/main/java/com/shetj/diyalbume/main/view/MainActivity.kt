@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.TooltipCompat
 import com.jakewharton.rxbinding3.view.clicks
@@ -17,6 +19,7 @@ import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
 import com.shetj.diyalbume.behavior.BehaviorActivity
 import com.shetj.diyalbume.bluetooth.BluetoothActivity
+import com.shetj.diyalbume.bubble.BubbleUtils
 import com.shetj.diyalbume.camera.CameraxActivity
 import com.shetj.diyalbume.encrypt.EncryptActivity
 import com.shetj.diyalbume.executors.ExecutorsActivity
@@ -119,6 +122,11 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         btn_tup.clicks( ).subscribe{
             ArmsUtils.startActivity( this,ImageTestActivity::class.java)
+        }
+        btn_bubble.clicks().subscribe {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                BubbleUtils.createBunbble2(this)
+            }
         }
 
         btn_treadPool.clicks( ).subscribe {

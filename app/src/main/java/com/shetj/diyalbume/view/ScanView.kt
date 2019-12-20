@@ -107,6 +107,11 @@ class ScanView : View {
     }
 
     private fun startScan() {
-        animator!!.start()
+        animator?.start()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        animator?.cancel()
     }
 }

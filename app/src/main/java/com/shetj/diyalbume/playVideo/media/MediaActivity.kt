@@ -10,6 +10,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.kt.toJson
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
@@ -30,6 +31,9 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_media)
+        floatingActionButton.setOnClickListener {
+            startOrPause()
+        }
     }
 
     override fun initData() {
@@ -161,13 +165,13 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
 
         override  fun onShuffleModeChanged(shuffleMode: Int) {
             super.onShuffleModeChanged(shuffleMode)
-            Timber.i("onShuffleModeChanged ----随机模式发生变化")
+            Timber.i("onShuffleModeChanged ----随机模式发生变化 = $shuffleMode")
             //随机模式发生变化
         }
 
         override  fun onMetadataChanged(metadata: MediaMetadataCompat) {
             super. onMetadataChanged(metadata)
-            Timber.i("onMetadataChanged ----数据变化")
+            Timber.i("onMetadataChanged ----数据变化 = ${metadata.toJson()}")
             //数据变化
         }
     }
