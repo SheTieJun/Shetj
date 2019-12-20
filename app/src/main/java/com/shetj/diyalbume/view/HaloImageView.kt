@@ -17,7 +17,6 @@ class HaloImageView : TextView {
 
     private var valueAnimator: ValueAnimator? =null
     private lateinit var mPaint: Paint
-    private lateinit var mBGPaint: Paint
     private var haloColor: Int = Color.RED
     private var haloSize: Float = 0f
     private var haloBackgroundColor:  Int = Color.RED
@@ -56,18 +55,9 @@ class HaloImageView : TextView {
         mPaint = Paint().apply {
             flags = Paint.ANTI_ALIAS_FLAG
             isAntiAlias = true
-            color = haloColor
-            style = Paint.Style.FILL
-            maskFilter = BlurMaskFilter(haloSize, BlurMaskFilter.Blur.OUTER)
-        }
-        mBGPaint =Paint().apply {
-            flags = Paint.ANTI_ALIAS_FLAG
-            isAntiAlias = true
-            color = haloBackgroundColor
             style = Paint.Style.FILL
         }
         setLayerType(View.LAYER_TYPE_SOFTWARE,null)
-
     }
 
 
@@ -96,14 +86,18 @@ class HaloImageView : TextView {
     }
 
     override fun onDraw(canvas: Canvas) {
+        mPaint.maskFilter = BlurMaskFilter(haloSize, BlurMaskFilter.Blur.OUTER)
+        mPaint.color = haloColor
         canvas.drawCircle((width/2).toFloat(), (height/2).toFloat(), (width/2).toFloat()-haloSize, mPaint)
-        canvas.drawCircle((width/2).toFloat(), (height/2).toFloat(), (width/2).toFloat()-haloSize, mBGPaint)
+        mPaint.color = haloBackgroundColor
+        mPaint.maskFilter = null
+        canvas.drawCircle((width/2).toFloat(), (height/2).toFloat(), (width/2).toFloat()-haloSize, mPaint)
         super.onDraw(canvas)
     }
 
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        valueAnimator?.cancel()
+        stopAnim()
     }
 }

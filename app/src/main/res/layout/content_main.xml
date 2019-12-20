@@ -113,6 +113,17 @@
         app:layout_constraintTop_toBottomOf="@id/btn_camera"
         app:layout_constraintStart_toStartOf="parent"
         android:text="ConstrainLayout"/>
+
+    <Button
+        android:id="@+id/btn_bubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_camera"
+        app:layout_constraintStart_toEndOf="@+id/btn_ConstrainLayout"
+        android:text="Bubble"/>
     <Button
         android:id="@+id/btn_download"
         android:layout_width="wrap_content"

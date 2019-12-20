@@ -97,8 +97,6 @@ class CircleView : View {
         //        canvas.drawRect(0, 0, 300, 300, mPaint1);
         //        mPaint1.setColor(Color.RED);
         //        canvas.drawRect(200, 200, 400, 400,mPaint1);
-        invalidate()
-
     }
 
 }

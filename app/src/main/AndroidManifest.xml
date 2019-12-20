@@ -2,6 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shetj.diyalbume">
+    <!-- //基础权限 -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 蓝牙 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 蓝牙6.0需要模糊的地址 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".APP"
@@ -13,7 +29,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".androidxtest.AndroidXActivity"></activity>
+        <activity android:name=".bubble.BubbleActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:allowEmbedded="true"
+            android:documentLaunchMode="always"
+            android:resizeableActivity="true"/>
+        <activity android:name=".androidxtest.AndroidXActivity" />
         <activity android:name=".ffmpeg.RxFFmpegActivity" />
         <activity android:name=".camera.CameraxActivity" />
         <activity android:name=".swipcard.SwipCardActivity" />
@@ -33,7 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".createAlbum.view.CreateActivity"
             android:screenOrientation="landscape"
@@ -42,14 +62,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.shetj.diyalbume.main.view.MainActivity" />
         </activity>
-
         <activity
             android:name=".playVideo.video.PlayVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".test.BackgroundActivity" />
         <activity android:name=".test.CustomActivity" />
         <activity android:name=".ppttest.Main2Activity" />
-
         <activity android:name=".encrypt.EncryptActivity" />
         <activity android:name=".ppttest.StartChallengeActivity" />
         <activity android:name=".gltest.GlTestActivity" />
@@ -60,9 +78,7 @@
         <activity android:name=".animator.AnimatorActivity" />
         <activity android:name=".bluetooth.BluetoothActivity" />
         <activity android:name=".lottie.TestLottieActivity" />
-
         <activity android:name=".animator.TranstionActivity" />
-
         <activity android:name=".aspect.AspectActivity" />
         <activity android:name=".map.BDMapActivity" />
         <activity android:name=".main.view.Main3Activity" />
@@ -73,6 +89,7 @@
         <activity android:name=".pipiti.localMusic.LocalMusicActivity" />
         <activity android:name=".ppttest.NewIndexActivity" />
         <activity android:name=".ppttest.PPtTestActivity" />
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="584027af99f0c77125001745" />
@@ -85,6 +102,7 @@
         <meta-data
             android:name="design_height"
             android:value="1920" />
+
         <service
             android:name=".jobscheduler.MyJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -98,28 +116,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-
         <service android:name=".playVideo.media.MediaService">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
-    </application> <!-- //基础权限 -->
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 蓝牙 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 蓝牙6.0需要模糊的地址 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    </application>
 
 </manifest>
