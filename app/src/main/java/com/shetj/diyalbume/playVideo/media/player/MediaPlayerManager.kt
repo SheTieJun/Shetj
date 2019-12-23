@@ -175,14 +175,8 @@ class MediaPlayerManager (context: Context,
         if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer()
             // 音频播放完成的回调
-            mMediaPlayer!!.setOnCompletionListener {
-                // 回调音频播放完成
-                mPlaybackInfoListener.onPlaybackCompleted()
-                setNewState(PlaybackStateCompat.STATE_PAUSED)
-            }
         }
     }
-
 
     /**
      * 根据音频id进行音频播放
@@ -204,10 +198,8 @@ class MediaPlayerManager (context: Context,
                 play()
             }
             return
-        } else {
-            release()
-        }// 音频已发生变化
-        // 变化后的音频id
+        }
+        // 音频已发生变化
         mFilename = filename
         // 创建MediaPlayer
         initializeMediaPlayer()
@@ -275,6 +267,16 @@ class MediaPlayerManager (context: Context,
         if (mMediaPlayer != null) {
             mMediaPlayer!!.release()
             mMediaPlayer = null
+        }
+    }
+
+    fun setOnCompletionListener(onCompletionListener: MediaPlayer.OnCompletionListener) {
+        if (mMediaPlayer == null){
+            initializeMediaPlayer()
+        }
+        mMediaPlayer!!.setOnCompletionListener{
+            onCompletionListener.onCompletion(it)
+            setNewState(PlaybackStateCompat.STATE_PAUSED)
         }
     }
 

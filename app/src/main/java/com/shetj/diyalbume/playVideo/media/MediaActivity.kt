@@ -2,7 +2,6 @@ package com.shetj.diyalbume.playVideo.media
 
 import android.content.ComponentName
 import android.os.Bundle
-import android.os.Message
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
@@ -72,6 +71,8 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
 
                         MediaControllerCompat.setMediaController(this@MediaActivity,mMediaController)
 
+                        //设置循环模式
+                        mMediaController?.transportControls?.setRepeatMode(PlaybackStateCompat.REPEAT_MODE_ALL)
                         Timber.i("连接成功 = mMediaController = ${mMediaController.toString()}")
                     }
                 }
@@ -180,6 +181,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         override  fun onMetadataChanged(metadata: MediaMetadataCompat) {
             super. onMetadataChanged(metadata)
             Timber.i("onMetadataChanged ----数据变化 = ${metadata.toJson()}")
+            mAdapter.selectMediaId(metadata.description.mediaId)
             //数据变化
         }
     }

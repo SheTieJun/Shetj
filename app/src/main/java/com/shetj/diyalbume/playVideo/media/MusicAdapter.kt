@@ -94,5 +94,15 @@ class MusicAdapter(data: List<MediaBrowserCompat.MediaItem>?) : BaseQuickAdapter
         return "$strMinute：$strSecond"
     }
 
+    fun selectMediaId(mediaId: String?) {
+        mediaId?.let {
+            data.forEach {
+                if(it.description.mediaId == mediaId){
+                    setSelectPosition(data.indexOf(it))
+                }
+            }
+        }
+    }
+
 
 }

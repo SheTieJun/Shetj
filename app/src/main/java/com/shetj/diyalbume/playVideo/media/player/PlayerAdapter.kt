@@ -16,21 +16,18 @@
 
 package com.shetj.diyalbume.playVideo.media.player
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.media.AudioFocusRequest
+import android.content.*
 import android.media.AudioManager
 import android.support.v4.media.MediaMetadataCompat
-import androidx.media.AudioFocusRequestCompat
-import androidx.media.AudioManagerCompat
+import androidx.browser.customtabs.CustomTabsClient.getPackageName
+import androidx.media.session.MediaButtonReceiver
 
 /**
  * Abstract player implementation that handles playing music with proper handling of headphones
  * and audio focus.
  */
 abstract class PlayerAdapter(context: Context) {
+    private var mbCN: ComponentName
     // 播放的上下文对象
     private val mContext: Context
     // 获取AudioManager
@@ -79,6 +76,8 @@ abstract class PlayerAdapter(context: Context) {
         mAudioManager = mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         // OnAudioFocusChangeListener
         mAudioFocusHelper = AudioFocusHelper()
+        mbCN = ComponentName(mContext.getPackageName(), MediaButtonReceiver::class.java.name)
+//注册一个MedioButtonReceiver广播监听
     }
 
     abstract fun playFromMedia(metadata: MediaMetadataCompat)
@@ -184,7 +183,6 @@ abstract class PlayerAdapter(context: Context) {
             mAudioManager.abandonAudioFocus(this)
         }
 
-
         /**
          * 音频焦点变化回调
          *
@@ -229,10 +227,10 @@ abstract class PlayerAdapter(context: Context) {
     private fun registerAudioNoisyReceiver() {
         if (!mAudioNoisyReceiverRegistered) {
             mContext.registerReceiver(mAudioNoisyReceiver, AUDIO_NOISY_INTENT_FILTER)
+            mAudioManager.registerMediaButtonEventReceiver(mbCN)
             mAudioNoisyReceiverRegistered = true
         }
     }
-
 
     /**
      * 取消Receiver注册
@@ -240,6 +238,7 @@ abstract class PlayerAdapter(context: Context) {
     private fun unregisterAudioNoisyReceiver() {
         if (mAudioNoisyReceiverRegistered) {
             mContext.unregisterReceiver(mAudioNoisyReceiver)
+            mAudioManager.unregisterMediaButtonEventReceiver(mbCN)
             mAudioNoisyReceiverRegistered = false
         }
     }

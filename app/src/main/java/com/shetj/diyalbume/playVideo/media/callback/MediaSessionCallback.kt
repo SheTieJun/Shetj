@@ -1,10 +1,16 @@
 package com.shetj.diyalbume.playVideo.media.callback
 
 import android.content.Context
+import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
+import android.view.KeyEvent
 
 import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
@@ -28,6 +34,8 @@ class MediaSessionCallback(private val context: Context,
     private var mQueueIndex = -1
     private var mPreparedMedia: MediaMetadataCompat? = null
 
+    //循环模式
+    private var mRepeatMode: Int = PlaybackStateCompat.REPEAT_MODE_NONE
     /**
      * 判断列表数据状态
      * @return
@@ -37,6 +45,21 @@ class MediaSessionCallback(private val context: Context,
 
     init {
         this.mQueueIndex = mQueueIndex
+        mMediaPlayerManager.setOnCompletionListener(MediaPlayer.OnCompletionListener {
+            when (mRepeatMode) {
+                PlaybackStateCompat.REPEAT_MODE_ONE -> {
+                    onPlay()
+                }
+                PlaybackStateCompat.REPEAT_MODE_ALL -> {
+                    onSkipToNext()
+                }
+                PlaybackStateCompat.REPEAT_MODE_NONE -> {
+                    if (mQueueIndex != mPlaylist.size - 1) {
+                        onSkipToNext()
+                    }
+                }
+            }
+        })
     }
 
 
@@ -132,6 +155,19 @@ class MediaSessionCallback(private val context: Context,
 
     override fun onSeekTo(pos: Long) {
         mMediaPlayerManager.seekTo(pos)
+    }
+
+    override fun onSetRepeatMode(repeatMode: Int) {
+        super.onSetRepeatMode(repeatMode)
+        this.mRepeatMode = repeatMode
+    }
+
+
+    //耳机操作
+    override fun onMediaButtonEvent(mediaButtonEvent: Intent?): Boolean {
+        Timber.i("${mediaButtonEvent?.action}")
+        return    super.onMediaButtonEvent(mediaButtonEvent)
+
     }
 }
 

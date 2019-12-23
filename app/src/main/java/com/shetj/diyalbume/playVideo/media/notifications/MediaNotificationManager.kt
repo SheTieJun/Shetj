@@ -50,26 +50,26 @@ class MediaNotificationManager(private val mContext: Context) {
     private val mPlayAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_play_arrow_white_24dp,
             mContext.getString(R.string.label_play),
-            MediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
+            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
 
     private val mPauseAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_pause_white_24dp,
             mContext.getString(R.string.label_pause),
-            MediaButtonReceiver.buildMediaButtonPendingIntent(
+            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_PAUSE))
 
     private val mNextAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_skip_next_white_24dp,
             mContext.getString(R.string.label_next),
-            MediaButtonReceiver.buildMediaButtonPendingIntent(
+            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_SKIP_TO_NEXT))
 
     private val mPrevAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_skip_previous_white_24dp,
             mContext.getString(R.string.label_previous),
-            MediaButtonReceiver.buildMediaButtonPendingIntent(
+            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
 
@@ -121,7 +121,6 @@ class MediaNotificationManager(private val mContext: Context) {
                         MediaButtonReceiver.buildMediaButtonPendingIntent(
                                 mContext,
                                 PlaybackStateCompat.ACTION_STOP))
-
         builder.setStyle(mediaStyle)
                 .setColor(ContextCompat.getColor(mContext, R.color.notification_bg))
                 .setSmallIcon(R.drawable.ic_stat_image_audiotrack)
