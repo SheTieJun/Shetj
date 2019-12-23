@@ -4,7 +4,7 @@ apply from: "config.gradle"
 ext {
     var = '43697'
     base_version = "5becdeee00"
-    constraintlayout = "2.0.0-beta3"
+    constraintlayout = "2.0.0-beta4"
     appcompat = "1.1.0"
     core_ktx = "1.1.0"
     viewpager2 = "1.0.0"
@@ -17,7 +17,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 //        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.10'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // Add this line

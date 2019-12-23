@@ -133,8 +133,6 @@ class MediaNotificationManager(private val mContext: Context) {
                         mContext, PlaybackStateCompat.ACTION_STOP))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
-
-
         return builder
     }
 

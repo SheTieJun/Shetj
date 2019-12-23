@@ -20,8 +20,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.support.v4.media.MediaMetadataCompat
+import androidx.media.AudioFocusRequestCompat
+import androidx.media.AudioManagerCompat
 
 /**
  * Abstract player implementation that handles playing music with proper handling of headphones

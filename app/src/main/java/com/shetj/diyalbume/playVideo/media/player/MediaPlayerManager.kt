@@ -213,11 +213,8 @@ class MediaPlayerManager (context: Context,
         initializeMediaPlayer()
         // 设置要播放的音频文件
         try {
-            val assetFileDescriptor = mContext.assets.openFd(mFilename!!)
-            mMediaPlayer!!.setDataSource(
-                    assetFileDescriptor.fileDescriptor,
-                    assetFileDescriptor.startOffset,
-                    assetFileDescriptor.length)
+            mMediaPlayer!!.reset()
+            mMediaPlayer!!.setDataSource(mFilename)
         } catch (e: Exception) {
             throw RuntimeException("Failed to open file: " + mFilename!!, e)
         }

@@ -45,21 +45,18 @@ public class WaveView2  extends View {
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setDuration(waveTime);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                Float value = (Float) animation.getAnimatedValue();
-                for (int i = 0; i < waveList.length; i++) {
+        valueAnimator.addUpdateListener(animation -> {
+            Float value = (Float) animation.getAnimatedValue();
+            for (int i = 0; i < waveList.length; i++) {
 
-                    float v = value - i * 1.0f / waveRate;
-                    if (v < 0 && waveList[i] > 0) {
-                        v += 1;
-                    }
-                    waveList[i] = v;
+                float v = value - i * 1.0f / waveRate;
+                if (v < 0 && waveList[i] > 0) {
+                    v += 1;
                 }
-                invalidate();
-
+                waveList[i] = v;
             }
+            invalidate();
+
         });
         valueAnimator.start();
 

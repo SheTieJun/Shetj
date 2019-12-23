@@ -3,7 +3,6 @@ package com.shetj.diyalbume.camera
 import android.Manifest
 import android.graphics.Matrix
 import android.os.Bundle
-import android.util.Log
 import android.util.Size
 import android.view.Surface
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ import me.shetj.base.kt.hasPermission
 import me.shetj.base.tools.app.ArmsUtils
 import timber.log.Timber
 import java.io.File
-import java.util.concurrent.Executor
 
 /**
  * androidx camera2 test
@@ -40,7 +38,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
 
         val hasPermission = hasPermission(Manifest.permission.CAMERA)
         if (hasPermission) {
-            texture_view.post {
+            texture_view?.post {
                 //使用`viewFinder.post{.}’来确保在调用‘startCamera()’时view 已经展示。
                 startCamera()
             }
@@ -109,7 +107,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
                         override fun onError(imageCaptureError: ImageCapture.ImageCaptureError, message: String, cause: Throwable?) {
                             val msg = "Photo capture failed: $message"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            Log.e("CameraXApp", msg)
+                            Timber.e(msg)
                             cause?.printStackTrace()
                         }
 
@@ -117,7 +115,7 @@ class CameraxActivity : BaseActivity<BasePresenter<*>>() {
                         override fun onImageSaved(file: File) {
                             val msg = "Photo capture succeeded: ${file.absolutePath}"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            Log.d("CameraXApp", msg)
+                            Timber.d( msg)
                         }
                     })
         }

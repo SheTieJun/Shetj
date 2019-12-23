@@ -9,7 +9,7 @@ import com.shetj.diyalbume.R
 
 import java.util.ArrayList
 
-class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewHolder>(R.layout.item_select_music, data) {
+class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewHolder>(R.layout.item_select_music2, data) {
 
     private var select = -1
     private val MusicList: ArrayList<Music>? = null

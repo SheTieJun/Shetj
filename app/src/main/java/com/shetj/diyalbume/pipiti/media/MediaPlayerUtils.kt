@@ -2,6 +2,7 @@ package com.shetj.diyalbume.pipiti.media
 
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.net.Uri
 
 import java.util.concurrent.TimeUnit
 
@@ -64,7 +65,7 @@ class MediaPlayerUtils : LifecycleListener, MediaPlayer.OnPreparedListener, Medi
         }
         try {
             mediaPlayer!!.reset()
-            mediaPlayer!!.setDataSource(url)
+            mediaPlayer!!.setDataSource(Uri.parse(url).toString())
             mediaPlayer!!.prepareAsync()
             //监听
             mediaPlayer!!.setOnPreparedListener(this)

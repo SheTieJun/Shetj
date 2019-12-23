@@ -56,7 +56,6 @@ class MediaService : MediaBrowserServiceCompat() {
                 .setState(PlaybackStateCompat.STATE_NONE, 0, 1.0f)
                 .build()
         mMediaSession?.setPlaybackState(mPlaybackState)
-
         //触发成功表示MediaBrowser和MediaBrowserService连接成功
         sessionToken = mMediaSession?.sessionToken
     }
@@ -68,6 +67,9 @@ class MediaService : MediaBrowserServiceCompat() {
         return BrowserRoot("root", null)
     }
 
+    /**
+     * 通过parentId 获取不同音乐列表
+     */
     override fun onLoadChildren(parentId: String, result: Result<MutableList<MediaBrowserCompat.MediaItem>>) {
         Timber.i("onLoadChildren ---- ")
         //通过不同的parentId,获取不同的列表
@@ -85,7 +87,7 @@ class MediaService : MediaBrowserServiceCompat() {
                 }.subscribe({
                     result.sendResult(it)
                 },{
-
+                    Timber.e(it)
                 })
             }
         }
@@ -124,6 +126,11 @@ class MediaService : MediaBrowserServiceCompat() {
         override fun onPrepare() {
             super.onPrepare()
         }
+
+        override fun onPlay() {
+            super.onPlay()
+        }
+
     }
 
 
