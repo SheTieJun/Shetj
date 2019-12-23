@@ -21,13 +21,11 @@ import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 
 import com.shetj.diyalbume.BuildConfig
 import com.shetj.diyalbume.R
 
-import java.util.ArrayList
 import java.util.HashMap
 import java.util.TreeMap
 import java.util.concurrent.TimeUnit
@@ -42,61 +40,12 @@ object MusicLibrary {
     // 构造音频数据
     private val music = TreeMap<String, MediaMetadataCompat>()
     // 图片资源id
-    private val albumRes = HashMap<String, Int>()
+    private val albumRes = HashMap<String, String>()
     // 音频名称
     private val musicFileName = HashMap<String, String>()
 
     val root: String
         get() = "root"
-
-    val mediaItems: List<MediaBrowserCompat.MediaItem>
-        get() {
-            val result = ArrayList<MediaBrowserCompat.MediaItem>()
-            for (metadata in music.values) {
-                result.add(
-                        MediaBrowserCompat.MediaItem(
-                                metadata.description, MediaBrowserCompat.MediaItem.FLAG_PLAYABLE))
-            }
-            return result
-        }
-
-    /**
-     * 构造音频数据
-     * @param mediaId         音频id
-     * @param title           标题
-     * @param artist          作者
-     * @param album           图片
-     * @param genre           种类
-     * @param duration        时长
-     * @param durationUnit    时间单位
-     * @param musicFilename   音频文件
-     * @param albumArtResId   资源id
-     * @param albumArtResName
-     */
-    init {
-        createMediaMetadataCompat(
-                "Jazz_In_Paris",
-                "Jazz in Paris",
-                "Media Right Productions",
-                "Jazz & Blues",
-                "Jazz",
-                103,
-                TimeUnit.SECONDS,
-                "jazz_in_paris.mp3",
-                R.drawable.album_jazz_blues,
-                "album_jazz_blues")
-        createMediaMetadataCompat(
-                "The_Coldest_Shoulder",
-                "The Coldest Shoulder",
-                "The 126ers",
-                "Youtube Audio Library Rock 2",
-                "Rock",
-                160,
-                TimeUnit.SECONDS,
-                "the_coldest_shoulder.mp3",
-                R.drawable.album_youtube_audio_library_rock_2,
-                "album_youtube_audio_library_rock_2")
-    }
 
     private fun getAlbumArtUri(albumArtResName: String): String {
         return ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
@@ -107,8 +56,8 @@ object MusicLibrary {
         return if (musicFileName.containsKey(mediaId)) musicFileName[mediaId] else null
     }
 
-    private fun getAlbumRes(mediaId: String): Int {
-        return if (albumRes.containsKey(mediaId)) albumRes[mediaId]!! else 0
+    private fun getAlbumRes(mediaId: String): String {
+        return if (albumRes.containsKey(mediaId)) albumRes[mediaId]!! else ""
     }
 
     /**
@@ -119,7 +68,7 @@ object MusicLibrary {
      * @return
      */
     fun getAlbumBitmap(context: Context, mediaId: String): Bitmap {
-        return BitmapFactory.decodeResource(context.resources, getAlbumRes(mediaId))
+        return BitmapFactory.decodeResource(context.resources,R.mipmap.shetj_logo)
     }
 
 
@@ -158,46 +107,18 @@ object MusicLibrary {
     }
 
 
-    /**
-     * @param mediaId         音频id
-     * @param title           标题
-     * @param artist          作者
-     * @param album           图片
-     * @param genre           种类
-     * @param duration        时长
-     * @param durationUnit    时间单位
-     * @param musicFilename   音频文件
-     * @param albumArtResId   资源id
-     * @param albumArtResName
-     */
-    private fun createMediaMetadataCompat(
-            mediaId: String,
-            title: String,
-            artist: String,
-            album: String,
-            genre: String,
-            duration: Long,
-            durationUnit: TimeUnit,
-            musicFilename: String,
-            albumArtResId: Int,
-            albumArtResName: String) {
-        // 音频数据
-        music[mediaId] = getMediaMetadataCompat(mediaId, album, artist, duration, durationUnit, genre, albumArtResName, title)
-        // 图片资源
-        albumRes[mediaId] = albumArtResId
-        // 音频名称
-        musicFileName[mediaId] = musicFilename
-    }
-
     fun getMediaMetadataCompat(mediaId: String = "",
-                                       album: String = "",
-                                       artist: String = "",
-                                       duration: Long = 0L,
-                                       durationUnit: TimeUnit,
-                                       genre: String= "",
-                                       albumArtResName: String= "",
-                                       title: String= ""): MediaMetadataCompat{
-        return MediaMetadataCompat.Builder()
+                               album: String = "",
+                               artist: String = "",
+                               duration: Long = 0L,
+                               durationUnit: TimeUnit,
+                               genre: String= "",
+                               albumArtResName: String= "",
+                               title: String= ""
+                               ,fileUrl:String =""): MediaMetadataCompat{
+        albumRes[mediaId] = album
+        musicFileName[mediaId] = fileUrl
+        val metadataCompat = MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, mediaId)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, album)
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
@@ -212,5 +133,7 @@ object MusicLibrary {
                         getAlbumArtUri(albumArtResName))
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
                 .build()
+        music[mediaId] = metadataCompat
+        return metadataCompat
     }
 }

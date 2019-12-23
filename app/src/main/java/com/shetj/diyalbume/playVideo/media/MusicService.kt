@@ -21,6 +21,8 @@ import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import androidx.annotation.NonNull
+import androidx.core.app.NotificationManagerCompat
 
 import com.shetj.diyalbume.playVideo.media.callback.MediaSessionCallback
 import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
@@ -28,7 +30,10 @@ import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManage
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import androidx.core.content.ContextCompat
 import androidx.media.MediaBrowserServiceCompat
+import com.shetj.diyalbume.pipiti.localMusic.Music
+import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager.Companion.NOTIFICATION_ID
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -77,8 +82,42 @@ class MusicService : MediaBrowserServiceCompat() {
     override fun onLoadChildren(
             parentMediaId: String,
             result: Result<List<MediaBrowserCompat.MediaItem>>) {
-        result.sendResult(MusicLibrary.mediaItems)
+
+        Timber.i("onLoadChildren ---- ")
+        //通过不同的parentId,获取不同的列表
+        when(parentMediaId)
+        {
+            "ID" ->{
+                MusicUtils.loadFileData(this).map {
+                    val mediaItems = ArrayList<MediaBrowserCompat.MediaItem>()
+                    it.apply {
+                        forEach {
+                            mediaItems.add(createMediaItemAlbum(it))
+                        }
+                    }
+                    mediaItems
+                }.subscribe({
+                    result.sendResult(it)
+                },{
+                    Timber.e(it)
+                })
+            }
+        }
     }
+
+    @NonNull
+    private fun createMediaItemAlbum(@NonNull music: Music): MediaBrowserCompat.MediaItem {
+        val mediaMetadataCompat = MusicLibrary.getMediaMetadataCompat(mediaId = music.name!!,
+                album = music.img!!,
+                duration = music.duration,
+                durationUnit = TimeUnit.MILLISECONDS,
+                genre = "1",
+                title = music.name!!
+                ,fileUrl = music.url!!)
+        return MediaBrowserCompat.MediaItem(mediaMetadataCompat.description, MediaBrowserCompat.MediaItem.FLAG_PLAYABLE)
+    }
+
+
 
     /**
      * MediaPlayer 播放状态回调
@@ -88,6 +127,7 @@ class MusicService : MediaBrowserServiceCompat() {
 
 
         override fun onPlaybackStateChange(state: PlaybackStateCompat) {
+            Timber.i("onPlaybackStateChange state =$state")
             // 最终回调到Client 的 MediaControllerCallback.onPlaybackStateChanged
             mMediaSessionCompat!!.setPlaybackState(state)
             when (state.state) {
@@ -98,12 +138,12 @@ class MusicService : MediaBrowserServiceCompat() {
         }
 
         override fun onPlaybackCompleted() {
-
+            Timber.i("onPlaybackCompleted ")
         }
 
 
         private fun moveServiceToStartedState(state: PlaybackStateCompat) {
-            //
+            Timber.i("onPlaybackStateChange state =$state")
             val notification = mMediaNotificationManager!!.getNotification(
                     mMediaPlayerManager!!.currentMedia!!, state, sessionToken!!)
             //
@@ -114,14 +154,19 @@ class MusicService : MediaBrowserServiceCompat() {
                 mServiceInStartedState = true
             }
             //
-            startForeground(MediaNotificationManager.NOTIFICATION_ID, notification)
+            startForeground(NOTIFICATION_ID, notification)
         }
 
         /**
          * @param state
          */
         private fun updateNotificationForPause(state: PlaybackStateCompat) {
+            Timber.i("updateNotificationForPause state =$state")
+            NotificationManagerCompat.from(applicationContext).notify(NOTIFICATION_ID, mMediaNotificationManager!!.getNotification(
+                    mMediaPlayerManager!!.currentMedia!!, state, sessionToken!!))
             stopForeground(false)
+
+
 
         }
 
@@ -129,6 +174,7 @@ class MusicService : MediaBrowserServiceCompat() {
          * @param state
          */
         private fun moveServiceOutOfStartedState(state: PlaybackStateCompat) {
+            Timber.i("moveServiceOutOfStartedState =$state")
             stopForeground(true)
             stopSelf()
             mServiceInStartedState = false

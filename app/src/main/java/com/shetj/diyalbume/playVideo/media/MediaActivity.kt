@@ -10,14 +10,16 @@ import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.kt.showToast
 import me.shetj.base.kt.toJson
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
-import java.util.ArrayList
+import java.util.*
 
 
 /**
+ *       //connect → onConnected → subscribe → onChildrenLoaded
  */
 class MediaActivity : BaseActivity<MediaPresenter>() {
 
@@ -40,9 +42,11 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         mPresenter = MediaPresenter(this)
         mAdapter = MusicAdapter(ArrayList())
         mAdapter.bindToRecyclerView(iRecyclerView)
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { _, _, position ->
             run {
-                ArmsUtils.makeText(GsonKit.objectToJson(mAdapter.getItem(position)!!)!!)
+                val item = mAdapter.getItem(position)
+                ArmsUtils.makeText(GsonKit.objectToJson(item!!)!!)
+                mMediaController?.transportControls?.playFromMediaId(item.mediaId,null)
             }
         }
     }
@@ -57,13 +61,18 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                 Timber.i("连接成功")
                 mediaBrowser?.apply {
                     if (isConnected){
-                        mMediaController = MediaControllerCompat.getMediaController(rxContext)
+                        //链接 成功后创建控制器
+                        mMediaController = MediaControllerCompat(applicationContext, this.sessionToken)
                         mMediaController?.registerCallback(mMediaControllerCallback)
                         // Sync existing MediaSession state to the UI.同步信息
                         mMediaController?.metadata?.let {
                             mMediaControllerCallback.onMetadataChanged(mMediaController?.metadata!!)
                         }
                         mMediaControllerCallback.onPlaybackStateChanged(mMediaController?.playbackState)
+
+                        MediaControllerCompat.setMediaController(this@MediaActivity,mMediaController)
+
+                        Timber.i("连接成功 = mMediaController = ${mMediaController.toString()}")
                     }
                 }
             }
@@ -75,7 +84,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         }
 
         mediaBrowser = MediaBrowserCompat(this,
-                ComponentName(this, MediaService::class.java)
+                ComponentName(this, MusicService::class.java)
                 ,mBrowserConnectionCallback,
                 null)
 
@@ -128,7 +137,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
             if (mMediaController == null) {
                 return
             }
-            // Queue up all media items for this simple sample.
+//            // Queue up all media items for this simple sample.
             for (mediaItem in children) {
                 mMediaController?.addQueueItem(mediaItem.description)
             }
@@ -143,13 +152,12 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {
             super.onPlaybackStateChanged(state)
             //音乐播放状态改变回调
-            val info = when (state?.state) {
-                PlaybackStateCompat.STATE_NONE -> "点击开始"
-                PlaybackStateCompat.STATE_PAUSED -> "点击开始"
-                PlaybackStateCompat.STATE_PLAYING -> "点击暂停"
-                else -> "其他状态"
+            when (state?.state) {
+                PlaybackStateCompat.STATE_NONE -> "需要点击开始".showToast()
+                PlaybackStateCompat.STATE_PAUSED -> "需要点击重新开始".showToast()
+                PlaybackStateCompat.STATE_PLAYING -> "需要点击暂停".showToast()
+                else -> "需要点击开始".showToast()
             }
-            Timber.i(info)
         }
 
         override fun onSessionDestroyed() {
@@ -187,11 +195,10 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
             PlaybackStateCompat.STATE_PAUSED ->{
                 mMediaController?.transportControls?.play()
             }
+            else ->{
+                mMediaController?.transportControls?.play()
+            }
         }
-    }
-
-    override fun updateView(message: Message) {
-        super.updateView(message)
     }
 
 }

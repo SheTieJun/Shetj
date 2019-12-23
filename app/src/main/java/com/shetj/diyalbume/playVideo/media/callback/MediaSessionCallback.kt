@@ -1,12 +1,14 @@
 package com.shetj.diyalbume.playVideo.media.callback
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 
 import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
+import timber.log.Timber
 
 import java.util.ArrayList
 
@@ -49,7 +51,7 @@ class MediaSessionCallback(private val context: Context,
     }
 
     override fun onPrepare() {
-        if (mQueueIndex < 0 && mPlaylist.isEmpty()) {
+        if (mQueueIndex <= 0 && mPlaylist.isEmpty()) {
             // Nothing to play.
             return
         }
@@ -62,9 +64,38 @@ class MediaSessionCallback(private val context: Context,
         if (!mMediaSessionCompat.isActive) {
             mMediaSessionCompat.isActive = true
         }
+
     }
 
+
+    override fun onPlayFromMediaId(mediaId: String?, extras: Bundle?) {
+        mPlaylist.forEach {
+            if (it.description.mediaId == mediaId){
+                mQueueIndex = mPlaylist.indexOf(it)
+            }
+        }
+        if (mQueueIndex == -1){
+            return
+        }
+        // 根据音频 获取音频数据
+        mPreparedMedia = MusicLibrary.getMetadata(context, mediaId!!)
+
+        if (mPreparedMedia == null) {
+            return
+        }
+
+        mMediaSessionCompat.setMetadata(mPreparedMedia)
+        // 激活mediaSession
+        if (!mMediaSessionCompat.isActive) {
+            mMediaSessionCompat.isActive = true
+        }
+
+        mMediaPlayerManager.playFromMedia(mPreparedMedia!!)
+    }
+
+
     override fun onPlay() {
+        Timber.i("onPlay")
         //
         if (!isReadyToPlay) {
             // Nothing to play.
@@ -74,7 +105,8 @@ class MediaSessionCallback(private val context: Context,
         if (mPreparedMedia == null) {
             onPrepare()
         }
-
+        // 开始播放
+        mMediaPlayerManager.playFromMedia(mPreparedMedia!!)
     }
 
     override fun onPause() {
