@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import android.view.KeyEvent
 import androidx.annotation.NonNull
 import androidx.core.app.NotificationManagerCompat
 
@@ -30,6 +31,7 @@ import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManage
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import androidx.core.content.ContextCompat
 import androidx.media.MediaBrowserServiceCompat
+import androidx.media.session.MediaButtonReceiver
 import com.shetj.diyalbume.pipiti.localMusic.Music
 import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager.Companion.NOTIFICATION_ID
 import timber.log.Timber
@@ -58,12 +60,16 @@ class MusicService : MediaBrowserServiceCompat() {
                         MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
         sessionToken = mMediaSessionCompat!!.sessionToken
         mMediaNotificationManager = MediaNotificationManager(this)
-
     }
 
     override fun onTaskRemoved(rootIntent: Intent) {
         super.onTaskRemoved(rootIntent)
         stopSelf()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent)
+        return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
@@ -119,6 +125,7 @@ class MusicService : MediaBrowserServiceCompat() {
 
 
 
+
     /**
      * MediaPlayer 播放状态回调
      */
@@ -165,9 +172,6 @@ class MusicService : MediaBrowserServiceCompat() {
             NotificationManagerCompat.from(applicationContext).notify(NOTIFICATION_ID, mMediaNotificationManager!!.getNotification(
                     mMediaPlayerManager!!.currentMedia!!, state, sessionToken!!))
             stopForeground(false)
-
-
-
         }
 
         /**
