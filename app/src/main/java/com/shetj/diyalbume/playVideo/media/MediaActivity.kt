@@ -9,6 +9,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.kt.isEmpty
 import me.shetj.base.kt.showToast
 import me.shetj.base.kt.toJson
 import me.shetj.base.tools.app.ArmsUtils
@@ -64,10 +65,10 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
                         mMediaController = MediaControllerCompat(applicationContext, this.sessionToken)
                         mMediaController?.registerCallback(mMediaControllerCallback)
                         // Sync existing MediaSession state to the UI.同步信息
-                        mMediaController?.metadata?.let {
+                        if (mMediaController?.metadata != null) {
                             mMediaControllerCallback.onMetadataChanged(mMediaController?.metadata!!)
+                            mMediaControllerCallback.onPlaybackStateChanged(mMediaController?.playbackState)
                         }
-                        mMediaControllerCallback.onPlaybackStateChanged(mMediaController?.playbackState)
 
                         MediaControllerCompat.setMediaController(this@MediaActivity,mMediaController)
 
@@ -96,7 +97,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         mediaBrowser?.subscribe("ID", mBrowserSubscriptionCallback)
 
         //客户端通过调用sendCustomAction，根据与服务端的协商，制定相应的action类型，进行数据的传递交互。
-//        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
+        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
     }
 
     /**
@@ -154,10 +155,10 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
             super.onPlaybackStateChanged(state)
             //音乐播放状态改变回调
             when (state?.state) {
-                PlaybackStateCompat.STATE_NONE -> "需要点击开始".showToast()
-                PlaybackStateCompat.STATE_PAUSED -> "需要点击重新开始".showToast()
-                PlaybackStateCompat.STATE_PLAYING -> "需要点击暂停".showToast()
-                else -> "需要点击开始".showToast()
+                PlaybackStateCompat.STATE_NONE ->floatingActionButton.setImageResource(R.drawable.ic_media_play)
+                PlaybackStateCompat.STATE_PAUSED -> floatingActionButton.setImageResource(R.drawable.ic_media_play)
+                PlaybackStateCompat.STATE_PLAYING -> floatingActionButton.setImageResource(R.drawable.ic_media_pause)
+                else -> floatingActionButton.setImageResource(R.drawable.ic_media_play)
             }
         }
 

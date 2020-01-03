@@ -80,7 +80,7 @@ class MediaBrowserManager(private val mContext: Context) {
             // 链接service
             mMediaBrowserCompat!!.connect()
         }
-        Timber.d("onStart: Creating MediaBrowser, and connecting")
+        Timber.i("onStart: Creating MediaBrowser, and connecting")
     }
 
     /**
@@ -96,7 +96,7 @@ class MediaBrowserManager(private val mContext: Context) {
             mMediaBrowserCompat = null
         }
         // 数据置空
-        Timber.d("onStop: Releasing MediaController, Disconnecting from MediaBrowser")
+        Timber.i("onStop: Releasing MediaController, Disconnecting from MediaBrowser")
     }
 
 
@@ -193,7 +193,7 @@ class MediaBrowserManager(private val mContext: Context) {
 
         // service被杀死时调用
         override fun onSessionDestroyed() {
-            onPlaybackStateChanged(null)
+
         }
 
     }

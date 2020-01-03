@@ -17,7 +17,8 @@ import java.util.concurrent.atomic.AtomicLong
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**<br></br>
  */
-class ExecutorsPool(corePoolSize: Int, maximumPoolSize: Int, keepAliveTime: Long, unit: TimeUnit, workQueue: BlockingQueue<Runnable>, threadFactory: ThreadFactory) : ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory) {
+class ExecutorsPool(corePoolSize: Int, maximumPoolSize: Int, keepAliveTime: Long, unit: TimeUnit, workQueue: BlockingQueue<Runnable>, threadFactory: ThreadFactory) :
+        ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory) {
     /**
      * 判断当前线程池是否繁忙
      * @return
@@ -36,7 +37,10 @@ class ExecutorsPool(corePoolSize: Int, maximumPoolSize: Int, keepAliveTime: Long
      * @param poolSize 工作线程数
      * @param fifo     优先级相同时, 等待队列的是否优先执行先加入的任务.
      */
-    constructor(poolSize: Int, fifo: Boolean) : this(poolSize, MAXIMUM_POOL_SIZE, KEEP_ALIVE.toLong(), TimeUnit.SECONDS, PriorityBlockingQueue<Runnable>(MAXIMUM_POOL_SIZE, if (fifo) FIFO else LIFO), sThreadFactory) {}
+    constructor(poolSize: Int, fifo: Boolean) : this(poolSize,
+            MAXIMUM_POOL_SIZE, KEEP_ALIVE.toLong(),
+            TimeUnit.SECONDS, PriorityBlockingQueue<Runnable>(MAXIMUM_POOL_SIZE,
+            if (fifo) FIFO else LIFO), sThreadFactory) {}
 
     /**
      * 提交任务

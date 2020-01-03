@@ -29,15 +29,14 @@ import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-
-import com.shetj.diyalbume.R
-import com.shetj.diyalbume.main.view.MainActivity
-import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.media.session.MediaButtonReceiver
+import com.shetj.diyalbume.R
+import com.shetj.diyalbume.main.view.MainActivity
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
 import timber.log.Timber
 
 /**
@@ -50,26 +49,26 @@ class MediaNotificationManager(private val mContext: Context) {
     private val mPlayAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_play_arrow_white_24dp,
             mContext.getString(R.string.label_play),
-            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
+            MediaButtonReceiver.buildMediaButtonPendingIntent(mContext, PlaybackStateCompat.ACTION_PLAY))
 
     private val mPauseAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_pause_white_24dp,
             mContext.getString(R.string.label_pause),
-            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_PAUSE))
 
     private val mNextAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_skip_next_white_24dp,
             mContext.getString(R.string.label_next),
-            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_SKIP_TO_NEXT))
 
     private val mPrevAction: NotificationCompat.Action = NotificationCompat.Action(
             R.drawable.ic_skip_previous_white_24dp,
             mContext.getString(R.string.label_previous),
-            MusicMediaButtonReceiver.buildMediaButtonPendingIntent(
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
                     mContext,
                     PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS))
 
@@ -127,7 +126,7 @@ class MediaNotificationManager(private val mContext: Context) {
                 .setContentIntent(createContentIntent())
                 .setContentTitle(description.title)
                 .setContentText(description.subtitle)
-                .setLargeIcon(MusicLibrary.getAlbumBitmap(mContext, description.mediaId!!))
+                .setLargeIcon(MetadataUtil.getAlbumBitmap(mContext, description.mediaId!!))
                 .setDeleteIntent(MediaButtonReceiver.buildMediaButtonPendingIntent(
                         mContext, PlaybackStateCompat.ACTION_STOP))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)

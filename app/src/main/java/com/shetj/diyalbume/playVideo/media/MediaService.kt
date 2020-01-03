@@ -17,7 +17,7 @@ import timber.log.Timber
 import android.support.v4.media.session.MediaControllerCompat
 import androidx.annotation.NonNull
 import com.shetj.diyalbume.pipiti.localMusic.Music
-import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
 import java.util.concurrent.TimeUnit
 
 
@@ -103,7 +103,7 @@ class MediaService : MediaBrowserServiceCompat() {
 
     @NonNull
     private fun createMediaItemAlbum(@NonNull music: Music): MediaBrowserCompat.MediaItem {
-            val mediaMetadataCompat = MusicLibrary.getMediaMetadataCompat(mediaId = music.name!!,
+            val mediaMetadataCompat = MetadataUtil.getMediaMetadataCompat(mediaId = music.name!!,
                     album = music.img!!,
                     duration = music.duration,
                     durationUnit = TimeUnit.MILLISECONDS,

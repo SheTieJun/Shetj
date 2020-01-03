@@ -96,4 +96,11 @@
         android:layout_width="300dp"
         android:layout_height="50dp"/>
 
+    <com.shetj.diyalbume.view.EdgedTextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

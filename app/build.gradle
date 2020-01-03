@@ -140,15 +140,8 @@ android {
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
             def requested = details.requested
-            if (requested.group == 'com.android.support') {
-                if (!requested.name.startsWith("multidex")) {
-                    details.useVersion "$androidSupportSdkVersion"
-                }
-            }
             if (requested.group == 'com.google.code.gson') {
-                if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '2.8.2'
-                }
+                details.useVersion '2.8.2'
             }
             if (requested.group == 'com.github.bumptech.glide') {
                 if (!requested.name.startsWith("multidex")) {
@@ -156,9 +149,7 @@ android {
                 }
             }
             if (requested.group == 'com.tencent.mm.opensdk') {
-                if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '5.1.4'
-                }
+                details.useVersion '5.1.4'
             }
             if (requested.group == 'com.squareup.okhttp3') {
                 if (!requested.name.startsWith("multidex")) {
@@ -290,5 +281,8 @@ dependencies {
     implementation 'com.github.microshow:RxFFmpeg:2.1.0'
     implementation project(path: ':mvvm')
     implementation project(path: ':constraintlayout')
+
+    //搭建本地服务器(https://github.com/koush/AndroidAsync)
+    implementation 'com.koushikdutta.async:androidasync:2.2.1'
 
 }

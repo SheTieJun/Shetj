@@ -1,14 +1,10 @@
 package com.shetj.diyalbume.playVideo.media
 
 import android.content.Context
-import android.database.Cursor
-import android.net.Uri
-import android.os.Build
 import android.provider.MediaStore
 import com.shetj.diyalbume.pipiti.localMusic.Music
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import java.io.File
 import java.util.*
 
 
