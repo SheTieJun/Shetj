@@ -80,9 +80,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
 //        }
     }
     override fun initData() {
-        val intent = Intent("me.shetj.StartService")
-        intent.`package` = "me.shetj.luck"
-        bindService(intent,conn, AppCompatActivity.BIND_AUTO_CREATE)
+//        val intent = Intent("me.shetj.StartService")
+//        intent.`package` = "me.shetj.luck"
+//        bindService(intent,conn, AppCompatActivity.BIND_AUTO_CREATE)
     }
 
     override fun onDestroy() {

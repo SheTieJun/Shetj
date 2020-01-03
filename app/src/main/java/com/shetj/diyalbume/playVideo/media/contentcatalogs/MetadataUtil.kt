@@ -31,17 +31,13 @@ import java.util.TreeMap
 import java.util.concurrent.TimeUnit
 
 
-object MusicLibrary {
+object MetadataUtil {
 
-
-    /**
-     *
-     */
     // 构造音频数据
     private val music = TreeMap<String, MediaMetadataCompat>()
     // 图片资源id
     private val albumRes = HashMap<String, String>()
-    // 音频名称
+    // 音频播放路径
     private val musicFileName = HashMap<String, String>()
 
     val root: String
@@ -68,6 +64,9 @@ object MusicLibrary {
      * @return
      */
     fun getAlbumBitmap(context: Context, mediaId: String): Bitmap {
+
+
+
         return BitmapFactory.decodeResource(context.resources,R.mipmap.shetj_logo)
     }
 

@@ -77,7 +77,6 @@ class HaloImageView : TextView {
 
 
     private fun setHaloSize(size:Float){
-        mPaint.maskFilter =  BlurMaskFilter(size, BlurMaskFilter.Blur.OUTER)
         invalidate()
     }
 

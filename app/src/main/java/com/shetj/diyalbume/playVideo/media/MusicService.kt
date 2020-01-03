@@ -21,12 +21,11 @@ import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import android.view.KeyEvent
 import androidx.annotation.NonNull
 import androidx.core.app.NotificationManagerCompat
 
 import com.shetj.diyalbume.playVideo.media.callback.MediaSessionCallback
-import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
 import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import androidx.core.content.ContextCompat
@@ -54,10 +53,7 @@ class MusicService : MediaBrowserServiceCompat() {
         mMediaPlayerManager = MediaPlayerManager(this, MediaPlayerListener())
         // setCallBack
         mMediaSessionCompat!!.setCallback(MediaSessionCallback(this, mMediaSessionCompat!!, mMediaPlayerManager!!, 0))
-        mMediaSessionCompat!!.setFlags(
-                MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or
-                        MediaSessionCompat.FLAG_HANDLES_QUEUE_COMMANDS or
-                        MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
+        mMediaSessionCompat!!.setFlags(MediaSessionCompat.FLAG_HANDLES_QUEUE_COMMANDS)
         sessionToken = mMediaSessionCompat!!.sessionToken
         mMediaNotificationManager = MediaNotificationManager(this)
     }
@@ -82,9 +78,10 @@ class MusicService : MediaBrowserServiceCompat() {
     override fun onGetRoot(clientPackageName: String,
                            clientUid: Int,
                            rootHints: Bundle?): BrowserRoot? {
-        return BrowserRoot(MusicLibrary.root, null)
+        return BrowserRoot(MetadataUtil.root, null)
     }
 
+    //通过parentMediaId 加载不同的数据列表
     override fun onLoadChildren(
             parentMediaId: String,
             result: Result<List<MediaBrowserCompat.MediaItem>>) {
@@ -97,8 +94,8 @@ class MusicService : MediaBrowserServiceCompat() {
                 MusicUtils.loadFileData(this).map {
                     val mediaItems = ArrayList<MediaBrowserCompat.MediaItem>()
                     it.apply {
-                        forEach {
-                            mediaItems.add(createMediaItemAlbum(it))
+                        forEach {it1->
+                            mediaItems.add(createMediaItemAlbum(it1))
                         }
                     }
                     mediaItems
@@ -113,13 +110,13 @@ class MusicService : MediaBrowserServiceCompat() {
 
     @NonNull
     private fun createMediaItemAlbum(@NonNull music: Music): MediaBrowserCompat.MediaItem {
-        val mediaMetadataCompat = MusicLibrary.getMediaMetadataCompat(mediaId = music.name!!,
+        val mediaMetadataCompat = MetadataUtil.getMediaMetadataCompat(mediaId = music.name!!,
                 album = music.img!!,
                 duration = music.duration,
                 durationUnit = TimeUnit.MILLISECONDS,
                 genre = "1",
-                title = music.name!!
-                ,fileUrl = music.url!!)
+                title = music.name!!,
+                fileUrl = music.url!!)
         return MediaBrowserCompat.MediaItem(mediaMetadataCompat.description, MediaBrowserCompat.MediaItem.FLAG_PLAYABLE)
     }
 

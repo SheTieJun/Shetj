@@ -20,6 +20,8 @@ import android.content.*
 import android.media.AudioManager
 import android.support.v4.media.MediaMetadataCompat
 import androidx.browser.customtabs.CustomTabsClient.getPackageName
+import androidx.media.AudioFocusRequestCompat
+import androidx.media.AudioManagerCompat
 import androidx.media.session.MediaButtonReceiver
 
 /**
@@ -27,9 +29,8 @@ import androidx.media.session.MediaButtonReceiver
  * and audio focus.
  */
 abstract class PlayerAdapter(context: Context) {
-    private var mbCN: ComponentName
     // 播放的上下文对象
-    private val mContext: Context
+    private val mContext: Context = context.applicationContext
     // 获取AudioManager
     private val mAudioManager: AudioManager
     // OnAudioFocusChangeListener
@@ -38,7 +39,6 @@ abstract class PlayerAdapter(context: Context) {
     var currentMedia: MediaMetadataCompat ? =null
 
     abstract val isPlaying: Boolean
-
 
     // ##########################################获取焦点帮助类###############################################
 
@@ -53,7 +53,6 @@ abstract class PlayerAdapter(context: Context) {
     /**
      * 耳机插拔等状态变化的监听
      */
-    // 监听广播的注册状态
     private var mAudioNoisyReceiverRegistered = false
     // receiver
     private val mAudioNoisyReceiver = object : BroadcastReceiver() {
@@ -71,13 +70,10 @@ abstract class PlayerAdapter(context: Context) {
 
     init {
         // 上下文对象
-        mContext = context.applicationContext
         // 获取AudioManager
         mAudioManager = mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         // OnAudioFocusChangeListener
         mAudioFocusHelper = AudioFocusHelper()
-        mbCN = ComponentName(mContext.getPackageName(), MediaButtonReceiver::class.java.name)
-//注册一个MedioButtonReceiver广播监听
     }
 
     abstract fun playFromMedia(metadata: MediaMetadataCompat)
@@ -227,7 +223,6 @@ abstract class PlayerAdapter(context: Context) {
     private fun registerAudioNoisyReceiver() {
         if (!mAudioNoisyReceiverRegistered) {
             mContext.registerReceiver(mAudioNoisyReceiver, AUDIO_NOISY_INTENT_FILTER)
-            mAudioManager.registerMediaButtonEventReceiver(mbCN)
             mAudioNoisyReceiverRegistered = true
         }
     }
@@ -238,14 +233,11 @@ abstract class PlayerAdapter(context: Context) {
     private fun unregisterAudioNoisyReceiver() {
         if (mAudioNoisyReceiverRegistered) {
             mContext.unregisterReceiver(mAudioNoisyReceiver)
-            mAudioManager.unregisterMediaButtonEventReceiver(mbCN)
             mAudioNoisyReceiverRegistered = false
         }
     }
 
     companion object {
-
-
         // 默认的音量 0~1之间
         private val MEDIA_VOLUME_DEFAULT = 1.0f
         // 失去焦点时，降低音量后的音量

@@ -23,7 +23,7 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
 
 import com.shetj.diyalbume.playVideo.media.PlaybackInfoListener
-import com.shetj.diyalbume.playVideo.media.contentcatalogs.MusicLibrary
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
 
 
 /**
@@ -33,7 +33,7 @@ class MediaPlayerManager (context: Context,
                           private val mPlaybackInfoListener: PlaybackInfoListener)
     : PlayerAdapter(context) {
     // 上下文对象
-    private val mContext: Context
+    private val mContext: Context = context.applicationContext
     // 音频播放器MediaPlayer
     private var mMediaPlayer: MediaPlayer? = null
     // 当前音频id
@@ -84,13 +84,6 @@ class MediaPlayerManager (context: Context,
             return actions
         }
 
-
-    init {
-        // 上下文对象
-        mContext = context.applicationContext
-    }// 播放信息回调
-
-
     // Implements PlaybackControl.
     override fun playFromMedia(metadata: MediaMetadataCompat) {
         // 当前音频信息
@@ -98,7 +91,7 @@ class MediaPlayerManager (context: Context,
         // 音频id
         val mediaId = metadata.description.mediaId
         mediaId?.let {
-            playFile(MusicLibrary.getMusicFilename(mediaId))
+            playFile(MetadataUtil.getMusicFilename(mediaId))
         }
     }
 

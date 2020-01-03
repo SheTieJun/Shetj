@@ -13,5 +13,6 @@ public class MVVM2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ViewDataBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm);
 
+
     }
 }
