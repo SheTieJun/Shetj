@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import androidx.core.graphics.*
 import androidx.core.graphics.drawable.toBitmap
@@ -158,6 +159,26 @@ class MainPresenter(view: IView) : BasePresenter<BaseModel>(view) {
 //            }
         }
 
+    }
+
+    fun getModel(): Int {
+        //?android:attr/textColorPrimary 这是一种通用型文本颜色。它在浅色主题背景下接近于黑色，在深色主题背景下接近于白色。该颜色包含一个停用状态。
+        //?attr/colorControlNormal 一种通用图标颜色。该颜色包含一个停用状态。
+        //主题背景属性 ?attr/colorSurface 和 ?attr/colorOnSurface）轻松获取合适的颜色
+
+        //浅色 - MODE_NIGHT_NO
+        //深色 - MODE_NIGHT_YES
+        //由省电模式设置 - MODE_NIGHT_AUTO_BATTERY
+        //系统默认 - MODE_NIGHT_FOLLOW_SYSTEM
+        val defaultNightMode = AppCompatDelegate.getDefaultNightMode()
+
+        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_NO){
+            return AppCompatDelegate.MODE_NIGHT_YES
+        }
+        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_YES){
+            return AppCompatDelegate.MODE_NIGHT_NO
+        }
+        return AppCompatDelegate.MODE_NIGHT_YES
     }
 
 

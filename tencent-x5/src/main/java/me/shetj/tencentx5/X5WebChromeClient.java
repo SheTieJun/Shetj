@@ -87,11 +87,6 @@ public class X5WebChromeClient extends WebChromeClient {
         X5Utils.openFileChooseProcess(mCtx);
     }
 
-    // For Android < 3.0
-    public void openFileChooser(ValueCallback<Uri> uploadMsgs) {
-        X5Utils.openFileChooseProcess(mCtx);
-    }
-
     // For Android  > 4.1.1
     @Override
     public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {

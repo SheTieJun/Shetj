@@ -48,8 +48,12 @@ public class WebPageActivity extends BaseX5WebActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.x_activity_web_page);
 		ArmsUtils.statuInScreen(this, true);
-		initView();
-		initData();
+	}
+
+
+	public static void startBrowserActivity(Activity context, String url )
+	{
+		startBrowserActivity(context,url, 0);
 	}
 
 	public static void startBrowserActivity(Activity context, String url, int mode) {
@@ -87,7 +91,7 @@ public class WebPageActivity extends BaseX5WebActivity {
 			}
 		}
 		mWebView = getX5WebView();
-		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+		mProgressBar = findViewById(R.id.progressBar);
 		mWebView.setX5ChromeClient(new X5WebChromeClient(getRxContext(),mProgressBar,(TextView) findViewById(R.id.toolbar_title)));
 		mWebView.setX5DownLoadListener(new X5DownLoadListener());
 		mWebView.setX5ViewClient(new X5WebViewClient(sonicSession));
@@ -106,13 +110,6 @@ public class WebPageActivity extends BaseX5WebActivity {
 
 	@Override
 	protected void initData() {
-		RxView.clicks(findViewById(R.id.toolbar_back))
-						.subscribe(new Consumer<Object>() {
-			@Override
-			public void accept(Object o) throws Exception {
-				onBackPressed();
-			}
-		});
 
 	}
 

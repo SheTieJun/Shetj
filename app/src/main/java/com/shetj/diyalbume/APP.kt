@@ -1,5 +1,7 @@
 package com.shetj.diyalbume
 
+import android.app.ActivityManager
+import android.app.ActivityManager.RunningAppProcessInfo
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -8,7 +10,6 @@ import androidx.work.Configuration
 import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection
 import com.liulishuo.filedownloader.util.FileDownloadLog
-import com.zhouyou.http.EasyHttp
 import me.shetj.base.s
 import me.shetj.bdmap.BMapManager
 import me.shetj.fresco.FrescoUtils
@@ -37,7 +38,10 @@ class APP : Application() , Configuration.Provider {
         s.init(this,BuildConfig.DEBUG )
         BMapManager.init(this)
         FrescoUtils.init(this,BuildConfig.DEBUG)
-        startService(Intent(this,X5CorePreLoadService::class.java))
+        //8.0 开始不能后台启动
+        if (isAppForeground()) {
+            startService(Intent(this, X5CorePreLoadService::class.java))
+        }
         RouterUtils.initRouter(this,BuildConfig.DEBUG)
         FileDownloadLog.NEED_LOG = BuildConfig.DEBUG
         FileDownloader.setupOnApplicationOnCreate(this)
@@ -53,6 +57,20 @@ class APP : Application() , Configuration.Provider {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    fun isAppForeground(): Boolean {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val info = manager.runningAppProcesses
+        if (info == null || info.size == 0) {
+            return false
+        }
+        for (aInfo in info) {
+            if (aInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return aInfo.processName == packageName
+            }
+        }
+        return false
     }
 
 }

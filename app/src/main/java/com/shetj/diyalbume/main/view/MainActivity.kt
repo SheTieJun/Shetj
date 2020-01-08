@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat
 import com.jakewharton.rxbinding3.view.clicks
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
@@ -75,9 +76,6 @@ class MainActivity : BaseActivity<MainPresenter>(){
         setContentView(R.layout.activity_main)
         QMUIStatusBarHelper.setStatusBarDarkMode(this)
         mPresenter =  MainPresenter(this)
-//        fab.setOnClickListener {
-//            startActivity(Intent(this,Main3Activity::class.java))
-//        }
     }
     override fun initData() {
 //        val intent = Intent("me.shetj.StartService")
@@ -87,7 +85,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
 
     override fun onDestroy() {
         super.onDestroy()
-        unbindService(conn)
+//        unbindService(conn)
     }
 
     override fun onAttachedToWindow() {
@@ -256,6 +254,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         btn_ConstrainLayout.setOnClickListener {
             ArmsUtils.startActivity(this, TestConstrainLayoutActivity::class.java)
+        }
+        btn_dark_mode.setOnClickListener {
+            AppCompatDelegate.setDefaultNightMode(mPresenter!!.getModel())
         }
     }
 

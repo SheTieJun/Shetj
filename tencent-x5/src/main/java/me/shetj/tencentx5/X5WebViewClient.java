@@ -22,6 +22,8 @@ public class X5WebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+        //支付相关，让接口可以吊起《h5微信和支付宝》支付
         if (!url.startsWith("http:") && !url.startsWith("https:")) {
             Intent intent = null;
             if (url.startsWith("weixin://wap/pay?")) {

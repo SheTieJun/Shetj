@@ -20,11 +20,6 @@
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <include
-        layout="@layout/sample_arc_image_view"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-80dp" />
-
     <Button
         android:id="@+id/button_image"
         android:layout_width="wrap_content"
@@ -46,13 +41,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/shetj_logo" />
 
-    <com.shetj.diyalbume.view.ArcView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="144dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.shetj.diyalbume.view.WaveView
         android:id="@+id/wave_view"
@@ -100,7 +88,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"/>
+
+    <ImageView
+        android:id="@+id/iv_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/triange_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

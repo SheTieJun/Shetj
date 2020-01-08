@@ -5,6 +5,10 @@ import android.annotation.SuppressLint;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
+import java.util.Map;
+
+import me.shetj.base.tools.json.EmptyUtils;
+
 /**
  * WebView管理器，提供常用设置
  * @author Administrator
@@ -107,7 +111,7 @@ public class X5WebViewManager {
         webSettings.setJavaScriptEnabled(false);
         return this;
     }
-    
+
     /**
      * 开启JavaScript自动弹窗
      */
@@ -115,7 +119,7 @@ public class X5WebViewManager {
     	webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
     	return this;
     }
-    
+
     /**
      * 禁用JavaScript自动弹窗
      */
@@ -153,6 +157,26 @@ public class X5WebViewManager {
 						"    }  " +
 						"}" +
 						"})()");
+	}
+
+
+	/**
+	 * 给设置localStorage 设置数据
+	 * @param itmes
+	 */
+	private void setlocalStorage(Map<String, String>  itmes){
+		StringBuilder jsonBuf = new StringBuilder();
+		for (String key : itmes.keySet()){
+			if (EmptyUtils.isNotEmpty(itmes.get(key))) {
+				jsonBuf.append("localStorage.setItem('key', '")
+						.append(itmes.get(key))
+						.append("');");
+			}
+		}
+		String info = jsonBuf.toString();
+		if (EmptyUtils.isNotEmpty(info)) {
+			webView.evaluateJavascript(info, null);
+		}
 	}
 
 

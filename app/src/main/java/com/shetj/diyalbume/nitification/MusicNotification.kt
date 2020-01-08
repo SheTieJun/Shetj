@@ -85,8 +85,8 @@ object MusicNotification {
                 .setOngoing(true)
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
-                .setContentTitle("荔枝微课")
-                .setContentText("荔枝微课成长每时每刻")
+                .setContentTitle("shetj")
+                .setContentText("成长每时每刻")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.shetj_logo)
 

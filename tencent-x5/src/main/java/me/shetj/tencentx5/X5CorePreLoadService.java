@@ -1,6 +1,8 @@
 package me.shetj.tencentx5;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.Nullable;
 
@@ -10,6 +12,7 @@ import timber.log.Timber;
 
 /**
  * 启动下载x5 在App中执行
+ * 不能后台启动
  * @author shetj
  */
 public class X5CorePreLoadService extends IntentService {
@@ -38,6 +41,13 @@ public class X5CorePreLoadService extends IntentService {
         QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
+
     QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
 
         @Override
@@ -49,4 +59,9 @@ public class X5CorePreLoadService extends IntentService {
         public void onCoreInitFinished() {
         }
     };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

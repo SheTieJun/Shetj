@@ -28,6 +28,10 @@ public class X5WebView extends WebView {
 		x5WebViewManager.setX5Settings();
 		this.getView().setClickable(true);
 	}
+
+	/**
+	 * 设置Url ,同时设置cookie
+	 */
 	public void loadUrlByCookie(Context context, String url, String cookie) {
 		CookieSyncManager.createInstance(context);
 		CookieManager cookieManager = CookieManager.getInstance();

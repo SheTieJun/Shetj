@@ -34,29 +34,25 @@ class CustomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_custom)
         v = findViewById(R.id.wave_view)
 
-        haloImageView = findViewById<HaloImageView>(R.id.HaloImageView)
-                .apply {
-                    startAnimo()
-        }
+        haloImageView = findViewById(R.id.HaloImageView)
 
         lineVoiceView =  findViewById<LineWaveVoiceView>(R.id.line_voice_view).apply{
-                     setOnClickListener {
-                        if(isRecord){
-                            isRecord  = false
-                            stopRecord()
-                            setText("点击录音")
-                        }else{
-                            isRecord = true
-                            startRecord()
-                            setText("正在录音")
-                        }
-                    }
+            setOnClickListener {
+                if(isRecord){
+                    isRecord  = false
+                    stopRecord()
+                    setText("点击录音")
+                }else{
+                    isRecord = true
+                    startRecord()
+                    setText("正在录音")
                 }
-
+            }
+            performClick()
+        }
 
         button_image.setOnClickListener {
             addImage()
-
         }
         mViewDragHelper =    ViewDragHelper.create(root,object :ViewDragHelper.Callback(){
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {

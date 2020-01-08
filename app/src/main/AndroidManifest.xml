@@ -65,7 +65,7 @@
         </activity>
         <activity
             android:name=".playVideo.video.PlayVideoActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode" />
         <activity android:name=".test.BackgroundActivity" />
         <activity android:name=".test.CustomActivity" />
         <activity android:name=".ppttest.Main2Activity" />

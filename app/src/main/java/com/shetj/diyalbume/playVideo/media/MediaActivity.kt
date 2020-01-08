@@ -97,7 +97,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
         mediaBrowser?.subscribe("ID", mBrowserSubscriptionCallback)
 
         //客户端通过调用sendCustomAction，根据与服务端的协商，制定相应的action类型，进行数据的传递交互。
-        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
+//        mediaBrowser?.sendCustomAction("go", null,mCustomActionCallback)
     }
 
     /**

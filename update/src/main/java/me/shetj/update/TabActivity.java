@@ -15,12 +15,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import static android.app.UiModeManager.MODE_NIGHT_NO;
 
 public class TabActivity extends AppCompatActivity {
 
@@ -64,6 +67,11 @@ public class TabActivity extends AppCompatActivity {
 			public void onClick(View view) {
 				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 								.setAction("Action", null).show();
+				//浅色 - MODE_NIGHT_NO
+				//深色 - MODE_NIGHT_YES
+				//由省电模式设置 - MODE_NIGHT_AUTO_BATTERY
+				//系统默认 - MODE_NIGHT_FOLLOW_SYSTEM
+				AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 			}
 		});
 
