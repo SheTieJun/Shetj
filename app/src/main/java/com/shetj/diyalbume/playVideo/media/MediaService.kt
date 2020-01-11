@@ -7,17 +7,17 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import androidx.annotation.NonNull
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.session.MediaButtonReceiver
-import timber.log.Timber
-import android.support.v4.media.session.MediaControllerCompat
-import androidx.annotation.NonNull
 import com.shetj.diyalbume.pipiti.localMusic.Music
 import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 

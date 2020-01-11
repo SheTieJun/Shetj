@@ -1,15 +1,14 @@
 package com.shetj.diyalbume.worker
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.work.*
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_worker.*
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
-import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit
 
 class WorkerActivity : AppCompatActivity() {

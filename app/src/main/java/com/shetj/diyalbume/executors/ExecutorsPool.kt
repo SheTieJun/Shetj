@@ -1,11 +1,7 @@
 package com.shetj.diyalbume.executors
 
-import java.util.Comparator
-import java.util.concurrent.BlockingQueue
-import java.util.concurrent.PriorityBlockingQueue
-import java.util.concurrent.ThreadFactory
-import java.util.concurrent.ThreadPoolExecutor
-import java.util.concurrent.TimeUnit
+import java.util.*
+import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 

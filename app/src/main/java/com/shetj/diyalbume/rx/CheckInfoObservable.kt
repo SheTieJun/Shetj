@@ -3,7 +3,6 @@ package com.shetj.diyalbume.rx
 
 import io.reactivex.Observable
 import io.reactivex.Observer
-import io.reactivex.android.MainThreadDisposable
 import io.reactivex.disposables.Disposable
 import me.shetj.base.tools.json.GsonKit
 

@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.playVideo.video
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.shetj.diyalbume.R
 
 
@@ -15,7 +15,7 @@ import com.shetj.diyalbume.R
  * **@describe**<br></br>
  */
 
-class AutoRecycleView(data: List<String>?) : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recycle_string, data) {
+class AutoRecycleView(data: MutableList<String>?) : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recycle_string, data) {
 
     var playPostin = -1
 
@@ -23,7 +23,7 @@ class AutoRecycleView(data: List<String>?) : BaseQuickAdapter<String, BaseViewHo
 
     var i = 0
 
-    override fun convert(helper: BaseViewHolder, item: String) {
+    override fun convert(helper: BaseViewHolder, item: String?) {
         if (helper.layoutPosition == playPostin) {
             helper.setText(R.id.tv_string, "播放" + helper.adapterPosition)
         } else {

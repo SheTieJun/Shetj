@@ -17,7 +17,6 @@
 package com.shetj.diyalbume.playVideo.media;
 
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v4.media.session.MediaSessionCompat;
 
 
 /**

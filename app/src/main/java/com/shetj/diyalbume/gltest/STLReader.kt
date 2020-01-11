@@ -1,13 +1,11 @@
 package com.shetj.diyalbume.gltest
 
 import android.content.Context
-
+import me.shetj.base.s
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
-
-import me.shetj.base.s
 
 class STLReader {
     private val stlLoadListener: StlLoadListener? = null

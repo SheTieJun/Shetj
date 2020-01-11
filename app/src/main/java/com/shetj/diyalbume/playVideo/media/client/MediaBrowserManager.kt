@@ -25,11 +25,9 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-
 import com.shetj.diyalbume.playVideo.media.MediaService
-
-import java.util.ArrayList
 import timber.log.Timber
+import java.util.*
 
 /**
  * MediaBrowserManager for a MediaBrowser that handles connecting, disconnecting,

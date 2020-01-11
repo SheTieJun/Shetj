@@ -12,7 +12,6 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.fragment_video_play.*
 import me.shetj.base.base.BaseFragment
 import me.shetj.base.base.BasePresenter
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 
 
 // TODO: Rename parameter arguments, choose names that match

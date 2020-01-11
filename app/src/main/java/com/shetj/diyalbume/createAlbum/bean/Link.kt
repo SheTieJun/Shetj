@@ -18,15 +18,13 @@ class Link(var type: Int,
     val SOUND = 3
     val TEXT = 4
 
-    override fun getItemType(): Int {
-        return when (type) {
+
+    override val itemType: Int
+        get() =     when (type) {
             1 -> VIDEO
             2 -> URL
             3 -> SOUND
             4 -> TEXT
             else -> 100
         }
-    }
-
-
 }

@@ -2,13 +2,13 @@ package com.shetj.diyalbume.createAlbum.view
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.Gravity
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.snackbar.Snackbar
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.createAlbum.presenter.CreatePresenter
 import kotlinx.android.synthetic.main.activity_create.*

@@ -2,8 +2,6 @@ package com.shetj.diyalbume;
 
 import org.junit.Test;
 
-import me.shetj.base.tools.json.GsonKit;
-
 public class LeetCode {
     @Test
     public void reverseString(char[] s) {

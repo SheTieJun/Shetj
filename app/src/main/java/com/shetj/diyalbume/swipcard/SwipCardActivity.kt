@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.swipcard
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_swip_card.*
 

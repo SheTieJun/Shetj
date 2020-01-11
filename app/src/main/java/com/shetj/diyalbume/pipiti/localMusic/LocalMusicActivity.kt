@@ -1,25 +1,20 @@
 package com.shetj.diyalbume.pipiti.localMusic
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
 import android.os.Message
 import android.view.View
 import android.widget.TextView
-
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.pipiti.media.MediaPlayerUtils
 import com.shetj.diyalbume.pipiti.media.SimPlayerListener
-
-import java.util.ArrayList
-
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.ArmsUtils.Companion.statuInScreen
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
+import java.util.*
 
 /**
  * 本地音乐
@@ -46,7 +41,7 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
         mediaUtils = MediaPlayerUtils()
         mIRecyclerView = findViewById<View>(R.id.IRecyclerView) as RecyclerView
         mAdapter = MusicSelectAdapter(ArrayList())
-        mAdapter!!.bindToRecyclerView(mIRecyclerView)
+        mIRecyclerView?.adapter = mAdapter
         mAdapter!!.setOnItemClickListener { _, _, position -> ArmsUtils.makeText(GsonKit.objectToJson(mAdapter!!.getItem(position)!!)!!) }
         mAdapter!!.setOnItemChildClickListener { _, _, position ->
             currentPosition = position
@@ -94,7 +89,7 @@ class LocalMusicActivity : BaseActivity<LocalMusicPresenter>() {
     override fun updateView(message: Message) {
         super.updateView(message)
         when (message.what) {
-            1 -> mAdapter!!.setNewData(message.obj as List<Music>)
+            1 -> mAdapter!!.setNewData(message.obj as MutableList<Music>)
             else -> {
             }
         }

@@ -9,7 +9,9 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
-import androidx.core.animation.*
+import androidx.core.animation.addListener
+import androidx.core.animation.doOnPause
+import androidx.core.animation.doOnResume
 import com.shetj.diyalbume.R
 import me.shetj.base.base.BaseModel
 import me.shetj.base.base.BasePresenter

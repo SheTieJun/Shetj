@@ -3,7 +3,6 @@ package com.shetj.diyalbume.gltest
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
-import kotlin.experimental.and
 
 /**
  * Package com.hc.opengl

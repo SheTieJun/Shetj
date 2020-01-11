@@ -1,4 +1,4 @@
-include ':app',  ':components', ':router', ':constraintlayout',
+include ':app',  ':components', ':router', ':constraintlayout', ':dlna',
         ':ar', ':buglytinker',
         ':video', ':mvvm', ':rxhttp',
         ':jguang', ':encrypt',

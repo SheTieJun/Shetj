@@ -9,8 +9,6 @@ import android.support.v4.media.session.PlaybackStateCompat
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_media.*
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.kt.isEmpty
-import me.shetj.base.kt.showToast
 import me.shetj.base.kt.toJson
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.json.GsonKit
@@ -41,7 +39,7 @@ class MediaActivity : BaseActivity<MediaPresenter>() {
     override fun initData() {
         mPresenter = MediaPresenter(this)
         mAdapter = MusicAdapter(ArrayList())
-        mAdapter.bindToRecyclerView(iRecyclerView)
+        iRecyclerView.adapter = mAdapter
         mAdapter.setOnItemClickListener { _, _, position ->
             run {
                 val item = mAdapter.getItem(position)

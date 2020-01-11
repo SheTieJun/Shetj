@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.bubble
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.shetj.diyalbume.R
 
 class BubbleActivity : AppCompatActivity() {

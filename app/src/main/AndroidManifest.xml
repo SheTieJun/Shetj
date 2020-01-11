@@ -30,6 +30,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+
+        <!--  创建   https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts -->
+
+
         <activity android:name=".bubble.BubbleActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:allowEmbedded="true"
@@ -54,6 +58,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".createAlbum.view.CreateActivity"

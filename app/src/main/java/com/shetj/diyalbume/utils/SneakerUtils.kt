@@ -1,9 +1,8 @@
 package com.shetj.diyalbume.utils
 
 import android.app.Activity
-import androidx.annotation.Keep
 import android.view.ViewGroup
-
+import androidx.annotation.Keep
 import com.irozon.sneaker.Sneaker
 import com.irozon.sneaker.interfaces.OnSneakerClickListener
 import com.irozon.sneaker.interfaces.OnSneakerDismissListener

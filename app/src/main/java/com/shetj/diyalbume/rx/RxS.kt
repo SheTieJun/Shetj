@@ -1,8 +1,6 @@
 package com.shetj.diyalbume.rx
 
 
-import io.reactivex.Observable
-
 /**
  * **@packageName：** com.shetj.diyalbume.rx<br></br>
  * **@author：** shetj<br></br>

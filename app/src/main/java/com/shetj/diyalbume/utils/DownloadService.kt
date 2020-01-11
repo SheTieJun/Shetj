@@ -9,11 +9,11 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
 import android.os.IBinder
-
-import java.io.File
-
+import com.shetj.diyalbume.utils.DownloadService.Companion.getApkName
+import com.shetj.diyalbume.utils.DownloadService.Companion.install
 import me.shetj.base.tools.app.AppUtils
 import timber.log.Timber
+import java.io.File
 
 /**
  * ** [DownloadService] 主要是为了app更新下载，直接执行安装处理</br>

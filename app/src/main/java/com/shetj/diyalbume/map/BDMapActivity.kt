@@ -7,23 +7,19 @@ import android.os.Message
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
-
-import org.simple.eventbus.Subscriber
-import org.simple.eventbus.ThreadMode
-
 import me.shetj.aspect.permission.MPermission
 import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.json.GsonKit
 import me.shetj.bdmap.BDMapLocation
+import me.shetj.bdmap.BDMapLocation.SEND_POSITION
 import me.shetj.bdmap.MapActivity
 import me.shetj.bdmap.MapNaviUtils
-
-import me.shetj.bdmap.BDMapLocation.SEND_POSITION
+import org.simple.eventbus.Subscriber
+import org.simple.eventbus.ThreadMode
 
 /**
  * 地图相关

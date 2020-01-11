@@ -13,7 +13,7 @@ import me.shetj.base.base.IView
 import me.shetj.base.kt.getRxPermissions
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
-import java.util.ArrayList
+import java.util.*
 
 class MediaPresenter(view:IView) :BasePresenter<MediaModel>(view){
     private var musicList: ArrayList<Music>? = null

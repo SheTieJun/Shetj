@@ -3,18 +3,15 @@ package com.shetj.diyalbume.pipiti.media
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-
-import java.util.concurrent.TimeUnit
-
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import me.shetj.base.tools.json.EmptyUtils
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 /**
  * **@author：** shetj<br></br>

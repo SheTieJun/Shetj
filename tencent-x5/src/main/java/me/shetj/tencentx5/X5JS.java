@@ -6,6 +6,7 @@ import android.webkit.JavascriptInterface;
 import org.simple.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * @link sendApps(java.lang.String) 发送数据给android
@@ -61,8 +62,11 @@ public class X5JS {
     }
     @JavascriptInterface
     public void openImageP(String position) {
-        if (imgUrl!=null && imageClickListener !=null) {
-            imageClickListener.openImages(imgUrl,Integer.parseInt(position));
+        try {
+            if (imgUrl != null && imageClickListener != null) {
+                imageClickListener.openImages(imgUrl, Integer.parseInt(position));
+            }
+        }catch (Exception e){
         }
     }
 

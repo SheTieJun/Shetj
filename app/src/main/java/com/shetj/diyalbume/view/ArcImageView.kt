@@ -1,14 +1,12 @@
 package com.shetj.diyalbume.view
 
 import android.content.Context
-import android.graphics.*
-import android.graphics.drawable.Drawable
-import android.text.TextPaint
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
-import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.ContextCompat
 import com.shetj.diyalbume.R
 
 /**

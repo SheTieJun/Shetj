@@ -4,17 +4,11 @@ import android.app.Service
 import android.app.job.JobParameters
 import android.app.job.JobService
 import android.content.Intent
-import android.os.Build
-import android.os.Handler
-import android.os.Message
-import android.os.Messenger
-import android.os.RemoteException
+import android.os.*
 import androidx.annotation.RequiresApi
-
-import timber.log.Timber
-
 import com.shetj.diyalbume.jobscheduler.JobUtils.MESSENGER_INTENT_KEY
 import com.shetj.diyalbume.jobscheduler.JobUtils.WORK_DURATION_KEY
+import timber.log.Timber
 
 
 /**

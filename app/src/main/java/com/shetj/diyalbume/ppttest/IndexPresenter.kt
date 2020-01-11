@@ -1,10 +1,9 @@
 package com.shetj.diyalbume.ppttest
 
-import java.util.ArrayList
-
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
+import java.util.*
 
 /**
  * **@packageName：** com.shetj.diyalbume.ppttest<br></br>

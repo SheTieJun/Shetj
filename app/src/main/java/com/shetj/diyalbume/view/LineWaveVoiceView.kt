@@ -14,9 +14,6 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.shetj.diyalbume.R
 import me.shetj.base.tools.app.ArmsUtils
-import timber.log.Timber
-import java.util.*
-import java.util.concurrent.Executors
 
 class LineWaveVoiceView :View {
 

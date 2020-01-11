@@ -3,11 +3,8 @@ package com.shetj.diyalbume.test
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import androidx.core.view.minusAssign
+import androidx.appcompat.app.AppCompatActivity
 import androidx.customview.widget.ViewDragHelper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.shetj.diyalbume.R
@@ -15,7 +12,6 @@ import com.shetj.diyalbume.view.AlbumImageView
 import com.shetj.diyalbume.view.HaloImageView
 import com.shetj.diyalbume.view.LineWaveVoiceView
 import com.shetj.diyalbume.view.WaveView
-import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.content_custom.*
 import me.shetj.base.tools.app.ArmsUtils
 import timber.log.Timber

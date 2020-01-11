@@ -16,13 +16,12 @@
 
 package com.shetj.diyalbume.playVideo.media.player
 
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioManager
 import android.support.v4.media.MediaMetadataCompat
-import androidx.browser.customtabs.CustomTabsClient.getPackageName
-import androidx.media.AudioFocusRequestCompat
-import androidx.media.AudioManagerCompat
-import androidx.media.session.MediaButtonReceiver
 
 /**
  * Abstract player implementation that handles playing music with proper handling of headphones

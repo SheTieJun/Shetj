@@ -2,14 +2,12 @@ package com.shetj.diyalbume.pipiti.localMusic
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
-
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.shetj.diyalbume.R
+import java.util.*
 
-import java.util.ArrayList
-
-class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewHolder>(R.layout.item_select_music2, data) {
+class MusicSelectAdapter(data: MutableList<Music>) : BaseQuickAdapter<Music, BaseViewHolder>(R.layout.item_select_music2, data) {
 
     private var select = -1
     private val MusicList: ArrayList<Music>? = null
@@ -30,11 +28,14 @@ class MusicSelectAdapter(data: List<Music>?) : BaseQuickAdapter<Music, BaseViewH
     val GB = 1073741824
 
 
-    override fun convert(helper: BaseViewHolder, item: Music) {
-        helper.setText(R.id.tv_music_name, item.name)
-                .setText(R.id.tv_music_size, byte2FitMemorySize(item.size))
-                .setText(R.id.tv_music_time, formatTime(item.duration))
-                .addOnClickListener(R.id.tv_play)
+    override fun convert(helper: BaseViewHolder, item: Music?) {
+        item?.let {
+            helper.setText(R.id.tv_music_name, item.name)
+                    .setText(R.id.tv_music_size, byte2FitMemorySize(item.size))
+                    .setText(R.id.tv_music_time, formatTime(item.duration))
+                    addChildClickViewIds(R.id.tv_play)
+        }
+
 
     }
 

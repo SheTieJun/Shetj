@@ -1,7 +1,6 @@
 package com.shetj.diyalbume.nitification
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,19 +12,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.view.View
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import android.widget.RemoteViews
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.shetj.diyalbume.R
-import com.shetj.diyalbume.main.view.MainActivity
-import com.shetj.diyalbume.nitification.MediaControlReceiver.*
 import com.shetj.diyalbume.nitification.MediaControlReceiver.Companion.NOTIFICATION_ITEM_BUTTON_CLEAR
 import com.shetj.diyalbume.nitification.MediaControlReceiver.Companion.NOTIFICATION_ITEM_BUTTON_OPEN
 import com.shetj.diyalbume.nitification.MediaControlReceiver.Companion.NOTIFICATION_ITEM_BUTTON_PLAY

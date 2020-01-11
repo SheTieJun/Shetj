@@ -148,6 +148,16 @@ android {
                     details.useVersion '4.9.0'
                 }
             }
+            if (requested.group == 'io.reactivex.rxjava2') {
+                if (!requested.name.startsWith("multidex")) {
+                    if (requested.name.startsWith("rxjava")) {
+                        details.useVersion '2.2.13'
+                    }
+                    if (requested.name.startsWith("rxandroid")) {
+                        details.useVersion '2.1.1'
+                    }
+                }
+            }
             if (requested.group == 'com.tencent.mm.opensdk') {
                 details.useVersion '5.1.4'
             }
@@ -208,7 +218,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-    implementation 'com.shuyu:GSYVideoPlayer:7.0.2' //https://github.com/CarGuo/GSYVideoPlayer
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.2' //https://github.com/CarGuo/GSYVideoPlayer
     implementation 'com.devyok.ipc:ipc-libcore:0.0.2'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'

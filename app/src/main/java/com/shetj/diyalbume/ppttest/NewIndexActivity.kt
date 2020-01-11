@@ -2,16 +2,11 @@ package com.shetj.diyalbume.ppttest
 
 import android.os.Bundle
 import android.os.Message
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.shetj.diyalbume.R
-
-import java.util.ArrayList
-
 import me.shetj.base.base.BaseActivity
-import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.ArmsUtils.Companion.statuInScreen
+import java.util.*
 
 /**
  * @author shetj
@@ -48,7 +43,7 @@ class NewIndexActivity : BaseActivity<IndexPresenter>() {
     override fun updateView(message: Message) {
         super.updateView(message)
         when (message.what) {
-            1 -> indexAdpter!!.setNewData(message.obj as List<ItemIndex>)
+            1 -> indexAdpter!!.setNewData(message.obj as MutableList<ItemIndex>)
             2 -> {
             }
             else -> {

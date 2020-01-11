@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.ppttest
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.shetj.diyalbume.R
 
 /**
@@ -13,9 +13,9 @@ import com.shetj.diyalbume.R
  * **@describe**<br></br>
  */
 
-class startChallgeAdapter(data: List<String>?) : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recycle_img, data) {
+class startChallgeAdapter(data: MutableList<String>?) : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recycle_img, data) {
 
-    override fun convert(helper: BaseViewHolder, item: String) {
+    override fun convert(helper: BaseViewHolder, item: String?) {
 
     }
 }

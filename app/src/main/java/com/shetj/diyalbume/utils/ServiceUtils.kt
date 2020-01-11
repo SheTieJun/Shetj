@@ -1,13 +1,11 @@
 package com.shetj.diyalbume.utils
 
 import android.app.ActivityManager
-import android.content.ComponentName
 import android.content.Context
 import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
-
-import java.util.ArrayList
+import java.util.*
 
 object ServiceUtils {
 

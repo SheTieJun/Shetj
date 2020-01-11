@@ -15,7 +15,7 @@ class EdgedTextView  @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr){
     private var bgPath: Path = Path()
     private var arcPath: Path = Path()
-    private var text = "顶置"
+    private var text = "顶置顶置"
     private val paint: Paint = Paint().apply {
         isAntiAlias = true
         color = Color.BLACK

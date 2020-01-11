@@ -2,9 +2,9 @@ package com.shetj.diyalbume.playVideo.video
 
 import android.os.Handler
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.TextView
 
 /**
  * 计算滑动，自动播放的帮助类

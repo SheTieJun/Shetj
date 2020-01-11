@@ -1,9 +1,9 @@
 package com.shetj.diyalbume.behavior
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_behavior.*

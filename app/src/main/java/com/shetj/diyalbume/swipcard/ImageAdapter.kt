@@ -1,7 +1,7 @@
 package com.shetj.diyalbume.swipcard
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.shetj.diyalbume.R
 
 /**
@@ -11,7 +11,7 @@ import com.shetj.diyalbume.R
  * <b>@email：</b> 375105540@qq.com<br>
  * <b>@describe</b>  <br>
  */
-class ImageAdapter(data:ArrayList<String>) :BaseQuickAdapter<String,BaseViewHolder>(R.layout.item_detail,data){
+class ImageAdapter(data:ArrayList<String>?) :BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_detail,data){
 
 
     override fun convert(helper: BaseViewHolder, item: String?) {

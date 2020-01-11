@@ -4,13 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.view.DisplayCutout
-import android.view.View
-import android.view.WindowInsets
-
-import java.lang.reflect.InvocationTargetException
-import java.lang.reflect.Method
-
 import timber.log.Timber
+import java.lang.reflect.InvocationTargetException
 
 object ScreenUtils {
 

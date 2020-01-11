@@ -1,9 +1,8 @@
 package com.shetj.diyalbume.utils
 
 import androidx.annotation.Keep
-
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 /**
  * 类名称：TimeUtil.java <br></br>

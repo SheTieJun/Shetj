@@ -8,12 +8,10 @@ import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-
 import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
 import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import timber.log.Timber
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * [MediaSessionCallback]

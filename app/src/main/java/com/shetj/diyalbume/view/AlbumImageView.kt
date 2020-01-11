@@ -1,23 +1,13 @@
 package com.shetj.diyalbume.view
 
 import android.content.Context
-import android.content.res.TypedArray
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.DashPathEffect
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.PathEffect
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Build
-import androidx.appcompat.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.view.DragStartHelper
-import androidx.customview.widget.ViewDragHelper
-
+import androidx.appcompat.widget.AppCompatImageView
 import com.shetj.diyalbume.R
 
 /**

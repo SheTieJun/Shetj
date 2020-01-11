@@ -23,16 +23,15 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.annotation.NonNull
 import androidx.core.app.NotificationManagerCompat
-
-import com.shetj.diyalbume.playVideo.media.callback.MediaSessionCallback
-import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
-import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager
-import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import androidx.core.content.ContextCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.session.MediaButtonReceiver
 import com.shetj.diyalbume.pipiti.localMusic.Music
+import com.shetj.diyalbume.playVideo.media.callback.MediaSessionCallback
+import com.shetj.diyalbume.playVideo.media.contentcatalogs.MetadataUtil
+import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager
 import com.shetj.diyalbume.playVideo.media.notifications.MediaNotificationManager.Companion.NOTIFICATION_ID
+import com.shetj.diyalbume.playVideo.media.player.MediaPlayerManager
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 

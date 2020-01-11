@@ -4,9 +4,6 @@ import android.content.Intent
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
-import androidx.annotation.RequiresApi
 import android.transition.Explode
 import android.transition.Slide
 import android.view.Gravity
@@ -14,6 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import androidx.transition.ChangeBounds
 import androidx.transition.ChangeClipBounds
 import androidx.transition.Scene
@@ -24,6 +24,7 @@ import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_transtion.*
 import me.shetj.base.base.BaseActivity
 import me.shetj.transition.transitionexample.Main3Activity
+
 @Route(path = "/shetj/TranstionActivity")
 class TranstionActivity : BaseActivity<AnimatorPresenter>() {
 

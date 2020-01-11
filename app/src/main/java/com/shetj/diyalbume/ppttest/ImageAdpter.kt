@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.shetj.diyalbume.R
 import com.shetj.diyalbume.miui.GlideApp
 
@@ -16,9 +16,9 @@ import com.shetj.diyalbume.miui.GlideApp
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**<br></br>
  */
-class ImageAdpter(data: List<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseViewHolder>(R.layout.item_course_img, data) {
+class ImageAdpter(data: MutableList<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseViewHolder>(R.layout.item_course_img, data) {
 
-    override fun convert(helper: BaseViewHolder, item: ItemIndex) {
-        GlideApp.with(mContext).load(item.img).into(helper.getView<View>(R.id.iv_image) as ImageView)
+    override fun convert(helper: BaseViewHolder, item: ItemIndex?) {
+        GlideApp.with(context).load(item?.img).into(helper.getView<View>(R.id.iv_image) as ImageView)
     }
 }

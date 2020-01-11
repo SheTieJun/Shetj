@@ -1,14 +1,9 @@
 package com.shetj.diyalbume.manager
 
 import android.content.Context
-
 import com.shetj.diyalbume.api.ShetjApi
 import com.shetj.diyalbume.utils.TimeUtil
 import com.zhouyou.http.EasyHttp
-
-import java.util.HashMap
-import java.util.concurrent.atomic.AtomicBoolean
-
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -17,6 +12,8 @@ import me.shetj.base.tools.file.SPUtils
 import me.shetj.base.tools.json.EmptyUtils
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
+import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
 
 class TokenLoader private constructor() {
 

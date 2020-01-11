@@ -22,12 +22,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.v4.media.MediaMetadataCompat
-
 import com.shetj.diyalbume.BuildConfig
 import com.shetj.diyalbume.R
-
-import java.util.HashMap
-import java.util.TreeMap
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 

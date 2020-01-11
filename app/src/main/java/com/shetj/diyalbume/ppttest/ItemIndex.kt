@@ -1,6 +1,6 @@
 package com.shetj.diyalbume.ppttest
 
-import java.util.ArrayList
+import java.util.*
 
 /**
  * **@packageName：** com.shetj.diyalbume.ppttest<br></br>

@@ -13,7 +13,6 @@ import me.shetj.base.base.IView
 import me.shetj.base.tools.app.ArmsUtils.Companion.getMessage
 import me.shetj.base.tools.json.GsonKit
 import timber.log.Timber
-import java.lang.StringBuilder
 
 
 class JobSchedulerPresenter(view:IView) :BasePresenter<BaseModel>(view){

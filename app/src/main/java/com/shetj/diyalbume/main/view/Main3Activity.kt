@@ -1,7 +1,6 @@
 package com.shetj.diyalbume.main.view
 
 import android.os.Bundle
-import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jakewharton.rxbinding3.view.clicks
 import com.shetj.diyalbume.R
