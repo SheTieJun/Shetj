@@ -297,6 +297,6 @@ dependencies {
 
     //搭建本地服务器(https://github.com/koush/AndroidAsync)
     implementation 'com.koushikdutta.async:androidasync:2.2.1'
-    implementation project(path: ':dlna')
+    implementation project(path: ':cling')
 
 }
