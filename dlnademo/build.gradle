@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.kevinshen.beyondupnp"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion  rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/beans.xml'
+    }
+}
+
+dependencies {
+    //Cling library
+    api "org.fourthline.cling:cling-core:$rootProject.ext.clingVersion"
+    api "org.fourthline.cling:cling-support:$rootProject.ext.clingVersion"
+//    // Jetty library
+    api "org.eclipse.jetty:jetty-server:$rootProject.ext.jettyVersion"
+    api "org.eclipse.jetty:jetty-servlet:$rootProject.ext.jettyVersion"
+    api "org.eclipse.jetty:jetty-client:$rootProject.ext.jettyVersion"
+    api "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.fragment:fragment:1.1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+}

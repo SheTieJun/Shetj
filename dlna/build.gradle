@@ -30,15 +30,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
+    packagingOptions {
+        exclude 'META-INF/beans.xml'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-
     //DLNA https://github.com/4thline/cling
     api "org.fourthline.cling:cling-core:$rootProject.ext.clingVersion"
     api "org.fourthline.cling:cling-support:$rootProject.ext.clingVersion"
+    // Jetty library
+    api "org.eclipse.jetty:jetty-server:$rootProject.ext.jettyVersion"
+    api "org.eclipse.jetty:jetty-servlet:$rootProject.ext.jettyVersion"
+    api "org.eclipse.jetty:jetty-client:$rootProject.ext.jettyVersion"
+    api "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
     implementation 'androidx.annotation:annotation:1.1.0'
 }

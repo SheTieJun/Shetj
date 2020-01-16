@@ -16,9 +16,6 @@ class CheckInfoObservable(private val msg: String) : Observable<ReturnMsg<*>>() 
     override fun subscribeActual(observer: Observer<in ReturnMsg<*>>?) {
         val checkListener = CheckListener(GsonKit.jsonToBean(msg, ReturnMsg::class.java), observer!!)
         observer.onSubscribe(checkListener)
-        checkListener.run {
-
-        }
     }
 
     internal class CheckListener(returnMsg: ReturnMsg<*>?, observer: Observer<in ReturnMsg<*>>) : Disposable {
@@ -34,9 +31,9 @@ class CheckInfoObservable(private val msg: String) : Observable<ReturnMsg<*>>() 
             if (null == returnMsg) {
                 observer.onError(Throwable("msg is null"))
             }else {
-                when {
-                    returnMsg.code == 1 -> observer.onNext(returnMsg)
-                    returnMsg.code == 422 -> observer.onError(Throwable("登录失效"))
+                when (returnMsg.code) {
+                    1 -> observer.onNext(returnMsg)
+                    422 -> observer.onError(Throwable("登录失效"))
                     else -> observer.onError(Throwable(returnMsg.message))
                 }
             }

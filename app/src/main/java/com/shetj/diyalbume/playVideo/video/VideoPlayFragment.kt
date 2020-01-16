@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.shetj.diyalbume.R
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
+import com.shuyu.gsyvideoplayer.utils.Debuger
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.fragment_video_play.*
 import me.shetj.base.base.BaseFragment
@@ -52,12 +53,10 @@ class VideoPlayFragment : BaseFragment<BasePresenter<*>>() {
 
     override fun onVisible() {
         super.onVisible()
-
         //外部辅助的旋转，帮助全屏
         orientationUtils = OrientationUtils(rxContext, videoView)
         //初始化不打开外部的旋转
         orientationUtils?.isEnable = false
-
         videoView.setUp("https://vod.lycheer.net/e22cd48bvodtransgzp1253442168/d6b59e205285890789389180692/v.f20.mp4",true,"")
 
         videoView.setIsTouchWiget(true)

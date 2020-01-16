@@ -1,9 +1,9 @@
-include ':app',  ':components', ':router', ':constraintlayout', ':dlna',
+include ':app', ':components', ':router', ':constraintlayout', ':dlna',
         ':ar', ':buglytinker',
         ':video', ':mvvm', ':rxhttp',
         ':jguang', ':encrypt',
         ':transition', ':room', ':tencent-x5',
         ':update', ':upload',
-        ':download', ':fresco',  ':bdmap',
-         ':umeng', ':compiler', ':lib', ':share'
+        ':download', ':fresco', ':bdmap',
+        ':umeng', ':share', ':dlnademo'
 include ':rxFingerPrinter'

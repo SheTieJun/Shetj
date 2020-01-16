@@ -6,6 +6,10 @@ import org.fourthline.cling.android.AndroidUpnpServiceConfiguration
 import org.fourthline.cling.android.AndroidUpnpServiceImpl
 import org.fourthline.cling.binding.xml.ServiceDescriptorBinder
 
+/**
+ * 服务
+ * <service android:name="me.shetj.dlna.DLNABrowserService"/>
+ */
 class DLNABrowserService : AndroidUpnpServiceImpl() {
     override fun createConfiguration(): UpnpServiceConfiguration {
         return object : AndroidUpnpServiceConfiguration() {

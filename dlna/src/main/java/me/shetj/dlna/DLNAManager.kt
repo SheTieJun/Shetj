@@ -12,8 +12,11 @@ import android.view.ContextThemeWrapper
 import me.shetj.dlna.listener.DLNARegistryListener
 import me.shetj.dlna.listener.DLNAStateCallback
 import org.fourthline.cling.android.AndroidUpnpService
+import org.fourthline.cling.model.message.header.STAllHeader
 import org.fourthline.cling.model.meta.LocalDevice
 import org.fourthline.cling.model.meta.RemoteDevice
+import org.fourthline.cling.model.types.UDADeviceType
+import org.fourthline.cling.model.types.UDAServiceType
 import org.fourthline.cling.registry.Registry
 import org.fourthline.cling.registry.RegistryListener
 import java.util.*
@@ -34,8 +37,8 @@ class DLNAManager private constructor() {
 
     @JvmOverloads
     fun init(context: Context, stateCallback: DLNAStateCallback? = null) {
-        if (null != mContext) {
-            logW("ReInit DLNAManager")
+        if (null != mUpnpService) {
+            mStateCallback?.onConnected()
             return
         }
         mContext = if (context is ContextThemeWrapper || context is ContextThemeWrapper) {
@@ -52,8 +55,9 @@ class DLNAManager private constructor() {
             mServiceConnection = object : ServiceConnection {
                 override fun onServiceConnected(name: ComponentName, service: IBinder) {
                     mUpnpService = service as AndroidUpnpService
+
                     mUpnpService!!.registry.addListener(mRegistryListener)
-                    mUpnpService!!.controlPoint.search()
+                    mUpnpService!!.controlPoint.search(STAllHeader())
                     if (null != mStateCallback) {
                         mStateCallback!!.onConnected()
                     }
@@ -97,7 +101,7 @@ class DLNAManager private constructor() {
         checkConfig()
         checkPrepared()
         mUpnpService!!.registry.addListener(mRegistryListener)
-        mUpnpService!!.controlPoint.search()
+        mUpnpService!!.controlPoint.search(STAllHeader())
     }
 
     fun stopBrowser() {
@@ -134,7 +138,7 @@ class DLNAManager private constructor() {
 
     companion object {
         private const val TAG = "DLNAManager"
-        private var isDebugMode = false
+        private var isDebugMode = true
         val instance: DLNAManager get() = DLNAManagerCreator.manager
 
 

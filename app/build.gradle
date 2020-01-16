@@ -54,6 +54,10 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        exclude 'META-INF/beans.xml'
+    }
+
     buildTypes {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
@@ -265,7 +269,6 @@ dependencies {
     implementation "androidx.work:work-rxjava2:$work_version"
     // optional - Test helpers
     androidTestImplementation "androidx.work:work-testing:$work_version"
-//    implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
     //KTX
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
@@ -294,5 +297,6 @@ dependencies {
 
     //搭建本地服务器(https://github.com/koush/AndroidAsync)
     implementation 'com.koushikdutta.async:androidasync:2.2.1'
+    implementation project(path: ':dlna')
 
 }

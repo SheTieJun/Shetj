@@ -65,11 +65,14 @@ abstract class DLNARegistryListener : RegistryListener {
         onDeviceChanged(build(deviceInfoList))
     }
 
-    abstract fun onDeviceChanged(deviceInfoList: List<DeviceInfo?>?)
-    fun onDeviceAdded(registry: Registry?, device: Device<*, *, *>?) {}
-    fun onDeviceRemoved(registry: Registry?, device: Device<*, *, *>?) {}
-    private fun build(deviceList: Collection<Device<*, *, *>>): List<DeviceInfo?> {
-        val deviceInfoList: MutableList<DeviceInfo?> = ArrayList()
+    abstract fun onDeviceChanged(deviceInfoList: List<DeviceInfo>?)
+
+    open fun onDeviceAdded(registry: Registry?, device: Device<*, *, *>?) {}
+
+    open fun onDeviceRemoved(registry: Registry?, device: Device<*, *, *>?) {}
+
+    private fun build(deviceList: Collection<Device<*, *, *>>): List<DeviceInfo> {
+        val deviceInfoList: MutableList<DeviceInfo> = ArrayList()
         for (device in deviceList) { //过滤不支持投屏渲染的设备
             if (null == device.findDevices(DMR_DEVICE_TYPE)) {
                 continue

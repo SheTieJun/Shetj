@@ -49,6 +49,8 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
 import me.shetj.constraintlayout.TestConstrainLayoutActivity
+import me.shetj.dlna.DLNAManager
+import me.shetj.dlna.listener.DLNAStateCallback
 import me.shetj.download.view.DownloadActivity
 import me.shetj.luck.StartAidlInterface
 import me.shetj.mvvm.MvvmActivity
@@ -258,4 +260,7 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
     }
 
+    override fun onActivityDestroy() {
+        super.onActivityDestroy()
+    }
 }

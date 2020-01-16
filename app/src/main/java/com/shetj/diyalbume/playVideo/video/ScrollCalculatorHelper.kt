@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
  * 计算滑动，自动播放的帮助类
  */
 
-class ScrollCalculatorHelper(private val playId: Int, private val center: Int, private val rangeTop: Int, private val rangeBottom: Int, private val autoAdapter: AutoRecycleView) {
+class ScrollCalculatorHelper(private val playId: Int, private val center: Int, private val rangeTop: Int, private val rangeBottom: Int, private val autoAdapter: AutoRecycleViewAdapter) {
 
     private var firstVisible = 0
     private var lastVisible = 0
@@ -29,7 +29,6 @@ class ScrollCalculatorHelper(private val playId: Int, private val center: Int, p
     private fun isStop(view: RecyclerView, linearLayoutManager: LinearLayoutManager) {
         val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
         val lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition()
-        autoAdapter.isStop(firstVisibleItemPosition, lastVisibleItemPosition)
     }
 
 

@@ -18,10 +18,21 @@ class MediaInfo {
     var theAlbumName: String? = null
     var index = 0
 
+    constructor(mediaName: String?, mediaType: Int, uri: String?, duration: Long) {
+        this.mediaName = mediaName
+        this.mediaType = mediaType
+        this.uri = uri
+        this.duration = duration
+    }
+
+
     companion object {
         const val TYPE_UNKNOWN = 0
         const val TYPE_IMAGE = 1
         const val TYPE_VIDEO = 2
         const val TYPE_AUDIO = 3
+
+
     }
+
 }
