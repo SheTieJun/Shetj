@@ -19,12 +19,15 @@ import org.fourthline.cling.support.model.DIDLObject;
 import org.fourthline.cling.support.model.PositionInfo;
 import org.fourthline.cling.support.model.ProtocolInfo;
 import org.fourthline.cling.support.model.Res;
+import org.fourthline.cling.support.model.item.AudioItem;
+import org.fourthline.cling.support.model.item.ImageItem;
 import org.fourthline.cling.support.model.item.VideoItem;
 import org.fourthline.cling.support.renderingcontrol.callback.GetVolume;
 import org.fourthline.cling.support.renderingcontrol.callback.SetMute;
 import org.fourthline.cling.support.renderingcontrol.callback.SetVolume;
 import org.seamless.util.MimeType;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,13 +42,12 @@ import me.shetj.cling.service.manager.ClingManager;
 import me.shetj.cling.util.ClingUtils;
 import me.shetj.cling.util.Utils;
 
-/**
- * 说明：Cling 实现的控制方法
- * 作者：zhouzhan
- * 日期：17/6/27 17:17
- */
 
 public class ClingPlayControl implements IPlayControl {
+    public static final int TYPE_IMAGE = 1;
+    public static final int TYPE_VIDEO = 2;
+    public static final int TYPE_AUDIO = 3;
+
 
     private static final String TAG = ClingPlayControl.class.getSimpleName();
     /** 每次接收 500ms 延迟 */
@@ -55,20 +57,20 @@ public class ClingPlayControl implements IPlayControl {
     /**
      * 当前状态
      */
-    private @DLANPlayState.DLANPlayStates int mCurrentState = DLANPlayState.STOP;
+    private int mCurrentState = DLANPlayState.STOP;
     private static final String DIDL_LITE_FOOTER = "</DIDL-Lite>";
     private static final String DIDL_LITE_HEADER = "<?xml version=\"1.0\"?>" + "<DIDL-Lite " + "xmlns=\"urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/\" " +
             "xmlns:dc=\"http://purl.org/dc/elements/1.1/\" " + "xmlns:upnp=\"urn:schemas-upnp-org:metadata-1-0/upnp/\" " +
             "xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\">";
 
     @Override
-    public void playNew(final String url, final ControlCallback callback) {
+    public void playNew(final String url, final int ItemType, final ControlCallback callback) {
 
         stop(new ControlCallback() { // 1、 停止当前播放视频
             @Override
             public void success(IResponse response) {
 
-                setAVTransportURI(url, new ControlCallback() {   // 2、设置 url
+                setAVTransportURI(url,ItemType, new ControlCallback() {   // 2、设置 url
                     @Override
                     public void success(IResponse response) {
                         play(callback);                        // 3、播放视频
@@ -287,12 +289,12 @@ public class ClingPlayControl implements IPlayControl {
      * @param url   片源地址
      * @param callback  回调
      */
-    private void setAVTransportURI(String url, final ControlCallback callback) {
+    private void setAVTransportURI(String url,  int ItemType,final ControlCallback callback) {
         if (Utils.isNull(url)) {
             return;
         }
 
-        String metadata = pushMediaToRender(url, "id", "name", "0");
+        String metadata = pushMediaToRender(url, "id", "name",ItemType );
 
         final Service avtService = ClingUtils.findServiceFromSelectedDevice(ClingManager.AV_TRANSPORT_SERVICE);
         if (Utils.isNull(avtService)) {
@@ -395,31 +397,49 @@ public class ClingPlayControl implements IPlayControl {
         controlPointImpl.execute(getVolume);
     }
 
-    public @DLANPlayState.DLANPlayStates
-    int getCurrentState() {
+    public  int getCurrentState() {
         return mCurrentState;
     }
 
-    public void setCurrentState(@DLANPlayState.DLANPlayStates int currentState) {
+    public void setCurrentState(int currentState) {
         if (this.mCurrentState != currentState) {
             this.mCurrentState = currentState;
         }
     }
 
-    private String pushMediaToRender(String url, String id, String name, String duration) {
-        long size = 0;
-        long bitrate = 0;
-        Res res = new Res(new MimeType(ProtocolInfo.WILDCARD, ProtocolInfo.WILDCARD), size, url);
 
-        String creator = "unknow";
-        String resolution = "unknow";
-        VideoItem videoItem = new VideoItem(id, "0", name, creator, res);
+    private String pushMediaToRender(String url, String id, String name, int ItemType) {
+        final long size = 0;
+        final Res res = new Res(new MimeType(ProtocolInfo.WILDCARD, ProtocolInfo.WILDCARD), size, url);
+        final String creator = "unknow";
+        final String parentId = "0";
+        final String metadata;
 
-        String metadata = createItemMetadata(videoItem);
-        Log.e(TAG, "metadata: " + metadata);
+        switch (ItemType) {
+            case  TYPE_IMAGE:
+                ImageItem imageItem = new ImageItem(id, parentId, name, creator, res);
+                metadata = createItemMetadata(imageItem);
+                break;
+            case TYPE_VIDEO:
+                VideoItem videoItem = new VideoItem(id, parentId, name, creator, res);
+                metadata = createItemMetadata(videoItem);
+                break;
+            case TYPE_AUDIO:
+                AudioItem audioItem = new AudioItem(id, parentId, name, creator, res);
+                metadata = createItemMetadata(audioItem);
+                break;
+            default:
+                throw new IllegalArgumentException("UNKNOWN MEDIA TYPE");
+        }
         return metadata;
     }
 
+    /**
+     * 创建投屏的参数
+     *
+     * @param item
+     * @return
+     */
     private String createItemMetadata(DIDLObject item) {
         StringBuilder metadata = new StringBuilder();
         metadata.append(DIDL_LITE_HEADER);
@@ -433,19 +453,12 @@ public class ClingPlayControl implements IPlayControl {
             creator = creator.replaceAll(">", "_");
         }
         metadata.append(String.format("<upnp:artist>%s</upnp:artist>", creator));
-
         metadata.append(String.format("<upnp:class>%s</upnp:class>", item.getClazz().getValue()));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date now = new Date();
         String time = sdf.format(now);
         metadata.append(String.format("<dc:date>%s</dc:date>", time));
-
-        // metadata.append(String.format("<upnp:album>%s</upnp:album>",
-        // item.get);
-
-        // <res protocolInfo="http-get:*:audio/mpeg:*"
-        // resolution="640x478">http://192.168.1.104:8088/Music/07.我醒著做夢.mp3</res>
 
         Res res = item.getFirstResource();
         if (res != null) {
@@ -456,7 +469,6 @@ public class ClingPlayControl implements IPlayControl {
                 protocolinfo = String.format("protocolInfo=\"%s:%s:%s:%s\"", pi.getProtocol(), pi.getNetwork(), pi.getContentFormatMimeType(), pi
                         .getAdditionalInfo());
             }
-            Log.e(TAG, "protocolinfo: " + protocolinfo);
 
             // resolution, extra info, not adding yet
             String resolution = "";
@@ -487,4 +499,6 @@ public class ClingPlayControl implements IPlayControl {
 
         return metadata.toString();
     }
+
+
 }

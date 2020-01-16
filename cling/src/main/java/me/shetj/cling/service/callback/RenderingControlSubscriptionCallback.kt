@@ -10,13 +10,10 @@ import org.fourthline.cling.model.meta.Service
 import org.fourthline.cling.support.lastchange.LastChange
 import org.fourthline.cling.support.renderingcontrol.lastchange.RenderingControlLastChangeParser
 import org.fourthline.cling.support.renderingcontrol.lastchange.RenderingControlVariable.Volume
-
-/**
- * 说明：RenderingControl 事件回传
- * 作者：zhouzhan
- * 日期：17/7/18 18:54
- */
 class RenderingControlSubscriptionCallback(service: Service<*, *>?, context: Context?) : BaseSubscriptionCallback(service, context) {
+
+    private val TAG = RenderingControlSubscriptionCallback::class.java.simpleName
+
     override fun eventReceived(subscription: GENASubscription<*>) {
         val values = subscription.currentValues
         if (isNull(values)) {
@@ -47,7 +44,5 @@ class RenderingControlSubscriptionCallback(service: Service<*, *>?, context: Con
         }
     }
 
-    companion object {
-        private val TAG = RenderingControlSubscriptionCallback::class.java.simpleName
-    }
+
 }

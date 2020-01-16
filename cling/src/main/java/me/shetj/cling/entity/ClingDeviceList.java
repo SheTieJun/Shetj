@@ -11,11 +11,6 @@ import java.util.Collection;
 
 import me.shetj.cling.util.Utils;
 
-/**
- * 说明：单例设备列表, 保证全局只有一个设备列表
- * 作者：zhouzhan
- * 日期：17/6/30 11:25
- */
 
 public class ClingDeviceList {
 

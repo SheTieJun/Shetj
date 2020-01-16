@@ -13,104 +13,82 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.shetj.cling.entity;
+package me.shetj.cling.entity
 
-import android.content.Intent;
+import android.content.Intent
+import java.io.Serializable
 
-import java.io.Serializable;
-
-public class Intents {
+object Intents {
     /**
      * Prefix for all intents created
      */
-    public static final String INTENT_PREFIX = "com.zane.androidupnpdemo.";
-
+    const val INTENT_PREFIX = "com.zane.androidupnpdemo."
     /**
      * Prefix for all extra data added to intents
      */
-    public static final String INTENT_EXTRA_PREFIX = INTENT_PREFIX + "extra.";
-
+    const val INTENT_EXTRA_PREFIX = INTENT_PREFIX + "extra."
     /**
      * Prefix for all action in intents
      */
-    public static final String INTENT_ACTION_PREFIX = INTENT_PREFIX + "action.";
-
+    const val INTENT_ACTION_PREFIX = INTENT_PREFIX + "action."
     /**
      * Playing action for MediaPlayer
      */
-    public static final String ACTION_PLAYING = INTENT_ACTION_PREFIX + "playing";
-
+    const val ACTION_PLAYING = INTENT_ACTION_PREFIX + "playing"
     /**
      * Paused playback action for MediaPlayer
      */
-    public static final String ACTION_PAUSED_PLAYBACK = INTENT_ACTION_PREFIX + "paused_playback";
-
+    const val ACTION_PAUSED_PLAYBACK = INTENT_ACTION_PREFIX + "paused_playback"
     /**
      * Stopped action for MediaPlayer
      */
-    public static final String ACTION_STOPPED = INTENT_ACTION_PREFIX + "stopped";
-
+    const val ACTION_STOPPED = INTENT_ACTION_PREFIX + "stopped"
     /**
      * transitioning action for MediaPlayer
      */
-    public static final String ACTION_TRANSITIONING = INTENT_ACTION_PREFIX + "transitioning";
-
+    const val ACTION_TRANSITIONING = INTENT_ACTION_PREFIX + "transitioning"
     /**
      * Change device action for MediaPlayer
      */
-    public static final String ACTION_CHANGE_DEVICE = INTENT_ACTION_PREFIX + "change_device";
-
+    const val ACTION_CHANGE_DEVICE = INTENT_ACTION_PREFIX + "change_device"
     /**
      * Set volume action for MediaPlayer
      */
-    public static final String ACTION_SET_VOLUME = INTENT_ACTION_PREFIX + "set_volume";
-
+    const val ACTION_SET_VOLUME = INTENT_ACTION_PREFIX + "set_volume"
     /**
      * 主动获取播放进度
      */
-    public static final String ACTION_GET_POSITION = INTENT_ACTION_PREFIX + "get_position";
+    const val ACTION_GET_POSITION = INTENT_ACTION_PREFIX + "get_position"
     /**
      * 远程设备回传播放进度
      */
-    public static final String ACTION_POSITION_CALLBACK = INTENT_ACTION_PREFIX + "position_callback";
+    const val ACTION_POSITION_CALLBACK = INTENT_ACTION_PREFIX + "position_callback"
     /**
      * 音量回传
      */
-    public static final String ACTION_VOLUME_CALLBACK = INTENT_ACTION_PREFIX + "volume_callback";
+    const val ACTION_VOLUME_CALLBACK = INTENT_ACTION_PREFIX + "volume_callback"
     /**
      * 播放进度回传值
      */
-    public static final String EXTRA_POSITION = INTENT_ACTION_PREFIX + "extra_position";
+    const val EXTRA_POSITION = INTENT_ACTION_PREFIX + "extra_position"
     /**
      * 音量回传值
      */
-    public static final String EXTRA_VOLUME = INTENT_ACTION_PREFIX + "extra_volume";
+    const val EXTRA_VOLUME = INTENT_ACTION_PREFIX + "extra_volume"
     /**
      * 投屏端播放完成
      */
-    public static final String ACTION_PLAY_COMPLETE = INTENT_ACTION_PREFIX + "play_complete";
-
+    const val ACTION_PLAY_COMPLETE = INTENT_ACTION_PREFIX + "play_complete"
     /**
      * Update the lastChange value action for MediaPlayer
      */
-    public static final String ACTION_UPDATE_LAST_CHANGE = INTENT_ACTION_PREFIX + "update_last_change";
+    const val ACTION_UPDATE_LAST_CHANGE = INTENT_ACTION_PREFIX + "update_last_change"
 
     /**
      * Builder for generating an intent configured with extra data.
      */
-    public static class Builder {
-
-        private final Intent intent;
-
-        /**
-         * Create builder with suffix
-         *
-         * @param actionSuffix
-         */
-        public Builder(String actionSuffix) {
-            intent = new Intent(INTENT_PREFIX + actionSuffix);
-        }
-
+    class Builder(actionSuffix: String) {
+        private val intent: Intent
         /**
          * Add extra field data value to intent being built up
          *
@@ -118,9 +96,9 @@ public class Intents {
          * @param value
          * @return this builder
          */
-        public Builder add(String fieldName, String value) {
-            intent.putExtra(fieldName, value);
-            return this;
+        fun add(fieldName: String?, value: String?): Builder {
+            intent.putExtra(fieldName, value)
+            return this
         }
 
         /**
@@ -130,9 +108,9 @@ public class Intents {
          * @param values
          * @return this builder
          */
-        public Builder add(String fieldName, CharSequence[] values) {
-            intent.putExtra(fieldName, values);
-            return this;
+        fun add(fieldName: String?, values: Array<CharSequence?>?): Builder {
+            intent.putExtra(fieldName, values)
+            return this
         }
 
         /**
@@ -142,9 +120,9 @@ public class Intents {
          * @param value
          * @return this builder
          */
-        public Builder add(String fieldName, int value) {
-            intent.putExtra(fieldName, value);
-            return this;
+        fun add(fieldName: String?, value: Int): Builder {
+            intent.putExtra(fieldName, value)
+            return this
         }
 
         /**
@@ -154,9 +132,9 @@ public class Intents {
          * @param values
          * @return this builder
          */
-        public Builder add(String fieldName, int[] values) {
-            intent.putExtra(fieldName, values);
-            return this;
+        fun add(fieldName: String?, values: IntArray?): Builder {
+            intent.putExtra(fieldName, values)
+            return this
         }
 
         /**
@@ -166,9 +144,9 @@ public class Intents {
          * @param values
          * @return this builder
          */
-        public Builder add(String fieldName, boolean[] values) {
-            intent.putExtra(fieldName, values);
-            return this;
+        fun add(fieldName: String?, values: BooleanArray?): Builder {
+            intent.putExtra(fieldName, values)
+            return this
         }
 
         /**
@@ -178,9 +156,9 @@ public class Intents {
          * @param value
          * @return this builder
          */
-        public Builder add(String fieldName, Serializable value) {
-            intent.putExtra(fieldName, value);
-            return this;
+        fun add(fieldName: String?, value: Serializable?): Builder {
+            intent.putExtra(fieldName, value)
+            return this
         }
 
         /**
@@ -188,8 +166,17 @@ public class Intents {
          *
          * @return intent
          */
-        public Intent toIntent() {
-            return intent;
+        fun toIntent(): Intent {
+            return intent
+        }
+
+        /**
+         * Create builder with suffix
+         *
+         * @param actionSuffix
+         */
+        init {
+            intent = Intent(INTENT_PREFIX + actionSuffix)
         }
     }
 }

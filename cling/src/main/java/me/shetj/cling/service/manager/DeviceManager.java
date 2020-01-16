@@ -13,13 +13,7 @@ import me.shetj.cling.entity.IDevice;
 import me.shetj.cling.util.Utils;
 
 
-/**
- * 说明：
- * 作者：zhouzhan
- * 日期：17/7/21 16:33
- */
-
-public class DeviceManager implements IDeviceManager {
+public class DeviceManager <T> implements IDeviceManager <T> {
     private static final String TAG = DeviceManager.class.getSimpleName();
     /**
      * 已选中的设备, 它也是 ClingDeviceList 中的一员
@@ -38,14 +32,9 @@ public class DeviceManager implements IDeviceManager {
 
     @Override
     public void setSelectedDevice(IDevice selectedDevice) {
-//        if (selectedDevice != mSelectedDevice){
-//            Intent intent = new Intent(Intents.ACTION_CHANGE_DEVICE);
-//            sendBroadcast(intent);
-//        }
 
         Log.i(TAG, "Change selected device.");
         mSelectedDevice = (ClingDevice) selectedDevice;
-
         // 重置选中状态
         Collection<ClingDevice> clingDeviceList = ClingDeviceList.getInstance().getClingDeviceList();
         if (Utils.isNotNull(clingDeviceList)){

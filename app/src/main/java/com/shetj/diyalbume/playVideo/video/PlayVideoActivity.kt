@@ -1,5 +1,6 @@
 package com.shetj.diyalbume.playVideo.video
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.content.res.Configuration
 import android.os.Bundle
@@ -25,8 +26,11 @@ import me.shetj.cling.playUrl
 import me.shetj.cling.service.ClingUpnpService
 import me.shetj.cling.service.manager.ClingManager
 import me.shetj.cling.service.manager.DeviceManager
+import me.shetj.cling.service.manager.IDeviceManager
 import me.shetj.cling.util.ClingUtils
 import me.shetj.cling.util.Utils
+import org.fourthline.cling.android.AndroidUpnpServiceImpl
+import org.fourthline.cling.model.meta.Device
 import timber.log.Timber
 import java.util.*
 
@@ -49,7 +53,7 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
     private var isPause  = true
     private var videoPlayFragment: VideoPlayFragment ?= null
     private val mClingPlayControl by lazy {
-        ClingUtils.getClingPlayControl()
+        ClingUtils.clingPlayControl
     }
     private val mBrowseRegistryListener by lazy {
         BrowseRegistryListener()
@@ -60,17 +64,17 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
     private val mUpnpServiceConnection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             val binder: ClingUpnpService.LocalBinder = service as ClingUpnpService.LocalBinder
-            val beyondUpnpService: ClingUpnpService = binder.getService()
-            val clingUpnpServiceManager = ClingManager.getInstance()
+            val beyondUpnpService: ClingUpnpService = binder.service
+            val clingUpnpServiceManager = ClingManager.instance
             clingUpnpServiceManager.setUpnpService(beyondUpnpService)
             clingUpnpServiceManager.setDeviceManager(DeviceManager())
-            clingUpnpServiceManager.registry.addListener(mBrowseRegistryListener)
+            clingUpnpServiceManager.registry?.addListener(mBrowseRegistryListener)
             //Search on service created.
             clingUpnpServiceManager.searchDevices()
         }
 
         override fun onServiceDisconnected(className: ComponentName) {
-            ClingManager.getInstance().setUpnpService(null)
+            ClingManager.instance?.setUpnpService(null)
         }
     }
 
@@ -124,8 +128,8 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
                 override fun success(response: IResponse<Any>) {
                     "投放成功".showToast()
                     //                    ClingUpnpServiceManager.getInstance().subscribeMediaRender();
-                    ClingManager.getInstance().registerAVTransport(this@PlayVideoActivity)
-                    ClingManager.getInstance().registerRenderingControl(this@PlayVideoActivity)
+                    ClingManager.instance.registerAVTransport(this@PlayVideoActivity)
+                    ClingManager.instance.registerRenderingControl(this@PlayVideoActivity)
                 }
 
                 override fun fail(response: IResponse<Any>) {
@@ -169,18 +173,18 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
 
     private fun showRecycleView() {
         mAdapter = AutoRecycleViewAdapter(ArrayList()).apply {
-            setOnItemClickListener { _, _, posotion ->
-                getItem(posotion)?.apply {
+            setOnItemClickListener { _, _, position ->
+                getItem(position)?.apply {
                     // 选择连接设备
                     if (Utils.isNull(this)) {
                         return@setOnItemClickListener
                     }
-                    ClingManager.getInstance().selectedDevice = this
+                    ClingManager.instance.selectedDevice = this
                     val device  = this.device
                     if (Utils.isNull(device)) {
                         return@setOnItemClickListener
                     }
-                    setPlay(posotion)
+                    setPlay(position)
                 }
 
             }
@@ -218,8 +222,8 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
         mHandler.removeCallbacksAndMessages(null)
         unbindService(mUpnpServiceConnection)
         unregisterReceiver(mTransportStateBroadcastReceiver)
-        ClingManager.getInstance().registry?.removeListener(mBrowseRegistryListener)
-        ClingManager.getInstance().destroy()
+        ClingManager.instance.registry?.removeListener(mBrowseRegistryListener)
+        ClingManager.instance.destroy()
         ClingDeviceList.getInstance().destroy()
     }
 
@@ -227,6 +231,7 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
     /******************* end progress changed listener  */
      inner class InnerHandler : Handler() {
 
+        @SuppressLint("WrongConstant")
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             when (msg.what) {
@@ -261,17 +266,17 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
             Timber.i( "Receive playback intent:$action")
-            when {
-                Intents.ACTION_PLAYING == action -> {
+            when (action) {
+                Intents.ACTION_PLAYING -> {
                     mHandler.sendEmptyMessage(  PLAY_ACTION)
                 }
-                Intents.ACTION_PAUSED_PLAYBACK == action -> {
+                Intents.ACTION_PAUSED_PLAYBACK -> {
                     mHandler.sendEmptyMessage( PAUSE_ACTION)
                 }
-                Intents.ACTION_STOPPED == action -> {
+                Intents.ACTION_STOPPED -> {
                     mHandler.sendEmptyMessage( STOP_ACTION)
                 }
-                Intents.ACTION_TRANSITIONING == action -> {
+                Intents.ACTION_TRANSITIONING -> {
                     mHandler.sendEmptyMessage(TRANSITIONING_ACTION)
                 }
             }
