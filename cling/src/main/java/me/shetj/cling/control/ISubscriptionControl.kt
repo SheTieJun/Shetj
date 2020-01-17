@@ -3,11 +3,6 @@ package me.shetj.cling.control
 import android.content.Context
 import me.shetj.cling.entity.IDevice
 
-/**
- * 说明：tv端回调
- * 作者：zhouzhan
- * 日期：17/7/21 16:38
- */
 interface ISubscriptionControl<T> {
     /**
      * 监听投屏端 AVTransport 回调

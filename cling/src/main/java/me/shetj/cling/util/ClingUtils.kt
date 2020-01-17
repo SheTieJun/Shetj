@@ -1,9 +1,7 @@
 package me.shetj.cling.util
 
-import me.shetj.cling.control.ClingPlayControl
 import me.shetj.cling.entity.IDevice
-import me.shetj.cling.service.manager.ClingManager
-import me.shetj.cling.service.manager.ClingManager.Companion.instance
+import me.shetj.cling.manager.ClingManager
 import me.shetj.cling.util.Utils.isNull
 import org.fourthline.cling.controlpoint.ControlPoint
 import org.fourthline.cling.model.meta.Device
@@ -19,7 +17,7 @@ object ClingUtils {
      */
     @JvmStatic
     fun findServiceFromSelectedDevice(serviceType: ServiceType?): Service<*, *>? {
-        val selectedDevice: IDevice<*>? = instance!!.selectedDevice
+        val selectedDevice: IDevice<*>? = ClingManager.instance.selectedDevice
         if (isNull(selectedDevice)) {
             return null
         }
@@ -45,12 +43,9 @@ object ClingUtils {
     @JvmStatic
     val controlPoint: ControlPoint?
         get() {
-            val controlPoint = instance!!.controlPoint
+            val controlPoint = ClingManager.instance.controlPoint
             return if (isNull(controlPoint)) {
                 null
             } else controlPoint!!.getControlPoint() as ControlPoint?
         }
-
-    val clingPlayControl: ClingPlayControl
-        get() = ClingPlayControl()
 }

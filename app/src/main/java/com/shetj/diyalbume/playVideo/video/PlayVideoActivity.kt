@@ -18,19 +18,17 @@ import me.shetj.base.base.BaseActivity
 import me.shetj.base.base.BasePresenter
 import me.shetj.base.kt.addFragmentToActivity
 import me.shetj.base.kt.showToast
-import me.shetj.cling.control.callback.ControlCallback
+import me.shetj.cling.callback.ControlCallback
+import me.shetj.cling.control.ClingPlayControl
 import me.shetj.cling.entity.*
 import me.shetj.cling.listener.BrowseRegistryListener
 import me.shetj.cling.listener.DeviceListChangedListener
 import me.shetj.cling.playUrl
 import me.shetj.cling.service.ClingUpnpService
-import me.shetj.cling.service.manager.ClingManager
-import me.shetj.cling.service.manager.DeviceManager
-import me.shetj.cling.service.manager.IDeviceManager
+import me.shetj.cling.manager.ClingManager
+import me.shetj.cling.manager.DeviceManager
 import me.shetj.cling.util.ClingUtils
 import me.shetj.cling.util.Utils
-import org.fourthline.cling.android.AndroidUpnpServiceImpl
-import org.fourthline.cling.model.meta.Device
 import timber.log.Timber
 import java.util.*
 
@@ -53,7 +51,7 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
     private var isPause  = true
     private var videoPlayFragment: VideoPlayFragment ?= null
     private val mClingPlayControl by lazy {
-        ClingUtils.clingPlayControl
+        ClingPlayControl()
     }
     private val mBrowseRegistryListener by lazy {
         BrowseRegistryListener()
@@ -124,7 +122,7 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
         }
         start_screen.setOnClickListener {
             val url = "https://vod.lycheer.net/e22cd48bvodtransgzp1253442168/d6b59e205285890789389180692/v.f20.mp4"
-            mClingPlayControl.playUrl(url,object : ControlCallback<Any>{
+            mClingPlayControl.playUrl(url,ClingPlayType.TYPE_VIDEO,object : ControlCallback<Any>{
                 override fun success(response: IResponse<Any>) {
                     "投放成功".showToast()
                     //                    ClingUpnpServiceManager.getInstance().subscribeMediaRender();
@@ -237,15 +235,15 @@ class PlayVideoActivity : BaseActivity<BasePresenter<*>>()   {
             when (msg.what) {
                 PLAY_ACTION -> {
                     Toast.makeText(this@PlayVideoActivity, "正在投放", Toast.LENGTH_SHORT).show()
-                    mClingPlayControl.currentState = DLANPlayState.PLAY
+                    mClingPlayControl.currentState = ClingPlayState.PLAY
                 }
                 PAUSE_ACTION -> {
                     Timber.i(  "Execute PAUSE_ACTION")
-                    mClingPlayControl.currentState = DLANPlayState.PAUSE
+                    mClingPlayControl.currentState = ClingPlayState.PAUSE
                 }
                 STOP_ACTION -> {
                     Timber.i(  "Execute STOP_ACTION")
-                    mClingPlayControl.currentState = DLANPlayState.STOP
+                    mClingPlayControl.currentState = ClingPlayState.STOP
                 }
                 TRANSITIONING_ACTION -> {
                     Timber.i( "Execute TRANSITIONING_ACTION")

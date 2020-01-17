@@ -1,20 +1,22 @@
 package me.shetj.cling
 
+import me.shetj.cling.callback.ControlCallback
 import me.shetj.cling.control.ClingPlayControl
-import me.shetj.cling.control.callback.ControlCallback
 import me.shetj.cling.entity.ClingDevice
 import me.shetj.cling.entity.ClingDeviceList
-import me.shetj.cling.entity.DLANPlayState
-import me.shetj.cling.service.manager.ClingManager
+import me.shetj.cling.entity.ClingPlayState
+import me.shetj.cling.entity.ClingPlayType
+import me.shetj.cling.manager.ClingManager
 
 
-fun ClingPlayControl.playUrl(url:String, callback: ControlCallback<*>){
-    val currentState: Int = currentState
-    /**
-     * 通过判断状态 来决定 是继续播放 还是重新播放
-     */
-    if (currentState == DLANPlayState.STOP) {
-        playNew(url, ClingPlayControl.TYPE_VIDEO,callback)
+/**
+ * 播放视频
+ */
+@JvmOverloads
+fun ClingPlayControl.playUrl(url:String,ItemType :ClingPlayType = ClingPlayType.TYPE_VIDEO ,callback: ControlCallback<*>?){
+    val currentState: ClingPlayState = currentState
+    if (currentState == ClingPlayState.STOP) {
+        playNew(url,ItemType,callback)
     } else {
         play(callback)
     }

@@ -1,23 +1,19 @@
 package me.shetj.cling.control
 
-import me.shetj.cling.control.callback.ControlCallback
-import me.shetj.cling.control.callback.ControlReceiveCallback
+import me.shetj.cling.callback.ControlCallback
+import me.shetj.cling.callback.ControlReceiveCallback
+import me.shetj.cling.entity.ClingPlayType
 
-/**
- * 说明：对视频的控制操作定义
- * 作者：zhouzhan
- * 日期：17/6/27 17:13
- */
 interface IPlayControl {
     /**
      * 播放一个新片源
      *
      * @param url   片源地址
      */
-    fun playNew(url: String?, ItemType: Int, callback: ControlCallback<*>?)
+    fun playNew(url: String?, ItemType: ClingPlayType, callback: ControlCallback<*>?)
 
     /**
-     * 播放
+     * 继续播放
      */
     fun play(callback: ControlCallback<*>?)
 

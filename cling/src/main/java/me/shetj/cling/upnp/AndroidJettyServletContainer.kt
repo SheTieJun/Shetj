@@ -30,11 +30,6 @@ import java.util.logging.Logger
 import javax.servlet.Servlet
 import javax.servlet.http.HttpServletRequest
 
-/**
- * 说明：
- * 作者：zhouzhan
- * 日期：17/6/27 17:20
- */
 open class AndroidJettyServletContainer private constructor() : ServletContainerAdapter {
     protected var server: Server? = null
     @Synchronized

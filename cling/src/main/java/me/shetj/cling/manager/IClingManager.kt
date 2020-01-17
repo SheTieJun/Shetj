@@ -1,4 +1,4 @@
-package me.shetj.cling.service.manager
+package me.shetj.cling.manager
 
 import me.shetj.cling.service.ClingUpnpService
 import org.fourthline.cling.registry.Registry

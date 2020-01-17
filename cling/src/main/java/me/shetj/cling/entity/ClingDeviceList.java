@@ -3,7 +3,6 @@ package me.shetj.cling.entity;
 
 import androidx.annotation.Nullable;
 
-
 import org.fourthline.cling.model.meta.Device;
 
 import java.util.ArrayList;

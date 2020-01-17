@@ -1,4 +1,4 @@
-package me.shetj.cling.service.manager
+package me.shetj.cling.manager
 
 import android.content.Context
 import me.shetj.cling.entity.IDevice

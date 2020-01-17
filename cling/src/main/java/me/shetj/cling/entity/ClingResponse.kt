@@ -3,11 +3,6 @@ package me.shetj.cling.entity
 import org.fourthline.cling.model.action.ActionInvocation
 import org.fourthline.cling.model.message.UpnpResponse
 
-/**
- * 说明：Cling 库中，控制操作返回结果
- * 作者：zhouzhan
- * 日期：17/7/4 10:50
- */
 class ClingResponse : IResponse<ActionInvocation<*>?> {
     private var mActionInvocation: ActionInvocation<*>? = null
     private var operation: UpnpResponse? = null

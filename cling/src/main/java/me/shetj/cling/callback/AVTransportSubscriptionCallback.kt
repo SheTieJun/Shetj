@@ -1,4 +1,4 @@
-package me.shetj.cling.service.callback
+package me.shetj.cling.callback
 
 import android.content.Context
 import android.content.Intent

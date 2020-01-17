@@ -1,4 +1,4 @@
-package me.shetj.cling.control.callback
+package me.shetj.cling.callback
 
 import me.shetj.cling.entity.IResponse
 

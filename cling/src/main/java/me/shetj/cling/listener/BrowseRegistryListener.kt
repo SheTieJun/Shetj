@@ -3,7 +3,7 @@ package me.shetj.cling.listener
 import android.util.Log
 import me.shetj.cling.entity.ClingDevice
 import me.shetj.cling.entity.ClingDeviceList
-import me.shetj.cling.service.manager.ClingManager
+import me.shetj.cling.manager.ClingManager
 import me.shetj.cling.util.Utils.isNotNull
 import org.fourthline.cling.model.meta.Device
 import org.fourthline.cling.model.meta.LocalDevice

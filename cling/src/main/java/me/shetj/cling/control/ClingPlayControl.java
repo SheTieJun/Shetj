@@ -2,7 +2,6 @@ package me.shetj.cling.control;
 
 import android.util.Log;
 
-
 import androidx.annotation.Nullable;
 
 import org.fourthline.cling.controlpoint.ControlPoint;
@@ -31,24 +30,21 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import me.shetj.cling.control.callback.ControlCallback;
-import me.shetj.cling.control.callback.ControlReceiveCallback;
+import me.shetj.cling.callback.ControlCallback;
+import me.shetj.cling.callback.ControlReceiveCallback;
+import me.shetj.cling.entity.ClingPlayState;
+import me.shetj.cling.entity.ClingPlayType;
+import me.shetj.cling.entity.ClingPlayType.*;
 import me.shetj.cling.entity.ClingPositionResponse;
 import me.shetj.cling.entity.ClingResponse;
 import me.shetj.cling.entity.ClingVolumeResponse;
-import me.shetj.cling.entity.DLANPlayState;
 import me.shetj.cling.entity.IResponse;
-import me.shetj.cling.service.manager.ClingManager;
+import me.shetj.cling.manager.ClingManager;
 import me.shetj.cling.util.ClingUtils;
 import me.shetj.cling.util.Utils;
 
 
 public class ClingPlayControl implements IPlayControl {
-    public static final int TYPE_IMAGE = 1;
-    public static final int TYPE_VIDEO = 2;
-    public static final int TYPE_AUDIO = 3;
-
-
     private static final String TAG = ClingPlayControl.class.getSimpleName();
     /** 每次接收 500ms 延迟 */
     private static final int RECEIVE_DELAY = 500;
@@ -57,14 +53,14 @@ public class ClingPlayControl implements IPlayControl {
     /**
      * 当前状态
      */
-    private int mCurrentState = DLANPlayState.STOP;
+    private ClingPlayState mCurrentState = ClingPlayState.STOP;
     private static final String DIDL_LITE_FOOTER = "</DIDL-Lite>";
     private static final String DIDL_LITE_HEADER = "<?xml version=\"1.0\"?>" + "<DIDL-Lite " + "xmlns=\"urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/\" " +
             "xmlns:dc=\"http://purl.org/dc/elements/1.1/\" " + "xmlns:upnp=\"urn:schemas-upnp-org:metadata-1-0/upnp/\" " +
             "xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\">";
 
     @Override
-    public void playNew(final String url, final int ItemType, final ControlCallback callback) {
+    public void playNew(final String url, final ClingPlayType ItemType, final ControlCallback callback) {
 
         stop(new ControlCallback() { // 1、 停止当前播放视频
             @Override
@@ -289,7 +285,7 @@ public class ClingPlayControl implements IPlayControl {
      * @param url   片源地址
      * @param callback  回调
      */
-    private void setAVTransportURI(String url,  int ItemType,final ControlCallback callback) {
+    private void setAVTransportURI(String url,  ClingPlayType ItemType,final ControlCallback callback) {
         if (Utils.isNull(url)) {
             return;
         }
@@ -397,24 +393,23 @@ public class ClingPlayControl implements IPlayControl {
         controlPointImpl.execute(getVolume);
     }
 
-    public  int getCurrentState() {
+    public  ClingPlayState getCurrentState() {
         return mCurrentState;
     }
 
-    public void setCurrentState(int currentState) {
+    public void setCurrentState(ClingPlayState currentState) {
         if (this.mCurrentState != currentState) {
             this.mCurrentState = currentState;
         }
     }
 
 
-    private String pushMediaToRender(String url, String id, String name, int ItemType) {
+    private String pushMediaToRender(String url, String id, String name, ClingPlayType ItemType) {
         final long size = 0;
         final Res res = new Res(new MimeType(ProtocolInfo.WILDCARD, ProtocolInfo.WILDCARD), size, url);
         final String creator = "unknow";
         final String parentId = "0";
         final String metadata;
-
         switch (ItemType) {
             case  TYPE_IMAGE:
                 ImageItem imageItem = new ImageItem(id, parentId, name, creator, res);
