@@ -37,6 +37,7 @@ import com.shetj.diyalbume.pipiti.localMusic.LocalMusicActivity
 import com.shetj.diyalbume.playVideo.media.MediaActivity
 import com.shetj.diyalbume.playVideo.video.PlayVideoActivity
 import com.shetj.diyalbume.ppttest.PPtTestActivity
+import com.shetj.diyalbume.ppttest.X5ReaderActivity
 import com.shetj.diyalbume.swipcard.SwipCardActivity
 import com.shetj.diyalbume.test.CustomActivity
 import com.shetj.diyalbume.utils.DownloadService
@@ -46,6 +47,7 @@ import com.tencent.mm.opensdk.modelbiz.JumpToBizProfile
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import kotlinx.android.synthetic.main.content_main.*
 import me.shetj.base.base.BaseActivity
+import me.shetj.base.kt.start
 import me.shetj.base.tools.app.ArmsUtils
 import me.shetj.base.tools.app.Utils
 import me.shetj.constraintlayout.TestConstrainLayoutActivity
@@ -255,6 +257,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         btn_dark_mode.setOnClickListener {
             AppCompatDelegate.setDefaultNightMode(mPresenter!!.getModel())
+        }
+        file_x5.setOnClickListener {
+            ArmsUtils.startActivity(this,X5ReaderActivity::class.java)
         }
     }
 

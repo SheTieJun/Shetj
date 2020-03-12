@@ -18,7 +18,6 @@ import com.shetj.diyalbume.R
  * **@email：** 375105540@qq.com<br></br>
  * **@describe**<br></br>
  */
-@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 class AlbumImageView : AppCompatImageView {
 
 
@@ -36,7 +35,7 @@ class AlbumImageView : AppCompatImageView {
     private var lastX: Float = 0.toFloat()
     private var lastY: Float = 0.toFloat()
 
-    private val isNotDrag: Boolean
+    private val  isNotDrag: Boolean
         get() = !isDrag
 
     val json: String

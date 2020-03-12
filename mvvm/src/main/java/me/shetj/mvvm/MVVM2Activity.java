@@ -6,13 +6,14 @@ import androidx.databinding.ViewDataBinding;
 
 import android.os.Bundle;
 
+import me.shetj.mvvm.databinding.ActivityMvvmBinding;
+
 public class MVVM2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ViewDataBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm);
-
 
     }
 }

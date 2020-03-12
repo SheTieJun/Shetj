@@ -13,24 +13,25 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.net.URI
+import java.nio.charset.StandardCharsets
 
 /**
  * 缓存本地服务器
  */
 class CacheHttpServer : HttpServerRequestCallback {
     //缓存
-    private val path: String = SDCardUtils.getPath("TYPE_DOWNLOAD_CAHE")
+    private val path: String = SDCardUtils.getPath("TYPE_DOWNLOAD_CACHE")
     //服务器实列
     private val server = AsyncHttpServer()
     private val KEY_CACHE_TMEP = ".s"
     /**
      * 开启本地服务
      */
-    fun startServer() { //如果有其他的请求方式，例如下面一行代码的写法
+    fun startServer() {
+        //如果有其他的请求方式，例如下面一行代码的写法
         server.addAction("OPTIONS", "[\\d\\D]*", this)
         server["[\\d\\D]*", this]
         server.post("[\\d\\D]*", this)
-        //服务器监听端口
         server.listen(PORT_LISTEN_DEFAULT)
     }
 
@@ -45,10 +46,12 @@ class CacheHttpServer : HttpServerRequestCallback {
         val param = request.path.replace("/path/", "")
         //获取传入的参数
         Timber.d("onRequest: $param  $param")
+
         //这个是获取header参数的地方，一定要谨记
         val headers = request.headers.multiMap
+
+
         // 获取本地的存文件的目录
-//获取文件路径
         if (TextUtils.isEmpty(path)) {
             response.send("sd卡没有找到")
             return
@@ -57,17 +60,20 @@ class CacheHttpServer : HttpServerRequestCallback {
         var stream: BufferedInputStream? = null
         var inputStream: FileInputStream? = null
         try {
-            if (file.exists()) { //获取本地文件的输入流
+            if (file.exists()) {
+                //获取本地文件的输入流
                 inputStream = FileInputStream(file)
+                var length = file.length()
                 //只有加密文件才走加密
                 if (param.endsWith(KEY_CACHE_TMEP)) {
                     val bytes = ByteArray(11)
                     inputStream.read(bytes, 0, bytes.size)
+                    length -= 11
                 }
-                //出去干扰字符的流
-                stream = BufferedInputStream(inputStream)
-                //写出没有干扰字符的流
-                response.sendStream(stream, stream.available().toLong())
+                response.setContentType("APPLICATION/OCTET-STREAM")
+                response.headers["Content-Disposition"] = "attachment;filename=" + String(file.name.toByteArray(), StandardCharsets.ISO_8859_1)
+                response.headers["Content-Length"] = "" + length
+                response.sendStream(BufferedInputStream(inputStream, 64000), length)
             } else {
                 response.code(404)
             }
@@ -78,25 +84,18 @@ class CacheHttpServer : HttpServerRequestCallback {
     }
 
     companion object {
-        private const val TAG = "CacheHttpServer"
-        //当前类的实列 采用用单列
         private var mInstance: CacheHttpServer? = null
+
         //端口
         private const val PORT_LISTEN_DEFAULT = 5050
-        var BASE_URL = "http://127.0.0.1:$PORT_LISTEN_DEFAULT/path/"
+        private var BASE_URL = "http://127.0.0.1:$PORT_LISTEN_DEFAULT/path/"
         //单列模式
-        val instance: CacheHttpServer?
+        val instance: CacheHttpServer
             get() {
-                if (mInstance == null) {
-                    synchronized(CacheHttpServer::class.java) {
-                        if (mInstance == null) {
-                            mInstance = CacheHttpServer()
-                        }
+                return mInstance?: synchronized(CacheHttpServer::class.java) {
+                            CacheHttpServer().also { mInstance = it }
                     }
-                }
-                return mInstance
             }
-
 
         fun getUri(MediaUrl:String): Uri? {
             val code = File(URI(MediaUrl).path).path

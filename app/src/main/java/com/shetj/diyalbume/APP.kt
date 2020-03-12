@@ -11,6 +11,7 @@ import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection
 import com.liulishuo.filedownloader.util.FileDownloadLog
 import com.shuyu.gsyvideoplayer.utils.Debuger
+import com.zhouyou.http.EasyHttp
 import me.shetj.base.s
 import me.shetj.bdmap.BMapManager
 import me.shetj.fresco.FrescoUtils
@@ -37,6 +38,7 @@ class APP : Application() , Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         s.init(this,BuildConfig.DEBUG )
+        EasyHttp.init(this)
         BMapManager.init(this)
         FrescoUtils.init(this,BuildConfig.DEBUG)
         //8.0 开始不能后台启动
@@ -53,6 +55,11 @@ class APP : Application() , Configuration.Provider {
                                 .proxy(Proxy.NO_PROXY) // set proxy
                         ))
                 .commit()
+//        if (BuildConfig.DEBUG) {
+//            Debuger.enable()
+//        }else{
+//            Debuger.disable()
+//        }
         Debuger.disable()
     }
 

@@ -18,6 +18,7 @@ import me.shetj.base.tools.app.ArmsUtils
 class SwipLayoutManager(private var context: Context) :RecyclerView.LayoutManager(){
 
     private val MAX_SHOW_COUNT = 3
+    private val marTop = ArmsUtils.dip2px(5f)
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         return RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT,
@@ -49,7 +50,7 @@ class SwipLayoutManager(private var context: Context) :RecyclerView.LayoutManage
 
 
     private fun calculateChildrenSite(recycler: RecyclerView.Recycler) {
-        val marTop = ArmsUtils.dip2px(5f)
+
         var scale = 1f
         for (i in  0 until MAX_SHOW_COUNT ) {
             // 遍历Recycler中保存的View取出来

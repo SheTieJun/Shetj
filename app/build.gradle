@@ -261,7 +261,7 @@ dependencies {
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
-    def work_version = "2.2.0"
+    def work_version = "2.3.3"
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
     // Kotlin + coroutines
@@ -286,7 +286,7 @@ dependencies {
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    implementation 'androidx.customview:customview:1.1.0-alpha01' //ViewDragHelper
+    implementation 'androidx.customview:customview:1.1.0-alpha02' //ViewDragHelper
     //MarkDown 空间
     implementation 'us.feras.mdv:markdownview:1.1.0'
 

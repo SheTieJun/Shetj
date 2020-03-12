@@ -164,14 +164,18 @@ object MusicNotification {
         NotificationManagerCompat.from(context).cancel("后台播放器".hashCode())
     }
 
+    fun NotificationManagerCompat.cancelAll(){
+        cancelAll()
+    }
+
     /**
      * 8.0 通知栏，创建通知栏渠道ID
      */
     private fun createNotificationChannel(context: Context): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId ="荔枝微课"
-            val channelName = "荔枝微课"
-            val channelDescription = "荔枝微课"
+            val channelId ="shetj"
+            val channelName = "shetj"
+            val channelDescription = "shetj"
             val channelImportance = NotificationManager.IMPORTANCE_LOW
 
             val notificationChannel = NotificationChannel(channelId, channelName, channelImportance)

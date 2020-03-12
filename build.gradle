@@ -6,7 +6,7 @@ ext {
     base_version = "e6276eeadd"
     constraintlayout = "2.0.0-beta4"
     appcompat = "1.1.0"
-    core_ktx = "1.1.0"
+    core_ktx = "1.2.0"
     viewpager2 = "1.0.0"
     clingVersion = "2.1.1"  //2.1.2 不能搜索到设备
     jettyVersion = "8.1.22.v20160922"

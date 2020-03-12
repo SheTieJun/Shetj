@@ -23,22 +23,21 @@
         android:name=".APP"
         android:allowBackup="true"
         android:icon="@mipmap/shetj_logo"
-        android:requestLegacyExternalStorage="true"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/base_network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-
-        <!--  创建   https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts -->
-
-
-        <activity android:name=".bubble.BubbleActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+        <activity android:name=".ppttest.X5ReaderActivity"></activity>
+        <!-- 创建   https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts -->
+        <activity
+            android:name=".bubble.BubbleActivity"
             android:allowEmbedded="true"
             android:documentLaunchMode="always"
-            android:resizeableActivity="true"/>
+            android:resizeableActivity="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".androidxtest.AndroidXActivity" />
         <activity android:name=".ffmpeg.RxFFmpegActivity" />
         <activity android:name=".camera.CameraxActivity" />
@@ -58,7 +57,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.shortcuts"
+
+            <meta-data
+                android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
@@ -122,33 +123,31 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </service>
-<!--        <service android:name=".playVideo.media.MediaService">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.media.browse.MediaBrowserService" />-->
-<!--            </intent-filter>-->
-<!--        </service>-->
+        </service> <!-- <service android:name=".playVideo.media.MediaService"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.media.browse.MediaBrowserService" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <service android:name=".playVideo.media.MusicService">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </service>
-        <receiver android:name="androidx.media.session.MediaButtonReceiver"
-            >
+
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".broadcastReceiver.NOISYStateBroadcastReceive">
             <intent-filter>
-                <action android:name="android.bluetooth.device.action.ACL_CONNECTED"/>
-                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED"/>
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
-                <action android:name="android.media.AUDIO_BECOMING_NOISY"/>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
         </receiver>
     </application>
