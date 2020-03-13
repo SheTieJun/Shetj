@@ -2,6 +2,7 @@ package me.shetj.tencentx5;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ActionMode;
 
 import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.CookieSyncManager;
@@ -42,6 +43,26 @@ public class X5WebView extends WebView {
 		super.loadUrl(url);
 	}
 
+	//FIX
+	@Override
+	public ActionMode startActionMode(ActionMode.Callback callback) {
+		ActionMode actionMode = super.startActionMode(callback);
+		return x5WebViewManager.resolveActionMode(actionMode);
+	}
+
+	@Override
+	public ActionMode startActionMode(ActionMode.Callback callback, int type) {
+		ActionMode actionMode = super.startActionMode(callback,type);
+		return x5WebViewManager.resolveActionMode(actionMode);
+	}
+
+	/**
+	 * 设置点击回掉
+	 * @param actionSelectListener
+	 */
+	public void setActionSelectListener(ActionSelectListener actionSelectListener) {
+		x5WebViewManager.setActionSelectListener(actionSelectListener);
+	}
 
 	public void setX5ChromeClient(X5WebChromeClient a) {
 		this.setWebChromeClient(a);

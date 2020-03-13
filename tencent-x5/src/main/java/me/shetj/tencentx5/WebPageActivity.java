@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding3.view.RxView;
 import com.tencent.sonic.sdk.SonicConfig;
@@ -95,6 +97,7 @@ public class WebPageActivity extends BaseX5WebActivity {
 		mWebView.setX5ChromeClient(new X5WebChromeClient(getRxContext(),mProgressBar,(TextView) findViewById(R.id.toolbar_title)));
 		mWebView.setX5DownLoadListener(new X5DownLoadListener());
 		mWebView.setX5ViewClient(new X5WebViewClient(sonicSession));
+		mWebView.setX5JSI(new X5JS(mWebView),"x5");
 		mWebView.removeJavascriptInterface("searchBoxJavaBridge_");
 		intent.putExtra(SonicJavaScriptInterface.PARAM_LOAD_URL_TIME, System.currentTimeMillis());
 		mWebView.addJavascriptInterface(new SonicJavaScriptInterface(mWebView, sonicSessionClient, intent), "sonic");
@@ -105,6 +108,12 @@ public class WebPageActivity extends BaseX5WebActivity {
 			mWebView.loadUrl(url);
 		}
 
+		mWebView.setActionSelectListener(new ActionSelectListener() {
+			@Override
+			public void onClick(String title, String selectText) {
+				Timber.i("title = %s;selectText = %s", title, selectText);
+			}
+		});
 
 	}
 

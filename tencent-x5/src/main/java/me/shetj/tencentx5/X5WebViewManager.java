@@ -1,10 +1,21 @@
 package me.shetj.tencentx5;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import me.shetj.base.tools.json.EmptyUtils;
@@ -16,6 +27,13 @@ import me.shetj.base.tools.json.EmptyUtils;
 public class X5WebViewManager {
 	private WebView webView;
 	private WebSettings webSettings;
+	private	ActionSelectListener mActionSelectListener;
+	private ActionMode mActionMode;
+	private List<String> mActionList = new ArrayList<String>() {
+		{
+			add("复制");
+		}
+	};
 
 	public X5WebViewManager(WebView webView){
 		this.webView = webView;
@@ -56,6 +74,14 @@ public class X5WebViewManager {
 		webSettings.setAllowContentAccess(true);
 		webSettings.setSavePassword(false);
 		webSettings.setSaveFormData(false);
+	}
+
+	/**
+	 * 设置点击回掉
+	 */
+	public void setActionSelectListener(ActionSelectListener actionSelectListener) {
+		linkJSInterface();
+		this.mActionSelectListener = actionSelectListener;
 	}
 
     /**
@@ -130,6 +156,60 @@ public class X5WebViewManager {
 
 
 	/**
+	 * 处理item，处理点击
+	 * @param actionMode
+	 */
+	public ActionMode resolveActionMode(ActionMode actionMode) {
+		if (actionMode != null) {
+			final Menu menu = actionMode.getMenu();
+			mActionMode = actionMode;
+			menu.clear();
+			for (int i = 0; i < mActionList.size(); i++) {
+				menu.add(mActionList.get(i));
+			}
+			for (int i = 0; i < menu.size(); i++) {
+				MenuItem menuItem = menu.getItem(i);
+				menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+					@Override
+					public boolean onMenuItemClick(MenuItem item) {
+						getSelectedData((String) item.getTitle());
+						releaseAction();
+						return true;
+					}
+				});
+			}
+		}
+		mActionMode = actionMode;
+		return actionMode;
+	}
+
+
+	/**
+	 * 点击的时候，获取网页中选择的文本，回掉到原生中的js接口
+	 * @param title 传入点击的item文本，一起通过js返回给原生接口
+	 */
+	private void getSelectedData(String title) {
+
+		String js = "(function getSelectedText() {" +
+				"var txt;" +
+				"var title = \"" + title + "\";" +
+				"if (window.getSelection) {" +
+				"txt = window.getSelection().toString();" +
+				"} else if (window.document.getSelection) {" +
+				"txt = window.document.getSelection().toString();" +
+				"} else if (window.document.selection) {" +
+				"txt = window.document.selection.createRange().text;" +
+				"}" +
+				"JSActionInterface.callback(txt,title);" +
+				"})()";
+		webView.evaluateJavascript("javascript:" + js, null);
+	}
+
+	public void linkJSInterface() {
+		webView.addJavascriptInterface(new ActionSelectInterface(webView), "JSActionInterface");
+	}
+
+	/**
 	 * 对图片进行重置大小，宽度就是手机屏幕宽度，高度根据宽度比便自动缩放
 	 */
 	public void imgReset() {
@@ -190,6 +270,33 @@ public class X5WebViewManager {
 			return true;
 		}else{
 			return false;
+		}
+	}
+
+	private void releaseAction() {
+		if (mActionMode != null) {
+			mActionMode.finish();
+			mActionMode = null;
+		}
+	}
+
+
+	/**
+	 * js选中的回掉接口
+	 */
+	private class ActionSelectInterface {
+
+		WebView mContext;
+
+		ActionSelectInterface(WebView c) {
+			mContext = c;
+		}
+
+		@JavascriptInterface
+		public void callback(final String value, final String title) {
+			if(mActionSelectListener != null) {
+				mActionSelectListener.onClick(title, value);
+			}
 		}
 	}
 }

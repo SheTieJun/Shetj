@@ -14,6 +14,7 @@ import com.tencent.sonic.sdk.SonicSessionClient;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import me.shetj.tencentx5.BuildConfig;
@@ -25,13 +26,24 @@ public class SonicRuntimeImpl extends SonicRuntime {
         super(context);
     }
 
+    public static final String USER_AGENT = String.format(
+            " Lycheer/%s SystemName/%s SystemVersion/%s Device/%s   Language/%s  SdkVersion/%d Flavor/%s LycheerVersion/%d",
+            BuildConfig.VERSION_NAME,
+            "Android",
+            Build.VERSION.RELEASE,
+            Build.MODEL,
+            Locale.getDefault().getLanguage() + "_" + Locale.getDefault().getCountry(),
+            Build.VERSION.SDK_INT,
+            BuildConfig.FLAVOR,
+            BuildConfig.VERSION_CODE);
+
     /**
      * 获取用户UA信息
      * @return
      */
     @Override
     public String getUserAgent() {
-        return "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36";
+        return USER_AGENT;
     }
 
     /**
