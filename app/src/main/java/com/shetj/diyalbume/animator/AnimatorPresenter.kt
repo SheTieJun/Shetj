@@ -21,10 +21,6 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
 
     private var animType = false
 
-    init {
-
-    }
-
     fun setType() {
         animType = !animType
     }
@@ -92,8 +88,8 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
 
     @SuppressLint("SetTextI18n")
             /**
-     * 值动画
-     */
+             * 值动画
+             */
     fun startValue(view1: View) {
         if (animType) {
             val animation = ValueAnimator.ofInt(0, 100)
@@ -172,7 +168,15 @@ class AnimatorPresenter(view :IView) :BasePresenter<BaseModel>(view){
     fun startViewProperty(it: View) {
 
         if (animType){
-            it.animate().alpha(0f).x(500f).y(500f).duration = 3000
+            it.animate().alpha(0f)
+                    .x(500f)
+                    .y(500f)
+                    .withStartAction {
+
+                    }
+                    .withEndAction {
+
+                    }.duration = 3000
 
         }else {
             it.animate().alpha(0.5f).x(0f).y(300f).rotation(360f).duration = 3000

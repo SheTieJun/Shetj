@@ -1,14 +1,18 @@
 package com.shetj.diyalbume
 
 import android.content.ContentValues
+import android.net.Uri
 import androidx.core.content.contentValuesOf
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import io.reactivex.Observable
 import io.reactivex.functions.Function
+import me.shetj.base.tools.file.SDCardUtils
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.File
+import java.net.URI
 import java.util.concurrent.TimeUnit
 
 /**
@@ -64,5 +68,15 @@ class ExampleInstrumentedTest {
         val contentValues = contentValuesOf(Pair("key", true), Pair("key1", false))
         contentValues.put("key3",false)
 
+    }
+
+    @Test
+    fun testFile(){
+        val file = File(SDCardUtils.getPath("test")+"/test.text")
+        if (!file.exists()){
+            file.createNewFile()
+        }
+        val uri: URI = file.toURI()
+        print( Uri.parse(uri.path))
     }
 }

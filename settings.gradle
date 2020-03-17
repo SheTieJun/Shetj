@@ -1,6 +1,5 @@
 include ':app', ':components', ':router', ':constraintlayout', ':cling',
-        ':ar', ':buglytinker',
-        ':video', ':mvvm', ':rxhttp',
+        ':ar', ':buglytinker', ':mvvm', ':rxhttp',
         ':jguang', ':encrypt',
         ':transition', ':room', ':tencent-x5',
         ':update', ':upload',

@@ -42,9 +42,6 @@ class X5ReaderActivity : AppCompatActivity() {
         val filePah =  "https://media.lycheer.net/material/6583/5e6851502b69bd50585a4318.pdf"
         val fileType = filePah.substring(filePah.lastIndexOf(".") + 1)
         //taskID
-
-        val savePath= SDCardUtils.cache+"/${filePah.toMD5() + "." + fileType}"
-
         EasyHttp.downLoad(filePah)
                 .saveName(filePah.toMD5() + "." + fileType)
                 .execute(object : DownloadProgressCallBack<String>() {

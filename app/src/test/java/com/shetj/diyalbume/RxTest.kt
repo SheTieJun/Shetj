@@ -121,4 +121,44 @@ class RxTest {
 
 
 
+    fun buildFunc(a:Int, b:Int) = { c:String ->
+        println(c)
+        println(a + b)
+        Observable.just("111")
+    }
+
+    fun acb(func:(String) -> () -> Unit)
+    {
+        func.invoke("Hello").invoke()
+    }
+
+    @Test
+    fun main() {
+        //acb(main2(2, 4))
+        println("1")
+        println(buildFunc(2, 10).invoke("xixi"))
+
+        Observable.just("1")
+                .flatMap(buildFunc(1,2))
+
+
+
+                .subscribe {
+                    print(it)
+                }
+
+        Observable.just("1")
+                .flatMap{
+                    //
+                    buildFunc(1,2).invoke(it)
+                }
+
+                .subscribe {
+                    print(it)
+                }
+    }
+
+
+
+
 }

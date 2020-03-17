@@ -202,8 +202,8 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0' //liveData kt
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0' //viewModel kt
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0' //liveData kt
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0' //viewModel kt
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -212,7 +212,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.browser:browser:1.2.0'
 
 
