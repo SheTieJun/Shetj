@@ -18,6 +18,8 @@ import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 
+import org.reactivestreams.Publisher;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +33,7 @@ import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import me.shetj.base.s;
 import me.shetj.base.tools.json.EmptyUtils;
 import timber.log.Timber;
@@ -197,8 +200,6 @@ public class OSSUtils {
 	                                  @NonNull final String urlPath,
 	                                  @NonNull final UploadFileCallBack<List<String>> callBack){
 
-		final List<String> uploadUrl = new ArrayList<>(files.size());
-		final ArrayList<String> strings = new ArrayList<>();
 		return Flowable.create(new FlowableOnSubscribe<String>() {
 			@Override
 			public void subscribe(final FlowableEmitter<String> emitter) {
@@ -207,40 +208,31 @@ public class OSSUtils {
 					asyncUpload(file.getPath(), urlPath, new UploadFileCallBack<String>() {
 						@Override
 						public void progress(long size, long allSize) {
-							callBack.progress(strings.size(), files.size());
 						}
 
 						@Override
 						public void succeed(String fileUrl) {
-							uploadUrl.add(files.indexOf(file),fileUrl);
 							emitter.onNext(fileUrl);
-							if (strings.size() == files.size()) {
-								emitter.onComplete();
-							}
 						}
 
 						@Override
 						public void onFail(String msg) {
-							emitter.onError(new Throwable(msg));
+							emitter.onError(new Throwable(file.getPath()));
 						}
 					});
 				}
 			}
 		}, BackpressureStrategy.BUFFER)
-						.subscribe(new Consumer<String>() {
+				.buffer(files.size())
+						.subscribe(new Consumer<List<String>>() {
 							@Override
-							public void accept(String s) {
-								strings.add(s);
+							public void accept(List<String> s) {
+								callBack.succeed(s);
 							}
 						}, new Consumer<Throwable>() {
 							@Override
 							public void accept(Throwable throwable) {
 								callBack.onFail(throwable.getMessage());
-							}
-						}, new Action() {
-							@Override
-							public void run() {
-								callBack.succeed(uploadUrl);
 							}
 						});
 

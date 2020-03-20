@@ -14,6 +14,7 @@ import androidx.appcompat.widget.TooltipCompat
 import com.jakewharton.rxbinding3.view.clicks
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.shetj.diyalbume.R
+import com.shetj.diyalbume.`fun`.FileTestActivity
 import com.shetj.diyalbume.animator.AnimatorActivity
 import com.shetj.diyalbume.aspect.AspectActivity
 import com.shetj.diyalbume.behavior.BehaviorActivity
@@ -210,7 +211,8 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
 
         btn_ppt.clicks().subscribe{
-            ArmsUtils.startActivity(this,PPtTestActivity::class.java)
+            SneakerUtils.sneakSuccess(this,"成功提示","测试~测试")
+//            ArmsUtils.startActivity(this,PPtTestActivity::class.java)
         }
 
         btn_account.clicks().subscribe {
@@ -260,6 +262,9 @@ class MainActivity : BaseActivity<MainPresenter>(){
         }
         file_x5.setOnClickListener {
             ArmsUtils.startActivity(this,X5ReaderActivity::class.java)
+        }
+        btn_File.setOnClickListener {
+            ArmsUtils.startActivity(this,FileTestActivity::class.java)
         }
     }
 

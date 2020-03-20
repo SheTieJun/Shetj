@@ -35,7 +35,7 @@
     <string name="label_next">Next track</string>
     <string name="indro">介绍</string>
     <string name="auto_play">视频播放</string>
-    <string name="auto_code">AS自动生成的代码效果</string>
+    <string name="auto_code">AS自动生成</string>
     <string name="downloadservice">DownloadService</string>
     <string name="sys_code">系统控件</string>
     <string name="ppt">ppt</string>
@@ -44,7 +44,7 @@
     <string name="download">download</string>
     <string name="job_scheduler">job_scheduler</string>
     <string name="design">自定义</string>
-    <string name="content">内容提供者_本地音乐</string>
+    <string name="content">本地音乐</string>
     <string name="behavior">behavior</string>
     <string name="gltest">GLTest</string>
     <string name="gl3d">GL3D</string>
@@ -66,7 +66,7 @@
     <string name="fresco">Fresco+图片</string>
     <string name="web_scheme">web_scheme</string>
     <string name="gesturedetector">gestureDetector</string>
-    <string name="aidl_luckapp">AIDL打开LuckAPP</string>
+    <string name="aidl_luckapp">AIDL</string>
     <string-array name="messages_array">
         <item>How are you</item>
         <item>Fine. And you?</item>

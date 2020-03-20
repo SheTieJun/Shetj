@@ -38,6 +38,19 @@ class X5ReaderActivity : AppCompatActivity() {
         mTbsReaderView =  TbsReaderView(this, TbsReaderView.ReaderCallback { p0, p1, p2 ->
 
         })
+//
+//
+//        val params: HashMap<String, String> = HashMap()
+//        params["local"] = "false"
+//        QbSdk.openFileReader(this, filePah, params) { p0 ->
+//            if (p0 == "open QB") {
+//                group_tips?.postDelayed({
+//                    finish()
+//                }, 350)
+//            } else if (p0 != "open success") {
+//                finish()
+//            }
+//
         prview.addView(mTbsReaderView,   FrameLayout.LayoutParams(-1, -1))
         val filePah =  "https://media.lycheer.net/material/6583/5e6851502b69bd50585a4318.pdf"
         val fileType = filePah.substring(filePah.lastIndexOf(".") + 1)

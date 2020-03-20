@@ -12,6 +12,7 @@ import android.os.IBinder
 import com.shetj.diyalbume.utils.DownloadService.Companion.getApkName
 import com.shetj.diyalbume.utils.DownloadService.Companion.install
 import me.shetj.base.tools.app.AppUtils
+import me.shetj.base.tools.file.SDCardUtils
 import timber.log.Timber
 import java.io.File
 
@@ -166,8 +167,8 @@ class DownloadService : Service() {
         //--- Private static methods -------------------------------------------------------------------
 
         private val downloadDir: String
-            get() = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    .absolutePath
+            get() = SDCardUtils.cache
+
 
         private fun getDownloadedApkPath(apkName: String): String {
             return downloadDir + File.separator + apkName

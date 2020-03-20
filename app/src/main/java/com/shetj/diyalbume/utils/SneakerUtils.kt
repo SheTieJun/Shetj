@@ -44,10 +44,10 @@ object SneakerUtils {
     fun sneakCus(activity: Activity,
                  title: String,
                  message: String,
-                 color: Int,
+                 color: Int ,
                  bgColor: Int,
-                 listener: OnSneakerClickListener,
-                 dismissListener: OnSneakerDismissListener) {
+                 listener: OnSneakerClickListener?=null,
+                 dismissListener: OnSneakerDismissListener?=null) {
         Sneaker.with(activity)
                 .setTitle(title, color)
                 // Title and title color

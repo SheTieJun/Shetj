@@ -159,6 +159,42 @@ class RxTest {
     }
 
 
+    @Test
+    fun testFlowable(){
+        Flowable.range(0,100)
+                .doOnRequest {
+                    println("doOnRequest :$it")
+                }
+                .doOnNext {
+                    println("doOnNext :$it")
+                }
+                .doOnSubscribe {
+                    it.request(5)
+                }.subscribe({
+                    println(it)
+                },{},{},{
+
+                })
+    }
+
+    @Test
+    fun testtakeWhile(){
+        var i = 0
+        Observable.range(0,10)
+                .map {
+                    i++
+                    println("map=$it")
+                    it.toString()
+                }
+                .takeWhile {
+                    //true 才之下
+                    i <5
+                }.subscribe {
+                    println("subscribe=$it")
+                }
+
+    }
+
 
 
 }

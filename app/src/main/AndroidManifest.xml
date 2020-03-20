@@ -30,8 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".ppttest.X5ReaderActivity"></activity>
-        <!-- 创建   https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts -->
+        <activity android:name=".fun.FileTestActivity"></activity>
+        <activity android:name=".ppttest.X5ReaderActivity" /> <!-- 创建   https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts -->
         <activity
             android:name=".bubble.BubbleActivity"
             android:allowEmbedded="true"

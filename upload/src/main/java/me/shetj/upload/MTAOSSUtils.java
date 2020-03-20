@@ -29,15 +29,11 @@ public class MTAOSSUtils {
 	private static CosXmlSimpleService cosXml = null;
 	private MTAOSSUtils(Context context){
 		if (cosXml !=null){
-			cosXml = getCosService(context,url);
+			cosXml = getCosService(context.getApplicationContext(),url);
 		}
 	}
 
 
-
-	public static void init(Context context){
-
-	}
 
 	/**
 	 * 获取授权

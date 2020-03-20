@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,85 +11,84 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="创建"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_paly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="自动play原理"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_custom"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_custom" />
 
     <Button
         android:id="@+id/btn_custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="自定义"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_behavior"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_behavior" />
 
     <Button
         android:id="@+id/btn_behavior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="自定义UI"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_jiami"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_jiami" />
 
     <Button
         android:id="@+id/btn_openGL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:textAllCaps="false"
         android:text="GLTest"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/bt_create"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_openGL3D"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:textAllCaps="false"
+        android:layout_marginLeft="8dp"
         android:text="GL3D"
+        android:textAllCaps="false"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_openGL"
-        app:layout_constraintStart_toEndOf="@+id/btn_openGL"
-        />
+        app:layout_constraintStart_toEndOf="@+id/btn_openGL" />
 
     <Button
         android:id="@+id/btn_jiami"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="加密解密"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_tup"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_tup" />
 
     <Button
         android:id="@+id/btn_tup"
@@ -98,12 +96,12 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/btn_behavior"
         android:layout_alignTop="@+id/btn_openGL"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:text="图文生成"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_treadPool"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_treadPool" />
 
     <Button
         android:id="@+id/btn_treadPool"
@@ -111,58 +109,57 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/bt_create"
         android:layout_alignTop="@+id/btn_openGL"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="线程池"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_create"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_create" />
 
     <Button
         android:id="@+id/btn_animator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="动画"
         app:layout_constraintStart_toEndOf="@+id/btn_treadPool"
-        app:layout_constraintTop_toBottomOf="@+id/btn_openGL"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_openGL" />
 
     <Button
         android:id="@+id/btn_bluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
-        android:textAllCaps="false"
+        android:layout_marginBottom="8dp"
         android:text="蓝牙Ble"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btn_finger"
         app:layout_constraintStart_toEndOf="@+id/btn_tup"
-        app:layout_constraintTop_toBottomOf="@+id/btn_animator"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_animator" />
 
     <Button
         android:id="@+id/btn_lottie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:textAllCaps="false"
+        android:layout_marginLeft="8dp"
         android:text="动画lottie"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_animator"
-        app:layout_constraintTop_toBottomOf="@+id/btn_openGL3D"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_openGL3D" />
 
     <Button
         android:id="@+id/btn_finger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="指纹"
         app:layout_constraintStart_toEndOf="@+id/btn_jiami"
-        app:layout_constraintTop_toBottomOf="@+id/btn_bluetooth"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_bluetooth" />
 
     <Button
         android:id="@+id/btn_CustomTabs"
@@ -173,7 +170,7 @@
         android:text="CustomTabsUrl"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/btn_finger"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_finger" />
 
     <Button
         android:id="@+id/btn_Aspect"
@@ -184,7 +181,7 @@
         android:text="AOP - Aspect"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_custom"
-        app:layout_constraintTop_toBottomOf="@+id/btn_CustomTabs"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_CustomTabs" />
 
     <Button
         android:id="@+id/btn_x5"
@@ -195,7 +192,8 @@
         android:text="腾讯X5+VasSonic"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_finger"
-        app:layout_constraintTop_toBottomOf="@+id/btn_lottie"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_lottie" />
+
     <Button
         android:id="@+id/btn_map"
         android:layout_width="wrap_content"
@@ -205,16 +203,16 @@
         android:text="百度地图"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_finger"
-        app:layout_constraintTop_toBottomOf="@+id/btn_x5"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_x5" />
 
     <Button
         android:id="@+id/btn_fresco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fresco"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Fresco"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/btn_paly"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Aspect"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_Aspect" />
 </androidx.constraintlayout.widget.ConstraintLayout>
