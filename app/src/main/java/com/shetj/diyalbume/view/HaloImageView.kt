@@ -8,11 +8,14 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.shetj.diyalbume.R
 
-class HaloImageView : TextView {
+/**
+ * 圆形呼吸录音状态
+ */
+class HaloImageView : AppCompatTextView {
 
     private var valueAnimator: ValueAnimator? =null
     private lateinit var mPaint: Paint
@@ -67,7 +70,7 @@ class HaloImageView : TextView {
     }
 
 
-    fun startAnimo(){
+    private fun startAnimo(){
         valueAnimator = ValueAnimator.ofFloat(8f, haloSize).apply {
             duration = 600
             repeatMode =ValueAnimator.REVERSE

@@ -18,7 +18,7 @@ import com.shetj.diyalbume.miui.GlideApp
  */
 class ImageAdpter(data: MutableList<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseViewHolder>(R.layout.item_course_img, data) {
 
-    override fun convert(helper: BaseViewHolder, item: ItemIndex?) {
+    override fun convert(helper: BaseViewHolder, item: ItemIndex) {
         GlideApp.with(context).load(item?.img).into(helper.getView<View>(R.id.iv_image) as ImageView)
     }
 }

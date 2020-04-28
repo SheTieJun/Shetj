@@ -24,8 +24,8 @@ class AutoRecycleViewAdapter(data: MutableList<ClingDevice>?) : BaseQuickAdapter
 
     var i = 0
 
-    override fun convert(helper: BaseViewHolder, item: ClingDevice?) {
-        item?.let {
+    override fun convert(helper: BaseViewHolder, item: ClingDevice) {
+        item.let {
             if (helper.layoutPosition == playPosition) {
                 helper.setText(R.id.tv_string, "选中:" +item.device.details.friendlyName)
             } else {

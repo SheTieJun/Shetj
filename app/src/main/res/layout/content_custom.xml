@@ -29,18 +29,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="292dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="180dp"
         android:elevation="5dp"
         android:outlineAmbientShadowColor="@color/red"
         android:outlineSpotShadowColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/shetj_logo" />
-
 
     <com.shetj.diyalbume.view.WaveView
         android:id="@+id/wave_view"
@@ -99,5 +99,16 @@
         android:src="@drawable/triange_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.shetj.diyalbume.view.CircleProgressView
+        app:layout_constraintStart_toEndOf="@id/iv_triangle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:backProgressWith="6dp"
+        app:progressWith="10dp"
+        app:backProgressColor="#EBEBEF"
+        app:progressSize="90"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

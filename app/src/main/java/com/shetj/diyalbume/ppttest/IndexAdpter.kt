@@ -18,7 +18,7 @@ import com.shetj.diyalbume.R
  */
 class IndexAdpter(data: MutableList<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseViewHolder>(R.layout.item_index_recycle, data) {
 
-    override fun convert(helper: BaseViewHolder, item: ItemIndex?) {
+    override fun convert(helper: BaseViewHolder, item: ItemIndex) {
         item?.let {
             val recyclerView = helper.getView<RecyclerView>(R.id.IRecyclerView)
             if (item.type == "4") {

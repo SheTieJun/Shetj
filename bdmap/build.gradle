@@ -29,6 +29,25 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                release(MavenPublication) {
+//                    from components.release
+//                    groupId = 'com.example.lib'
+//                    artifactId = 'release'
+//                    version = '1.0'
+//                }
+//                debug(MavenPublication) {
+//                    from components.debug
+//                    groupId = 'com.example.lib'
+//                    artifactId = 'debug'
+//                    version = '1.0'
+//                }
+//            }
+//        }
+//    }
 }
 
 dependencies {

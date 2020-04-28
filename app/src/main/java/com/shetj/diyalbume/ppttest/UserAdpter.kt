@@ -18,7 +18,7 @@ import com.shetj.diyalbume.miui.GlideApp
  */
 class UserAdpter(data: MutableList<ItemIndex>?) : BaseQuickAdapter<ItemIndex, BaseViewHolder>(R.layout.item_user_info, data) {
 
-    override fun convert(helper: BaseViewHolder, item: ItemIndex?) {
+    override fun convert(helper: BaseViewHolder, item: ItemIndex) {
         item?.let {
             GlideApp.with(context).load(item.img).into(helper.getView<View>(R.id.iv_image) as ImageView)
             helper.setText(R.id.tv_name, item.content)

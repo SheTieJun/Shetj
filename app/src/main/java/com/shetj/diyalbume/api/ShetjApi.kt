@@ -142,10 +142,6 @@ interface ShetjApi {
 
     companion object {
         val isTest = false
-
-        val MOFANG_HOME = "http://mf.51mofang.cn"//魔方主页
-
-
         val HTTP_SMS = if (isTest) "http://172.35.2.147:5005/" else "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/"
         val HTTP_USER = if (isTest) "http://172.35.2.147:5000/" else "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/"
         val HTTP_ORDER = if (isTest) "http://172.35.2.147:5004/" else "http://172.35.2.152/mock/59f179fdc615ca5028cc1309/mofang_v3/"

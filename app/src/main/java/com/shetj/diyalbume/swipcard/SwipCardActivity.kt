@@ -2,6 +2,7 @@ package com.shetj.diyalbume.swipcard
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.shetj.diyalbume.R
 import kotlinx.android.synthetic.main.activity_swip_card.*
 
@@ -18,6 +19,12 @@ class SwipCardActivity : AppCompatActivity() {
 
         val mAdapter = ImageAdapter(datas)
         iRecyclerView.adapter = mAdapter
-        iRecyclerView.layoutManager = SwipLayoutManager(this)
+        iRecyclerView.layoutManager = TierLayoutManager()
+        btn_remove?.setOnClickListener {
+            val removeAt = mAdapter.data.removeAt(0)
+            mAdapter.addData(removeAt)
+            mAdapter.notifyDataSetChanged()
+        }
+        PagerSnapHelper().attachToRecyclerView(iRecyclerView)
     }
 }

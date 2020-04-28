@@ -11,6 +11,9 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 
+/**
+ * 倾斜的文字
+ */
 class EdgedTextView  @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr){
@@ -63,7 +66,7 @@ class EdgedTextView  @JvmOverloads constructor(
         var height :Int = 0
         if (specMode == MeasureSpec.AT_MOST){
             //获取到具体的宽高
-            height = getWH() + paddingLeft + paddingRight
+            height = getWH() + paddingTop + paddingBottom
         }else if (specMode == MeasureSpec.EXACTLY){
             height = specSize
         }

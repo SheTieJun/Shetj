@@ -16,7 +16,6 @@
           android:padding="16dp"
           android:text="测试"
           android:gravity="center"
-          android:textIsSelectable="true"
           android:background="@color/base_blue"
           android:layout_margin="5dp"
           tools:context=".ItemDetailFragment"/>

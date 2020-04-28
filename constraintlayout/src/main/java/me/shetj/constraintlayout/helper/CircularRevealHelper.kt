@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.ViewAnimationUtils
 import androidx.constraintlayout.widget.ConstraintHelper
 import androidx.constraintlayout.widget.ConstraintLayout
+import kotlin.math.hypot
 
 
 /**
@@ -24,7 +25,7 @@ class CircularRevealHelper
             for (view in views) {
                 val anim = ViewAnimationUtils.createCircularReveal(view, view.width / 2,
                         view.height / 2, 0f,
-                        Math.hypot((view.height / 2).toDouble(), (view.width / 2).toDouble()).toFloat())
+                        hypot((view.height / 2).toDouble(), (view.width / 2).toDouble()).toFloat())
                 anim.duration = 3000
                 anim.start()
             }

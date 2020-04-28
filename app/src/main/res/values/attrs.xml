@@ -62,4 +62,13 @@
         <attr name="haloBackgroundColor" format="color"/>
     </declare-styleable>
 
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="backProgressColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="backProgressWith" format="dimension"/>
+        <attr name="progressWith" format="dimension"/>
+        <attr name="progressSize" format="integer"/>
+        <attr name="max" format="integer"/>
+    </declare-styleable>
 </resources>

@@ -15,7 +15,7 @@ import com.shetj.diyalbume.R
 
 class startChallgeAdapter(data: MutableList<String>?) : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recycle_img, data) {
 
-    override fun convert(helper: BaseViewHolder, item: String?) {
+    override fun convert(helper: BaseViewHolder, item: String) {
 
     }
 }

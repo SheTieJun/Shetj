@@ -28,12 +28,12 @@ class MusicSelectAdapter(data: MutableList<Music>) : BaseQuickAdapter<Music, Bas
     val GB = 1073741824
 
 
-    override fun convert(helper: BaseViewHolder, item: Music?) {
-        item?.let {
+    override fun convert(helper: BaseViewHolder, item: Music) {
+        item.let {
             helper.setText(R.id.tv_music_name, item.name)
                     .setText(R.id.tv_music_size, byte2FitMemorySize(item.size))
                     .setText(R.id.tv_music_time, formatTime(item.duration))
-                    addChildClickViewIds(R.id.tv_play)
+            addChildClickViewIds(R.id.tv_play)
         }
 
 

@@ -26,8 +26,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+            abiFilters "armeabi", "armeabi-v7a",'x86', 'x86_64'
         }
     }
 
@@ -178,7 +177,7 @@ android {
             }
             if (requested.group == 'androidx.annotation') {
                 if (requested.name.startsWith("annotation")) {
-                    details.useVersion "1.1.0"
+                    details.useVersion "1.0.0"
                 }
             }
             if (requested.group == 'androidx.core') {
@@ -245,9 +244,9 @@ dependencies {
     implementation 'com.github.SheTieJun:aspectutils:12004150ad'
     def db_version = "a5020e0ed4"  //commit 前10位
     implementation "com.github.SheTieJun:SimXutilsDb:$db_version"
-    implementation "com.github.SheTieJun:OrangeDialog:0.0.1"
+//    implementation "com.github.SheTieJun:OrangeDialog:0.0.1"
 
-
+    implementation "androidx.annotation:annotation-experimental:1.0.0"
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
@@ -261,14 +260,14 @@ dependencies {
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
-    def work_version = "2.3.3"
+    def work_version = "2.3.4"
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
     // Kotlin + coroutines
     // optional - RxJava2 support
     implementation "androidx.work:work-rxjava2:$work_version"
-    // optional - Test helpers
-    androidTestImplementation "androidx.work:work-testing:$work_version"
+//    // optional - Test helpers
+//    androidTestImplementation "androidx.work:work-testing:$work_version"
     //KTX
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
@@ -286,17 +285,17 @@ dependencies {
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    implementation 'androidx.customview:customview:1.1.0-alpha02' //ViewDragHelper
+    implementation 'androidx.customview:customview:1.1.0-beta01' //ViewDragHelper
     //MarkDown 空间
     implementation 'us.feras.mdv:markdownview:1.1.0'
 
     //音视频
-    implementation 'com.github.microshow:RxFFmpeg:2.1.0'
+    implementation 'com.github.microshow:RxFFmpeg:2.2.0'
     implementation project(path: ':mvvm')
     implementation project(path: ':constraintlayout')
 
     //搭建本地服务器(https://github.com/koush/AndroidAsync)
     implementation 'com.koushikdutta.async:androidasync:2.2.1'
     implementation project(path: ':cling')
-
+    implementation 'com.github.SheTieJun:MediaBrowser:d6dc8e22dd'
 }

@@ -59,7 +59,7 @@ class LocalMusicPresenter(view: IView) : BasePresenter<LocalModel>(view) {
                     val size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
                     val url = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
                     val duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
-                    val album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM))
+//                    val album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM))
                     if (duration in 1000..2000000) {
                         val music = Music()
                         music.name = title

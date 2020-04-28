@@ -7,9 +7,13 @@ import android.view.View
 import androidx.annotation.Keep
 import me.shetj.base.tools.app.ArmsUtils
 
+
 @Keep
 class ArcView : View {
 
+    private var mRadius: Int = 0
+    private var mHeight: Int = 0
+    private var mWidth: Int = 0
     private lateinit var mPaint: Paint
     private var mArcHeight: Int = 0 //圆弧高度
     private lateinit var arcPath: Path   //圆弧
@@ -51,4 +55,26 @@ class ArcView : View {
 //        canvas.drawPath(arcPath, mPaint)
     }
 
+//    //test
+//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+//        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+//        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+//        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+//        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+//        mWidth = if (widthMode == MeasureSpec.EXACTLY) {
+//            widthSize
+//        } else {
+//            widthSize
+//        }
+//        if (heightMode == MeasureSpec.EXACTLY) {
+//            mHeight = heightSize
+//        } else {
+//            mHeight = defaultHeight
+//            if (heightMode == MeasureSpec.AT_MOST) {
+//                mHeight = heightSize.coerceAtMost(mHeight)
+//            }
+//        }
+//        mRadius = Math.min(mWidth, mHeight) / 2
+//        setMeasuredDimension(mWidth, mHeight)
+//    }
 }

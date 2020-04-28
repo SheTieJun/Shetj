@@ -27,9 +27,9 @@ class MusicAdapter(data: MutableList<MediaBrowserCompat.MediaItem>?) : BaseQuick
 
 
 
-    override fun convert(helper: BaseViewHolder, item: MediaBrowserCompat.MediaItem?) {
+    override fun convert(helper: BaseViewHolder, item: MediaBrowserCompat.MediaItem) {
         val itemPosition = helper.adapterPosition - headerLayoutCount
-        item?.let {
+        item.let {
             helper.setText(R.id.tv_music_name, item?.description.title)
 
                     .setTextColor(R.id.tv_music_name,when(itemPosition == position){

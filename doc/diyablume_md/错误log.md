@@ -46,3 +46,19 @@
 
 Error:Execution failed for task ':app:preDebugBuild'.
 > Android dependency 'com.android.support:appcompat-v7' has different version for the compile (26.1.0) and runtime (27.0.2) classpath. You should manually set the same version via DependencyResolution
+>
+
+```
+  lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition()
+                            firstVisibleItemPosition= linearLayoutManager.findFirstVisibleItemPosition()
+                            if (!recyclerView.canScrollVertically(-1) ){
+                                tabLayout?.currentTab = 0
+                            }else if (recyclerView.canScrollVertically(-1)&& lastVisibleItemPosition == 0){
+                                tabLayout?.currentTab = 0
+                            }else {
+                                tabLayout?.currentTab = 1
+                            }
+                            if (!recyclerView.canScrollVertically(300)){
+                                lectureDiscussAdapter.loadMoreDiscuss()
+                            }
+```
