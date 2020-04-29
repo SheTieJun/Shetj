@@ -1,5 +1,6 @@
-#### 使用 https://www.fresco-cn.org/
-```
+# 使用 https://www.fresco-cn.org/
+
+```text
 <com.facebook.drawee.view.SimpleDraweeView
   android:id="@+id/my_image_view"
   android:layout_width="20dp"
@@ -76,12 +77,11 @@ roundingBorderWidth                     圆角或圆形图边框的宽度
 roundingBorderColor                     圆角或圆形图边框的颜色
 
 viewAspectRatio                         设置宽高比
-
-
 ```
 
-#####  设置比例
-```
+## 设置比例
+
+```text
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/my_image_view"
     android:layout_width="20dp"
@@ -91,3 +91,4 @@ viewAspectRatio                         设置宽高比
 
     mSimpleDraweeView.setAspectRatio(1.33f);
 ```
+
